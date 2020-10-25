@@ -1,0 +1,93 @@
+.icon{
+	width: auto;
+	height: 250px;
+	margin-top: 20px;
+    transition: width 2s, height 2s, transform 2s;
+}
+.icon:hover{
+	width: auto;
+    height: 250px;
+    margin-top: 20px;
+    transform: scale(1.1);
+}
+.row h3{
+	color: #145cb1;
+	text-shadow: 1px 2px 2px black;
+	margin-top: 100px;
+}
+.go{
+	margin-top: 50px;
+	padding: 10px 30px 10px 30px;
+	border-radius: 15px;
+	background-color: #145cb1;
+	color : white;
+}
+.go:hover{
+	margin-top: 50px;
+	padding: 10px 30px 10px 30px;
+	border-radius: 15px;
+	transform: scale(0.9);
+	background-color: #296ef7;
+	color : white;
+}
+.box{
+	padding: 60px;
+	background-color: #145cb1;
+	width: 450px;
+	border-radius: 10px;
+	margin-top: 50px;
+	box-sizing: border-box;
+	box-shadow: 5px 5px 7px grey;
+	float: right;
+}
+.box h3{
+	color: white;
+	text-shadow: 1px 2.5px 3px aqua;
+	margin-top: 30px;
+}
+.mid{
+	text-align: center;
+}
+.center{
+	margin-left: 120px;
+}
+.form-group label{
+	color: white;
+}
+.sign{
+	margin-top: 20px;
+	border-radius: 5px;
+	background-color: #d0d2d6;
+	color : ;
+}
+.sign:hover{
+	margin-top: 20px;
+	border-radius: 5px;
+	background-color: white;
+	color : ;
+}
+header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+header img{
+	width: 50px;
+	height: auto;
+}
+.bawah{
+	margin-top: 200px;
+}
+.listtype{
+	color : black;
+	text-decoration: none;
+}
+.listtype:hover{
+	color : grey;
+	text-decoration: none;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
