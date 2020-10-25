@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubmissionTable extends Migration
+class CreateAccountTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSubmissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('submissions', function (Blueprint $table) {
-            $table->char('id_pengajuan', 10)->primary();
-            $table->string('judul', 100);
-            $table->date('tgl_pengajuan');
-            $table->string('status', 6);
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->integer('nip')->primary();
+            $table->string('password',10);
         });
     }
 
@@ -28,6 +26,6 @@ class CreateSubmissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission');
+        Schema::dropIfExists('accounts');
     }
 }

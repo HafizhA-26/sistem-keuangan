@@ -14,9 +14,8 @@ class CreateDanaTable extends Migration
     public function up()
     {
         Schema::create('dana', function (Blueprint $table) {
-            $table->char('id_dana', 10)->unique();
+            $table->char('id_dana', 10)->primary();
             $table->integer('jumlah');
-            $table->timestamps();
         });
     }
 

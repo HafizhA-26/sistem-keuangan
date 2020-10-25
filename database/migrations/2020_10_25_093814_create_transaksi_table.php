@@ -14,15 +14,14 @@ class CreateTransaksiTable extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->char('id_transaksi',10)->unique();
-            $table->char('id_dana',10);
+            $table->char('id_transaksi',10)->primary();
+            $table->char('id_dana');
             $table->integer('jumlah');
             $table->enum('jenis',['keluar', 'masuk', 'pending']);
-            $table->string('id_pengaju');
+            $table->integer('id_pengaju');
             $table->date('tgl_transaksi');
-            $table->timestamps();
             $table->foreign('id_dana')->references('id_dana')->on('dana');
-            $table->foreign('id_pengaju')->references('nip')->on('users');
+            $table->foreign('id_pengaju')->references('nip')->on('accounts');
         });
     }
 
