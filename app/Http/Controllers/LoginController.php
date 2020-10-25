@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -16,7 +18,29 @@ class LoginController extends Controller
         $title = "Sistem Informasi Keuangan";
         return view('login', ['title' => $title]);
     }
-
+    
+    function checklogin(Request $request){
+        $this->validate($request,[
+            'nip'   => 'required',
+            'password'  => 'required'
+        ]);
+        $akun_data = array(
+            'nip' =>  $request->get('nip'),
+            'password'  =>  $request->get('password')
+        );
+        if(Auth::attempt($akun_data)){
+            return redirect('login/successlogin');
+        }else{
+            return back()->with('pesan','NIP atau Password salah');
+        }
+    }
+    function successlogin(){
+        return view('dashboard');
+    }
+    function logout(){
+        Auth::logout();
+        return redirect('login');
+    }
     /**
      * Show the form for creating a new resource.
      *

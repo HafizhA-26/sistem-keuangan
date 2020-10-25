@@ -17,4 +17,5 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/',[DashboardController::class, 'index']);
 Route::get('/login',[LoginController::class, 'index']);
-Route::post('loginv',[LoginController::class, 'login']);
+Route::post('/checking',[LoginController::class, 'checklogin']);
+Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
