@@ -522,6 +522,8 @@ class ComposerStaticInit57af07f8864a79b0764160cb821fbae5
     public static $classMap = array (
         'App\\Akun' => __DIR__ . '/../..' . '/app/Models/Akun.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Dana' => __DIR__ . '/../..' . '/app/Models/Dana.php',
+        'App\\DetailSub' => __DIR__ . '/../..' . '/app/Models/DetailSub.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/AccountController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -543,6 +545,8 @@ class ComposerStaticInit57af07f8864a79b0764160cb821fbae5
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Submission' => __DIR__ . '/../..' . '/app/Models/Submission.php',
+        'App\\Transaksi' => __DIR__ . '/../..' . '/app/Models/Transaksi.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
