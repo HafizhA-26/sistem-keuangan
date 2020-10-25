@@ -1,6 +1,7 @@
 @extends('layouts.layout1')
 
 @section('content')
+	<!-- Konten Landing Page -->
 	<div class="container-fluid background-1" style="height: 100%">
 		<div class="row">
 			<div class="col-md-12 text-center">
