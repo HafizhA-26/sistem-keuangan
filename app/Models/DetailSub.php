@@ -9,5 +9,5 @@ class DetailSub extends Model
 {
     use HasFactory;
 
-    protected $table = 'detailsub';
+    protected $table = 'detail_submissions';
 }
