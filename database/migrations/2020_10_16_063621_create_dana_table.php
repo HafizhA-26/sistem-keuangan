@@ -16,6 +16,7 @@ class CreateDanaTable extends Migration
         Schema::create('dana', function (Blueprint $table) {
             $table->char('id_dana', 10)->primary();
             $table->integer('jumlah');
+            $table->timestamps();
         });
     }
 

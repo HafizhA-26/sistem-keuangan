@@ -18,6 +18,7 @@ class CreateSubmissionTable extends Migration
             $table->string('judul', 100);
             $table->date('tgl_pengajuan');
             $table->string('status', 6);
+            $table->timestamps();
         });
     }
 

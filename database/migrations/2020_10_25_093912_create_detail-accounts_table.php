@@ -14,14 +14,14 @@ class CreateDetailAccountsTable extends Migration
     public function up()
     {
         Schema::create('detail_accounts', function (Blueprint $table) {
-            $table->integer('nip');
-            $table->integer('nuptk');
+            $table->bigInteger('nip');
+            $table->bigInteger('nuptk');
             $table->string('nama', 20);
             $table->enum('jk',['Pria','Wanita']);
             $table->integer('noHP');
             $table->char('id_jabatan');
             $table->text('alamat');
-
+            $table->timestamps();
             $table->foreign('nip')->references('nip')->on('accounts');
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');
         });
