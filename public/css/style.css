@@ -1,3 +1,14 @@
+/* Membuat body html full screen dan membuat class background-1 untuk mempermudah */
+body, html{
+	height: 100%;
+}
+.background-1{
+	background-image: url(../img/bg/bg3.jpg); 
+	background-attachment: fixed; 
+	background-position: right bottom;
+	width: 100%;
+}
+/* Membuat body html full screen dan membuat class background-1 untuk mempermudah */
 .icon{
 	width: auto;
 	height: 250px;
@@ -58,13 +69,11 @@
 	margin-top: 20px;
 	border-radius: 5px;
 	background-color: #d0d2d6;
-	color : ;
 }
 .sign:hover{
 	margin-top: 20px;
 	border-radius: 5px;
 	background-color: white;
-	color : ;
 }
 header{
 	margin-top: 20px;

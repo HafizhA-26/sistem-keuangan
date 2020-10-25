@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="../img/icon/stm.png"/>
 	<title>Sistem Informasi Keuangan</title>
 </head>
-<body  style="background-image: url(../img/bg/bg3.jpg); background-attachment: fixed; background-position: right bottom;">
+<body  style="background-image: url(img/bg/bg3.jpg); background-attachment: fixed; background-position: right bottom;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3 border-right">

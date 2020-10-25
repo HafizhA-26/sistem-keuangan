@@ -13,7 +13,8 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('login');
+        $title = "Sistem Informasi Keuangan";
+        return view('login', ['title' => $title]);
     }
 
     /**

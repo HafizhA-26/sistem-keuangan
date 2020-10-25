@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
- 	<link rel="stylesheet" type="text/css" href="css/style.css">
- 	<link href="css/all.min.css" rel="stylesheet">
-	<link rel="icon" type="image/png" href="img/icon/stm.png"/>
-	<title>Sistem Informasi Keuangan</title>
-</head>
-<body  style="background-image: url(img/bg/bg3.jpg); background-attachment: fixed; background-position: right bottom;">
-	<div class="container-fluid">
+@extends('layouts.layout1')
+
+@section('content')
+	<div class="container-fluid background-1" style="height: 100%">
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div><h3>Sistem Infomasi Keuangan</h3></div>
@@ -17,5 +10,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+@endsection

@@ -13,7 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $title = "Sistem Informasi Keuangan";
+        return view('index', ['title' => $title]);
     }
 
     /**
