@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function index()
     {
         $title = "Sistem Informasi Keuangan";
-        return view('login', ['title' => $title]);
+        return view('auth.login', ['title' => $title]);
     }
     
     function checklogin(Request $request){
@@ -41,7 +41,10 @@ class LoginController extends Controller
                 ->select('accounts.*','detail_accounts.*')
                 ->where('accounts.nip','=',$nip)
                 ->get();
-        dd($user_data);
+        dd(Auth::user());
+        if(Auth::check()){
+            dd($user_data);
+        }
     }
     function logout(){
         Auth::logout();

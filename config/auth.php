@@ -46,6 +46,10 @@ return [
             'provider' => 'accounts',
             'hash' => false,
         ],
+        'accounts' => [
+            'driver' => 'session',
+            'provider' => 'accounts',
+        ],
     ],
 
     /*
@@ -71,10 +75,6 @@ return [
             'model' => App\Akun::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

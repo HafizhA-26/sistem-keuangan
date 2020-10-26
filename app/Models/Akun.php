@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 class Akun extends Authenticatable
 {
     use HasFactory;
-
     protected $table = 'accounts';
 
     protected $fillable = [
