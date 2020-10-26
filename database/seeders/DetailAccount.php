@@ -6,9 +6,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Akun;
+use App\Models\Detailakun;
 
-class AccountTableSeeder extends Seeder
+class DetailAccount extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +17,14 @@ class AccountTableSeeder extends Seeder
      */
     public function run()
     {
-        Akun::create([
+        Detailakun::create([
             'nip'   => '0001',
-            'password'  =>  Hash::make('password'),
-            'remember_token'    =>  Str::random(10)
+            'nuptk' =>  '0001',
+            'nama'  =>  'Admin',
+            'jk'    =>  'Pria',
+            'noHP'  =>  '082299726967',
+            'id_jabatan' => 'J000',
+            'alamat'    =>  'Cimahi'
         ]);
-        
     }
 }
