@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
-
+use DB;
 class LoginController extends Controller
 {
     /**
@@ -35,7 +35,13 @@ class LoginController extends Controller
         }
     }
     function successlogin(){
-        return view('dashboard');
+        $nip = '1';
+        $user_data = DB::table('accounts')
+                ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
+                ->select('accounts.*','detail_accounts.*')
+                ->where('accounts.nip','=',$nip)
+                ->get();
+        dd($user_data);
     }
     function logout(){
         Auth::logout();

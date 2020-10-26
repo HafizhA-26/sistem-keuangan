@@ -18,10 +18,10 @@ use App\Http\Controllers\LoginController;
 Route::get('/',[DashboardController::class, 'index']);
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::post('/checking',[LoginController::class, 'checklogin']);
-
+Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
 /* Masukan route 'yang butuh login dulu kalau bisa masuk' */
 Route::group(['middleware' => 'auth'],function(){
-    Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
-    // Tambahin Disini
+    //Route yang butuh autentikasi terlebih dahulu untuk masuk
+
 });
 
