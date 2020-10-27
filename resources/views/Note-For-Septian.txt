@@ -1,0 +1,64 @@
+- Hafizh
+Kan beberapa halaman web kaya dashboard atau submission ,dll Banyak Kesamaan
+Cuman beda tampilan untuk spesifikasi jabatan aja kan.
+Jadi urang mikirin nanti maneh pasti make salah satu cara dibawah
+
+1. Cara 1 File Berbeda.
+Buat file berbeda untuk masing masing jabatan. Misal ada file dashboard-kepsek.php, dashboard-kaprog.php, dll.
+Note : Pesan urang kalau maneh milih cara ini , Tolong masukin ke folder masing masing biar rapih.
+Misal-> Folder Kepsek 
+        - dashboard-kepsek.blade.php
+        - Sumission-kepsek.blade.php
+        Folder Ka Keuangan
+        - dashboard-ka keuangan.blade.php
+        - dan seterusnya
+Terus tolong manfaatin juga metode layout yang udah urang terapin di login.blade.php sama index.blade.php -> pake extends sama section
+
+2. Cara 2, memakai if. <-- recommended
+Buat cukup 1 file untuk halaman yang sama tapi dikasih method if didalemnya. 
+Biar nanti state if nya urang yang isi, maneh cukup buat @if, @endif sama comments buat petunjuk urang harus isi apa disana
+
+Note : Kalau maneh belum tau di laravel gk usah buat <?php if(kondisi){ ?> terus <?php } ?> untuk buat kondisi pemunculan html nya. 
+cukup kasih @if(kondisi) sama @endif terus isi ditengah tengahnya kontennya
+
+Misal-> di dalem dasboard.blade.php 
+        sementara sama maneh diginiin dulu nanti urang sisi
+
+        @if('a') //jabatan 'Kepala Sekolah'
+            <div>
+                Tampilin data jumlah keuangan, blablablabla
+            </div>
+        @endif
+        @if('a') //jabatan 'Kaprog'
+            <div>
+                Tampilin data jumlah pengajuan, blablablabla
+            </div>
+        @endif
+
+kalau maneh bingung untuk check di webnya , soalnya ada kondisi yang harus dipenuhi. isi dulu sama kondisi yang selalu benar.
+Terus tolong manfaatin juga metode layout yang udah urang terapin di login.blade.php sama index.blade.php -> pake extends sama section
+
+3. Cara 3, Buat beberapa file layout dan konten. <-- recommended
+Bisa dibilang ini adalah cara 1 yang udah diadaptasi dengan laravel.
+Cara ini manfaatin @extends sama @yield . Kalau maneh mau liat contohnya langsung buka index.blade.php atau login.blade.php. 
+Nih urang contohin juga.
+
+Note : Jujur urang belum pernah nyoba cara ini, tapi kalau emang bisa pasti bakal lebih rapih sama mempersingkat script.
+
+Misal->  
+
+pertama, buat file layout buat template link-link css sama js, contoh : buka resources/views/layouts/layout1.blade.php , nah kaya gitu. disini cukup tambahin @yield()
+kedua, buat file template untuk webnya , disini ada @extends() @section() sama @yield juga . 
+    Contoh : maneh buat dashboard-layout.blade.php. 
+    Diawal file ini ada @extends('layouts.layout1')
+    Setelah nulis beberapa kodingan template dashboard, maneh sisain jeda untuk konten yang bakal nantinya beda beda. 
+    @yield('konten')
+ketiga, buat file untuk kontennya. Nah jangan lupa masukin folder dulu liat note urang di cara 1. Disni cuman ada extends() ke template langkah kedua
+    Contoh : maneh buat ka-keuangan_dashboard.blade.php
+    Diawal file ini ada @extends('layouts.dashboard-layout')
+    Isinya "Konten" yang beda dari dashboard yang lain.
+
+P.S :   Jangan lupa buat komen untuk beberapa bagian yang harus dilanjutin sama backend. Contoh :
+        Maneh Buat Table terus diisi data ngasal, dan kasih komen
+        // Nampilin data table submission
+        nah nanti kita yang lanjutin 
