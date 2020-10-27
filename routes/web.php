@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +13,16 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/',[DashboardController::class, 'index']);
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::post('/checking',[LoginController::class, 'checklogin']);
+Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
+
+
 
 /* Masukan route 'yang butuh login dulu kalau bisa masuk' */
 Route::group(['middleware' => 'auth'],function(){
-    Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
-    // Tambahin Disini
+    // Jangan dipake dulu system protectionnya masih capruk
+    
 });
 

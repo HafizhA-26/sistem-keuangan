@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Akun extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'accounts';
 
@@ -20,5 +20,8 @@ class Akun extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 }
