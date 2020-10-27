@@ -18,7 +18,7 @@ class CreateDetailAccountsTable extends Migration
             $table->bigInteger('nuptk');
             $table->string('nama', 20);
             $table->enum('jk',['Pria','Wanita']);
-            $table->integer('noHP');
+            $table->string('noHP',20);
             $table->char('id_jabatan');
             $table->text('alamat');
             $table->timestamps();

@@ -7,12 +7,20 @@
         <link href="css/all.min.css" type="text/css" rel="stylesheet">
         <link rel="icon" type="image/png" href="img/icon/stm.png"/>
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
-        <title>{{ $title }}n</title>
+        <title>{{ $title }}</title>
     </head>
     <body>
         <!-- Memanggil konten -->
         @yield('content')
+        <script>
+            function hanyaAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
         
+            return false;
+            return true;
+        }
+        </script>
         <script src="js/all.min.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
