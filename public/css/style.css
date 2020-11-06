@@ -4,9 +4,12 @@ body, html{
 }
 .background-1{
 	background-image: url(../img/bg/bg3.jpg); 
-	background-attachment: fixed; 
-	background-position: right bottom;
-	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 /* Membuat body html full screen dan membuat class background-1 untuk mempermudah */
 .icon{
@@ -48,13 +51,14 @@ body, html{
 	border-radius: 10px;
 	margin-top: 50px;
 	box-sizing: border-box;
-	box-shadow: 5px 5px 7px grey;
+	box-shadow: 0 0 10px 5px grey;
 	float: right;
 }
 .box h3{
 	color: white;
 	text-shadow: 1px 2.5px 3px aqua;
 	margin-top: 30px;
+	letter-spacing: 3px;
 }
 .mid{
 	text-align: center;
@@ -69,6 +73,8 @@ body, html{
 	margin-top: 20px;
 	border-radius: 5px;
 	background-color: #d0d2d6;
+	transition: 0.3s;
+	letter-spacing: 1px;
 }
 .sign:hover{
 	margin-top: 20px;
@@ -93,6 +99,7 @@ header img{
 .listtype:hover{
 	color : grey;
 	text-decoration: none;
+	transform: scale(0.9);
 }
 .left{
 	float: left;
