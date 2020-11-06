@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
- 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<link rel="icon" type="image/png" href="../img/icon/stm.png"/>
-	<title>Sistem Informasi Keuangan</title>
-</head>
-<body>
-    <!-- Memanggil konten -->
-    @yield('content')
+@extends('layouts.layout1')
 
-    <script src="js/all.min.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-</body>
-</html>
+@section('content')
+    <div class="container-fluid background-1">
+		<div class="row">
+			<div class="col-md-3 border-right">
+				<header class="border-bottom">
+					<img src="../img/icon/stm.png">
+					<span class="h6">&nbsp;Sistem Informasi Keuangan</span>
+				</header>
+				<ul>
+					<li class="list-inline h4"><a href="" class="nav-link disabled listtype">Dashboard</a></li><br>
+					<li class="list-inline h4"><a href="" class="nav-link listtype">Submission</a></li><br>
+					<li class="list-inline h4"><a href="" class="nav-link listtype">Report</a></li><br>
+					<li class="list-inline h4"><a href="" class="nav-link listtype">Add Account</a></li><br>
+					<li class="list-inline h5 bawah"><a href="login.php" class="listtype">Sign Out <i class="fa fa-sign-out-alt"></i></a></li>
+				</ul>
+			</div>
+			@yield('content')
+		</div>
+    </div>
+@endsection
