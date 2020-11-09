@@ -24,7 +24,8 @@ class DetailAccount extends Seeder
             'jk'    =>  'Pria',
             'noHP'  =>  '082299726967',
             'id_jabatan' => 'J000',
-            'alamat'    =>  'Cimahi'
+            'alamat'    =>  'Cimahi',
+            'picture'   => 'avatar.jpg'
         ]);
     }
 }

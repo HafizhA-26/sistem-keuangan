@@ -21,6 +21,7 @@ class CreateDetailAccountsTable extends Migration
             $table->string('noHP',20);
             $table->char('id_jabatan');
             $table->text('alamat');
+            $table->string('picture');
             $table->timestamps();
             $table->foreign('nip')->references('nip')->on('accounts');
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');
