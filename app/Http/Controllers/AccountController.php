@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Akun;
+use Auth;
 use DB;
 use Session;
+use Image;
 
 class AccountController extends Controller
 {
@@ -69,9 +71,15 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if($request->hasFile('pic')){
+            $avatar = $request->file('pic');
+            $filename = time() . "." . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
+
+            //TO DO update table detail_akun
+        }
     }
 
     /**

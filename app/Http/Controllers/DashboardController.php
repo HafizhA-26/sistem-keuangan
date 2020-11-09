@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Akun;
 use DB;
 use Session;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -35,7 +36,8 @@ class DashboardController extends Controller
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                return view('kepsek.index-kepsek', ['title' => $title]);
+                dd(Auth::user());
+                
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
