@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Akun;
+use DB;
+use Session;
 
 class DashboardController extends Controller
 {
@@ -16,7 +19,45 @@ class DashboardController extends Controller
         $title = "Sistem Informasi Keuangan";
         return view('index', ['title' => $title]);
     }
-
+    public function dashboardVerification(){
+        $akun = Session::get('akun');
+        $nip = $akun['nip'];
+        $password = $akun['password'];
+        $user_data = DB::table('accounts')
+                ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
+                ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
+                ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
+                ->where('accounts.nip','=',$nip)
+                ->get();
+        $jabatan = $user_data[0]->nama_jabatan;
+        // Pembagian route berdasarkan jabatan
+        $title = "Dashboard - Sistem Keuangan";
+        switch($jabatan){
+            case 'Admin':
+                //Isi custom hok
+                return view('kepsek.index-kepsek', ['title' => $title]);
+                //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
+                break;
+            case 'Kepala Sekolah':
+                //return view('');
+                break;
+            case 'Kepala Keuangan':
+                //return view('');
+                break;
+            case 'Staf BOS':
+                //return view('');
+                break;
+            case 'Staf Dana':
+                //return view('');
+                break;
+            case 'Kaprog':
+                //return view('');
+                break;
+            default:
+                return view('login');
+                break;
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

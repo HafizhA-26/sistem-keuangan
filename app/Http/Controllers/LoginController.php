@@ -42,40 +42,13 @@ class LoginController extends Controller
     }
     function successlogin(){
         $akun = Session::get('akun');
-        $nip = $akun['nip'];
-        $password = $akun['password'];
-        $user_data = DB::table('accounts')
-                ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
-                ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
-                ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
-                ->where('accounts.nip','=',$nip)
-                ->get();
-        $jabatan = $user_data[0]->nama_jabatan;
-        // Pembagian route berdasarkan jabatan
-        switch($jabatan){
-            case 'Admin':
-                //Isi custom hok
-                echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
-                break;
-            case 'Kepala Sekolah':
-                //return view('');
-                break;
-            case 'Kepala Keuangan':
-                //return view('');
-                break;
-            case 'Staf BOS':
-                //return view('');
-                break;
-            case 'Staf Dana':
-                //return view('');
-                break;
-            case 'Kaprog':
-                //return view('');
-                break;
-            default:
-                return view('login');
-                break;
+        if($akun){
+            return redirect("/dashboard")->with(['akun' => $akun]);
+        }else{
+            echo "<script>alert('Data akun tidak ditemukan')</script>";
         }
+        
+        
     }
     function logout(){
         Auth::logout();

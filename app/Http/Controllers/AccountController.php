@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Akun;
+use DB;
+use Session;
 
 class AccountController extends Controller
 {
