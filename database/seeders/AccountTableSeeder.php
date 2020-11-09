@@ -18,6 +18,7 @@ class AccountTableSeeder extends Seeder
     public function run()
     {
         Akun::create([
+            'id'    => '1',
             'nip'   => '1',
             'password'  =>  Hash::make('password'),
             'remember_token'    =>  Str::random(10)
