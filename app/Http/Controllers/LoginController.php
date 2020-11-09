@@ -34,16 +34,16 @@ class LoginController extends Controller
             'password'  =>  $request->get('password')
         );
         if(Auth::attempt($akun_data)){
-            return redirect('login/successlogin')->with(['akun' => $akun_data]);
+            return redirect('login/successlogin');
         }else{
             return back()->with('pesan','NIP atau Password salah');
         }
        
     }
     function successlogin(){
-        $akun = Session::get('akun');
+        $akun = Auth::user();
         if($akun){
-            return redirect("/dashboard")->with(['akun' => $akun]);
+            return redirect("/dashboard");
         }else{
             echo "<script>alert('Data akun tidak ditemukan')</script>";
         }

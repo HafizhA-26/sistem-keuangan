@@ -21,9 +21,9 @@ class DashboardController extends Controller
         return view('index', ['title' => $title]);
     }
     public function dashboardVerification(){
-        $akun = Session::get('akun');
-        $nip = $akun['nip'];
-        $password = $akun['password'];
+        $akun = Auth::user();
+        $nip = $akun->nip;
+        $password = $akun->password;
         $user_data = DB::table('accounts')
                 ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                 ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
@@ -36,7 +36,7 @@ class DashboardController extends Controller
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                dd(Auth::user());
+                echo "<script>alert('Login Berhasil')</script>";
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
