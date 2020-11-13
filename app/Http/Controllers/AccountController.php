@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Akun;
+use App\Detailakun;
+use Hash;
 use Auth;
 use DB;
 use Session;
 use Image;
+use Validator;
 
 class AccountController extends Controller
 {
@@ -71,14 +74,45 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
+        $this->validate([
+            'password' => 'required',
+            'nuptk'   => 'required',
+            'nama'  => 'required',
+            'jk'    => 'required',
+            'noHP'  => 'required',
+            'alamat' => 'required',
+            'pic' => 'required'
+        ]);
+        
         if($request->hasFile('pic')){
             $avatar = $request->file('pic');
             $filename = time() . "." . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
+            $akun_data = Akun::find($id);
+            $detail_akun = Detailakun::find($akun_data->nip);
 
             //TO DO update table detail_akun
+            $akun_data->password = Hash::make($request->get('password'));
+            $detail_akun->nuptk = $request->get('nuptk');
+            $detail_akun->nama = $request->get('nama');
+            $detail_akun->jk = $request->get('jk');
+            $detail_akun->noHP = $request->get('noHP');
+            $detail_akun->alamat = $request->get('alamat');
+            $detail_akun->picture = $request->get('pic');
+            $akun_data->save();
+            $detail_akun->save();
+            session([
+                'user_id' => $akun_data->nip,
+                'nuptk' => $request->get('nuptk'),
+                'nama' => $request->get('nama'),
+                'jk' => $request->get('jk'),
+                'noHP' => $request->get('noHP'),
+                'alamat' => $request->get('alamat'),
+                'picture' => $filename
+            ]);
+            session().save();
             
         }
     }
