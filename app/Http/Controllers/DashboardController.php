@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Akun;
 use DB;
@@ -30,13 +29,25 @@ class DashboardController extends Controller
                 ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
                 ->where('accounts.nip','=',$nip)
                 ->get();
+       
+        session([
+            'user_id' => $user_data[0]->nip,
+            'nuptk' => $user_data[0]->nuptk,
+            'nama' => $user_data[0]->nama,
+            'jk' => $user_data[0]->jk,
+            'noHP' => $user_data[0]->noHP,
+            'nama_jabatan' => $user_data[0]->nama_jabatan,
+            'alamat' => $user_data[0]->alamat,
+            'picture' => $user_data[0]->picture
+        ]);
+        
         $jabatan = $user_data[0]->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - Sistem Keuangan";
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                dd(Auth::user());
+                dd(session()->all());
                 
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;

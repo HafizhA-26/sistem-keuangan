@@ -34,7 +34,6 @@ class LoginController extends Controller
             'password'  =>  $request->get('password')
         );
         if(Auth::attempt($akun_data)){
-            Auth::user()->email = $akun_data['nip'];
             return redirect('login/successlogin')->with(['akun' => $akun_data]);
         }else{
             return back()->with('pesan','NIP atau Password salah');
@@ -54,6 +53,7 @@ class LoginController extends Controller
     }
     function logout(){
         Auth::logout();
+        session()->flush();
         return redirect('login');
     }
     /**

@@ -79,6 +79,7 @@ class AccountController extends Controller
             Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
 
             //TO DO update table detail_akun
+            
         }
     }
 
