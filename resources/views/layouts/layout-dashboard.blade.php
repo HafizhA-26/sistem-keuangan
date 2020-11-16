@@ -12,7 +12,7 @@
 			<h3>Sistem <span>Informasi Keuangan</span></h3>
 		</div>
 		<div class="right_area">
-			<a href="login.php" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+			<a href="/logout" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
 		</div>
 	</header>
 	<!-- Header area end -->
@@ -24,11 +24,11 @@
 				<i class="fa fa-bars nav_btn"></i>
 			</div>
 			<div class="mobile_nav_items">
-				<a href="#" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
-				<a href="#"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
-				<a href="#"><i class="fas fa-book"></i><span>Report</span></a>
-				<a href="#"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-				<a href="#"><i class="fas fa-user"></i><span>Edit Profil</span></a>
+				<a href="/dashboard" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+				<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
+				<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
+				<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+				<a href="/edit-profil"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 			</div>
 		</div>
 	<!-- Mobile navigation bar end-->
@@ -38,11 +38,11 @@
 		<div class="profile_info">
 			<img src="../img/icon/stm.png" class="profile_image" alt="">
 		</div>
-		<a href="#" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
-		<a href="#"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
-		<a href="#"><i class="fas fa-book"></i><span>Report</span></a>
-		<a href="#"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-		<a href="#"><i class="fas fa-user"></i><span>Edit Profil</span></a>
+		<a href="/dashboard" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+		<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
+		<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
+		<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+		<a href="/edit-profil"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 	</div>
 	<!-- Sidebar end -->
 
