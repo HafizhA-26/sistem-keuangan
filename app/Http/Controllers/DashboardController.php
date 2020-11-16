@@ -47,7 +47,7 @@ class DashboardController extends Controller
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                dd(session()->all());
+                dd(Auth::user());
                 
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;

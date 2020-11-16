@@ -14,7 +14,7 @@ class CreateDetailAccountsTable extends Migration
     public function up()
     {
         Schema::create('detail_accounts', function (Blueprint $table) {
-            $table->bigInteger('nip');
+            $table->bigInteger('nip')->unsigned();
             $table->bigInteger('nuptk');
             $table->string('nama', 20);
             $table->enum('jk',['Pria','Wanita']);
