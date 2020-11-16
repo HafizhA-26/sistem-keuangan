@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('nip')->unique();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id("id_komentar");
+            $table->text("komentar");
+            $table->date("comment_date");
+            $table->bigInteger('nip');
             $table->timestamps();
+
+            $table->foreign('nip')->references('nip')->on('accounts');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('comments');
     }
 }

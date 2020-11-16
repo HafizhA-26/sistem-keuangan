@@ -3,15 +3,10 @@ body, html{
 	height: 100%;
 }
 .background-1{
-	background-image: url(../img/bg/bg3.jpg); 
-	margin: 0;
-	padding: 0;
-	background-size: cover;
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
+	background-image: url(../img/bg/bg3.jpg);
 }
 /* Membuat body html full screen dan membuat class background-1 untuk mempermudah */
+
 .icon{
 	width: auto;
 	height: 250px;
@@ -28,6 +23,11 @@ body, html{
 	color: #145cb1;
 	text-shadow: 1px 2px 2px black;
 	margin-top: 100px;
+}
+.row h4{
+	color: #145cb1;
+	text-shadow: 1px 2px 2px black;
+	margin-top: 50px;
 }
 .go{
 	margin-top: 50px;
@@ -46,6 +46,7 @@ body, html{
 }
 .box{
 	padding: 60px;
+	background: rgba(0, 0, 0, 0.5);
 	background-color: #145cb1;
 	width: 450px;
 	border-radius: 10px;
@@ -81,31 +82,241 @@ body, html{
 	border-radius: 5px;
 	background-color: white;
 }
-header{
+.header_submission{
 	margin-top: 20px;
 	margin-bottom: 20px;
-}
-header img{
-	width: 50px;
-	height: auto;
-}
-.bawah{
-	margin-top: 200px;
-}
-.listtype{
-	color : black;
-	text-decoration: none;
-}
-.listtype:hover{
-	color : grey;
-	text-decoration: none;
-	transform: scale(0.9);
+	color: #145cb1;
+	text-shadow: 1px 2px 2px black;
+	text-align: center;
 }
 .left{
 	float: left;
 }
 .right{
 	float: right;
+}
+
+
+.disabled{
+	background: #296ef7;
+	display: block;
+	cursor: default; 
+}
+
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", sans-serif;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+header{
+	z-index: 1;
+	position: fixed;
+	background: #22242A;
+	padding: 10px;
+	width: calc(100% - 0%);
+	top: 0;
+	height: 70px;
+}
+.left_area h3{
+	color: #fff;
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 900;
+	margin-top: -10px;
+}
+.left_area span{
+	color: #145cb1;
+}
+.logout_btn{
+	padding: 5px;
+	background: #145cb1;
+	text-decoration: none;
+	float: right;
+	margin-top: -30px;
+	margin-right: 40px;
+	border-radius: 2px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff;
+	transition: 0.5s;
+	transition-property: background;
+}
+.logout_btn:hover{
+	background: #296ef7;
+	color : #fff;
+	text-decoration: none;
+}
+.sidebar{
+	z-index: 1;
+	top: 0;
+	background: #2F323A;
+	margin-top: 70px;
+	padding-top: 30px;
+	position: fixed;
+	left: 0;
+	width: 250px;
+	height: calc(100% - 9%);
+	transition: 0.5s;
+	transition-property: left;
+	overflow-y: auto;
+}
+.profile_info{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.sidebar .profile_info .profile_image{
+	width: 100px;
+	height: 100px;
+	margin-bottom: 10px;
+}
+.sidebar .profile_info h4{
+	color: #ccc;
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+.sidebar a{
+	color: #fff;
+	display: block;
+	width: 100%;
+	line-height: 60px;
+	text-decoration: none;
+	padding-left: 40px;
+	box-sizing: border-box;
+	transition: 0.5s;
+	transition-property: background;
+}
+.sidebar a:hover{
+	background: #296ef7;
+}
+.sidebar i{
+	padding-right: 10px;
+}
+label #sidebar_btn{
+	z-index: 1;
+	color: #fff;
+	position: fixed;
+	cursor: pointer;
+	left: 320px;
+	font-size: 16px;
+	margin: 5px 0;
+	transition: 0.5s;
+	transition-property: color;
+}
+label #sidebar_btn:hover{
+	color: #296ef7;
+}
+#check:checked ~ .sidebar{
+	left: -185px;
+}
+#check:checked ~ .sidebar a span{
+	display: none;
+}
+#check:checked ~ .sidebar a{
+	font-size: 20px;
+	margin-left: 165px;
+	width: 100%;
+}
+.content{
+	width: (100% - 250px);
+	margin-top: 60px;
+	padding: 20px;
+	margin-left: 250px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 100vh;
+	transition: 0.5s;
+}
+#check:checked ~ .content{
+	margin-left: 60px;
+}
+#check:checked ~ .sidebar .profile_info{
+	display: none;
+}
+#check{
+	display: none;
+}
+.mobile_nav{
+	display: none;
+}
+
+
+/*Responsive CSS*/
+@media screen and (max-width: 780px){
+	.sidebar{
+		display: none;
+	}
+	#sidebar_btn{
+		display: none;
+	}
+	.content{
+		margin-left: 0;
+		margin-top: 0;
+		padding: 10px 20px;
+		transition: 0s;
+	}
+	#checkbox:checked ~ .content{
+		margin-left: 0;
+	}
+	.mobile_nav{
+		display: block;
+		width: calc(100% - 0%);
+	}
+	.nav_bar{
+		background: #222;
+		width: (100% - 0px);
+		margin-top: 70px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 20px;
+	}
+	.nav_bar .mobile_profile_image{
+		width: 50px;
+		height: 50px;
+	}
+	.nav_bar .nav_btn{
+		color : #fff;
+		font-size: 22px;
+		cursor: pointer;
+		transition: 0.5s;
+		transition-property: color;
+	}
+	.nav_bar .nav_btn:hover{
+		color : #296ef7;
+	}
+	.mobile_nav_items{
+		background: #2F323A;
+		display: none;
+	}
+	.mobile_nav_items a{
+		color : #fff;
+		display: block;
+		text-align: center;
+		letter-spacing: 1px;
+		line-height: 60px;
+		text-decoration: none;
+		box-sizing: border-box;
+		transition: 0.5s;
+		transition-property: background;
+	}
+	.mobile_nav_items a:hover{
+		background: #296ef7;
+	}
+	.mobile_nav_items i{
+		padding-right: 10px;
+	}
+	.active{
+		display: block;
+	}
 }
 /* Membuat style untuk login error state */
 ul.login-error{
