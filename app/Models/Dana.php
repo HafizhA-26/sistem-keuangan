@@ -10,4 +10,7 @@ class Dana extends Model
     use HasFactory;
 
     protected $table = 'dana';
+    protected $fillable = [
+        'jumlah'
+    ];
 }

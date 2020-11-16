@@ -14,13 +14,15 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id("id_komentar");
+            $table->id();
+            $table->bigInteger("id_komentar");
             $table->text("komentar");
             $table->date("comment_date");
             $table->bigInteger('nip');
             $table->timestamps();
 
             $table->foreign('nip')->references('nip')->on('accounts');
+            $table->foreign("id_komentar")->references('id_komentar')->on('detail_submissions');
         });
     }
 
