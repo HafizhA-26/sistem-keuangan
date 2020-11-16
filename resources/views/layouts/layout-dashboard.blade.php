@@ -47,7 +47,7 @@
 	<!-- Sidebar end -->
 
 	<!-- Content -->
-		@yield('content')
+		@yield('sub-content')
 
 	<!-- Javascript -->
 	<script type="text/javascript">

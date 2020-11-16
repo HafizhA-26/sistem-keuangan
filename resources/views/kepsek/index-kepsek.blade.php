@@ -1,5 +1,5 @@
 @extends('layouts.layout-dashboard')
 
-@section('content')
+@section('sub-content')
 	
 @endsection
