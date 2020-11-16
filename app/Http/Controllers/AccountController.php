@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Akun;
 use App\Detailakun;
 use Hash;
+use Str;
 use Auth;
 use DB;
 use Session;
@@ -31,7 +32,30 @@ class AccountController extends Controller
      */
     public function create(Request $request)
     {
-        
+        $this->validate([
+            'nip'   => 'required',
+            'password' => 'required',
+            'nuptk'   => 'required',
+            'nama'  => 'required',
+            'jk'    => 'required',
+            'jabatan' => 'required',
+            'noHP'  => 'required',
+            'alamat' => 'required'
+        ]);
+        Akun::create([
+            'nip' => $request->get('nip'),
+            'password' => Hash::make($request->get('password'))
+        ]);
+        DetailAkun::create([
+            'nip' => $request->get('nip'),
+            'nuptk' => $request->get('nuptk'),
+            'nama' => $request->get('nama'),
+            'jk' => $request->get('jk'),
+            'noHP' => $request->get('id_jabatan'),
+            'alamat' => $request->get('alamat'),
+            'picture' => $request->get('pic','avatar.jpg')
+        ]);
+        return back()->with('pesan','Akun Berhasil Ditambahkan');
     }
 
     /**
