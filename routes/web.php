@@ -17,12 +17,11 @@ Route::get('/',[DashboardController::class, 'index']);
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::post('/checking',[LoginController::class, 'checklogin']);
 Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
-    Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
 
 
 /* Masukan route 'yang butuh login dulu kalau bisa masuk' */
 Route::group(['middleware' => 'auth'],function(){
-    
+    Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
     Route::get('/logout',[LoginController::class, 'logout']);
     // Udah bener, silahkan masukkin route disini
 });
