@@ -1,6 +1,6 @@
 @extends('layouts.layout-submission')
 
-@section('content')
+@section('sub-content')
 	<div class="content background-1">
 		<div class="header_submission">
 			<h4>Daftar Pengajuan</h4>
