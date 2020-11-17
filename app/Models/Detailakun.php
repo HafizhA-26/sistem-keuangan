@@ -10,6 +10,7 @@ class Detailakun extends Model
     use HasFactory;
 
     protected $table = 'detail_accounts';
+    protected  $primaryKey = 'nip';
     protected $fillable = [
         'nip',
         'nuptk',
