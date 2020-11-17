@@ -63,10 +63,11 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nip)
     {
-        $akun_data = Akun::find($id);
+        $akun_data = Akun::find($nip);
         $detail_akun = Detailakun::find($akun_data->nip);
+        dd($detail_akun);
         //return view('edit-profil',['akun' => $akun_data, 'detail' => $detail_akun]);
     }
 
