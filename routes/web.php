@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/submission',[SubmissionController::class, 'index']);
     Route::get('/report',[ReportController::class, '']);
     Route::post('/add-account',[AccountController::class, 'create']);
-    Route::get('/edit-profil/{id}',[AccountController::class, 'edit']);
+    Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
     Route::get('/logout',[LoginController::class, 'logout']);
     // Udah bener, silahkan masukkin route disini
 });

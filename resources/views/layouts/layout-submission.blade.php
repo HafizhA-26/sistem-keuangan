@@ -28,7 +28,7 @@
 				<a href="/submission" class="disabled"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 				<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
 				<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-				<a href="/edit-profil/{{ session()->get('id') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
+				<a href="/edit-profil/{{ session()->get('nip') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 			</div>
 		</div>
 	<!-- Mobile navigation bar end-->
@@ -42,7 +42,7 @@
 		<a href="/submission" class="disabled"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 		<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
 		<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-		<a href="/edit-profil/{{ session()->get('id') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
+		<a href="/edit-profil/{{ session()->get('nip') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 	</div>
 	<!-- Sidebar end -->
 
