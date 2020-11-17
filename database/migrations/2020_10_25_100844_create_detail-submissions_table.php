@@ -18,7 +18,6 @@ class CreateDetailSubmissionsTable extends Migration
             $table->text('deskripsi');
             $table->char('id_transaksi');
             $table->binary('file_lampiran');
-            $table->bigInteger('id_komentar')->unique();
             $table->timestamps();
             $table->foreign('id_pengajuan')->references('id_pengajuan')->on('submissions');
             $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');
