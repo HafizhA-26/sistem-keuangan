@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 ->get();
        
         session([
-            'user_id' => $user_data[0]->nip,
+            'nip' => $user_data[0]->nip,
             'nuptk' => $user_data[0]->nuptk,
             'nama' => $user_data[0]->nama,
             'jk' => $user_data[0]->jk,
@@ -40,7 +40,7 @@ class DashboardController extends Controller
             'alamat' => $user_data[0]->alamat,
             'picture' => $user_data[0]->picture
         ]);
-        
+        session()->save();
         $jabatan = $user_data[0]->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - Sistem Keuangan";

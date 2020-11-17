@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->bigInteger("id_komentar");
             $table->text("komentar");
             $table->date("comment_date");
-            $table->bigInteger('nip');
+            $table->bigInteger('nip')->unsigned();
             $table->timestamps();
 
             $table->foreign('nip')->references('nip')->on('accounts');

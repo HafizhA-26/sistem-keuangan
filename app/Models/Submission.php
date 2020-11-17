@@ -10,6 +10,8 @@ class Submission extends Model
     use HasFactory;
 
     protected $table = 'submissions';
+    protected  $primaryKey = 'id_pengajuan';
+    public $incrementing = false;
     protected $fillable = [
         'id_pengajuan',
         'judul',
