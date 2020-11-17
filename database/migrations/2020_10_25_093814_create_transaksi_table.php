@@ -18,7 +18,7 @@ class CreateTransaksiTable extends Migration
             $table->char('id_dana');
             $table->integer('jumlah');
             $table->enum('jenis',['keluar', 'masuk', 'pending']);
-            $table->bigInteger('id_pengaju');
+            $table->bigInteger('id_pengaju')->unsigned();
             $table->date('tgl_transaksi');
             $table->timestamps();
             $table->foreign('id_dana')->references('id_dana')->on('dana');

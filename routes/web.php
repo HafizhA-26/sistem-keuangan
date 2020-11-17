@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\AccountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/submission',[SubmissionController::class, 'index']);
     Route::get('/report',[ReportController::class, '']);
     Route::post('/add-account',[AccountController::class, 'create']);
-    Route::post('/edit-profil',[AccountController::class, '']);
+    Route::get('/edit-profil/{id}',[AccountController::class, 'edit']);
     Route::get('/logout',[LoginController::class, 'logout']);
     // Udah bener, silahkan masukkin route disini
 });
