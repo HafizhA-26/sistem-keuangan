@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<input type="checkbox" id="check">
+<input type="checkbox" id="check">
 	<!-- Header area start -->
 	<header>
 		<label for="check">
@@ -12,15 +12,16 @@
 			<h3>Sistem <span>Informasi Keuangan</span></h3>
 		</div>
 		<div class="right_area">
-			<a href="/logout" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+			<a href="/login" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
 		</div>
 	</header>
 	<!-- Header area end -->
 
 	<!-- Mobile navigation bar start -->
-		<div class="mobile_nav">
+	<div class="mobile_nav">
 			<div class="nav_bar">
-				<img src="../img/icon/stm.png" class="mobile_profile_image" alt="">
+				<img src="../img/icon/stm.png" class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+				<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="mobile_name">Nama <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 				<i class="fa fa-bars nav_btn"></i>
 			</div>
 			<div class="mobile_nav_items">
@@ -28,7 +29,6 @@
 				<a href="/submission" class="disabled"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 				<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
 				<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-				<a href="/edit-profil/{{ session()->get('nip') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 			</div>
 		</div>
 	<!-- Mobile navigation bar end-->
@@ -36,18 +36,18 @@
 	<!-- Sidebar start -->
 	<div class="sidebar">
 		<div class="profile_info">
-			<img src="../img/icon/stm.png" class="profile_image" alt="">
+			<img src="../img/icon/stm.png" class="profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+			<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="name">Nama <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 		</div>
 		<a href="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 		<a href="/submission" class="disabled"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 		<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
 		<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
-		<a href="/edit-profil/{{ session()->get('nip') }}"><i class="fas fa-user"></i><span>Edit Profil</span></a>
 	</div>
 	<!-- Sidebar end -->
 
 	<!-- Content -->
-	@yield('sub-content')
+		@yield('sub-content')
 
 	<!-- Javascript -->
 	<script type="text/javascript">
