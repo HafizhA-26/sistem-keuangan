@@ -102,6 +102,18 @@ body, html{
 	display: block;
 	cursor: default; 
 }
+.card{
+	padding: 30px 50px;
+	display: block;
+}
+.card-header{
+	background-color: #296ef7;
+	color: #fff;
+	
+}
+.form-group label{
+	color: black;
+}
 
 
 body{
@@ -176,12 +188,26 @@ header{
 	width: 100px;
 	height: 100px;
 	margin-bottom: 10px;
+	border-radius: 100px;
 }
-.sidebar .profile_info h4{
+.sidebar .profile_info .name{
 	color: #ccc;
 	margin-top: 0;
 	margin-bottom: 20px;
 }
+.sidebar .edit{
+	color: #fff;
+	text-decoration: none;
+	line-height: 0;
+	padding: 5px;
+}
+.sidebar .edit:hover{
+	background: none;
+}
+.sidebar .edit i{
+	font-size: 15px;
+}
+
 .sidebar a{
 	color: #fff;
 	display: block;
@@ -229,7 +255,7 @@ label #sidebar_btn:hover{
 	margin-top: 60px;
 	padding: 20px;
 	margin-left: 250px;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	background-position: center;
 	background-size: cover;
 	height: 100vh;
@@ -282,6 +308,22 @@ label #sidebar_btn:hover{
 	.nav_bar .mobile_profile_image{
 		width: 50px;
 		height: 50px;
+		border-radius: 50px;
+	}
+	.nav_bar .edit .mobile_name{
+		color: #ccc;
+		margin-top: 0;
+	}
+	.nav_bar .edit{
+		color: #fff;
+		text-decoration: none;
+		margin-left: -70px;
+	}
+	.nav_bar .edit:hover{
+		background: none;
+	}
+	.nav_bar .edit i{
+		font-size: 15px;
 	}
 	.nav_bar .nav_btn{
 		color : #fff;
