@@ -19,8 +19,13 @@ class LoginController extends Controller
      */
     public function index()
     {
-        $title = "Sistem Informasi Keuangan";
-        return view('login', ['title' => $title]);
+        if(Auth::check()){
+            return redirect("/dashboard");
+        }else{
+            $title = "Sistem Informasi Keuangan";
+            return view('login', ['title' => $title]);
+        }
+        
     }
     
     function checklogin(Request $request){
@@ -51,8 +56,12 @@ class LoginController extends Controller
         
     }
     function logout(){
-        Auth::logout();
+        $akun = Auth::user();
+        $akun_data = Akun::find($akun->nip);
+        $akun_data->status = "offline";
+        $akun_data->save();
         session()->flush();
+        Auth::logout();
         return redirect('login');
     }
     /**

@@ -12,7 +12,7 @@
 			<h3>Sistem <span>Informasi Keuangan</span></h3>
 		</div>
 		<div class="right_area">
-			<a href="/login" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+			<a href="/logout" class="logout_btn"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
 		</div>
 	</header>
 	<!-- Header area end -->
@@ -20,7 +20,7 @@
 	<!-- Mobile navigation bar start -->
 	<div class="mobile_nav">
 			<div class="nav_bar">
-				<img src="../img/icon/stm.png" class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+				<img src="img/avatar/{{ session()->get('picture') }}" class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
 				<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="mobile_name">Nama <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 				<i class="fa fa-bars nav_btn"></i>
 			</div>
@@ -36,8 +36,8 @@
 	<!-- Sidebar start -->
 	<div class="sidebar">
 		<div class="profile_info">
-			<img src="../img/icon/stm.png" class="profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
-			<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="name">Nama <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
+			<img src="img/avatar/{{ session()->get('picture') }}" class="profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+			<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="name">{{ session()->get('nama') }} <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 		</div>
 		<a href="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 		<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>

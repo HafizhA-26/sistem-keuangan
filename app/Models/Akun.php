@@ -16,6 +16,7 @@ class Akun extends Authenticatable
     protected $fillable = [
         'nip',
         'password',
+        'status',
     ];
 
     protected $hidden = [

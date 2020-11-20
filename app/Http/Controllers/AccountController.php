@@ -32,7 +32,8 @@ class AccountController extends Controller
      */
     public function create(Request $request)
     {
-        
+        $title = "Add Account - Sistem Informasi Keuangan";
+        return view('kepsek.add-account',['title' => $title]);
     }
 
     /**
@@ -67,8 +68,8 @@ class AccountController extends Controller
     {
         $akun_data = Akun::find($nip);
         $detail_akun = Detailakun::find($akun_data->nip);
-        dd($detail_akun);
-        //return view('edit-profil',['akun' => $akun_data, 'detail' => $detail_akun]);
+        $title = "Edit Profil - Sistem Informasi Keuangan";
+        return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
     }
 
     /**

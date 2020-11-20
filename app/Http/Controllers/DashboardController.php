@@ -29,7 +29,15 @@ class DashboardController extends Controller
                 ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
                 ->where('accounts.nip','=',$nip)
                 ->get();
-       
+        if($user_data[0]->status == "nonactive"){
+            $title = "Sistem Informasi Keuangan";
+            echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
+            return view('login',['title' => $title]);
+        }else{
+            $akun_data = Akun::find($nip);
+            $akun_data->status = "online";
+            $akun_data->save();
+        }
         session([
             'nip' => $user_data[0]->nip,
             'nuptk' => $user_data[0]->nuptk,
@@ -43,7 +51,7 @@ class DashboardController extends Controller
         session()->save();
         $jabatan = $user_data[0]->nama_jabatan;
         // Pembagian route berdasarkan jabatan
-        $title = "Dashboard - Sistem Keuangan";
+        $title = "Dashboard - Sistem Informasi Keuangan";
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
@@ -66,8 +74,8 @@ class DashboardController extends Controller
                 //return view('',[ 'title' => $title ]);
                 break;
             default:
-                $title = "Sistem Informasi Keuangan";
-                return view('login',['title' => $title]);
+                echo "<script>alert('Data tidak ditemukan')</script>";
+                return redirect('login');
                 break;
         }
     }

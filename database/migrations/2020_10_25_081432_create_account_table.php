@@ -16,6 +16,7 @@ class CreateAccountTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id('nip');
             $table->string('password');
+            $table->string("status");
             $table->rememberToken();
             $table->timestamps();
         });
