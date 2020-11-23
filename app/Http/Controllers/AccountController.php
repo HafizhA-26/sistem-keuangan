@@ -54,15 +54,15 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = [
             'nip'   => 'required',
             'password' => 'required',
             'nuptk'   => 'required',
             'nama'  => 'required',
             'jenis_kelamin'    => 'required',
-            'jabatan' => 'required',
-            'picture' => 'required'
-        ]);
+            'jabatan' => 'required'
+        ];
+        $this->validate($request,$validator);
         if($request->hasFile('picture')){
             $avatar = $request->file('picture');
             $filename = time() . "." . $avatar->getClientOriginalExtension();

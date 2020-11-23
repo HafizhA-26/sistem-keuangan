@@ -5,14 +5,20 @@
 		
 		<div class="card">
 			@if($message = Session::get('pesan'))
-			<div class="alert alert-success" role="alert">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				{{ $message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 		  	</div>
 			@endif
 			@if(count($errors) > 0)
 				@foreach ($errors->all() as $item)
-					<div class="alert alert-danger" role="alert">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
 						{{ $item }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
 					</div>
 				@endforeach
 				
@@ -48,7 +54,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label class="label">No. Handphone</label>
+						<label class="label">No. Handphone ( optional )</label>
 						<input type="text" onkeypress="return hanyaAngka(event)" name="noHP" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off">
 					</div>
 					<div class="form-group">
@@ -65,11 +71,11 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label class="label">Alamat</label>
+						<label class="label">Alamat ( optional )</label>
 						<textarea class="form-control" name="alamat" placeholder="Masukan Alamat" maxlength="100" autocomplete="off"></textarea>
 					</div>
 					<div class="form-group">
-						<label class="label">Picture</label>
+						<label class="label">Picture ( optional )</label>
 						<input type="file" name="picture" class="form-control-file" onchange="document.getElementById('gambar').src= window.URL.createObjectURL(this.files[0])"> <br> <!-- UBAH FORMAT SUPAYA CUMA BISA INPUT FILE GAMBAR (JPG/PNG/JPEG) -->
 						<img id="gambar" width="150" height="150">
 					</div>

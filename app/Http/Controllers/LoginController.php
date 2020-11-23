@@ -60,8 +60,8 @@ class LoginController extends Controller
         $akun_data = Akun::find($akun->nip);
         $akun_data->status = "offline";
         $akun_data->save();
-        session()->flush();
         Auth::logout();
+        session()->flush();
         return redirect('login');
     }
     /**

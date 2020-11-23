@@ -17,6 +17,7 @@ class Akun extends Authenticatable
         'nip',
         'password',
         'status',
+        'remember_token'
     ];
 
     protected $hidden = [

@@ -28,8 +28,8 @@ class DashboardController extends Controller
                 ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
                 ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
                 ->where('accounts.nip','=',$nip)
-                ->get();
-        if($user_data[0]->status == "nonactive"){
+                ->first();
+        if($user_data->status == "nonactive"){
             $title = "Sistem Informasi Keuangan";
             echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
             return view('login',['title' => $title]);
@@ -39,17 +39,17 @@ class DashboardController extends Controller
             $akun_data->save();
         }
         session([
-            'nip' => $user_data[0]->nip,
-            'nuptk' => $user_data[0]->nuptk,
-            'nama' => $user_data[0]->nama,
-            'jk' => $user_data[0]->jk,
-            'noHP' => $user_data[0]->noHP,
-            'nama_jabatan' => $user_data[0]->nama_jabatan,
-            'alamat' => $user_data[0]->alamat,
-            'picture' => $user_data[0]->picture
+            'nip' => $user_data->nip,
+            'nuptk' => $user_data->nuptk,
+            'nama' => $user_data->nama,
+            'jk' => $user_data->jk,
+            'noHP' => $user_data->noHP,
+            'nama_jabatan' => $user_data->nama_jabatan,
+            'alamat' => $user_data->alamat,
+            'picture' => $user_data->picture
         ]);
         session()->save();
-        $jabatan = $user_data[0]->nama_jabatan;
+        $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - Sistem Informasi Keuangan";
         switch($jabatan){
