@@ -34,9 +34,16 @@ class AccountController extends Controller
      */
     public function create()
     {
+        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+
+        
         $title = "Add Account - Sistem Informasi Keuangan";
-        $djabatan = DB::table('jabatan')->where('jabatan.nama_jabatan','!=','J000')->get();
+        $djabatan = DB::table('jabatan')->where('jabatan.id_jabatan','!=','J000')->get();
         return view('kepsek.add-account',['title' => $title, 'jabatan' => $djabatan]);
+        }else{
+            echo "<script>Anda tidak punya wewenang memasuki link ini</script>";
+            return back();
+        }
     }
 
     /**
@@ -52,11 +59,12 @@ class AccountController extends Controller
             'password' => 'required',
             'nuptk'   => 'required',
             'nama'  => 'required',
-            'jk'    => 'required',
-            'jabatan' => 'required'
+            'jenis_kelamin'    => 'required',
+            'jabatan' => 'required',
+            'picture' => 'required'
         ]);
-        if($request->hasFile('pic')){
-            $avatar = $request->file('pic');
+        if($request->hasFile('picture')){
+            $avatar = $request->file('picture');
             $filename = time() . "." . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
             
@@ -66,13 +74,14 @@ class AccountController extends Controller
         Akun::create([
             'nip' => $request->get('nip'),
             'password' => Hash::make($request->get('password')),
-            'status' => "offline"
+            'status' => "offline",
+            'remember_token' => Str::random(10)
         ]);
         DetailAkun::create([
             'nip' => $request->get('nip'),
             'nuptk' => $request->get('nuptk'),
             'nama' => $request->get('nama'),
-            'jk' => $request->get('jk'),
+            'jk' => $request->get('jenis_kelamin'),
             'noHP' => $request->get('noHP'),
             'id_jabatan' => $request->get('jabatan'),
             'alamat' => $request->get('alamat'),

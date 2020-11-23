@@ -21,7 +21,7 @@
 				<h4>Tambah Akun</h1>
 			</div>
 			<div class="card-body">
-				<form class="" method="post" action="/store-data-account">
+				<form class="" method="post" action="/store-data-account" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label class="label">NIP</label>
@@ -41,7 +41,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label">Jenis Kelamin</label>
-						<select class="form-control" name="jk">
+						<select class="form-control" name="jenis_kelamin">
 							<option disabled selected>-- Select --</option>
 							<option value="Pria">Pria</option>
 							<option value="Wanita">Wanita</option>
