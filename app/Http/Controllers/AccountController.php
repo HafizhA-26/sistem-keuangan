@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Akun;
 use App\Models\Detailakun;
+use App\Models\Jabatan;
 use Hash;
 use Str;
 use Auth;
@@ -34,7 +35,8 @@ class AccountController extends Controller
     public function create()
     {
         $title = "Add Account - Sistem Informasi Keuangan";
-        return view('kepsek.add-account',['title' => $title]);
+        $djabatan = DB::table('jabatan')->where('jabatan.nama_jabatan','!=','J000')->get();
+        return view('kepsek.add-account',['title' => $title, 'jabatan' => $djabatan]);
     }
 
     /**
@@ -45,29 +47,38 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate([
+        $this->validate($request,[
             'nip'   => 'required',
             'password' => 'required',
             'nuptk'   => 'required',
             'nama'  => 'required',
             'jk'    => 'required',
-            'jabatan' => 'required',
-            'noHP'  => 'required',
-            'alamat' => 'required'
+            'jabatan' => 'required'
         ]);
+        if($request->hasFile('pic')){
+            $avatar = $request->file('pic');
+            $filename = time() . "." . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
+            
+        }else{
+            $filename = "avatar.jpg";
+        }
         Akun::create([
             'nip' => $request->get('nip'),
-            'password' => Hash::make($request->get('password'))
+            'password' => Hash::make($request->get('password')),
+            'status' => "offline"
         ]);
         DetailAkun::create([
             'nip' => $request->get('nip'),
             'nuptk' => $request->get('nuptk'),
             'nama' => $request->get('nama'),
             'jk' => $request->get('jk'),
-            'noHP' => $request->get('id_jabatan'),
+            'noHP' => $request->get('noHP'),
+            'id_jabatan' => $request->get('jabatan'),
             'alamat' => $request->get('alamat'),
-            'picture' => $request->get('pic','avatar.jpg')
+            'picture' => $filename
         ]);
+        
         return back()->with('pesan','Akun Berhasil Ditambahkan');
     }
 

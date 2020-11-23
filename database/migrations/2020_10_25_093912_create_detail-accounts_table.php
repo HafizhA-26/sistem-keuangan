@@ -18,10 +18,10 @@ class CreateDetailAccountsTable extends Migration
             $table->bigInteger('nuptk');
             $table->string('nama', 20);
             $table->enum('jk',['Pria','Wanita']);
-            $table->string('noHP',20);
+            $table->string('noHP',20)->nullable();
             $table->char('id_jabatan');
-            $table->text('alamat');
-            $table->string('picture');
+            $table->text('alamat')->nullable();
+            $table->string('picture')->nullable();
             $table->timestamps();
             $table->foreign('nip')->references('nip')->on('accounts');
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');
