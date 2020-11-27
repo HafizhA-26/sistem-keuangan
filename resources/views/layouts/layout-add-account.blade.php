@@ -28,7 +28,7 @@
 				<a href="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 				<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 				<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
-				<a href="/add-account" class="disabled"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+				<a href="/manage-account"><i class="fas fa-user-plus"></i><span>Manage Account</span></a>
 			</div>
 		</div>
 	<!-- Mobile navigation bar end-->
@@ -42,7 +42,7 @@
 		<a href="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 		<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 		<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
-		<a href="/add-account" class="disabled"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+		<a href="/manage-account"><i class="fas fa-user-plus"></i><span>Manage Account</span></a>
 	</div>
 	<!-- Sidebar end -->
 
