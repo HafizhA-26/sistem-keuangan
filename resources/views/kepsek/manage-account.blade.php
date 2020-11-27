@@ -15,6 +15,7 @@
 						<thead> 
 							<tr>
 								<th>NIP</th>
+                                <th>NUPTK</th>
 								<th>Nama</th>
 								<th>Jenis Kelamin</th>
 								<th>No. Handphone</th>
@@ -27,6 +28,7 @@
 						<tbody>
 							<tr> <!-- GET DARI DATABASE TABEL ACCOUNT DAN DETAIL ACCOUNT-->
 								<td>123456789</td>
+                                <td>2002939271</td>
 								<td>Nama</td>
 								<td>Pria</td>
 								<td>08123456789</td>
