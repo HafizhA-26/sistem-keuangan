@@ -2,7 +2,7 @@
 
 @section('sub-content')
 	<!-- GET VALUE DARI DATABASE DI SETIAP FORM-->
-    <div class="content background-1">
+	<div class="content background-1" >
 		<div class="card">
 			<div class="card-header">
 				<h4>Edit Profil</h1>
@@ -11,11 +11,15 @@
 				<form class="" method="post">
 					<div class="form-group">
 						<label class="label">NIP</label>
-						<input type="number" name="" class="form-control" placeholder="Masukan NIP (contoh: 1234)" value="">
+						<input type="text" name="" class="form-control" placeholder="Masukan NIP (contoh: 1234)" value="">
 					</div>
 					<div class="form-group">
 						<label class="label">Password</label>
 						<input type="password" name="" class="form-control" placeholder="Masukan Password" value="">
+					</div>
+					<div class="form-group">
+						<label class="label">NUPTK</label>
+						<input type="text" name="" class="form-control" placeholder="Masukan NUPTK (contoh: 2002939271)" value="">
 					</div>
 					<div class="form-group">
 						<label class="label">Nama</label>
@@ -30,7 +34,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label">No. Handphone</label>
-						<input type="number" name="" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" value="">
+						<input type="text" name="" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" value="">
 					</div>
 					<div class="form-group">
 						<label class="label">Jabatan</label>
@@ -39,6 +43,21 @@
 
 							<!-- TAMPIL OPTION NAMA JABATAN SESUAI DARI DATABASE ACCOUNT-->
 
+						</select>
+					</div>
+					<div class="form-group"> <!-- FORM INI MUNCUL JIKA JABATAN KAPROG-->
+						<label class="label">Jurusan</label>
+						<select class="form-control">
+							<option disabled selected>-- Select --</option>
+							<option>Teknik Elektronika Industri</option>
+							<option>Teknik Elektronika Daya dan Komunikasi</option>
+							<option>Teknik Otomasi Industri</option>
+							<option>Teknik Pendingin dan Tata Udara</option>
+							<option>Instrumentasi dan Otomatisasi Proses</option>
+							<option>Teknik Mekatronika</option>
+							<option>Sistem Informasi Jaringan dan Aplikasi</option>
+							<option>Rekayasa Perangkat Lunak</option>
+							<option>Produksi Film dan Program Televisi</option>
 						</select>
 					</div>
 					<div class="form-group">
