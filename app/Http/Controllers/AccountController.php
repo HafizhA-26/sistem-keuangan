@@ -24,7 +24,20 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+
+        
+            $title = "Add Account - Sistem Informasi Keuangan";
+            $daftar_akun = DB::table('accounts')
+                        ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
+                        ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
+                        ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
+                        ->get();
+            return view('kepsek.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
+            }else{
+                echo "<script>Anda tidak punya wewenang memasuki link ini</script>";
+                return back();
+            }
     }
 
     /**

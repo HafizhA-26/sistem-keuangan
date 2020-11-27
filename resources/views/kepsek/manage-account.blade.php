@@ -26,17 +26,20 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr> <!-- GET DARI DATABASE TABEL ACCOUNT DAN DETAIL ACCOUNT-->
-								<td>123456789</td>
-                                <td>2002939271</td>
-								<td>Nama</td>
-								<td>Pria</td>
-								<td>08123456789</td>
-								<td>Kaprog</td>
-								<td>Cimahi</td>
-								<td>Foto.jpg</td>
-								<td><a href="/edit-profil"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
-							</tr>
+							@foreach ($daftar->all() as $akun)
+								<tr> <!-- GET DARI DATABASE TABEL ACCOUNT DAN DETAIL ACCOUNT-->
+									<td>{{ $akun->nip }}</td>
+									<td>{{ $akun->nuptk }}</td>
+									<td>{{ $akun->nama }}</td>
+									<td>{{ $akun->jk }}</td>
+									<td>{{ $akun->noHP }}</td>
+									<td>{{ $akun->nama_jabatan }}</td>
+									<td>{{ $akun->alamat }}</td>
+									<td>{{ $akun->picture }}</td>
+								<td><a href="/edit-profil/{{ $akun->nip }}"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="/del-account/{{ $akun->nip }}" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
+								</tr>
+							@endforeach
+							
 						</tbody>
 					</table>
 				</div>
