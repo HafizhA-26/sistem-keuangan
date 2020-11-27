@@ -65,16 +65,8 @@
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
 												</div>
 												<div class="modal-body">
-													<div class="form-group"> <!-- OPTION DANA -->
-														<select class="form-control">
-															<option>Dana BOS</option>
-															<option>Dana APBD</option>
-														</select>
-														<br><br>
-														<input type="number" name="danabos" class="form-control" placeholder="Masukkan Jumlah Dana BOS"> <!-- JIKA PILIH DANA APBD, MAKA INPUT INI DISABLED -->
-														<br>
-														<input type="number" name="danaapbd" class="form-control" placeholder="Masukkan Jumlah Dana APBD"> <!-- JIKA PILIH DANA BOS, MAKA INPUT INI DISABLED -->
-													</div>
+													<label class="mid">Berikan Komentar</label>
+													<textarea class="form-control"></textarea>
 												</div>
 												<div class="modal-footer">
 													<input type="submit" name="submit" class="btn btn-primary" value="Submit">
@@ -94,8 +86,8 @@
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
 												</div>
 												<div class="modal-body">
-													<label>Berikan Alasan</label>
-													<textarea></textarea>
+													<label class="mid">Berikan Alasan</label>
+													<textarea class="form-control"></textarea>
 												</div>
 												<div class="modal-footer">
 													<input type="submit" name="submit" class="btn btn-primary" value="Submit">

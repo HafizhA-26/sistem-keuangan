@@ -21,14 +21,14 @@
 	<div class="mobile_nav">
 			<div class="nav_bar">
 				<img src="img/avatar/{{ session()->get('picture') }}" class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
-				<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="mobile_name">Nama <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
+				<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="mobile_name">{{ session()->get('nama') }} <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 				<i class="fa fa-bars nav_btn"></i>
 			</div>
 			<div class="mobile_nav_items">
 				<a href="/dashboard" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 				<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 				<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
-				<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+				<a href="/manage-account"><i class="fas fa-user-plus"></i><span>Manage Account</span></a>
 			</div>
 		</div>
 	<!-- Mobile navigation bar end-->
@@ -42,7 +42,7 @@
 		<a href="/dashboard" class="disabled"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
 		<a href="/submission"><i class="fas fa-hand-holding-usd"></i><span>Submission</span></a>
 		<a href="/report"><i class="fas fa-book"></i><span>Report</span></a>
-		<a href="/add-account"><i class="fas fa-user-plus"></i><span>Add Account</span></a>
+		<a href="/manage-account"><i class="fas fa-user-plus"></i><span>Manage Account</span></a>
 	</div>
 	<!-- Sidebar end -->
 
