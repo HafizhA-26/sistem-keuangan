@@ -32,11 +32,11 @@ class AccountController extends Controller
                         ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                         ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
                         ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
+                        ->where('accounts.status','!=','nonactive')
                         ->get();
             return view('kepsek.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
             }else{
-                echo "<script>Anda tidak punya wewenang memasuki link ini</script>";
-                return back();
+                abort(404);
             }
     }
 
@@ -54,8 +54,7 @@ class AccountController extends Controller
         $djabatan = DB::table('jabatan')->where('jabatan.id_jabatan','!=','J000')->get();
         return view('kepsek.add-account',['title' => $title, 'jabatan' => $djabatan]);
         }else{
-            echo "<script>Anda tidak punya wewenang memasuki link ini</script>";
-            return back();
+            abort(404);
         }
     }
 
@@ -123,10 +122,22 @@ class AccountController extends Controller
      */
     public function edit($nip)
     {
-        $akun_data = Akun::find($nip);
-        $detail_akun = Detailakun::find($akun_data->nip);
-        $title = "Edit Profil - Sistem Informasi Keuangan";
-        return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
+        if($nip != session()->get('nip')){
+            if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+                $akun_data = Akun::find($nip);
+                $detail_akun = Detailakun::find($akun_data->nip);
+                $title = "Edit Profil - Sistem Informasi Keuangan";
+                return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
+            }else{
+                abort(404);
+            }
+        }else{
+            $akun_data = Akun::find($nip);
+            $detail_akun = Detailakun::find($akun_data->nip);
+            $title = "Edit Profil - Sistem Informasi Keuangan";
+            return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
+        }
+        
     }
 
     /**
@@ -180,7 +191,7 @@ class AccountController extends Controller
             'alamat' => $request->get('alamat'),
             'picture' => $filename
         ]);
-        session().save();
+        session()->save();
         return back()->with('pesan',"Data Berhasil Update");
     }
 
@@ -190,8 +201,25 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nip)
     {
-        //
+        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+            DB::table('detail_accounts')->where('detail_accounts.nip','!=',$nip)->delete();
+            DB::table('accounts')->where('accounts.nip','!=',$nip)->delete();
+            return back()->with('pesan',"Akun Berhasil Dihapus");
+            }else{
+                abort(404);
+            }
+    }
+    public function deactive($nip)
+    {
+        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+            $akun = Akun::find($nip);
+            $akun->status = "nonactive";
+            $akun->save();
+            return back()->with('pesan',"Akun Berhasil Dinonaktifkan");
+            }else{
+                abort(404);
+            }
     }
 }

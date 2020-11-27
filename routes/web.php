@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
+    Route::get('/del-account/{nip}',[AccountController::class, 'destroy']);
+    Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);
     Route::get('/logout',[LoginController::class, 'logout']);
     // Udah bener, silahkan masukkin route disini
 });
