@@ -62,7 +62,6 @@ class LoginController extends Controller
         $akun_data->save();
         Auth::logout();
         session()->flush();
-        return redirect('login');
     }
     /**
      * Show the form for creating a new resource.

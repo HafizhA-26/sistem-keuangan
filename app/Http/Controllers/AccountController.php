@@ -32,7 +32,10 @@ class AccountController extends Controller
                         ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                         ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
                         ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
-                        ->where('accounts.status','!=','nonactive')
+                        ->where([
+                            ['accounts.status','!=','nonactive'],
+                            ['accounts.nip','!-',Auth::user()->nip],
+                        ])
                         ->get();
             return view('kepsek.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
             }else{
