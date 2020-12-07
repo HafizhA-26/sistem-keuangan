@@ -1,7 +1,7 @@
 @extends('layouts.layout-edit-profil')
 
 @section('sub-content')
-	<!-- GET VALUE DARI DATABASE DI SETIAP FORM-->
+
 	<div class="content background-1" >
 		<div class="card">
 			<div class="card-header">
