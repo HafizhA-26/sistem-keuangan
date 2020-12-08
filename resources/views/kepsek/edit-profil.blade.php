@@ -1,7 +1,7 @@
 @extends('layouts.layout-edit-profil')
 
 @section('sub-content')
-
+	
 	<div class="content background-1" >
 		<div class="card">
 			<div class="card-header">
@@ -35,11 +35,17 @@
 					@endphp
 					<div class="form-group">
 						<label class="label">NIP</label>
-						<input type="text" name="nip" value="{{ $akun->nip }}" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan NIP (contoh: 1234)" autocomplete="off" disabled>
+						<input type="text" name="nip" value="{{ $akun->nip }}" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan NIP (contoh: 1234)" autocomplete="off" readonly>
 					</div>
 					<div class="form-group">
-						<label class="label">Password</label>
-						<input type="password" name="password" value="{{ Crypt::decryptString(session()->get('ps')) }}" class="form-control" placeholder="Masukan Password">
+						@if (session()->get('nip') == $akun->nip)
+							<label class="label">Password</label>
+							<input type="password" name="password" value="{{ Crypt::decryptString(session()->get('ps')) }}" class="form-control" placeholder="Masukan Password" id="inputPassword">
+						@else
+							<label class="label">New Password</label>
+							<input type="password" name="password" class="form-control" placeholder="Masukan Password Baru" id="inputPassword">
+						@endif
+						<input class="mt-2" type="checkbox" onclick="liatPass()" id="showps"><label class="form-check-label ml-2" for="showps" style="font-size: 0.8rem">Show Password</label>
 					</div>
 					<div class="form-group">
 						<label class="label">NUPTK</label>
@@ -53,8 +59,8 @@
 						<label class="label">Jenis Kelamin</label>
 						<select class="form-control" name="jk">
 							<option disabled>-- Select --</option>
-							<option value="pria" {{ $detail->jk == "pria"? 'selected' : '' }}>Pria</option>
-							<option value="wanita" {{ $detail->jk == "wanita"? 'selected' : '' }}>Wanita</option>
+							<option value="Pria" {{ $detail->jk == "Pria"? 'selected' : '' }}>Pria</option>
+							<option value="Wanita" {{ $detail->jk == "Wanita"? 'selected' : '' }}>Wanita</option>
 							<!-- TAMPIL OPTION JENIS KELAMIN SESUAI DARI DATABASE ACCOUNT-->
 						</select>
 					</div>
@@ -62,7 +68,7 @@
 						<label class="label">No. Handphone</label>
 						<input type="text" name="noHP" value="{{ $detail->noHP }}" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off">
 					</div>
-					@if ($akun->nip != Auth::user()->nip)
+					@if (session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin")
 						<div class="form-group">
 							<label class="label">Jabatan</label>
 							<select class="form-control" name="jabatan">
@@ -129,4 +135,5 @@
 			</div>
 		</div>
 	</div>
+	
 @endsection

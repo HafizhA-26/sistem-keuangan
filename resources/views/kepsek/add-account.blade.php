@@ -35,7 +35,8 @@
 					</div>
 					<div class="form-group">
 						<label class="label">Password</label>
-						<input type="password" name="password" class="form-control" placeholder="Masukan Password">
+						<input type="password" name="password" class="form-control" placeholder="Masukan Password" id="inputPassword">
+						<input class="mt-2" type="checkbox" onclick="liatPass()" id="showps"><label class="form-check-label ml-2" for="showps" style="font-size: 0.8rem">Show Password</label>
 					</div>
 					<div class="form-group">
 						<label class="label">NUPTK</label>

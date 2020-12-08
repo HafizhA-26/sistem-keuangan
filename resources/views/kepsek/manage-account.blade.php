@@ -69,7 +69,7 @@
 								  <div class="modal fade" id="confirmation{{ $akun->nip }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 									@php
 										$transaksi = DB::table('accounts')
-														->join('transaksi','transaksi.id_pengaju','=','accounts.nip')
+														->join('submissions','submissions.id_pengaju','=','accounts.nip')
 														->count();
 									@endphp
 									<div class="modal-dialog modal-dialog-centered" role="document">
