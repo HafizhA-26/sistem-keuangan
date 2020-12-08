@@ -8,6 +8,7 @@ use Auth;
 use App\Akun;
 use DB;
 use Session;
+use Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
@@ -22,7 +23,7 @@ class LoginController extends Controller
         if(Auth::check()){
             return redirect("/dashboard");
         }else{
-            $title = "Sistem Informasi Keuangan";
+            $title = "Login - ";
             return view('login', ['title' => $title]);
         }
         
@@ -39,6 +40,11 @@ class LoginController extends Controller
             'password'  =>  $request->get('password')
         );
         if(Auth::attempt($akun_data)){
+            session([
+                'nip' => $request->nip,
+                'ps' => Crypt::encryptString($request->password),
+            ]);
+            session()->save();
             return redirect('login/successlogin');
         }else{
             return back()->with('pesan','NIP atau Password salah');
@@ -62,6 +68,7 @@ class LoginController extends Controller
         $akun_data->save();
         Auth::logout();
         session()->flush();
+        return redirect('login');
     }
     /**
      * Show the form for creating a new resource.

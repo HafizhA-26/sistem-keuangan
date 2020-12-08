@@ -6,9 +6,9 @@
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/style.css") }}>
         <link href={{ URL::asset("css/all.min.css") }} type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="icon" type="image/png" href={{ URL::asset("img/icon/stm.png") }}/>
+        <link rel="icon" type="image/png" href={{ URL::asset("img/icon/stm.png") }} >
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
-        <title>{{ $title }}</title>
+        <title>{{ $title?? '' }} Sistem Informasi Keuangan</title>
     </head>
     <body>
         <!-- Memanggil konten -->

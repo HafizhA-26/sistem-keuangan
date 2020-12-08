@@ -29,7 +29,7 @@ class SubmissionController extends Controller
                 //return view('',[ 'title' => $title ]);
                 break;
             default:
-                $title = "Sistem Informasi Keuangan";
+                $title = "Login - ";
                 return view('login',['title' => $title]);
                 break;
         }

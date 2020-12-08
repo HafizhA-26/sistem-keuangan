@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Akun;
 use App\Models\Detailakun;
 use App\Models\Jabatan;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 use Hash;
 use Str;
 use Auth;
@@ -27,7 +29,7 @@ class AccountController extends Controller
         if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
 
         
-            $title = "Add Account - Sistem Informasi Keuangan";
+            $title = "Add Account - ";
             $daftar_akun = DB::table('accounts')
                         ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                         ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
@@ -53,7 +55,7 @@ class AccountController extends Controller
         if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
 
         
-        $title = "Add Account - Sistem Informasi Keuangan";
+        $title = "Add Account - ";
         $djabatan = DB::table('jabatan')->where('jabatan.id_jabatan','!=','J000')->get();
         return view('kepsek.add-account',['title' => $title, 'jabatan' => $djabatan]);
         }else{
@@ -129,7 +131,7 @@ class AccountController extends Controller
             if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
                 $akun_data = Akun::find($nip);
                 $detail_akun = Detailakun::find($akun_data->nip);
-                $title = "Edit Profil - Sistem Informasi Keuangan";
+                $title = "Edit Profil - ";
                 return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
             }else{
                 abort(404);
@@ -137,7 +139,7 @@ class AccountController extends Controller
         }else{
             $akun_data = Akun::find($nip);
             $detail_akun = Detailakun::find($akun_data->nip);
-            $title = "Edit Profil - Sistem Informasi Keuangan";
+            $title = "Edit Profil - ";
             return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
         }
         

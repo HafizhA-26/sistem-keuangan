@@ -6,7 +6,7 @@ use App\Akun;
 use DB;
 use Session;
 use Auth;
-
+use Crypt;
 class DashboardController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $title = "Sistem Informasi Keuangan";
+        $title = "";
         return view('index', ['title' => $title]);
     }
     public function dashboardVerification(){
@@ -30,7 +30,7 @@ class DashboardController extends Controller
                 ->where('accounts.nip','=',$nip)
                 ->first();
         if($user_data->status == "nonactive"){
-            $title = "Sistem Informasi Keuangan";
+            $title = "";
             echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
             return view('login',['title' => $title]);
         }else{
@@ -39,7 +39,6 @@ class DashboardController extends Controller
             $akun_data->save();
         }
         session([
-            'nip' => $user_data->nip,
             'nuptk' => $user_data->nuptk,
             'nama' => $user_data->nama,
             'jk' => $user_data->jk,
@@ -51,7 +50,7 @@ class DashboardController extends Controller
         session()->save();
         $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
-        $title = "Dashboard - Sistem Informasi Keuangan";
+        $title = "Dashboard - ";
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
