@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             AccountTableSeeder::class,
             JabatanSeeder::class,
             DetailAccount::class,
-            DanaSeeder::class
+            DanaSeeder::class,
+            JurusanSeeder::class,
         ]);
     }
 }

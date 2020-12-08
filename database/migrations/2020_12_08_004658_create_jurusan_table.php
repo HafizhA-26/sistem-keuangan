@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountTable extends Migration
+class CreateJurusanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id('nip');
-            $table->string('password');
-            $table->string("status",20);
-            $table->rememberToken();
+        Schema::create('jurusan', function (Blueprint $table) {
+            $table->char('id_jurusan',10)->primary();
+            $table->string('nama_jurusan');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('jurusan');
     }
 }
