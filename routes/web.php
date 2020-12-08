@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
+    Route::post('/update/{nip}',[AccountController::class, 'update']);
     Route::get('/del-account/{nip}',[AccountController::class, 'destroy']);
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);
     Route::get('/logout',[LoginController::class, 'logout']);
