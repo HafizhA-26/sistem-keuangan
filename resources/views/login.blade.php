@@ -11,11 +11,11 @@
 					<h3>Login</h3>
 					<div class="form-group">
 						<br>
-						<label>NIP</label>
+						<label class="lbl">NIP</label>
 						<input type="text" onkeypress="return hanyaAngka(event)" class="form-control @error('nip') is-invalid @enderror" placeholder="NIP" name="nip" autocomplete="off">
 					</div>
 					<div class="form-group">
-						<label>Password</label>
+						<label class="lbl">Password</label>
 						<input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
 					</div>
 					@if (count($errors) > 0)

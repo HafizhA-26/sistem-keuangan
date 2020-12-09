@@ -267,6 +267,16 @@ body, html{
 .table > thead > tr > th {
   	border-bottom: 2px solid #f4f4f4;
 }
+.icon1{
+	-webkit-transition: all 0.3s linear;
+  	-o-transition: all 0.3s linear;
+  	transition: all 0.3s linear;
+  	position: absolute;
+  	top: 10px;
+  	z-index: 0;
+  	font-size: 90px;
+  	color: rgba(0, 0, 0, 0.15);
+}
 
 html{
 	scroll-behavior: smooth;
@@ -431,7 +441,7 @@ label #sidebar_btn:hover{
 
 
 /*Responsive CSS*/
-@media screen and (max-width: 780px){
+@media screen and (max-width: 700px){
 	.sidebar{
 		display: none;
 	}
