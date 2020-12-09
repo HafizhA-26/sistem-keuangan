@@ -10,7 +10,7 @@
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
         <title>{{ $title?? '' }} Sistem Informasi Keuangan</title>
     </head>
-    <body>
+    <body class="background-1">
         <!-- Memanggil konten -->
         @yield('content')
         <script>

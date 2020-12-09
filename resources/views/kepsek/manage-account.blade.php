@@ -1,7 +1,7 @@
 @extends('layouts.layout-manage-account')
 
 @section('sub-content')
-<div class="content background-1">
+<div class="content">
 		@if ($pesan = Session::get('pesan'))
 			
 			<div class="modal fade" id="ModalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
