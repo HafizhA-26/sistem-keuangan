@@ -32,7 +32,105 @@
 			<h3>List Account</h3>
 		</div>
 		<div class="btn-add">
-			<a href="/add-account" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Account</a>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add"><i class="fas fa-user-plus"></i> Add Account</button>
+
+			<!--Modal Add Account-->
+			<div class="modal" id="add">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<!--Header-->
+						<div class="modal-header">
+							<h4>Tambah Akun</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!--Body-->
+						<div class="modal-body">
+							<form class="" method="post" action="/store-data-account" enctype="multipart/form-data">
+								@csrf
+								<div class="form-group">
+									<label class="label">NIP</label>
+									<input type="text" onkeypress="return hanyaAngka(event)" name="nip" class="form-control" placeholder="Masukan NIP (contoh: 1234)" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label class="label">Password</label>
+									<input type="password" name="password" class="form-control" placeholder="Masukan Password" id="inputPassword">
+									<input class="mt-2" type="checkbox" onclick="liatPass()" id="showps"><label class="form-check-label ml-2" for="showps" style="font-size: 0.8rem">Show Password</label>
+								</div>
+								<div class="form-group">
+									<label class="label">NUPTK</label>
+									<input type="text" onkeypress="return hanyaAngka(event)" name="nuptk" class="form-control" placeholder="Masukan NUPTL (contoh: 2002939271)" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label class="label">Nama</label>
+									<input type="text" name="nama" class="form-control" placeholder="Masukan Nama" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label class="label">Jenis Kelamin</label>
+									<select class="form-control" name="jenis_kelamin">
+										<option disabled selected>-- Select --</option>
+										<option value="Pria">Pria</option>
+										<option value="Wanita">Wanita</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="label">No. Handphone ( optional )</label>
+									<input type="text" onkeypress="return hanyaAngka(event)" name="noHP" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label class="label">Jabatan</label>
+									<select class="form-control" name="jabatan">
+										<option disabled selected>-- Select --</option>
+										@if(count($jabatan) > 0)
+											@foreach ($jabatan->all() as $namaJ)
+												<option value="{{ $namaJ->id_jabatan }}">{{ $namaJ->nama_jabatan }}</option>
+											@endforeach
+										@endif
+										<!-- TAMPIL OPTION DARI DATABASE JABATAN-->
+
+									</select>
+								</div>
+								<div class="form-group"> <!-- FORM INI MUNCUL JIKA MEMILIH JABATAN KAPROG-->
+									<label class="label">Jurusan</label>
+									<select class="form-control">
+										<option disabled selected>-- Select --</option>
+										<option>Teknik Elektronika Industri</option>
+										<option>Teknik Elektronika Daya dan Komunikasi</option>
+										<option>Teknik Otomasi Industri</option>
+										<option>Teknik Pendingin dan Tata Udara</option>
+										<option>Instrumentasi dan Otomatisasi Proses</option>
+										<option>Teknik Mekatronika</option>
+										<option>Sistem Informasi Jaringan dan Aplikasi</option>
+										<option>Rekayasa Perangkat Lunak</option>
+										<option>Produksi Film dan Program Televisi</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="label">Alamat ( optional )</label>
+									<textarea class="form-control" name="alamat" placeholder="Masukan Alamat" maxlength="100" autocomplete="off"></textarea>
+								</div>
+								<div class="form-group">
+									<label class="label">Picture ( optional )</label>
+									<input type="file" name="picture" class="form-control-file" onchange="document.getElementById('gambar').src= window.URL.createObjectURL(this.files[0])" accept=".jpg,.jpeg,.png"> <br> <!-- UBAH FORMAT SUPAYA CUMA BISA INPUT FILE 			GAMBAR (JPG/PNG/JPEG) -->
+									<img id="gambar" width="150" height="150">
+								</div>
+
+								<br><br>
+							<!-- ===== -->
+						</div>
+
+						<!--Footer-->
+						<div class="modal-footer">
+							<div class="form-group">
+								<input type="submit" name="" class="btn btn-primary">
+							</div>
+						</div>
+
+						</form> <!-- ===== -->
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="box2 box-info">
 			<div class="box-info">
