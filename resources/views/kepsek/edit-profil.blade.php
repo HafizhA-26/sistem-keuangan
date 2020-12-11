@@ -2,7 +2,7 @@
 
 @section('sub-content')
 	
-	<div class="content background-1" >
+	<div class="content" >
 		<div class="card">
 			<div class="card-header">
 				<h4>Edit Profil</h1>

@@ -88,6 +88,7 @@ body, html{
 	color: #145cb1;
 	text-shadow: 1px 2px 2px black;
 	text-align: center;
+	letter-spacing: 2px;
 }
 .header_account{
 	margin-top: 20px;
@@ -95,6 +96,7 @@ body, html{
 	color: #145cb1;
 	text-shadow: 1px 2px 2px black;
 	text-align: center;
+	letter-spacing: 2px;
 }
 .left{
 	float: left;
@@ -135,12 +137,13 @@ body, html{
 .back i{
 	font-size: 30px;
 }
-.header_report_tra{
+.header_report{
 	margin-top: 20px;
 	margin-bottom: 20px;
 	color: #145cb1;
 	text-shadow: 1px 2px 2px black;
 	text-align: center;
+	letter-spacing: 2px;
 }
 .small-box{
   	border-top-right-radius: 10px;
@@ -266,6 +269,39 @@ body, html{
 }
 .table > thead > tr > th {
   	border-bottom: 2px solid #f4f4f4;
+}
+.icon1{
+	-webkit-transition: all 0.3s linear;
+  	-o-transition: all 0.3s linear;
+  	transition: all 0.3s linear;
+  	position: absolute;
+  	top: 10px;
+  	z-index: 0;
+  	font-size: 90px;
+  	color: rgba(0, 0, 0, 0.15);
+}
+.ava{
+	width: 50px;
+	height: auto;
+}
+.thumbnail{
+	background: #fff;
+	padding: 100px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0 0 10px 1px grey;
+}
+.thumbnail h5{
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 3px;
+}
+.thumbnail i{
+	font-size: 100px;
+	margin-top: 10px;
+}
+.thumbnail a{
+	margin-top: 20px;
 }
 
 html{
@@ -431,7 +467,7 @@ label #sidebar_btn:hover{
 
 
 /*Responsive CSS*/
-@media screen and (max-width: 780px){
+@media screen and (max-width: 700px){
 	.sidebar{
 		display: none;
 	}
