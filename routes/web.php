@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BosSubmissionController;
+use App\Http\Controllers\ApbdSubmissionController;
+use App\Http\Controllers\KaprogSubmissionController;
 use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,9 @@ Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
     Route::get('/submission',[SubmissionController::class, 'index']);
+    Route::post('/submission',[SubmissionController::class, 'store']);
+    Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
+    Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
     Route::get('/report',[ReportController::class, '']);
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);
@@ -35,5 +41,17 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);
     Route::get('/logout',[LoginController::class, 'logout']);
     // Udah bener, silahkan masukkin route disini
+    Route::get('/bos-dashboard',[BosSubmissionController::class, 'index']);
+    Route::get('/bos-submission',[BosSubmissionController::class, 'create']);
+    Route::post('/bos-submission',[BosSubmissionController::class, 'store']);
+
+    Route::get('/apbd-dashboard',[ApbdSubmissionController::class, 'index']);
+    Route::get('/apbd-submission',[ApbdSubmissionController::class, 'create']);
+    Route::post('/apbd-submission',[ApbdSubmissionController::class, 'store']);
+
+    Route::get('/kaprog-dashboard',[KaprogSubmissionController::class, 'index']);
+    Route::get('/kaprog-submission',[KaprogSubmissionController::class, 'create']);
+    Route::post('/kaprog-submission',[KaprogSubmissionController::class, 'store']);
 });
+
 

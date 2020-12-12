@@ -81,6 +81,9 @@
 								<div class="form-group">
 									<label class="label">Jabatan</label>
 									<select class="form-control" name="jabatan">
+										@php
+											$jabatan = DB::table('jabatan')->get();	
+										@endphp
 										<option disabled selected>-- Select --</option>
 										@if(count($jabatan) > 0)
 											@foreach ($jabatan->all() as $namaJ)
