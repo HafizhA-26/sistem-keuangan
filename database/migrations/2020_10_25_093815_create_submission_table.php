@@ -16,9 +16,12 @@ class CreateSubmissionTable extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->char('id_pengajuan', 10)->primary();
             $table->string('judul', 100);
-            $table->date('tgl_pengajuan');
-            $table->string('status', 6);
+            $table->string('status', 10);
+            $table->char('id_transaksi',10);
+            $table->bigInteger('id_pengaju')->unsigned();
             $table->timestamps();
+            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');
+            $table->foreign('id_pengaju')->references('nip')->on('accounts');
         });
     }
 

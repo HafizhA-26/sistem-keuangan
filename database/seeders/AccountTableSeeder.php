@@ -20,6 +20,7 @@ class AccountTableSeeder extends Seeder
         Akun::create([
             'nip'   => '1',
             'password'  =>  Hash::make('password'),
+            'status' => "offline",
             'remember_token'    =>  Str::random(10)
         ]);
         

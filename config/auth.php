@@ -96,7 +96,7 @@ return [
         'accounts' => [
             'provider' => 'accounts',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 10000,
             'throttle' => 60,
         ],
     ],

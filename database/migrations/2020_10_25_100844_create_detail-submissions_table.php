@@ -14,15 +14,14 @@ class CreateDetailSubmissionsTable extends Migration
     public function up()
     {
         Schema::create('detail_submissions', function (Blueprint $table) {
-            $table->char('id_pengajuan');
+            $table->char('id_pengajuan',10);
             $table->text('deskripsi');
-            $table->char('id_transaksi');
             $table->binary('file_lampiran');
-            $table->text('komentar');
             $table->timestamps();
             $table->foreign('id_pengajuan')->references('id_pengajuan')->on('submissions');
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');
+            
         });
+        DB::statement("ALTER TABLE detail_submissions MODIFY file_lampiran MEDIUMBLOB");
     }
 
     /**
