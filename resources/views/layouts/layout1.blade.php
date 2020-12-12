@@ -13,6 +13,25 @@
     <body class="background-1">
         <!-- Memanggil konten -->
         @yield('content')
+        <div class="modal fade" id="confirmationLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border: 0">
+                <div class="modal-header bg-danger">
+                <h5 class="modal-title text-white" id="confirm"><strong>Confirmation</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times text-white"></i></span>
+                </button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    Apakah anda yakin ingin keluar ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <a href="/logout" class="btn btn-primary" value="Edit Profile" name="submit">Sign Out</a>
+                </div>
+            </div>
+            </div>
+        </div>
         <script>
             function hanyaAngka(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
