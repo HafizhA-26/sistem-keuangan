@@ -19,6 +19,7 @@ class Detailakun extends Model
         'noHP',
         'id_jabatan',
         'alamat',
-        'picture'
+        'picture',
+        'id_jurusan'
     ];
 }

@@ -32,6 +32,19 @@
             }
         }
         </script>
+        <script>
+            function showJurusan() {
+                var t = document.getElementById('jabatanForm');
+                var selectedText = t.options[t.selectedIndex].text;
+                if(selectedText == "Kaprog"){
+                    document.getElementById('jurusan').classList.remove("d-none");
+                    document.getElementById('jurusanSelect').setAttribute("name", "jurusan");
+                }else{
+                    document.getElementById('jurusan').classList.add("d-none");
+                    document.getElementById('jurusanSelect').setAttribute("name", "jurusanNone");
+                }
+            }
+        </script>
         <script src={{ URL::asset("js/all.min.js") }}></script>
         <script src={{ URL::asset("js/jquery.js") }}></script>
         <script src={{ URL::asset("js/bootstrap.min.js") }}></script>

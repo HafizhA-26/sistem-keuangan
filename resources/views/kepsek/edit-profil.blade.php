@@ -66,12 +66,12 @@
 					</div>
 					<div class="form-group">
 						<label class="label">No. Handphone</label>
-						<input type="text" name="noHP" value="{{ $detail->noHP }}" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off">
+						<input type="text" name="noHP" value="{{ $detail->noHP }}" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off" maxlength="20">
 					</div>
 					@if (session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin")
 						<div class="form-group">
 							<label class="label">Jabatan</label>
-							<select class="form-control" name="jabatan">
+							<select class="form-control" name="jabatan" id="jabatanForm" onchange="showJurusan()">
 								<option disabled>-- Select --</option>
 								@foreach ($jabatan->all() as $J)
 									<option value="{{ $J->id_jabatan }}" {{ $detail->id_jabatan == $J->id_jabatan ? 'selected' : '' }}>{{ $J->nama_jabatan }}</option>
@@ -82,18 +82,17 @@
 						</div>
 					@endif
 					
-					@if ($detail->id_jurusan)
-						<div class="form-group"> <!-- FORM INI MUNCUL JIKA JABATAN KAPROG-->
+					
+						<div class="form-group d-none" id="jurusan"> <!-- FORM INI MUNCUL JIKA JABATAN KAPROG-->
 							<label class="label">Jurusan</label>
-							<select class="form-control" name="jurusan">
+							<select class="form-control" name="jurusan" id="jurusanSelect">
 								<option disabled selected>-- Select --</option>
 								@foreach ($jurusan->all() as $jur)
-									<option disabled>-- Select --</option>
-									<option value="{{ $jur->id_jurusan }}" {{ $detail->id_jurusan ? 'selected' : '' }} >{{ $jur->nama_jurusan }}</option>
+									<option value="{{ $jur->id_jurusan }}" {{ $detail->id_jurusan == $jur->id_jurusan ? 'selected' : '' }} >{{ $jur->nama_jurusan }}</option>
 								@endforeach
 							</select>
 						</div>
-					@endif
+					
 					
 					<div class="form-group">
 						<label class="label">Alamat</label>
@@ -135,5 +134,9 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+		window.onload = function() {
+			showJurusan();
+		};
+	</script>
 @endsection
