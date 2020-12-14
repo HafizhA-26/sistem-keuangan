@@ -22,7 +22,7 @@ class CreateDetailAccountsTable extends Migration
             $table->char('id_jabatan',10);
             $table->text('alamat')->nullable();
             $table->string('picture')->nullable();
-            $table->string('id_jurusan',10)->nullable();
+            $table->string('id_jurusan',10)->nullable()->default(NULL);
             $table->timestamps();
             $table->foreign('nip')->references('nip')->on('accounts');
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');

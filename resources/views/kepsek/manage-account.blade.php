@@ -25,7 +25,10 @@
 				</div>
 			</div>
 			<script>
-				$('#ModalSuccess').modal('show');
+				$(document).ready(function(){
+					$('#ModalSuccess').modal('show');
+				});
+				
 			</script>
 		@endif
 		<div class="header_account">
@@ -40,9 +43,9 @@
 					<div class="modal-content">
 						
 						<!--Header-->
-						<div class="modal-header">
-							<h4>Tambah Akun</h4>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="modal-header bg-primary">
+							<h4 class="text-white">Tambah Akun</h4>
+							<button type="button" class="close text-white" data-dismiss="modal">&times;</button>
 						</div>
 
 						<!--Body-->
@@ -76,11 +79,11 @@
 								</div>
 								<div class="form-group">
 									<label class="label">No. Handphone ( optional )</label>
-									<input type="text" onkeypress="return hanyaAngka(event)" name="noHP" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off">
+									<input type="text" onkeypress="return hanyaAngka(event)" name="noHP" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off" maxlength="20">
 								</div>
 								<div class="form-group">
 									<label class="label">Jabatan</label>
-									<select class="form-control" name="jabatan">
+									<select class="form-control" name="jabatan" onchange="showJurusan()" id="jabatanForm">
 										@php
 											$jabatan = DB::table('jabatan')->get();	
 										@endphp
@@ -94,19 +97,17 @@
 
 									</select>
 								</div>
-								<div class="form-group"> <!-- FORM INI MUNCUL JIKA MEMILIH JABATAN KAPROG-->
+
+								<div class="form-group d-none" id="jurusan"> <!-- FORM INI MUNCUL JIKA MEMILIH JABATAN KAPROG-->
 									<label class="label">Jurusan</label>
-									<select class="form-control">
+									<select class="form-control" name="jurusan">
 										<option disabled selected>-- Select --</option>
-										<option>Teknik Elektronika Industri</option>
-										<option>Teknik Elektronika Daya dan Komunikasi</option>
-										<option>Teknik Otomasi Industri</option>
-										<option>Teknik Pendingin dan Tata Udara</option>
-										<option>Instrumentasi dan Otomatisasi Proses</option>
-										<option>Teknik Mekatronika</option>
-										<option>Sistem Informasi Jaringan dan Aplikasi</option>
-										<option>Rekayasa Perangkat Lunak</option>
-										<option>Produksi Film dan Program Televisi</option>
+										@php
+											$daftar_jurusan = DB::table('jurusan')->get();
+										@endphp
+										@foreach ($daftar_jurusan->all() as $item)
+											<option value="{{ $item->id_jurusan }}">{{ $item->nama_jurusan }}</option>
+										@endforeach
 									</select>
 								</div>
 								<div class="form-group">
@@ -198,9 +199,9 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 											@if ($transaksi != 0)
-												<a href="/deactive-account/{{ $akun->nip }}" class="btn btn-primary" data-dismiss="modal">Deactivate this account</a>
+												<a href="/deactive-account/{{ $akun->nip }}" class="btn btn-primary">Deactivate this account</a>
 											@else
-												<a href="/del-account/{{ $akun->nip }}" class="btn btn-primary" data-dismiss="modal">Delete this account</a>
+												<a href="/del-account/{{ $akun->nip }}" class="btn btn-primary">Delete this account</a>
 											@endif
 											
 										</div>
@@ -215,4 +216,5 @@
 			</div>
 		</div>
 	</div>
+	
 @endsection

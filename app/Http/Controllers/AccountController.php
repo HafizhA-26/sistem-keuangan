@@ -36,7 +36,7 @@ class AccountController extends Controller
                         ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
                         ->where([
                             ['accounts.status','!=','nonactive'],
-                            ['accounts.nip','!-',Auth::user()->nip],
+                            ['accounts.nip','!=',Auth::user()->nip],
                         ])
                         ->get();
             return view('kepsek.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
@@ -54,10 +54,7 @@ class AccountController extends Controller
     {
         if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
 
-        
-        $title = "Add Account - ";
-        $djabatan = DB::table('jabatan')->where('jabatan.id_jabatan','!=','J000')->get();
-        return view('kepsek.add-account',['title' => $title, 'jabatan' => $djabatan]);
+       
         }else{
             abort(404);
         }
@@ -94,16 +91,31 @@ class AccountController extends Controller
             'status' => "offline",
             'remember_token' => Str::random(10)
         ]);
-        DetailAkun::create([
-            'nip' => $request->get('nip'),
-            'nuptk' => $request->get('nuptk'),
-            'nama' => $request->get('nama'),
-            'jk' => $request->get('jenis_kelamin'),
-            'noHP' => $request->get('noHP'),
-            'id_jabatan' => $request->get('jabatan'),
-            'alamat' => $request->get('alamat'),
-            'picture' => $filename
-        ]);
+        if($request->get('jurusan')){
+            Detailakun::create([
+                'nip' => $request->get('nip'),
+                'nuptk' => $request->get('nuptk'),
+                'nama' => $request->get('nama'),
+                'jk' => $request->get('jenis_kelamin'),
+                'noHP' => $request->get('noHP'),
+                'id_jabatan' => $request->get('jabatan'),
+                'alamat' => $request->get('alamat'),
+                'picture' => $filename,
+                'id_jurusan' => $request->get('jurusan')
+            ]);
+        }else{
+            Detailakun::create([
+                'nip' => $request->get('nip'),
+                'nuptk' => $request->get('nuptk'),
+                'nama' => $request->get('nama'),
+                'jk' => $request->get('jenis_kelamin'),
+                'noHP' => $request->get('noHP'),
+                'id_jabatan' => $request->get('jabatan'),
+                'alamat' => $request->get('alamat'),
+                'picture' => $filename
+            ]);
+        }
+        
         
         return back()->with('pesan','Akun Berhasil Ditambahkan');
     }
@@ -160,12 +172,9 @@ class AccountController extends Controller
     public function update(Request $request)
     {
         $this->validate($request,[
-            'password' => 'required',
             'nuptk'   => 'required',
             'nama'  => 'required',
             'jk'    => 'required',
-            'noHP'  => 'required',
-            'alamat' => 'required',
         ]);
         $akun_data = Akun::find($request->nip);
         $detail_akun = Detailakun::find($akun_data->nip);
@@ -187,29 +196,40 @@ class AccountController extends Controller
             $filename = $detail_akun->picture;
         }
         //TODO update table detail_akun
-        $akun_data->password = Hash::make($request->get('password'));
+        if($request->get('password')){
+            $akun_data->password = Hash::make($request->get('password'));
+        }
+        
         $detail_akun->nuptk = $request->get('nuptk');
         $detail_akun->nama = $request->get('nama');
         $detail_akun->jk = $request->get('jk');
         $detail_akun->noHP = $request->get('noHP');
+        if($request->get('jabatan')){
+            $detail_akun->id_jabatan = $request->get('jabatan');
+        }
         if($request->get('jurusan')){
             $detail_akun->id_jurusan = $request->get('jurusan');
+        }else{
+            $detail_akun->id_jurusan = null;
         }
         $detail_akun->alamat = $request->get('alamat');
         $detail_akun->picture = $filename;
         $akun_data->save();
         $detail_akun->save();
-        session([
-            'nip' => $akun_data->nip,
-            'ps' => Crypt::encryptString($request->password),
-            'nuptk' => $detail_akun->nuptk,
-            'nama' => $detail_akun->nama,
-            'jk' => $detail_akun->jk,
-            'noHP' => $detail_akun->noHP,
-            'alamat' => $detail_akun->alamat,
-            'picture' => $filename
-        ]);
-        session()->save();
+        if($request->nip == session()->get('nip')){
+            session([
+                'nip' => $akun_data->nip,
+                'ps' => Crypt::encryptString($request->password),
+                'nuptk' => $detail_akun->nuptk,
+                'nama' => $detail_akun->nama,
+                'jk' => $detail_akun->jk,
+                'noHP' => $detail_akun->noHP,
+                'alamat' => $detail_akun->alamat,
+                'picture' => $filename
+            ]);
+            session()->save();
+        }
+        
         return back()->with('pesan',"Data Berhasil Update");
     }
 
@@ -222,8 +242,16 @@ class AccountController extends Controller
     public function destroy($nip)
     {
         if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
-            DB::table('detail_accounts')->where('detail_accounts.nip','!=',$nip)->delete();
-            DB::table('accounts')->where('accounts.nip','!=',$nip)->delete();
+            $detail_akun = Detailakun::find($nip);
+            if($detail_akun->picture != 'avatar.jpg'){
+                if(File::exists(public_path('img/avatar/'.$detail_akun->picture))){
+                    File::delete(public_path('img/avatar/'.$detail_akun->picture));
+                }else{
+                    //TODO
+                }
+            }
+            DB::table('detail_accounts')->where('detail_accounts.nip','=',$nip)->delete();
+            DB::table('accounts')->where('accounts.nip','=',$nip)->delete();
             return back()->with('pesan',"Akun Berhasil Dihapus");
             }else{
                 abort(404);
