@@ -39,7 +39,7 @@ class AccountController extends Controller
                             ['accounts.nip','!=',Auth::user()->nip],
                         ])
                         ->get();
-            return view('kepsek.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
+            return view('contents.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
             }else{
                 abort(404);
             }
@@ -145,7 +145,7 @@ class AccountController extends Controller
                     $akun_data = Akun::find($nip);
                     $detail_akun = Detailakun::find($akun_data->nip);
                     $title = "Edit Profil - ";
-                    return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
+                    return view('contents.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
                 }else{
                     abort(404);
                 }
@@ -153,7 +153,7 @@ class AccountController extends Controller
                 $akun_data = Akun::find($nip);
                 $detail_akun = Detailakun::find($akun_data->nip);
                 $title = "Edit Profil - ";
-                return view('kepsek.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
+                return view('contents.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
             }
         }else{
             abort(404);

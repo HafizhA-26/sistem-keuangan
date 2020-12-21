@@ -13,7 +13,7 @@
 			<div class="col-lg-6 col-xs-6">
 				<div class="small-box bg-primary">
 					<div class="inner">
-						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
+						<h2>{{ $masuk?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
 						<p>Pemasukan</p>
 					</div>
 					<div class="ikon">
@@ -25,7 +25,7 @@
 			<div class="col-lg-6 col-xs-6">
 				<div class="small-box bg-danger">
 					<div class="inner">
-						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
+						<h2>{{ $keluar?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
 						<p>Pengeluaran</p>
 					</div>
 					<div class="ikon">
@@ -55,13 +55,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>APBD/BOS</td>
-								<td>Rp. 1.000.000</td>
-								<td>Keluar/Masuk/Pending</td>
-								<td>Pengaju</td>
-								<td>20-10-20</td>
-							</tr>
+							@foreach ($report->all() as $r)
+								<tr>
+									<td>{{ $r->id_dana }}</td>
+									<td>{{ $r->jumlah }}</td>
+									<td>{{ $r->jenis }}</td>
+									<td>{{ $r->id_pengaju}}</td>
+									<td>{{ $r->updated_at }}</td>
+								</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>
