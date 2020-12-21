@@ -1,13 +1,13 @@
 @extends('layouts.layout-submission')
 
 @section('sub-content')
-	@if() <!-- Jabatan =  Ka. Keuangan, Kepsek, Staf APBD, Staf BOS -->
+	@if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS" ) <!-- Jabatan =  Ka. Keuangan, Kepsek, Staf APBD, Staf BOS -->
 	<div class="content">
 		<div class="header_submission">
 			<h4>Daftar Pengajuan</h4>
 		</div>
 
-		@if() <!-- Jabatan = Staf APBD, Staf BOS-->
+		@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!-- Jabatan = Staf APBD, Staf BOS-->
 		<div class="left">
 			<a href="/addsubmission"><button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Submission</button></a>
 		</div>
@@ -136,7 +136,7 @@
 	</div>
 	@endif
 
-	@if() <!-- Jabatan = Kaprog-->
+	@if(session()->get('nama_jabatan') == "Kaprog") <!-- Jabatan = Kaprog-->
 	<div class="content">
 		<div class="card">
 			<div class="card-header">
