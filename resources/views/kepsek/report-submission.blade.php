@@ -40,16 +40,16 @@
 							<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail">Lihat Detail</button></td>
 
-						<!-- Modal -->
-						<div class="modal" id="detail">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									
-									<!-- Header --->
-									<div class="modal-header">
-										<h4 class="modal-title">{{ $r->judul }}</h4> <!-- DI GET DARI DATA PENGAJU -->
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
+					<!-- Modal -->
+					<div class="modal" id="detail">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								
+								<!-- Header --->
+								<div class="modal-header">
+									<h4 class="modal-title">{{ $r->judul }}</h4> <!-- DI GET DARI DATA PENGAJU -->
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
 
 									<!-- Body -->
 									<div class="modal-body top"> <!-- DI GET DARI DATA PENGAJU --> <!-- DESKRIPSI -->

@@ -303,6 +303,9 @@ body, html{
 .thumbnail a{
 	margin-top: 20px;
 }
+.form-group .desk{
+	height: 250px;
+}
 
 html{
 	scroll-behavior: smooth;
@@ -415,6 +418,9 @@ header{
 }
 .sidebar i{
 	padding-right: 10px;
+}
+.sidebar span{
+	margin-left: 10px;
 }
 label #sidebar_btn{
 	z-index: 1;
