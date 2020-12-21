@@ -1,10 +1,18 @@
 @extends('layouts.layout-submission')
 
 @section('sub-content')
-	<div class="content background-1">
+	@if() <!-- Jabatan =  Ka. Keuangan, Kepsek, Staf APBD, Staf BOS -->
+	<div class="content">
 		<div class="header_submission">
 			<h4>Daftar Pengajuan</h4>
 		</div>
+
+		@if() <!-- Jabatan = Staf APBD, Staf BOS-->
+		<div class="left">
+			<a href="/addsubmission"><button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Submission</button></a>
+		</div>
+		@endif
+
 		<div class="right">
 			<form class="form-inline" method="post">
 				<div class="form-group">
@@ -126,5 +134,45 @@
 			</table>
 		</div>
 	</div>
+	@endif
+
+	@if() <!-- Jabatan = Kaprog-->
+	<div class="content">
+		<div class="card">
+			<div class="card-header">
+				<h4>Tambah Pengajuan</h1>
+			</div>
+			<div class="card-body">
+				<form class="" method="post">
+					<div class="form-group">
+						<label class="label">Judul Pengajuan</label>
+						<input type="text" name="" class="form-control" placeholder="Masukan Judul Pengajuan">
+					</div>
+					<div class="form-group">
+						<label class="label">Deskripsi</label>
+						<textarea class="form-control desk" placeholder="Masukan Deskripsi atau Penjelasan" maxlength="1000"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="label">File Lampiran</label>
+						<input type="file" name="" class="form-control-file"> <br>
+					</div>
+					<div class="form-group">
+						<label class="label">Jenis Dana</label>
+						<select class="form-control">
+							<option disabled selected>-- Select --</option>
+							<option>APBD</option>
+							<option>BOS</option>
+						</select>
+					</div>
+
+					<br><br>
+					<div class="form-group">
+						<input type="submit" name="" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	@endif
 	
 @endsection

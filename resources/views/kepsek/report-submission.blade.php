@@ -41,7 +41,7 @@
 
 					<!-- Modal -->
 					<div class="modal" id="detail">
-						<div class="modal-dialog">
+						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								
 								<!-- Header --->
