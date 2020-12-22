@@ -32,7 +32,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/submission',[SubmissionController::class, 'store']);
     Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
     Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
-    Route::get('/report',[ReportController::class, '']);
+    Route::get('/report',[ReportController::class, 'index']);
+    Route::get('/report-submission',[ReportController::class, 'reportS']);
+    Route::get('/report-transaction',[ReportController::class, 'reportT']);
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
