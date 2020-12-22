@@ -66,7 +66,7 @@
 									<!-- Modal Izinkan -->
 									<div class="modal fade bs-example-modal-sm" id="izinkan-{{$data->id_pengajuan}}" tabindex="1">
 										<div class="modal-dialog modal-sm">
-											<form method="POST" action="/submission/diizinkan">
+											<form method="POST" action="/submission/diizinkankepsek">
 												@csrf
 											<div class="modal-content">
 												<div class="modal-header">
@@ -95,7 +95,7 @@
 									<!-- Modal Tidak Izinkan -->
 									<div class="modal fade bs-example-modal-sm" id="tidakizinkan-{{$data->id_pengajuan}}" tabindex="1">
 										<div class="modal-dialog modal-sm">
-											<form method="POST" action="/submission/tidakdiizinkan">
+											<form method="POST" action="/submission/tidakdiizinkankepsek">
 												@csrf
 											<div class="modal-content">
 												<div class="modal-header">

@@ -30,8 +30,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
     Route::get('/submission',[SubmissionController::class, 'index']);
     Route::post('/submission',[SubmissionController::class, 'store']);
-    Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
-    Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
+    Route::post('/submission/tidakdiizinkankepsek',[SubmissionController::class, 'storetidakdiizinkankepsek']);
+    Route::post('/submission/diizinkankepsek',[SubmissionController::class, 'storediizinkankepsek']);
     Route::get('/report',[ReportController::class, '']);
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);

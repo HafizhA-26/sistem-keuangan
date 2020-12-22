@@ -54,7 +54,7 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storediizinkan(Request $request)
+    public function storediizinkankepsek(Request $request)
     {
         $idDana = $request->idDana;
         $currentdana = DB::table('dana')->select('dana.jumlah')->where('dana.id_dana', '=', $idDana)->value('dana.jumlah');
@@ -105,7 +105,7 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storetidakdiizinkan(Request $request)
+    public function storetidakdiizinkankepsek(Request $request)
     {
         $status = "Rejected";
         $idUser = Auth::user()->nip;
@@ -138,6 +138,158 @@ class SubmissionController extends Controller
         
         return redirect('/dashboard');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeizinkankakeuangan(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $stat = $request->status;
+        if($stat == "ACC-1M"){
+            $status = "ACC-2M";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        }else{
+            $status = "ACC-2K";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        } 
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storetidakizinkankakeuangan(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $status = "Rejected";
+        DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+            'status' => $status
+        ]);
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeizinkanbos(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $stat = $request->status;
+        if($stat == "ACC-BM"){
+            $status = "ACC-1M";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        }else{
+            $status = "ACC-1K";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        } 
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storetidakizinkanbos(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $status = "Rejected";
+        DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+            'status' => $status
+        ]);
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeizinkanapbd(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $stat = $request->status;
+        if($stat == "ACC-AM"){
+            $status = "ACC-1M";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        }else{
+            $status = "ACC-1K";
+            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+                'status' => $status
+            ]);
+        } 
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storetidakizinkanapbd(Request $request)
+    {
+        $idUser = Auth::user()->nip;
+        $status = "Rejected";
+        DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+            'status' => $status
+        ]);
+        DB::table('comments')->insert([
+            'id_pengajuan' => $request->id_pengajuan,
+            'komentar' => $request->komentar,
+            'nip' => $idUser
+        ]);
+        return redirect('/dashboard');
+    }
+
+
     /**
      * Display the specified resource.
      *
