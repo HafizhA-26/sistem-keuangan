@@ -21,10 +21,10 @@ class SubmissionController extends Controller
         $title = "Submission - Sistem Keuangan";
         switch (session()->get('nama_jabatan')) {
             case 'Admin':
-                return view('kepsek.submission',[ 'title' => $title], $data);
+                return view('contents.submission',[ 'title' => $title], $data);
                 break;
             case 'Kepala Sekolah':
-                return view('kepsek.submission',[ 'title' => $title], $data);
+                return view('contents.submission',[ 'title' => $title], $data);
                 break;
             case 'Kepala Keuangan':
                 //return view('',[ 'title' => $title ]);

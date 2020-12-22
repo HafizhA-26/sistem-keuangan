@@ -54,11 +54,11 @@ class DashboardController extends Controller
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                return view('kepsek.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
-                return view('kepsek.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Kepala Keuangan':
                 //return view('',[ 'title' => $title ]);

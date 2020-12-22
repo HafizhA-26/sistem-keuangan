@@ -7,7 +7,7 @@
   			<div class="thumbnail">
   				<h5>Laporan Transaksi</h5>
   				<i class="fas fa-file-invoice-dollar"></i> <br>
-  				<a href="/report-transaksi" class="btn btn-primary">Check</a>
+  				<a href="/report-transaction" class="btn btn-primary">Check</a>
   			</div>
   		</div>
   		<div class="col-sm-6">

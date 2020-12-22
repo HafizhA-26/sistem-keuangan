@@ -30,9 +30,17 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
     Route::get('/submission',[SubmissionController::class, 'index']);
     Route::post('/submission',[SubmissionController::class, 'store']);
+<<<<<<< HEAD
     Route::post('/submission/tidakdiizinkankepsek',[SubmissionController::class, 'storetidakdiizinkankepsek']);
     Route::post('/submission/diizinkankepsek',[SubmissionController::class, 'storediizinkankepsek']);
     Route::get('/report',[ReportController::class, '']);
+=======
+    Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
+    Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
+    Route::get('/report',[ReportController::class, 'index']);
+    Route::get('/report-submission',[ReportController::class, 'reportS']);
+    Route::get('/report-transaction',[ReportController::class, 'reportT']);
+>>>>>>> b8c6892b8fd487ed0cad04b5d4f4c341e1890dc6
     Route::get('/manage-account',[AccountController::class, 'index']);
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
