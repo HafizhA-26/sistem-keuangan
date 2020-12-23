@@ -98,6 +98,22 @@ body, html{
 	text-align: center;
 	letter-spacing: 2px;
 }
+.header_dashboard{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #145cb1;
+	text-shadow: 1px 2px 2px black;
+	text-align: center;
+	letter-spacing: 2px;
+}
+.header_report{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #145cb1;
+	text-shadow: 1px 2px 2px black;
+	text-align: center;
+	letter-spacing: 2px;
+}
 .left{
 	float: left;
 }
@@ -305,6 +321,99 @@ body, html{
 }
 .form-group .desk{
 	height: 250px;
+}
+.info-box {
+	display: block;
+	min-height: 90px;
+	background: #fff;
+	width: 100%;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	margin-bottom: 15px;
+}
+.info-box-icon {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 2px;
+	display: block;
+	float: left;
+	height: 90px;
+	width: 90px;
+	text-align: center;
+	font-size: 45px;
+	line-height: 90px;
+	background: rgba(0, 0, 0, 0.2);
+	color : #fff;
+}
+.info-box-icon > img {
+	max-width: 100%;
+}
+.info-box-content {
+	padding: 5px 10px;
+	margin-left: 90px;
+}
+.info-box-content2 {
+	padding: 30px 60px;
+	margin-left: 90px;
+}
+.info-box-number {
+	display: block;
+	font-weight: bold;
+	font-size: 18px;
+}
+.info-box-text {
+	display: block;
+	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+}
+.info-box-text2 {
+	font-size: 18px;
+	text-transform: uppercase;
+}
+.info-box-text2 a{
+	text-decoration: none;
+}
+.info-box-text2 a:hover{
+  color: #aaa;
+	text-decoration: none;
+}
+.tabel-sub{
+  font-size: 14px;
+}
+.title{
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.box-footer{
+  text-align: center;
+  padding: 0px 0px 15px;
+}
+.box-footer a{
+  text-decoration: none;
+}
+.box-footer a:hover{
+  color: #aaa;
+}
+.box-head-color-r{
+  border-top-color: red;
+}
+.box-head-color-g{
+  border-top-color: green;
+}
+.box-head-color-b{
+  border-top-color: blue;
+}
+.mtop{
+  margin-top: -40px;
+}
+.mtop2{
+  margin-top: 40px;
 }
 
 html{
