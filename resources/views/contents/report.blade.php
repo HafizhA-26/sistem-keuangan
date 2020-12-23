@@ -5,6 +5,9 @@
 
 	@if() <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
     <div class="content">
+		<div class="header_report">
+			<h4>Report</h4>
+		</div> <br>
 		<div class="row">
   		<div class="col-sm-6">
   			<div class="thumbnail">
