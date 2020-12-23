@@ -210,9 +210,6 @@
 
 	@if() <!-- Jabatan = Kaprog-->
 	<div class="content">
-		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
-		</div>
 		<div class="header_report">
 			<h4>Laporan Pengajuan</h4>
 		</div> <br>

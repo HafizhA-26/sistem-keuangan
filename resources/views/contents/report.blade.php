@@ -1,6 +1,8 @@
 @extends('layouts.layout-report')
 
 @section('sub-content')
+<!-- Untuk Jabatan Kaprog langsung di direct ke report-submission, tanpa masuk ke halaman ini-->
+
 	@if() <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
     <div class="content">
 		<div class="row">
@@ -11,9 +13,6 @@
   				<a href="/report-transaction" class="btn btn-primary">Check</a>
   			</div>
   		</div>
-	@endif
-	
-	@if() <!--(Semua) Jabatan = Kepsek, Ka. Keuangan, Kaprog, Staf APBD, Staf BOS -->
   		<div class="col-sm-6">
   			<div class="thumbnail">
   				<h5>Laporan Pengajuan</h5>
