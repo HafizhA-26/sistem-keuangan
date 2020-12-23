@@ -11,7 +11,8 @@
 		</div> <br>
 		<!-- Row Start-->
 		<div class="row">
-			<div class="col-lg-6 col-xs-6">
+		<div class="col-md-2"></div>
+			<div class="col-md-4">
 				<div class="small-box bg-primary">
 					<div class="inner">
 						<h2>{{ $masuk?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
@@ -23,7 +24,7 @@
 					<a href="#tabel-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-xs-6">
+			<div class="col-md-4">
 				<div class="small-box bg-danger">
 					<div class="inner">
 						<h2>{{ $keluar?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
@@ -85,7 +86,8 @@
 		</div> <br>
 		<!-- Row Start-->
 		<div class="row">
-			<div class="col-lg-6 col-xs-6">
+		<div class="col-md-2"></div>
+			<div class="col-md-4">
 				<div class="small-box bg-primary">
 					<div class="inner">
 						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
@@ -97,7 +99,7 @@
 					<a href="#tabel-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-xs-6">
+			<div class="col-md-4">
 				<div class="small-box bg-danger">
 					<div class="inner">
 						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
