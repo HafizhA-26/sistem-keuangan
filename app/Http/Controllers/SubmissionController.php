@@ -6,6 +6,7 @@ use App\Models\Submission;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class SubmissionController extends Controller
 {
@@ -30,13 +31,37 @@ class SubmissionController extends Controller
                 //return view('',[ 'title' => $title ]);
                 break;
             case 'Staf BOS':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.submission',[ 'title' => $title], $data);
                 break;
             case 'Staf Dana':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.submission',[ 'title' => $title], $data);
                 break;
             case 'Kaprog':
-                //return view('',[ 'title' => $title ]);
+                $user = [
+                    'idUser' => Auth::user()->nip
+                ];
+                $namajabatan = session()->get('nama_jabatan');
+                $getid = DB::table('submissions')
+                ->select('submissions.id_pengajuan')
+                ->get();
+                $count = $getid->count();
+                $i = $count + 1;
+                if($i<=9){
+                    $id = "SUB0".$i;
+                }else if($i>=10){
+                    $id = "SUB".$i;
+                }
+                $getid2 = DB::table('submissions')
+                ->select('submissions.id_pengajuan')
+                ->get();
+                $count2 = $getid2->count();
+                $i2 = $count2 + 1;
+                if($i2<=9){
+                    $id2 = "TR0".$i;
+                }else if($i2>=10){
+                    $id2 = "TR".$i;
+                }
+                return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user, $data);
                 break;
             default:
                 $title = "Login - ";
@@ -47,6 +72,119 @@ class SubmissionController extends Controller
         
     }
 
+    public function addSubmission(){
+        $user = [
+            'idUser' => Auth::user()->nip
+        ];
+        $namajabatan = session()->get('nama_jabatan');
+        $getid = DB::table('submissions')
+        ->select('submissions.id_pengajuan')
+        ->get();
+        $count = $getid->count();
+        $i = $count + 1;
+        if($i<=9){
+            $id = "SUB0".$i;
+        }else if($i>=10){
+            $id = "SUB".$i;
+        }
+        $getid2 = DB::table('submissions')
+        ->select('submissions.id_pengajuan')
+        ->get();
+        $count2 = $getid2->count();
+        $i2 = $count2 + 1;
+        if($i2<=9){
+            $id2 = "TR0".$i;
+        }else if($i2>=10){
+            $id2 = "TR".$i;
+        }
+        switch (session()->get('nama_jabatan')) {
+            case 'Staf BOS':
+                return view('contents.add-submission', ['idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                break;
+            case 'Staf APBD':
+                return view('contents.add-submission', ['idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                break; 
+        }
+    }
+    
+    public function createSubmission(Request $request)
+    {
+        $jabatan = $request->namajabatan;
+        if($jabatan == "Staf BOS"){
+            $jenispengajuan = $request->pilihan;
+            if($jenispengajuan == "Pemasukan"){
+                $status = "ACC-1M";
+            }else{
+                $status = "ACC-1K";
+            }
+        
+            DB::table('transaksi')->insert([
+                'id_transaksi' => $request->idTransaksi,
+                'id_dana' => $request->idDana,
+                'jumlah' => $request->jumlah,
+                'jenis' => $request->jenis,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+
+            DB::table('submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'id_transaksi' => $request->idTransaksi,
+                'id_pengaju' => $request->idPengaju,
+                'judul' => $request->judul,
+                'status' => $status,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+
+            DB::table('detail_submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'deskripsi' => $request->deskripsi,
+                'file_lampiran' => $request->file
+            ]);
+
+            
+            return redirect('/submission');
+        }else if($jabatan == "Staf APBD"){
+            $jenispengajuan = $request->pilihan;
+            if($jenispengajuan == "Pemasukan"){
+                $status = "ACC-1M";
+            }else{
+                $status = "ACC-1K";
+            }
+        
+            DB::table('transaksi')->insert([
+                'id_transaksi' => $request->idTransaksi,
+                'id_dana' => $request->idDana,
+                'jumlah' => $request->jumlah,
+                'jenis' => $request->jenis,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+
+            DB::table('submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'id_transaksi' => $request->idTransaksi,
+                'id_pengaju' => $request->idPengaju,
+                'judul' => $request->judul,
+                'status' => $status,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+
+            DB::table('detail_submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'deskripsi' => $request->deskripsi,
+                'file_lampiran' => $request->file
+            ]);
+
+            
+            return redirect('/submission');
+        }else{
+            
+        }
+        
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -289,6 +427,60 @@ class SubmissionController extends Controller
         return redirect('/dashboard');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $jenispengajuan = $request->pilihan;
+            $iddana = $request->id_Dana;
+            if($jenispengajuan == "Pemasukan"){
+                if($iddana == "APBD"){
+                    $status = "ACC-AM";
+                }else if($iddana == "BOS"){
+                    $status="ACC-BM";
+                }
+            }else if($jenispengajuan == "Penggunaan"){
+                if($iddana == "APBD"){
+                    $status = "ACC-AK";
+                }else if($iddana == "BOS"){
+                    $status="ACC-BK";
+                }
+            }
+            
+            DB::table('transaksi')->insert([
+                'id_transaksi' => $request->idTransaksi,
+                'id_dana' => $request->id_Dana,
+                'jumlah' => $request->jumlah,
+                'jenis' => $request->jenis,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+            
+            DB::table('submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'id_transaksi' => $request->idTransaksi,
+                'id_pengaju' => $request->idPengaju,
+                'judul' => $request->judul,
+                'status' => $status,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
+            ]);
+
+            
+
+            DB::table('detail_submissions')->insert([
+                'id_pengajuan' => $request->idPengajuan,
+                'deskripsi' => $request->deskripsi,
+                'file_lampiran' => $request->file
+            ]);
+
+            
+            return redirect('/dashboard');
+    }
 
     /**
      * Display the specified resource.

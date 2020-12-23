@@ -65,6 +65,7 @@ class DashboardController extends Controller
                 break;
             case 'Staf BOS':
                 //return view('',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Staf Dana':
                 //return view('',[ 'title' => $title ]);
