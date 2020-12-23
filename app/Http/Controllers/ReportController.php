@@ -15,7 +15,12 @@ class ReportController extends Controller
     }
     public function index(){
         $title = "Report - ";
-        return view('contents.report',['title' => $title]);
+        if(session()->get('nama_jabatan') != "Kaprog"){
+            return view('contents.report',['title' => $title]);
+        }else{
+            return redirect("/report-submission");
+        }
+        
     }
     public function reportS(){
         $title = "Submission Report - ";
