@@ -2,13 +2,14 @@
 
 @section('sub-content')
 
-    @if() <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS-->
+	@if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") 
+	<!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS-->
     <div class="content">
 		<div class="header_dashboard">
 			<h4>Dashboard</h4>
         </div> <br>
         
-        @if() <!--Jabatan = Kepsek, Ka. Keuangan-->
+        @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan") <!--Jabatan = Kepsek, Ka. Keuangan-->
         <div class="row">
 			<div class="col-md-2">
 			</div>
@@ -33,7 +34,7 @@
 		</div>
         @endif
 
-        @if() <!--Jabatan = Staf BOS-->
+        @if(session()->get('nama_jabatan') == "Staf BOS") <!--Jabatan = Staf BOS-->
         <div class="row">
 			<div class="col-md-3">
 			</div>
@@ -49,7 +50,7 @@
 		</div>
         @endif
 
-        @if() <!--Jabatan = Staf APBD-->
+        @if(session()->get('nama_jabatan') == "Staf APBD") <!--Jabatan = Staf APBD-->
         <div class="row">
 			<div class="col-md-3">
 			</div>
@@ -157,7 +158,7 @@
 	</div>
     @endif
 
-    @if() <!--Jabatan = Kaprog-->
+    @if(session()->get('nama_jabatan') == "Kaprog") <!--Jabatan = Kaprog-->
     <div class="content">
 		<div class="header_dashboard">
 			<h4>Dashboard</h4>

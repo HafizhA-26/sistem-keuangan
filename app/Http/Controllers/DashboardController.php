@@ -61,17 +61,17 @@ class DashboardController extends Controller
                 return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Kepala Keuangan':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Staf BOS':
                 //return view('',[ 'title' => $title ]);
                 return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Staf Dana':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             case 'Kaprog':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             default:
                 echo "<script>alert('Data tidak ditemukan')</script>";
