@@ -19,17 +19,50 @@ class Transaksi extends Model
         'id_pengaju'
     ];
 
-    public function countIn()
+    public function countIn($jabatan)
     {
-        return DB::table('transaksi')
-            ->where('jenis','=','Masuk')
-            ->count();
+        if($jabatan == "Staf BOS"){
+            return DB::table('transaksi')
+                ->where([
+                    'jenis','=','Masuk',
+                    'id_dana','=','BOS',
+                ])
+                ->count();
+        }else if ($jabatan == "Staf APBD"){
+            return DB::table('transaksi')
+                ->where([
+                    'jenis','=','Masuk',
+                    'id_dana','=','APBD',
+                ])
+                ->count();
+        }else{
+            return DB::table('transaksi')
+                ->where('jenis','=','Masuk')
+                ->count();
+        }
+        
     }
-    public function countOut()
+    public function countOut($jabatan)
     {
-        return DB::table('transaksi')
-            ->where('jenis','=','Keluar')
-            ->count();
+        if($jabatan == "Staf BOS"){
+            return DB::table('transaksi')
+                ->where([
+                    'jenis','=','Keluar',
+                    'id_dana','=','BOS',
+                ])
+                ->count();
+        }else if ($jabatan == "Staf APBD"){
+            return DB::table('transaksi')
+                ->where([
+                    'jenis','=','Keluar',
+                    'id_dana','=','APBD',
+                ])
+                ->count();
+        }else{
+            return DB::table('transaksi')
+                ->where('jenis','=','Keluar')
+                ->count();
+        }
     }
     public function reportA()
     {
@@ -46,7 +79,7 @@ class Transaksi extends Model
             ->select('transaksi.*','submissions.id_pengaju')
             ->where([
                 'transaksi.jenis','!=','Pending',
-                'id_dana','=','BOS',
+                'transaksi.id_dana','=','BOS',
             ])
             ->get();
     }
@@ -57,7 +90,7 @@ class Transaksi extends Model
             ->select('transaksi.*','submissions.id_pengaju')
             ->where([
                 'transaksi.jenis','!=','Pending',
-                'id_dana','=','APBD',
+                'transaksi.id_dana','=','APBD',
             ])
             ->get();
     }

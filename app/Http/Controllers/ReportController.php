@@ -58,9 +58,10 @@ class ReportController extends Controller
     }
     public function reportT(){
         $title = "Transaction Report - ";
-        $in = $this->laporanT->countIn();
-        $out = $this->laporanT->countOut();
         $jabatan = session()->get('nama_jabatan');
+        $in = $this->laporanT->countIn($jabatan);
+        $out = $this->laporanT->countOut($jabatan);
+        
         switch($jabatan){
             case 'Kepala Sekolah':
             case 'Admin':
