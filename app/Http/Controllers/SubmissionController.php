@@ -16,25 +16,34 @@ class SubmissionController extends Controller
     }
 
     public function index(){
-        $data = [
-            'datasub' => $this->Submission->allData(),
+        $submissionDataForKepsek = [
+            'datasub' => $this->Submission->allDataForKepsek()
+        ];
+        $submissionDataForKeuangan = [
+            'datasub' => $this->Submission->allDataForKeuangan()
+        ];
+        $submissionDataForBOS = [
+            'datasub' => $this->Submission->allDataForBOS()
+        ];
+        $submissionDataForAPBD = [
+            'datasub' => $this->Submission->allDataForAPBD()
         ];
         $title = "Submission - Sistem Keuangan";
         switch (session()->get('nama_jabatan')) {
             case 'Admin':
-                return view('contents.submission',[ 'title' => $title], $data);
+                return view('contents.submission',[ 'title' => $title]);
                 break;
             case 'Kepala Sekolah':
-                return view('contents.submission',[ 'title' => $title], $data);
+                return view('contents.submission',[ 'title' => $title], $submissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
-                //return view('',[ 'title' => $title ]);
+                return view('contents.submission',[ 'title' => $title], $submissionDataForKeuangan);
                 break;
             case 'Staf BOS':
-                return view('contents.submission',[ 'title' => $title], $data);
+                return view('contents.submission',[ 'title' => $title], $submissionDataForBOS);
                 break;
-            case 'Staf Dana':
-                return view('contents.submission',[ 'title' => $title], $data);
+            case 'Staf APBD':
+                return view('contents.submission',[ 'title' => $title], $submissionDataForAPBD);
                 break;
             case 'Kaprog':
                 $user = [
@@ -61,7 +70,7 @@ class SubmissionController extends Controller
                 }else if($i2>=10){
                     $id2 = "TR".$i;
                 }
-                return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user, $data);
+                return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
             default:
                 $title = "Login - ";

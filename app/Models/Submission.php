@@ -19,7 +19,7 @@ class Submission extends Model
         'tgl_pengajuan',
         'status'
     ];
-    public function allData(){
+    public function allDataForKepsek(){
         return DB::table('submissions')
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
             ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
@@ -27,6 +27,36 @@ class Submission extends Model
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
             ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
             ->where('submissions.status', 'LIKE', 'ACC-2%')
+            ->get();
+    }
+    public function allDataForKeuangan(){
+        return DB::table('submissions')
+            ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->where('submissions.status', 'LIKE', 'ACC-1%')
+            ->get();
+    }
+    public function allDataForAPBD(){
+        return DB::table('submissions')
+            ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->where('submissions.status', 'LIKE', 'ACC-A%')
+            ->get();
+    }
+    public function allDataForBOS(){
+        return DB::table('submissions')
+            ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->where('submissions.status', 'LIKE', 'ACC-B%')
             ->get();
     }
 
