@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             DetailAccount::class,
             DanaSeeder::class,
             JurusanSeeder::class,
+            TransaksiSeeder::class,
+            SubmissionSeeder::class,
         ]);
     }
 }
