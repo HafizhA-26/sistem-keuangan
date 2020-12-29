@@ -1,8 +1,7 @@
 @extends('layouts.layout-report')
 
 @section('sub-content')
-	@if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan") 
-	<!--Jabatan = Kepsek, Ka. Keuangan--> 
+    @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Admin") <!--Jabatan = Kepsek, Ka. Keuangan--> 
 	<div class="content">
 		<div class="back">
 			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
@@ -59,12 +58,16 @@
 						</thead>
 						<tbody>
 							@foreach ($report->all() as $r)
+								@php
+									$date = date_create($r->updated_at);
+									$date = date_format($date, "d-m-Y");
+								@endphp
 								<tr>
 									<td>{{ $r->id_dana }}</td>
 									<td>{{ $r->jumlah }}</td>
 									<td>{{ $r->jenis }}</td>
 									<td>{{ $r->id_pengaju}}</td>
-									<td>{{ $r->updated_at }}</td>
+									<td>{{ $date }}</td>
 								</tr>
 							@endforeach
 						</tbody>
@@ -77,8 +80,7 @@
 	</div>
 	@endif
 
-	@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") 
-	<!--Jabatan = Staf APBD, Staf BOS-->
+	@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!--Jabatan = Staf APBD, Staf BOS-->
 	<div class="content">
 		<div class="back">
 			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>

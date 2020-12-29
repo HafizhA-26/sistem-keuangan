@@ -15,8 +15,8 @@ class CreateDetailSubmissionsTable extends Migration
     {
         Schema::create('detail_submissions', function (Blueprint $table) {
             $table->char('id_pengajuan',10);
-            $table->text('deskripsi');
-            $table->binary('file_lampiran');
+            $table->text('deskripsi')->nullable();
+            $table->binary('file_lampiran')->nullable();
             $table->timestamps();
             $table->foreign('id_pengajuan')->references('id_pengajuan')->on('submissions');
             
