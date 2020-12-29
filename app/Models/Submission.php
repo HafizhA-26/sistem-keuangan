@@ -67,7 +67,7 @@ class Submission extends Model
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
             ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where('transaksi.jenis','!=','Pending')
-            ->get();
+            ->paginate(10);
     }
     public function reportBOS()
     {
@@ -80,7 +80,7 @@ class Submission extends Model
                 'transaksi.jenis','!=','Pending',
                 'transaksi.id_dana','=','BOS',
             ])
-            ->get();
+            ->paginate(10);
     }
     public function reportAPBD()
     {
@@ -93,7 +93,7 @@ class Submission extends Model
                 'transaksi.jenis','!=','Pending',
                 'transaksi.id_dana','=','APBD',
             ])
-            ->get();
+            ->paginate(10);
     }
     public function reportKaprog()
     {
@@ -106,6 +106,6 @@ class Submission extends Model
                 'transaksi.jenis','!=','Pending',
                 'submissions.id_pengaju','=',Auth::user()->nip,
             ])
-            ->get();
+            ->paginate(10);
     }
 }

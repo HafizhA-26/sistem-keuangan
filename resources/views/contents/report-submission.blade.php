@@ -127,6 +127,8 @@
 					@endforeach
 					</tbody>
 					</table>
+						{{ $report->links() }}
+					
 				</div>
 			</div>
 		</div>

@@ -38,7 +38,7 @@ class AccountController extends Controller
                             ['accounts.status','!=','nonactive'],
                             ['accounts.nip','!=',Auth::user()->nip],
                         ])
-                        ->get();
+                        ->paginate(10);
             return view('contents.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
             }else{
                 abort(404);

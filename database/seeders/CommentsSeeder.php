@@ -14,10 +14,13 @@ class CommentsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 3; $i++) { 
+        $id = "SC001";
+        for ($i=0; $i < 10; $i++) { 
             for ($j=0; $j < 3; $j++) { 
+                $counterlen = strlen((string)$j+1);
+                $id = substr_replace($id,(string)$j+1,$counterlen*-1);
                 Comment::create([
-                    'id_pengajuan' => "SC0".($j+1),
+                    'id_pengajuan' => $id,
                     'komentar' => Str::random(100),
                     'nip' => 1,
                 ]);
