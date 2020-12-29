@@ -14,7 +14,7 @@ class CommentsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 9; $i++) { 
+        for ($i=0; $i < 3; $i++) { 
             for ($j=0; $j < 3; $j++) { 
                 Comment::create([
                     'id_pengajuan' => "SC0".($j+1),

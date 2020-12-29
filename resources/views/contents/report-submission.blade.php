@@ -95,11 +95,20 @@
 											<label><b>Tanggal Diajukan : </b></label>
 											<label>{{ $date }}</label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
-										<div class="modal-body bottom">
-											<img src="../img/icon/stm.png" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
-											<label>Nama Pengomentar</label> <br><br> <!-- GET NAMA PENGOMENTAR-->
-											<textarea disabled="" class="form-control"></textarea> <!-- GET KOMENTAR-->
-										</div>
+										@php
+											$comments = DB::table('comments')
+												->join('detail_accounts','detail_accounts.nip','=','comments.nip')
+												->where('id_pengajuan','=',$r->id_pengajuan)
+												->get();
+										@endphp
+										@foreach ($comments->all() as $c)
+											<div class="modal-body bottom">
+												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
+												<label>{{ $c->nama }}</label> <br><br> <!-- GET NAMA PENGOMENTAR-->
+												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+											</div>
+										@endforeach
+										
 									</div>
 
 									<!-- Footer -->
