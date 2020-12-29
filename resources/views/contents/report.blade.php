@@ -3,7 +3,8 @@
 @section('sub-content')
 <!-- Untuk Jabatan Kaprog langsung di direct ke report-submission, tanpa masuk ke halaman ini-->
 
-	@if() <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
+	@if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") 
+	<!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
     <div class="content">
 		<div class="header_report">
 			<h4>Report</h4>

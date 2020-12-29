@@ -18,7 +18,7 @@
             		<span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
             		<div class="info-box-content">
               		<span class="info-box-text">Jumlah Dana BOS</span>
-              		<span class="info-box-number">Rp. 2.000.000</span>
+              		<span class="info-box-number">Rp.{{$danaBOS}}</span>
             		</div>
           		</div>
         	</div>
@@ -27,7 +27,7 @@
             		<span class="info-box-icon bg-success"><i class="fas fa-coins"></i></span>
             		<div class="info-box-content">
               		<span class="info-box-text">Anggaran APBD</span>
-              		<span class="info-box-number">Rp. 1.000.000</span>
+              		<span class="info-box-number">Rp.{{$danaAPBD}}</span>
             		</div>
           		</div>
         	</div>
@@ -43,7 +43,7 @@
             		<span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
             		<div class="info-box-content">
               		<span class="info-box-text">Jumlah Dana BOS</span>
-              		<span class="info-box-number">Rp. 2.000.000</span>
+              		<span class="info-box-number">{{$danaBOS}}</span>
             		</div>
           		</div>
         	</div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Dana;
 use App\Akun;
 use DB;
 use Session;
@@ -9,6 +10,10 @@ use Auth;
 use Crypt;
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->Dana = new Dana();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +25,8 @@ class DashboardController extends Controller
         return view('index', ['title' => $title]);
     }
     public function dashboardVerification(){
+        $danaBOS = $this->Dana->danaBOS();
+        $danaAPBD = $this->Dana->danaAPBD();
         $akun = Auth::user();
         $nip = $akun->nip;
         $password = $akun->password;
@@ -58,17 +65,17 @@ class DashboardController extends Controller
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD]);
                 break;
             case 'Kepala Keuangan':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
                 break;
             case 'Staf BOS':
                 //return view('',[ 'title' => $title ]);
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
                 break;
             case 'Staf Dana':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
                 break;
             case 'Kaprog':
                 return view('contents.index-kepsek',[ 'title' => $title ]);
