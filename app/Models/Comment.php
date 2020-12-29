@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    protected  $primaryKey = 'id_komentar';
+    protected  $primaryKey = 'id';
     protected $fillable = [
-        'id_komentar',
+        'id',
         'komentar',
         'comment_date',
         'nip'
