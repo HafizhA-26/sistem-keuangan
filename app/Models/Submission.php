@@ -65,7 +65,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where('transaksi.jenis','!=','Pending')
             ->get();
     }
@@ -75,7 +75,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
                 'transaksi.jenis','!=','Pending',
                 'transaksi.id_dana','=','BOS',
@@ -88,7 +88,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
                 'transaksi.jenis','!=','Pending',
                 'transaksi.id_dana','=','APBD',
@@ -97,12 +97,11 @@ class Submission extends Model
     }
     public function reportKaprog()
     {
-        DB::table('submissions')
+        return DB::table('submissions')
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->join('jurusan','detail_accounts.id_jurusan','=','jurusan.id_jurusan')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','jurusan.nama_jurusan')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
                 'transaksi.jenis','!=','Pending',
                 'submissions.id_pengaju','=',Auth::user()->nip,

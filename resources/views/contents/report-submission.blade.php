@@ -36,15 +36,26 @@
 						<th>Detail Pengajuan</th>
 					</tr>
 					@foreach ($report->all() as $r)
+						@php
+							$date = date_create($r->updated_at);
+							$date = date_format($date, "d-m-Y");
+						@endphp
 						<tr>
 							<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
-							<td>{{ $r->nama }}{{ $r->nama_jurusan? '/'.$r->nama_jurusan : '' }}</td> <!-- PERLU BACKEND -->
-							<td>{{ $r->updated_at }}</td> <!-- PERLU BACKEND -->
+							@if ($r->id_jurusan)
+								@php
+									$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+								@endphp
+								<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+							@else 
+								<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+							@endif
+							<td>{{ $date }}</td> <!-- PERLU BACKEND -->
 							<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
 
 					<!-- Modal -->
-					<div class="modal" id="detail{{ $r->id_pengajuan }}">
+					<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								
@@ -60,15 +71,21 @@
 
 										<div class="modal-body bottom">
 											<label><b>File Lampiran</b></label>
-												<!-- CANTUMKAN FILE LAMPIRAN -->
+											@if ($r->file_lampiran)
+											
+											@else
+												<div class="alert alert-warning" role="alert">
+													Tidak Ada File Lampiran
+											  	</div>
+											@endif
 										</div>
 										<div class="modal-body bottom">
 											<label><b>Status : </b></label>
-											<label>{{ $r->status }}</label> <!-- CANTUMKAN STATUS -->
+											<label><mark class="bg-light">{{ $r->status }}</mark></label> <!-- CANTUMKAN STATUS -->
 										</div>
 										<div class="modal-body bottom">
 											<label><b>Id Transaksi : </b></label>
-											<label>{{ $r->id_transaksi }}</label> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+											<label><mark class="bg-light">{{ $r->id_transaksi }}</mark></label> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 										</div>
 										<div class="modal-body bottom">
 											<label><b>Pengaju : </b></label>
@@ -76,7 +93,7 @@
 										</div>
 										<div class="modal-body bottom">
 											<label><b>Tanggal Diajukan : </b></label>
-											<label>{{ $r->created_at }}</label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
+											<label>{{ $date }}</label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
 										<div class="modal-body bottom">
 											<img src="../img/icon/stm.png" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
