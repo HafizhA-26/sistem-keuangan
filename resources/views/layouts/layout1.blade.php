@@ -68,5 +68,24 @@
         <script src={{ URL::asset("js/jquery.js") }}></script>
         <script src={{ URL::asset("js/bootstrap.min.js") }}></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+              $("#searchButton").on("click", function() {
+                var value = document.getElementById('searchInput').value.toLowerCase();
+                $("#dataTable tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+              $('#searchInput').keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                    var value = $(this).val().toLowerCase();
+                    $("#dataTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                }
+                });
+            });
+        </script>
     </body>
 </html>

@@ -17,24 +17,27 @@
 				<h3 class="box-title">Tabel Pengajuan</h3>
 
 				<div class="right">
-				<form class="form-inline" method="post">
-					<div class="form-group">
-						<input type="text" name="" placeholder="Search" class="form-control search"> <!-- PERLU BACKEND -->
-						<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+
+					<div class="form-group form-inline">
+						<input type="text" name="" placeholder="Search" class="form-control search" id="searchInput"> <!-- PERLU BACKEND -->
+						<button type="submit" class="btn btn-info" id="searchButton"><i class="fa fa-search"></i></button>
 					</div>
-				</form>
+
 				</div>
 			</div>
 			<div class="box-info">
 				<div class="table-responsive">
 					<table class="table">
-					<tr>
-						<th>Pengajuan</th>
-						<th>Pengaju</th>
-						<th>Tanggal</th>
-						<th>Status</th>
-						<th>Detail Pengajuan</th>
-					</tr>
+						<thead>
+							<tr>
+								<th>Pengajuan</th>
+								<th>Pengaju</th>
+								<th>Tanggal</th>
+								<th>Status</th>
+								<th>Detail Pengajuan</th>
+							</tr>
+						</thead>
+					<tbody id="dataTable">
 					@foreach ($report->all() as $r)
 						@php
 							$date = date_create($r->created_at);
@@ -54,16 +57,19 @@
 							<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
 
-					<!-- Modal -->
-					<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
+					
+						</tr>
+
+						<!-- Modal -->
+						<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
 								
-								<!-- Header --->
-								<div class="modal-header">
-									<h4 class="modal-title">{{ $r->judul }}</h4> <!-- DI GET DARI DATA PENGAJU -->
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-								</div>
+									<!-- Header --->
+									<div class="modal-header">
+										<h4 class="modal-title">{{ $r->judul }}</h4> <!-- DI GET DARI DATA PENGAJU -->
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
 
 									<!-- Body -->
 									<div class="modal-body top"> <!-- DI GET DARI DATA PENGAJU --> <!-- DESKRIPSI -->
@@ -118,9 +124,8 @@
 								</div>
 							</div>
 						</div>
-						</tr>
 					@endforeach
-					
+					</tbody>
 					</table>
 				</div>
 			</div>
