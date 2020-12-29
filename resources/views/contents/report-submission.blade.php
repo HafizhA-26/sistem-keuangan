@@ -37,7 +37,7 @@
 					</tr>
 					@foreach ($report->all() as $r)
 						@php
-							$date = date_create($r->updated_at);
+							$date = date_create($r->created_at);
 							$date = date_format($date, "d-m-Y");
 						@endphp
 						<tr>

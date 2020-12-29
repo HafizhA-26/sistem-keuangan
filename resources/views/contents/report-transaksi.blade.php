@@ -58,12 +58,16 @@
 						</thead>
 						<tbody>
 							@foreach ($report->all() as $r)
+								@php
+									$date = date_create($r->updated_at);
+									$date = date_format($date, "d-m-Y");
+								@endphp
 								<tr>
 									<td>{{ $r->id_dana }}</td>
 									<td>{{ $r->jumlah }}</td>
 									<td>{{ $r->jenis }}</td>
 									<td>{{ $r->id_pengaju}}</td>
-									<td>{{ $r->updated_at }}</td>
+									<td>{{ $date }}</td>
 								</tr>
 							@endforeach
 						</tbody>
