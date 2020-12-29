@@ -59,6 +59,53 @@ class Submission extends Model
             ->where('submissions.status', 'LIKE', 'ACC-B%')
             ->get();
     }
-
-    
+    public function reportA()
+    {
+        return DB::table('submissions')
+            ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
+            ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->where('transaksi.jenis','!=','Pending')
+            ->get();
+    }
+    public function reportBOS()
+    {
+        return DB::table('submissions')
+            ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
+            ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->where([
+                'transaksi.jenis','!=','Pending',
+                'transaksi.id_dana','=','BOS',
+            ])
+            ->get();
+    }
+    public function reportAPBD()
+    {
+        return DB::table('submissions')
+            ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
+            ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->where([
+                'transaksi.jenis','!=','Pending',
+                'transaksi.id_dana','=','APBD',
+            ])
+            ->get();
+    }
+    public function reportKaprog()
+    {
+        return DB::table('submissions')
+            ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
+            ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->where([
+                'transaksi.jenis','!=','Pending',
+                'submissions.id_pengaju','=',Auth::user()->nip,
+            ])
+            ->get();
+    }
 }
