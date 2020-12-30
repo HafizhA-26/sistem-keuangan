@@ -57,6 +57,29 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/del-account/{nip}',[AccountController::class, 'destroy']);
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);
     Route::get('/logout',[LoginController::class, 'logout']);
+
+    Route::get('download/{filename}', function($filename)
+    {
+
+        $file_path = storage_path() .'/uploaded_file/'. $filename;
+        if (file_exists($file_path))
+        {
+            $ex = substr($filename,-3);
+            if($ex == "pdf"){
+                return response()->file($file_path);
+            }else{
+                return Response::download($file_path, $filename, [
+                    'Content-Length: '. filesize($file_path)
+                ]);
+            }
+            
+        }
+        else
+        {
+            abort(404);
+        }
+    })
+    ->where('filename', '[A-Za-z0-9\-\_\.]+');
     // Udah bener, silahkan masukkin route disini
 });
 

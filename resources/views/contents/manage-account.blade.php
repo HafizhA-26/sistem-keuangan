@@ -212,6 +212,7 @@
 							
 						</tbody>
 					</table>
+					{{ $daftar->links() }}
 				</div>
 			</div>
 		</div>

@@ -16,18 +16,24 @@ class SubmissionSeeder extends Seeder
      */
     public function run()
     {
-        $id = "SC0";
-        for ($i=0; $i < 3; $i++) { 
+        $id = "SC001";
+        $id2 = "TC001";
+        $file_lampiran = ['example.rar','example.pdf'];
+        for ($i=0; $i < 11; $i++) { 
+            $counterlen = strlen((string)$i+1);
+            $id = substr_replace($id,(string)$i+1,$counterlen*-1);
+            $id2 = substr_replace($id2,(string)$i+1,$counterlen*-1);
             Submission::create([
-                'id_pengajuan' => $id.($i+1),
+                'id_pengajuan' => $id,
                 'judul' => 'Contoh '.($i+1),
                 'status' => 'ACC 3-K',
-                'id_transaksi' => 'TC0'.($i+1),
+                'id_transaksi' => $id2,
                 'id_pengaju' => 1
             ]);
             DetailSub::create([
-                'id_pengajuan' => $id.($i+1),
+                'id_pengajuan' => $id,
                 'deskripsi' => "Ini Contoh ".($i+1),
+                'file_lampiran' => $file_lampiran[rand(0,1)],
             ]);
         }
     }

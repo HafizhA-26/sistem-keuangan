@@ -688,3 +688,13 @@ ul.login-error{
 .alert-login{
 	font-size: 0.9rem;
 }
+.file-title{
+	font-size: 1.7rem;
+}
+.file-size{
+	font-size: 0.8rem;
+	color: rgb(97, 97, 97);
+}
+.file-click:hover .file-size{
+	color: black;
+}

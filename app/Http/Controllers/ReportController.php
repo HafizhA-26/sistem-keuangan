@@ -29,24 +29,53 @@ class ReportController extends Controller
         }
         
     }
-    public function reportS(){
+    public static function formatSizeUnits($bytes)
+    {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+    }
+    public function reportS(Request $request){
         $title = "Submission Report - ";
         $jabatan = session()->get('nama_jabatan');
         switch($jabatan){
             case 'Kepala Sekolah':
             case 'Admin':
             case 'Kepala Keuangan':
-                $report = $this->laporanS->reportA();
+                $report = $this->laporanS->reportA($request->search);
                 break;
             case 'Staf BOS':
-                $report = $this->laporanS->reportBOS();
+                $report = $this->laporanS->reportBOS($request->search);
                 break;
                
             case 'Staf APBD':
-                $report = $this->laporanS->reportAPBD();
+                $report = $this->laporanS->reportAPBD($request->search);
                 break;
             case 'Kaprog':
-                $report = $this->laporanS->reportKaprog();
+                $report = $this->laporanS->reportKaprog($request->search);
                 break;
                 
             default:

@@ -20,7 +20,7 @@
 	<!-- Mobile navigation bar start -->
 	<div class="mobile_nav">
 			<div class="nav_bar">
-			<img src="img/avatar/{{ session()->get('picture') }}" class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+			<img src={{ URL::asset("img/avatar/".session()->get('picture') ) }} class="mobile_profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
 				<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="mobile_name">{{ session()->get('nama') }} <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 				<i class="fa fa-bars nav_btn"></i>
 			</div>
@@ -36,7 +36,7 @@
 	<!-- Sidebar start -->
 	<div class="sidebar">
 		<div class="profile_info">
-			<img src="img/avatar/{{ session()->get('picture') }}" class="profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
+			<img src={{ URL::asset("img/avatar/".session()->get('picture') ) }} class="profile_image" alt=""> <!-- GET PICT DARI DATABASE ACCOUNT-->
 			<a href="/edit-profil/{{ session()->get('nip') }}" class="edit" title="Edit Profil"><h5 class="name">{{ session()->get('nama') }} <i class="fas fa-edit"></i></a></h5> <!-- GET NAMA DARI DATABASE ACCOUNT-->
 		</div>
 		<a href="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
