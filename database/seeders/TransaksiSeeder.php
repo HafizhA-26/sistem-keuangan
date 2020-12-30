@@ -17,7 +17,7 @@ class TransaksiSeeder extends Seeder
     {
         $dana = ['BOS','APBD'];
         $id = "TC001";
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 11; $i++) { 
             $counterlen = strlen((string)$i+1);
             $id = substr_replace($id,(string)$i+1,$counterlen*-1);
             Transaksi::create([

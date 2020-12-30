@@ -18,7 +18,8 @@ class SubmissionSeeder extends Seeder
     {
         $id = "SC001";
         $id2 = "TC001";
-        for ($i=0; $i < 10; $i++) { 
+        $file_lampiran = ['default.rar','default.pdf'];
+        for ($i=0; $i < 11; $i++) { 
             $counterlen = strlen((string)$i+1);
             $id = substr_replace($id,(string)$i+1,$counterlen*-1);
             $id2 = substr_replace($id2,(string)$i+1,$counterlen*-1);
@@ -32,6 +33,7 @@ class SubmissionSeeder extends Seeder
             DetailSub::create([
                 'id_pengajuan' => $id,
                 'deskripsi' => "Ini Contoh ".($i+1),
+                'file_lampiran' => $file_lampiran[rand(0,1)],
             ]);
         }
     }

@@ -17,12 +17,12 @@
 				<h3 class="box-title">Tabel Pengajuan</h3>
 
 				<div class="right">
-
-					<div class="form-group form-inline">
-						<input type="text" name="" placeholder="Search" class="form-control search" id="searchInput"> <!-- PERLU BACKEND -->
-						<button type="submit" class="btn btn-info" id="searchButton"><i class="fa fa-search"></i></button>
-					</div>
-
+					<form class="form-inline" action="/report-submission" method="get">
+						<div class="form-group">
+							<input type="text" name="search" placeholder="Search" class="form-control search" id="searchInput" autocomplete="off"> <!-- PERLU BACKEND -->
+							<button type="submit" class="btn btn-info" id="searchButton"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="box-info">
