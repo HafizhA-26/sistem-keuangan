@@ -18,7 +18,7 @@ class SubmissionSeeder extends Seeder
     {
         $id = "SC001";
         $id2 = "TC001";
-        $file_lampiran = ['default.rar','default.pdf'];
+        $file_lampiran = ['example.rar','example.pdf'];
         for ($i=0; $i < 11; $i++) { 
             $counterlen = strlen((string)$i+1);
             $id = substr_replace($id,(string)$i+1,$counterlen*-1);

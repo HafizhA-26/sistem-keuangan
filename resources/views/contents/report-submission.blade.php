@@ -40,11 +40,21 @@
 					<tbody id="dataTable">
 					@foreach ($report->all() as $r)
 						@php
+							// Memformat tanggal jadi format Hari-Bulan-Tahun
 							$date = date_create($r->created_at);
 							$date = date_format($date, "d-m-Y");
+
+							// Mengambil file extension di variabel $file_ex
+							$file_ex = substr($r->file_lampiran,-3);
+
+							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+							$file_path = storage_path() .'/uploaded_file/'. $r->file_lampiran;
+							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
 						@endphp
 						<tr>
 							<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
+
+							{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
 							@if ($r->id_jurusan)
 								@php
 									$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
@@ -53,6 +63,7 @@
 							@else 
 								<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
 							@endif
+
 							<td>{{ $date }}</td> <!-- PERLU BACKEND -->
 							<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
@@ -77,14 +88,44 @@
 
 										<div class="modal-body bottom">
 											<label><b>File Lampiran</b></label>
+
+											{{-- cek jika ada file_lampiran --}}
 											@if ($r->file_lampiran)
-											
+												<div class="alert alert-primary">
+
+													{{-- Bagian untuk penampilan file --}}
+													
+													<a class="file-click row m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}">
+														<div class="col-md-1 ikon" style="font-size: 3rem">
+
+															{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+															@if ($file_ex == "pdf")
+																<i class="fas fa-file-pdf"></i>
+															@else
+																<i class="fas fa-file-alt"></i>
+															@endif
+
+														</div>
+
+														{{-- Menampilkan judul dan size file lampiran --}}
+														<div class="col-md file-title text-truncate font-weight-bold">
+															{{ $r->file_lampiran }}
+															<div class="file-size">
+																{{ $size }}
+															</div>
+														</div>
+
+													</a>
+												</div>
+
+											{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
 											@else
 												<div class="alert alert-warning" role="alert">
-													Tidak Ada File Lampiran
+													Tidak ada file lampiran
 											  	</div>
 											@endif
 										</div>
+										
 										<div class="modal-body bottom">
 											<label><b>Status : </b></label>
 											<label><mark class="bg-light">{{ $r->status }}</mark></label> <!-- CANTUMKAN STATUS -->
@@ -101,12 +142,15 @@
 											<label><b>Tanggal Diajukan : </b></label>
 											<label>{{ $date }}</label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
+
 										@php
+											// Ambil daftar comment dari pengajuan terkait
 											$comments = DB::table('comments')
 												->join('detail_accounts','detail_accounts.nip','=','comments.nip')
 												->where('id_pengajuan','=',$r->id_pengajuan)
 												->get();
 										@endphp
+
 										@foreach ($comments->all() as $c)
 											<div class="modal-body bottom">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
