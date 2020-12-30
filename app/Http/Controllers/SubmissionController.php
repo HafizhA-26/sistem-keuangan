@@ -56,9 +56,9 @@ class SubmissionController extends Controller
                 $count = $getid->count();
                 $i = $count + 1;
                 if($i<=9){
-                    $id = "SUB0".$i;
+                    $id = "SC0".$i;
                 }else if($i>=10){
-                    $id = "SUB".$i;
+                    $id = "SC".$i;
                 }
                 $getid2 = DB::table('submissions')
                 ->select('submissions.id_pengajuan')
@@ -66,9 +66,9 @@ class SubmissionController extends Controller
                 $count2 = $getid2->count();
                 $i2 = $count2 + 1;
                 if($i2<=9){
-                    $id2 = "TR0".$i;
+                    $id2 = "TC0".$i;
                 }else if($i2>=10){
-                    $id2 = "TR".$i;
+                    $id2 = "TC".$i;
                 }
                 return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
@@ -92,9 +92,9 @@ class SubmissionController extends Controller
         $count = $getid->count();
         $i = $count + 1;
         if($i<=9){
-            $id = "SUB0".$i;
+            $id = "SC0".$i;
         }else if($i>=10){
-            $id = "SUB".$i;
+            $id = "SC".$i;
         }
         $getid2 = DB::table('submissions')
         ->select('submissions.id_pengajuan')
@@ -102,9 +102,9 @@ class SubmissionController extends Controller
         $count2 = $getid2->count();
         $i2 = $count2 + 1;
         if($i2<=9){
-            $id2 = "TR0".$i;
+            $id2 = "TC0".$i;
         }else if($i2>=10){
-            $id2 = "TR".$i;
+            $id2 = "TC".$i;
         }
         switch (session()->get('nama_jabatan')) {
             case 'Staf BOS':

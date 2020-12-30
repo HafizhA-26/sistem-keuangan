@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Dana;
+use App\Models\Dana;
 class DanaSeeder extends Seeder
 {
     /**
