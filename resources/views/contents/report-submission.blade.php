@@ -6,7 +6,7 @@
     @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Admin") <!-- Jabatan = Kepsek, Ka. Keuangan-->
 	<div class="content">
 		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
+			<a href="/report"><i class="fa fa-arrow-left icon3" title="Back to Report"></i></a>
 		</div>
 		<div class="header_report">
 			<h4>Laporan Pengajuan</h4>
@@ -183,7 +183,7 @@
 	@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!-- Jabatan = Staf APBD, Staf BOS-->
 	<div class="content">
 		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
+			<a href="/report"><i class="fa fa-arrow-left icon3" title="Back to Report"></i></a>
 		</div>
 		<div class="header_report">
 			<h4>Laporan Pengajuan</h4>
