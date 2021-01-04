@@ -65,13 +65,14 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where('transaksi.jenis','!=','Pending')
             ->where(function($query) use ($search){
                 $query->where('submissions.judul', 'LIKE', '%'.$search.'%')
                       ->orWhere('detail_accounts.nama', 'LIKE', '%'.$search.'%')
                       ->orWhere('submissions.created_at', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%');
+                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
+                      ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
             ->paginate(10);
     }
@@ -81,7 +82,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['transaksi.id_dana','=','BOS'],
@@ -90,7 +91,8 @@ class Submission extends Model
                 $query->where('submissions.judul', 'LIKE', '%'.$search.'%')
                       ->orWhere('detail_accounts.nama', 'LIKE', '%'.$search.'%')
                       ->orWhere('submissions.created_at', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%');
+                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
+                      ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
             ->paginate(10);
     }
@@ -100,7 +102,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['transaksi.id_dana','=','APBD'],
@@ -109,7 +111,8 @@ class Submission extends Model
                 $query->where('submissions.judul', 'LIKE', '%'.$search.'%')
                       ->orWhere('detail_accounts.nama', 'LIKE', '%'.$search.'%')
                       ->orWhere('submissions.created_at', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%');
+                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
+                      ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
             ->paginate(10);
     }
@@ -119,7 +122,7 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['submissions.id_pengaju','=',Auth::user()->nip],
@@ -128,7 +131,8 @@ class Submission extends Model
                 $query->where('submissions.judul', 'LIKE', '%'.$search.'%')
                       ->orWhere('detail_accounts.nama', 'LIKE', '%'.$search.'%')
                       ->orWhere('submissions.created_at', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%');
+                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
+                      ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
             ->paginate(10);
     }

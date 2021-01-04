@@ -61,10 +61,11 @@
 								@php
 									$date = date_create($r->updated_at);
 									$date = date_format($date, "d-m-Y");
+									$jumlah = number_format($r->jumlah,2,",",".");
 								@endphp
 								<tr>
 									<td>{{ $r->id_dana }}</td>
-									<td>{{ $r->jumlah }}</td>
+									<td>Rp. {{ $jumlah }}</td>
 									<td>{{ $r->jenis }}</td>
 									{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
 									@if ($r->id_jurusan)
@@ -155,9 +156,10 @@
 								@php
 									$date = date_create($r->updated_at);
 									$date = date_format($date, "d-m-Y");
+									$jumlah = number_format($r->jumlah,2,",",".");
 								@endphp
 								<tr>
-									<td>{{ $r->jumlah }}</td>
+									<td>Rp. {{ $jumlah }}</td>
 									<td>{{ $r->jenis }}</td>
 									@if ($r->id_jurusan)
 										@php

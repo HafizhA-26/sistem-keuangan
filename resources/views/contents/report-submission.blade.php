@@ -32,6 +32,7 @@
 							<tr>
 								<th>Pengajuan</th>
 								<th>Pengaju</th>
+								<th>Jumlah</th>
 								<th>Tanggal</th>
 								<th>Status</th>
 								<th>Detail Pengajuan</th>
@@ -50,6 +51,7 @@
 							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
 							$file_path = storage_path() .'/uploaded_file/'. $r->file_lampiran;
 							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+							$jumlah = number_format($r->jumlah,2,",",".");
 						@endphp
 						<tr>
 							<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
@@ -63,7 +65,7 @@
 							@else 
 								<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
 							@endif
-
+							<td>Rp. {{ $jumlah }}</td>
 							<td>{{ $date }}</td> <!-- PERLU BACKEND -->
 							<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
@@ -221,16 +223,40 @@
 						<th>Status</th>
 						<th>Detail Pengajuan</th>
 					</tr>
+					@foreach ($report->all() as $r)
+					@php
+						// Memformat tanggal jadi format Hari-Bulan-Tahun
+						$date = date_create($r->created_at);
+						$date = date_format($date, "d-m-Y");
+
+						// Mengambil file extension di variabel $file_ex
+						$file_ex = substr($r->file_lampiran,-3);
+
+						// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+						$file_path = storage_path() .'/uploaded_file/'. $r->file_lampiran;
+						$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+						$jumlah = number_format($r->jumlah,2,",",".");
+					@endphp
 					<tr>
-						<td>Judul Pengajuan</td> <!-- PERLU BACKEND -->
-						<td>Nama Pengaju/Jurusan</td> <!-- PERLU BACKEND -->
-						<td>Rp. 1.000.000</td> <!-- PERLU BACKEND -->
-						<td>20-10-20</td> <!-- PERLU BACKEND -->
-						<td>-</td> <!-- PERLU BACKEND -->
-						<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail">Lihat Detail</button></td>
+						<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
+
+						{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
+						@if ($r->id_jurusan)
+							@php
+								$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+							@endphp
+							<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+						@else 
+							<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+						@endif
+						<td>Rp. {{ $jumlah }}</td>
+						<td>{{ $date }}</td> <!-- PERLU BACKEND -->
+						<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
+						<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
+
 
 					<!-- Modal -->
-					<div class="modal" id="detail">
+					<div class="modal" id="detail{{ $r->id_pengajuan }}">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								
@@ -279,6 +305,7 @@
 						</div>
 					</div>
 					</tr>
+					@endforeach
 					</table>
 				</div>
 			</div>
