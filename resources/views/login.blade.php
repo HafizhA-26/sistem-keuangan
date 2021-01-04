@@ -4,7 +4,8 @@
 	<!-- Konten Login -->
 	<div class="container-fluid background-1 pr-5" style="height: 100%;">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 				
 				<form class="box" action="/checking" method="POST">
 					@csrf
