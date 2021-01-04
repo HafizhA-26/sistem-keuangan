@@ -95,7 +95,7 @@
 
 													{{-- Bagian untuk penampilan file --}}
 													
-													<a class="file-click row m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}">
+													<a class="file-click row m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
 														<div class="col-md-1 ikon" style="font-size: 3rem">
 
 															{{-- Cek extension file dan mengubah icon sesuai filenya--}}
@@ -171,6 +171,8 @@
 					@endforeach
 					</tbody>
 					</table>
+					{{-- Pagination table, layout pagination ada di resources/views/vendor/pagination/bootstrap-4.blade.php  --}}
+					
 						{{ $report->links() }}
 					
 				</div>
@@ -199,12 +201,12 @@
 				<h3 class="box-title">Tabel Pengajuan BOS</h3>
 			@endif
 				<div class="right">
-				<form class="form-inline" method="post">
-					<div class="form-group">
-						<input type="text" name="" placeholder="Search" class="form-control search"> <!-- PERLU BACKEND -->
-						<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-					</div>
-				</form>
+					<form class="form-inline" action="/report-submission" method="get">
+						<div class="form-group">
+							<input type="text" name="search" placeholder="Search" class="form-control search" id="searchInput" autocomplete="off"> <!-- PERLU BACKEND -->
+							<button type="submit" class="btn btn-info" id="searchButton"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="box-info">
