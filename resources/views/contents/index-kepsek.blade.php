@@ -2,7 +2,7 @@
 
 @section('sub-content')
 
-	@if() <!-- Jabatan = Admin-->
+	@if(session()->get("nama_jabatan") == "Admin") <!-- Jabatan = Admin-->
 	<div class="content">
 		<div class="header_dashboard">
 			<h4>Dashboard</h4>

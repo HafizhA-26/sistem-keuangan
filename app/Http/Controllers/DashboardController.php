@@ -51,33 +51,13 @@ class DashboardController extends Controller
         $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - ";
-        switch($jabatan){
-            case 'Admin':
-                //Isi custom hok
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
-                break;
-            case 'Kepala Sekolah':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                break;
-            case 'Kepala Keuangan':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                break;
-            case 'Staf BOS':
-                //return view('',[ 'title' => $title ]);
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                break;
-            case 'Staf Dana':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                break;
-            case 'Kaprog':
-                return view('contents.index-kepsek',[ 'title' => $title ]);
-                break;
-            default:
-                echo "<script>alert('Data tidak ditemukan')</script>";
-                return redirect('login');
-                break;
+        if($jabatan && Auth::check()){
+            return view('contents.index-kepsek',[ 'title' => $title ]);
+        }else{
+            echo "<script>alert('Data tidak ditemukan')</script>";
         }
+        
+       
     }
     /**
      * Show the form for creating a new resource.
