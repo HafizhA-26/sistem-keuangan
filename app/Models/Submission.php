@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
 class Submission extends Model
 {
     use HasFactory;
@@ -124,7 +124,6 @@ class Submission extends Model
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
             ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where([
-                ['transaksi.jenis','!=','Pending'],
                 ['submissions.id_pengaju','=',Auth::user()->nip],
             ])
             ->where(function($query) use ($search){

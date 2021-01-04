@@ -253,48 +253,96 @@
 						<td>{{ $date }}</td> <!-- PERLU BACKEND -->
 						<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
 						<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
-
+					</tr>
 
 					<!-- Modal -->
-					<div class="modal" id="detail{{ $r->id_pengajuan }}">
+					<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
-								
+							
 								<!-- Header --->
 								<div class="modal-header">
-									<h4 class="modal-title">Judul Pengajuan</h4> <!-- DI GET DARI DATA PENGAJU -->
+									<h4 class="modal-title">{{ $r->judul }}</h4> <!-- DI GET DARI DATA PENGAJU -->
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</div>
 
 								<!-- Body -->
 								<div class="modal-body top"> <!-- DI GET DARI DATA PENGAJU --> <!-- DESKRIPSI -->
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									{{ $r->deskripsi }}
 
 									<div class="modal-body bottom">
 										<label><b>File Lampiran</b></label>
-											<!-- CANTUMKAN FILE LAMPIRAN -->
+
+										{{-- cek jika ada file_lampiran --}}
+										@if ($r->file_lampiran)
+											<div class="alert alert-primary">
+
+												{{-- Bagian untuk penampilan file --}}
+												
+												<a class="file-click row m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
+													<div class="col-md-1 ikon" style="font-size: 3rem">
+
+														{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+														@if ($file_ex == "pdf")
+															<i class="fas fa-file-pdf"></i>
+														@else
+															<i class="fas fa-file-alt"></i>
+														@endif
+
+													</div>
+
+													{{-- Menampilkan judul dan size file lampiran --}}
+													<div class="col-md file-title text-truncate font-weight-bold">
+														{{ $r->file_lampiran }}
+														<div class="file-size">
+															{{ $size }}
+														</div>
+													</div>
+
+												</a>
+											</div>
+
+										{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+										@else
+											<div class="alert alert-warning" role="alert">
+												Tidak ada file lampiran
+											  </div>
+										@endif
 									</div>
+									
 									<div class="modal-body bottom">
 										<label><b>Status : </b></label>
-										<label>-</label> <!-- CANTUMKAN STATUS -->
+										<label><mark class="bg-light">{{ $r->status }}</mark></label> <!-- CANTUMKAN STATUS -->
 									</div>
 									<div class="modal-body bottom">
 										<label><b>Id Transaksi : </b></label>
-										<label>-</label> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+										<label><mark class="bg-light">{{ $r->id_transaksi }}</mark></label> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 									</div>
 									<div class="modal-body bottom">
 										<label><b>Pengaju : </b></label>
-										<label>Nama Pengaju</label> <!-- CANTUMKAN NAMA PENGAJU -->
+										<label>{{ $r->nama }}</label> <!-- CANTUMKAN NAMA PENGAJU -->
 									</div>
 									<div class="modal-body bottom">
 										<label><b>Tanggal Diajukan : </b></label>
-										<label>12-12-20 </label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
+										<label>{{ $date }}</label> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 									</div>
-									<div class="modal-body bottom">
-										<img src="../img/icon/stm.png" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
-										<label>Nama Pengomentar</label> <br><br> <!-- GET NAMA PENGOMENTAR-->
-										<textarea disabled="" class="form-control"></textarea> <!-- GET KOMENTAR-->
-									</div>
+
+									@php
+										// Ambil daftar comment dari pengajuan terkait
+										$comments = DB::table('comments')
+											->join('detail_accounts','detail_accounts.nip','=','comments.nip')
+											->where('id_pengajuan','=',$r->id_pengajuan)
+											->get();
+									@endphp
+
+									@foreach ($comments->all() as $c)
+										<div class="modal-body bottom">
+											<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
+											<label>{{ $c->nama }}</label> <br><br> <!-- GET NAMA PENGOMENTAR-->
+											<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+										</div>
+									@endforeach
+									
 								</div>
 
 								<!-- Footer -->
@@ -304,7 +352,6 @@
 							</div>
 						</div>
 					</div>
-					</tr>
 					@endforeach
 					</table>
 				</div>
