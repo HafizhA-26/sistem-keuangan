@@ -354,6 +354,7 @@
 					</div>
 					@endforeach
 					</table>
+					{{ $report->links() }}
 				</div>
 			</div>
 		</div>
@@ -528,6 +529,7 @@
 					@endforeach
 					<!-- Modal -->
 					</table>
+					{{ $report->links() }}
 				</div>
 			</div>
 		</div>
