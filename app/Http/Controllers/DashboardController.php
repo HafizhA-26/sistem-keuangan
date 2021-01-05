@@ -114,13 +114,21 @@ class DashboardController extends Controller
                 echo "<script>alert('Data tidak ditemukan')</script>";
                 return redirect('login');
                 break;
+        if($jabatan && Auth::check()){
+            return view('contents.index-kepsek',[ 'title' => $title ]);
+        }else{
+            echo "<script>alert('Data tidak ditemukan')</script>";
         }
+        
+       
     }
+}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //

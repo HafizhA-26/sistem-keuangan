@@ -4,7 +4,7 @@
     @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Admin") <!--Jabatan = Kepsek, Ka. Keuangan--> 
 	<div class="content">
 		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
+			<a href="/report"><i class="fa fa-arrow-left icon3" title="Back to Report"></i></a>
 		</div>
 		<div class="header_report">
 			<h4>Laporan Transaksi</h4>
@@ -15,7 +15,7 @@
 			<div class="col-md-4">
 				<div class="small-box bg-primary">
 					<div class="inner">
-						<h2>{{ $masuk?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
+						<h2>{{ $masuk?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
 						<p>Pemasukan</p>
 					</div>
 					<div class="ikon">
@@ -27,7 +27,7 @@
 			<div class="col-md-4">
 				<div class="small-box bg-danger">
 					<div class="inner">
-						<h2>{{ $keluar?? '' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
+						<h2>{{ $keluar?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
 						<p>Pengeluaran</p>
 					</div>
 					<div class="ikon">
@@ -61,17 +61,27 @@
 								@php
 									$date = date_create($r->updated_at);
 									$date = date_format($date, "d-m-Y");
+									$jumlah = number_format($r->jumlah,2,",",".");
 								@endphp
 								<tr>
 									<td>{{ $r->id_dana }}</td>
-									<td>{{ $r->jumlah }}</td>
+									<td>Rp. {{ $jumlah }}</td>
 									<td>{{ $r->jenis }}</td>
-									<td>{{ $r->id_pengaju}}</td>
+									{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
+									@if ($r->id_jurusan)
+										@php
+											$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+										@endphp
+										<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+									@else 
+										<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+									@endif
 									<td>{{ $date }}</td>
 								</tr>
 							@endforeach
 						</tbody>
 					</table>
+					{{ $report->links() }}
 				</div>
 			</div>
 		</div>
@@ -83,7 +93,7 @@
 	@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!--Jabatan = Staf APBD, Staf BOS-->
 	<div class="content">
 		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left" title="Back to Report"></i></a>
+			<a href="/report"><i class="fa fa-arrow-left icon3" title="Back to Report"></i></a>
 		</div>
 		<div class="header_report">
 			<h4>Laporan Transaksi</h4>
@@ -94,7 +104,7 @@
 			<div class="col-md-4">
 				<div class="small-box bg-primary">
 					<div class="inner">
-						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
+						<h2>{{ $masuk?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
 						<p>Pemasukan</p>
 					</div>
 					<div class="ikon">
@@ -106,7 +116,7 @@
 			<div class="col-md-4">
 				<div class="small-box bg-danger">
 					<div class="inner">
-						<h2>100</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
+						<h2>{{ $keluar?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
 						<p>Pengeluaran</p>
 					</div>
 					<div class="ikon">
@@ -142,14 +152,30 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Rp. 1.000.000</td>
-								<td>Keluar/Masuk/Pending</td>
-								<td>Pengaju</td>
-								<td>20-10-20</td>
-							</tr>
+							@foreach ($report->all() as $r)
+								@php
+									$date = date_create($r->updated_at);
+									$date = date_format($date, "d-m-Y");
+									$jumlah = number_format($r->jumlah,2,",",".");
+								@endphp
+								<tr>
+									<td>Rp. {{ $jumlah }}</td>
+									<td>{{ $r->jenis }}</td>
+									@if ($r->id_jurusan)
+										@php
+											$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+										@endphp
+										<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+									@else 
+										<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+									@endif
+									<td>{{ $date }}</td>
+								</tr>
+							@endforeach
+							
 						</tbody>
 					</table>
+					{{ $report->links() }}
 				</div>
 			</div>
 		</div>

@@ -24,15 +24,15 @@ class Transaksi extends Model
         if($jabatan == "Staf BOS"){
             return DB::table('transaksi')
                 ->where([
-                    'jenis','=','Masuk',
-                    'id_dana','=','BOS',
+                    ['jenis','=','Masuk'],
+                    ['id_dana','=','BOS'],
                 ])
                 ->count();
         }else if ($jabatan == "Staf APBD"){
             return DB::table('transaksi')
                 ->where([
-                    'jenis','=','Masuk',
-                    'id_dana','=','APBD',
+                    ['jenis','=','Masuk'],
+                    ['id_dana','=','APBD'],
                 ])
                 ->count();
         }else{
@@ -47,15 +47,15 @@ class Transaksi extends Model
         if($jabatan == "Staf BOS"){
             return DB::table('transaksi')
                 ->where([
-                    'jenis','=','Keluar',
-                    'id_dana','=','BOS',
+                    ['jenis','=','Keluar'],
+                    ['id_dana','=','BOS'],
                 ])
                 ->count();
         }else if ($jabatan == "Staf APBD"){
             return DB::table('transaksi')
                 ->where([
-                    'jenis','=','Keluar',
-                    'id_dana','=','APBD',
+                    ['jenis','=','Keluar'],
+                    ['id_dana','=','APBD'],
                 ])
                 ->count();
         }else{
@@ -68,31 +68,34 @@ class Transaksi extends Model
     {
         return DB::table('transaksi')
             ->join('submissions','submissions.id_transaksi','=','transaksi.id_transaksi')
-            ->select('transaksi.*','submissions.id_pengaju')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where('transaksi.jenis','!=','Pending')
-            ->get();
+            ->paginate(10);
     }
     public function reportBOS()
     {
         return DB::table('transaksi')
             ->join('submissions','submissions.id_transaksi','=','transaksi.id_transaksi')
-            ->select('transaksi.*','submissions.id_pengaju')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
-                'transaksi.jenis','!=','Pending',
-                'transaksi.id_dana','=','BOS',
+                ['transaksi.jenis','!=','Pending'],
+                ['transaksi.id_dana','=','BOS'],
             ])
-            ->get();
+            ->paginate(10);
     }
     public function reportAPBD()
     {
         return DB::table('transaksi')
             ->join('submissions','submissions.id_transaksi','=','transaksi.id_transaksi')
-            ->select('transaksi.*','submissions.id_pengaju')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
-                'transaksi.jenis','!=','Pending',
-                'transaksi.id_dana','=','APBD',
+                ['transaksi.jenis','!=','Pending'],
+                ['transaksi.id_dana','=','APBD'],
             ])
-            ->get();
+            ->paginate(10);
     }
 
 }
