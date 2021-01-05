@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Submission;
 use App\Models\Dana;
 use App\Akun;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Session;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Crypt;
 class DashboardController extends Controller
 {
     public function __construct()
     {
         $this->Dana = new Dana();
+        $this->Submission = new Submission();
     }
     /**
      * Display a listing of the resource.
@@ -25,8 +27,36 @@ class DashboardController extends Controller
         return view('index', ['title' => $title]);
     }
     public function dashboardVerification(){
+        //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD
+
+        //KEPSEK
+        $SubmissionDataForKepsek = [
+            'dashboardsubmission' => $this->Submission->submissionKepsek()
+        ];
+        $ReportKepsek = $this->Submission->reportKepsek();
+
+        //KEUANGAN
+        $SubmissionDataForKeuangan = [
+            'dashboardsubmission' => $this->Submission->submissionKaKeuangan()
+        ];
+        $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
+
+        //BOS
+        $submissionDataForBOS = [
+            'datasubfordashboard' => $this->Submission->allDataForBOS()
+        ];
+
+        //APBD
+        $submissionDataForAPBD = [
+            'datasubfordashboard' => $this->Submission->allDataForAPBD()
+        ];
+
+        //KAPROG
+
+
         $danaBOS = $this->Dana->danaBOS();
         $danaAPBD = $this->Dana->danaAPBD();
+
         $akun = Auth::user();
         $nip = $akun->nip;
         $password = $akun->password;
@@ -65,17 +95,17 @@ class DashboardController extends Controller
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKepsek], $SubmissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKaKeuangan], $SubmissionDataForKeuangan);
                 break;
             case 'Staf BOS':
                 //return view('',[ 'title' => $title ]);
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ], $submissionDataForBOS);
                 break;
-            case 'Staf Dana':
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ]);
+            case 'Staf APBD':
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ], $submissionDataForAPBD);
                 break;
             case 'Kaprog':
                 return view('contents.index-kepsek',[ 'title' => $title ]);

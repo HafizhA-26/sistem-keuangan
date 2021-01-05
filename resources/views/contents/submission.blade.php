@@ -524,7 +524,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label">File Lampiran</label>
-						<input type="file" name="file" class="form-control-file"> <br>
+						<input type="file" name="file_lampiran" class="form-control-file"> <br>
 					</div>
 					
 					{{-- NOTE --}}

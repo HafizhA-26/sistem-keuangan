@@ -43,7 +43,7 @@
             		<span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
             		<div class="info-box-content">
               		<span class="info-box-text">Jumlah Dana BOS</span>
-              		<span class="info-box-number">{{$danaBOS}}</span>
+              		<span class="info-box-number">rp.{{$danaBOS}}</span>
             		</div>
           		</div>
         	</div>
@@ -82,10 +82,12 @@
 								<th>Pengajuan</th>
 								<th>Pengaju</th>
 							</tr>
+							@foreach ($dashboardsubmission as $dsub)
 							<tr>
-								<td>Judul Pengajuan</td> 
-								<td>Nama Pengaju/Jurusan</td>
+								<td>{{$dsub->judul}}</td> 
+								<td>{{$dsub->nama}}</td>
 							</tr>
+							@endforeach
 							</table>
 						</div>
 					</div>
@@ -111,12 +113,14 @@
 								<th>Jumlah</th>
 								<th>Status</th>
 							</tr>
+							@foreach ($report as $r)
 							<tr>
-								<td>Judul Pengajuan</td> 
-								<td>Nama Pengaju/Jurusan</td>
-								<td>Rp. 1.000.000</td>
-								<td>Acc/Rejected/Pending</td>
+								<td>{{$r->judul}}</td> 
+								<td>{{$r->nama}}</td>
+								<td>{{$r->jumlah}}</td>
+								<td>{{$r->status}}</td>
 							</tr>
+							@endforeach
 							</table>
 						</div>
 					</div>
@@ -140,17 +144,19 @@
 								<th>Jenis</th>
 								<th>Pengaju</th>
 							</tr>
+							@foreach ($report as $r)
 							<tr>
-								<td>APBD/BOS</td> <!-- PERLU BACKEND-->
-								<td>Rp. 1.000.000</td> <!-- PERLU BACKEND-->
-								<td>Keluar/Masuk/Pending</td> <!-- PERLU BACKEND-->
-								<td>Nama Pengaju/Jurusan</td> <!-- PERLU BACKEND-->
+								<td>{{$r->id_dana}}</td> <!-- PERLU BACKEND-->
+								<td>{{$r->jumlah}}</td> <!-- PERLU BACKEND-->
+								<td>{{$r->jenis}}</td> <!-- PERLU BACKEND-->
+								<td>{{$r->nama}}</td> <!-- PERLU BACKEND-->
 							</tr>
+							@endforeach
 							</table>
 						</div>
 					</div>
 					<div class="box-footer">
-						<a href="/report-transaksi">View More</a>
+						<a href="/report-transaction">View More</a>
 					</div>
 				</div>
 			</div>

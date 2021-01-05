@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Submission;
+use App\Models\DetailSub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use File;
 
 class SubmissionController extends Controller
 {
@@ -56,8 +58,10 @@ class SubmissionController extends Controller
                 $count = $getid->count();
                 $i = $count + 1;
                 if($i<=9){
-                    $id = "SC0".$i;
+                    $id = "SC00".$i;
                 }else if($i>=10){
+                    $id = "SC0".$i;
+                }else if($i>=99){
                     $id = "SC".$i;
                 }
                 $getid2 = DB::table('submissions')
@@ -66,8 +70,10 @@ class SubmissionController extends Controller
                 $count2 = $getid2->count();
                 $i2 = $count2 + 1;
                 if($i2<=9){
-                    $id2 = "TC0".$i;
+                    $id2 = "TC00".$i;
                 }else if($i2>=10){
+                    $id2 = "TC0".$i;
+                }else if($i>=99){
                     $id2 = "TC".$i;
                 }
                 return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
@@ -92,8 +98,10 @@ class SubmissionController extends Controller
         $count = $getid->count();
         $i = $count + 1;
         if($i<=9){
-            $id = "SC0".$i;
+            $id = "SC00".$i;
         }else if($i>=10){
+            $id = "SC0".$i;
+        }else if($i>=99){
             $id = "SC".$i;
         }
         $getid2 = DB::table('submissions')
@@ -102,8 +110,10 @@ class SubmissionController extends Controller
         $count2 = $getid2->count();
         $i2 = $count2 + 1;
         if($i2<=9){
-            $id2 = "TC0".$i;
+            $id2 = "TC00".$i;
         }else if($i2>=10){
+            $id2 = "TC0".$i;
+        }else if($i>=99){
             $id2 = "TC".$i;
         }
         switch (session()->get('nama_jabatan')) {
@@ -118,8 +128,13 @@ class SubmissionController extends Controller
     
     public function createSubmission(Request $request)
     {
-        $jabatan = $request->namajabatan;
+        $jabatan = $request->namajabatan;        
         if($jabatan == "Staf BOS"){
+            if($request->hasFile('file_lampiran')){
+                $file = $request->file('file_lampiran');
+                $filename = $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
+                $file->storeAs('storage/uploaded_file', $filename);
+            }
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -149,12 +164,19 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $request->file_lampiran,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
 
             
             return redirect('/submission');
         }else if($jabatan == "Staf APBD"){
+            if($request->hasFile('file_lampiran')){
+                $file = $request->file('file_lampiran');
+                $filename = $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
+                $file->storeAs('public', $filename);
+            }
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -184,7 +206,9 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $filename,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
 
             
@@ -243,7 +267,7 @@ class SubmissionController extends Controller
         ]);
         
         
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -283,7 +307,7 @@ class SubmissionController extends Controller
         
         
         
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -312,7 +336,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -333,7 +357,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -362,7 +386,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -383,7 +407,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -412,7 +436,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -433,7 +457,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -444,7 +468,12 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
+        //ini untuk kaprog
         $jenispengajuan = $request->pilihan;
+        $file = $request->file;
+        $filename = $file->getClientOriginalName();
+        $filename = time(). '.' . $filename;
+        $file->storeAs('uploaded_file', $filename);
             $iddana = $request->id_Dana;
             if($jenispengajuan == "Pemasukan"){
                 if($iddana == "APBD"){
@@ -484,11 +513,13 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $filename,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
 
             
-            return redirect('/dashboard');
+            return redirect('/submission');
     }
 
     /**
