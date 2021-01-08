@@ -43,6 +43,15 @@
 		<div class="box1 box-info" id="tabel-transaksi">
 			<div class="box-header with-border">
 				<h3 class="box-title">Tabel Transaksi</h3>
+
+				<div class="right">
+				<form class="form-inline" method="post">
+					<div class="form-group">
+						<input type="text" name="" placeholder="Search" class="form-control search"> <!-- PERLU BACKEND -->
+						<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+					</div>
+				</form>
+				</div>
 			</div>
 			<div class="box-info">
 				<div class="table-responsive">
@@ -138,6 +147,15 @@
 			@if(session()->get('nama_jabatan') == "Staf BOS") <!--Jabatan = Staf BOS-->
 				<h3 class="box-title">Tabel Transaksi BOS</h3>
 			@endif
+
+				<div class="right">
+				<form class="form-inline" method="post">
+					<div class="form-group">
+						<input type="text" name="" placeholder="Search" class="form-control search"> <!-- PERLU BACKEND -->
+						<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+					</div>
+				</form>
+				</div>
 			</div>
 			<div class="box-info">
 				<div class="table-responsive">
