@@ -17,6 +17,36 @@ class SubmissionController extends Controller
         $this->Submission = new Submission();
     }
 
+    public static function formatSizeUnits($bytes)
+    {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+    }
+
     public function index(){
         $submissionDataForKepsek = [
             'datasub' => $this->Submission->allDataForKepsek()
@@ -128,13 +158,13 @@ class SubmissionController extends Controller
     
     public function createSubmission(Request $request)
     {
-        $jabatan = $request->namajabatan;        
+        
+        $jabatan = $request->namajabatan;  
+        $file = $request->file('file_lampiran');
+        if($file) $filename = $request->file_lampiran->getClientOriginalName();
+        else $filename = "example.pdf";
         if($jabatan == "Staf BOS"){
-            if($request->hasFile('file_lampiran')){
-                $file = $request->file('file_lampiran');
-                $filename = $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
-                $file->storeAs('storage/uploaded_file', $filename);
-            }
+            
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -164,19 +194,16 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file_lampiran,
+                'file_lampiran' => $filename,
                 "created_at"=> Carbon::now(),
                 "updated_at"=> now()
             ]);
-
             
-            return redirect('/submission');
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
+            
+            return redirect('/submission')->with('pesan','Pengajuan Berhasil Ditambahkan');
         }else if($jabatan == "Staf APBD"){
-            if($request->hasFile('file_lampiran')){
-                $file = $request->file('file_lampiran');
-                $filename = $file->getClientOriginalName() . "." . $file->getClientOriginalExtension();
-                $file->storeAs('public', $filename);
-            }
+            
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -211,8 +238,8 @@ class SubmissionController extends Controller
                 "updated_at"=> now()
             ]);
 
-            
-            return redirect('/submission');
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
+            return redirect('/submission')->with('pesan','Pengajuan Berhasil Ditambahkan');
         }else{
             
         }
@@ -469,6 +496,9 @@ class SubmissionController extends Controller
     public function store(Request $request)
     {
         //ini untuk kaprog
+        $file = $request->file('file_lampiran');
+        if($file) $filename = $request->file_lampiran->getClientOriginalName();
+        else $filename = "example.pdf";
         $jenispengajuan = $request->pilihan;
         $file = $request->file;
         $filename = $file->getClientOriginalName();
@@ -518,7 +548,7 @@ class SubmissionController extends Controller
                 "updated_at"=> now()
             ]);
 
-            
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
             return redirect('/submission');
     }
 

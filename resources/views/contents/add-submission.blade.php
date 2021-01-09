@@ -7,7 +7,7 @@
 				<h4>Tambah Pengajuan</h1>
 			</div>
 			<div class="card-body">
-				<form class="/addsubmission" method="post">
+				<form class="/addsubmission" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label class="label">Judul Pengajuan</label>

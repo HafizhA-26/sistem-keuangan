@@ -15,6 +15,7 @@ class DashboardController extends Controller
     {
         $this->Dana = new Dana();
         $this->Submission = new Submission();
+        $this->Akun = new Akun();
     }
     /**
      * Display a listing of the resource.
@@ -29,6 +30,12 @@ class DashboardController extends Controller
     public function dashboardVerification(){
         //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD
 
+        //ADMIN
+        $onlineUsers = $this->Akun->akunOnline();
+        $countOnline = $this->Akun->countOnline();
+        $offlineUsers = $this->Akun->akunOffline();
+        $countOffline = $this->Akun->countOffline();
+        
         //KEPSEK
         $SubmissionDataForKepsek = [
             'dashboardsubmission' => $this->Submission->submissionKepsek()
@@ -42,14 +49,16 @@ class DashboardController extends Controller
         $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
 
         //BOS
-        $submissionDataForBOS = [
-            'datasubfordashboard' => $this->Submission->allDataForBOS()
+        $SubmissionDataForBOS = [
+            'dashboardsubmission' => $this->Submission->submissionBOS()
         ];
+        $ReportBOS = $this->Submission->reportfordashboardBOS();
 
         //APBD
-        $submissionDataForAPBD = [
-            'datasubfordashboard' => $this->Submission->allDataForAPBD()
+        $SubmissionDataForAPBD = [
+            'dashboardsubmission' => $this->Submission->submissionAPBD()
         ];
+        $ReportAPBD = $this->Submission->reportfordashboardAPBD();
 
         //KAPROG
 
@@ -91,7 +100,7 @@ class DashboardController extends Controller
         switch($jabatan){
             case 'Admin':
                 //Isi custom hok
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'online' => $onlineUsers, 'offline' => $offlineUsers, 'conline' => $countOnline, 'coffline' => $countOffline]);
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
@@ -102,10 +111,10 @@ class DashboardController extends Controller
                 break;
             case 'Staf BOS':
                 //return view('',[ 'title' => $title ]);
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ], $submissionDataForBOS);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportBOS], $SubmissionDataForBOS);
                 break;
             case 'Staf APBD':
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ], $submissionDataForAPBD);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportAPBD], $SubmissionDataForAPBD);
                 break;
             case 'Kaprog':
                 return view('contents.index-kepsek',[ 'title' => $title ]);
