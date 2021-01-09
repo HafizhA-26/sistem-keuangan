@@ -3,16 +3,48 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Submission;
+use App\Models\DetailSub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use File;
 
 class SubmissionController extends Controller
 {
     public function __construct()
     {
         $this->Submission = new Submission();
+    }
+
+    public static function formatSizeUnits($bytes)
+    {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
     }
 
     public function index(){
@@ -56,9 +88,11 @@ class SubmissionController extends Controller
                 $count = $getid->count();
                 $i = $count + 1;
                 if($i<=9){
-                    $id = "SUB0".$i;
+                    $id = "SC00".$i;
                 }else if($i>=10){
-                    $id = "SUB".$i;
+                    $id = "SC0".$i;
+                }else if($i>=99){
+                    $id = "SC".$i;
                 }
                 $getid2 = DB::table('submissions')
                 ->select('submissions.id_pengajuan')
@@ -66,9 +100,11 @@ class SubmissionController extends Controller
                 $count2 = $getid2->count();
                 $i2 = $count2 + 1;
                 if($i2<=9){
-                    $id2 = "TR0".$i;
+                    $id2 = "TC00".$i;
                 }else if($i2>=10){
-                    $id2 = "TR".$i;
+                    $id2 = "TC0".$i;
+                }else if($i>=99){
+                    $id2 = "TC".$i;
                 }
                 return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
@@ -92,9 +128,11 @@ class SubmissionController extends Controller
         $count = $getid->count();
         $i = $count + 1;
         if($i<=9){
-            $id = "SUB0".$i;
+            $id = "SC00".$i;
         }else if($i>=10){
-            $id = "SUB".$i;
+            $id = "SC0".$i;
+        }else if($i>=99){
+            $id = "SC".$i;
         }
         $getid2 = DB::table('submissions')
         ->select('submissions.id_pengajuan')
@@ -102,9 +140,11 @@ class SubmissionController extends Controller
         $count2 = $getid2->count();
         $i2 = $count2 + 1;
         if($i2<=9){
-            $id2 = "TR0".$i;
+            $id2 = "TC00".$i;
         }else if($i2>=10){
-            $id2 = "TR".$i;
+            $id2 = "TC0".$i;
+        }else if($i>=99){
+            $id2 = "TC".$i;
         }
         switch (session()->get('nama_jabatan')) {
             case 'Staf BOS':
@@ -118,8 +158,13 @@ class SubmissionController extends Controller
     
     public function createSubmission(Request $request)
     {
-        $jabatan = $request->namajabatan;
+        
+        $jabatan = $request->namajabatan;  
+        $file = $request->file('file_lampiran');
+        if($file) $filename = $request->file_lampiran->getClientOriginalName();
+        else $filename = "example.pdf";
         if($jabatan == "Staf BOS"){
+            
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -149,12 +194,16 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $filename,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
-
             
-            return redirect('/submission');
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
+            
+            return redirect('/submission')->with('pesan','Pengajuan Berhasil Ditambahkan');
         }else if($jabatan == "Staf APBD"){
+            
             $jenispengajuan = $request->pilihan;
             if($jenispengajuan == "Pemasukan"){
                 $status = "ACC-1M";
@@ -184,11 +233,13 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $filename,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
 
-            
-            return redirect('/submission');
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
+            return redirect('/submission')->with('pesan','Pengajuan Berhasil Ditambahkan');
         }else{
             
         }
@@ -243,7 +294,7 @@ class SubmissionController extends Controller
         ]);
         
         
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -283,7 +334,7 @@ class SubmissionController extends Controller
         
         
         
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -312,7 +363,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -333,7 +384,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -362,7 +413,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -383,7 +434,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -412,7 +463,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -433,7 +484,7 @@ class SubmissionController extends Controller
             'komentar' => $request->komentar,
             'nip' => $idUser
         ]);
-        return redirect('/dashboard');
+        return redirect('/submission');
     }
 
     /**
@@ -444,7 +495,15 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
+        //ini untuk kaprog
+        $file = $request->file('file_lampiran');
+        if($file) $filename = $request->file_lampiran->getClientOriginalName();
+        else $filename = "example.pdf";
         $jenispengajuan = $request->pilihan;
+        $file = $request->file;
+        $filename = $file->getClientOriginalName();
+        $filename = time(). '.' . $filename;
+        $file->storeAs('uploaded_file', $filename);
             $iddana = $request->id_Dana;
             if($jenispengajuan == "Pemasukan"){
                 if($iddana == "APBD"){
@@ -484,11 +543,13 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
-                'file_lampiran' => $request->file
+                'file_lampiran' => $filename,
+                "created_at"=> Carbon::now(),
+                "updated_at"=> now()
             ]);
 
-            
-            return redirect('/dashboard');
+            if($file) $file->move(storage_path("uploaded_file"),$file->getClientOriginalName());
+            return redirect('/submission');
     }
 
     /**
