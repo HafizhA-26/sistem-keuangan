@@ -153,8 +153,10 @@
 		</div>
         @endif
 
-		<div class="row mtop">
+		<br> <br>
+		<div class="row">
 			<div class="col-md-4">
+
 			</div>
 			<div class="col-md-4 tabel-sub">
 				<div class="box1 box-head-color-r">
@@ -178,11 +180,13 @@
 							</table>
 						</div>
 					</div>
-					<div class="box-footer">
-						<a href="/submission">View More</a>
+					<div class="ikon">
+						<i class="fas fa-hand-holding-usd"></i>
 					</div>
+					<a href="/submission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
+
 		</div>
 		<div class="row mtop">
 			<div class="col-md-6 tabel-sub">
@@ -214,11 +218,13 @@
 							</table>
 						</div>
 					</div>
-					<div class="box-footer">
-						<a href="/report-submission">View More</a>
+					<div class="ikon">
+						<i class="fas fa-file-invoice"></i>
 					</div>
+					<a href="/report-submsission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
+
 			<div class="col-md-6 tabel-sub">
 				<div class="box1 box-head-color-b">
 					<div class="box-header with-border">
@@ -251,6 +257,7 @@
 					<div class="box-footer">
 						<a href="/report-transaction">View More</a>
 					</div>
+					<a href="/report-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
@@ -263,43 +270,28 @@
 			<h4>Dashboard</h4>
 		</div> <br>
 		<div class="row">
-			<div class="col-md-5 mtop2">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 mtop2">
           		<div class="info-box">
             		<span class="info-box-icon bg-primary"><i class="fas fa-hand-holding-usd"></i></span>
             		<div class="info-box-content2">
-              		<span class="info-box-text2"><a href="/submission" title="Tambah Pengajuan Baru">Add New Submission</a></span>
+              		<span class="info-box-text2"><a href="" title="Tambah Pengajuan Baru">Add New Submission</a></span>
             		</div>
           		</div>
         	</div>
-			<div class="col-md-7 tabel-sub mtop">
-				<div class="box1 box-head-color-g">
-					<div class="box-header with-border">
-						<h5 class="title">Laporan Pengajuan</h5>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="small-box bg-success">
+					<div class="inner">
+						<h2>78</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
+						<p>Laporan Pengajuan</p>
 					</div>
-					<div class="box-info">
-						<div class="table-responsive">
-							<table class="table">
-								<!-- TAMPILKAN 2 ATAU 3 COUNT -->
-							<tr>
-								<th>Pengajuan</th>
-								<th>Jumlah</th>
-								<th>Jenis Dana</th>
-								<th>Tanggal</th>
-								<th>Status</th>
-							</tr>
-							<tr>
-								<td>Judul Pengajuan</td> <!-- PERLU BACKEND-->
-								<td>Rp. 1.000.000</td> <!-- PERLU BACKEND-->
-								<td>APBD/BOS</td> <!-- PERLU BACKEND-->
-								<td>10-10-20</td> <!-- PERLU BACKEND-->
-								<td>Acc/Rejected/Pending</td> <!-- PERLU BACKEND-->
-							</tr>
-							</table>
-						</div>
+					<div class="ikon">
+						<i class="fas fa-file-invoice"></i>
 					</div>
-					<div class="box-footer">
-						<a href="/report-submission">View More</a>
-					</div>
+					<a href="/report-submsission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
