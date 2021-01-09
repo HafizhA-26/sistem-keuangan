@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
+
 class Submission extends Model
 {
     use HasFactory;
@@ -19,6 +21,7 @@ class Submission extends Model
         'tgl_pengajuan',
         'status'
     ];
+    //untuk submission
     public function allDataForKepsek(){
         return DB::table('submissions')
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
@@ -59,6 +62,98 @@ class Submission extends Model
             ->where('submissions.status', 'LIKE', 'ACC-B%')
             ->get();
     }
+
+    //untuk dashboard
+    //kepsek
+    public function submissionKepsek(){
+        return DB::table('submissions')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->select('submissions.judul', 'detail_accounts.nama')
+            ->where('submissions.status', 'LIKE', 'ACC-2%')
+            ->take(2)
+            ->get();
+    }
+
+    public function reportKepsek(){
+        return DB::table('submissions')
+        ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+        ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->take(2)
+        ->get();
+    }
+
+    //Ka Keuangan
+    public function submissionKaKeuangan(){
+        return DB::table('submissions')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->select('submissions.judul', 'detail_accounts.nama')
+            ->where('submissions.status', 'LIKE', 'ACC-1%')
+            ->take(2)
+            ->get();
+    }
+
+    public function reportKaKeuangan(){
+        return DB::table('submissions')
+        ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+        ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->take(2)
+        ->get();
+    }
+
+    //BOS
+    public function submissionBOS(){
+        return DB::table('submissions')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->select('submissions.judul', 'detail_accounts.nama')
+            ->where('submissions.status', 'LIKE', 'ACC-B%')
+            ->take(2)
+            ->get();
+    }
+
+    public function reportfordashboardBOS(){
+        return DB::table('submissions')
+        ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+        ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->where('transaksi.id_dana', '=', 'BOS')
+        ->take(2)
+        ->get();
+    }
+
+    //APBD
+    public function submissionAPBD(){
+        return DB::table('submissions')
+            ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+            ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->select('submissions.judul', 'detail_accounts.nama')
+            ->where('submissions.status', 'LIKE', 'ACC-A%')
+            ->take(2)
+            ->get();
+    }
+
+    public function reportfordashboardAPBD(){
+        return DB::table('submissions')
+        ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+        ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->where('transaksi.id_dana', '=', 'APBD')
+        ->take(2)
+        ->get();
+    }
+
     public function reportA($search='')
     {
         return DB::table('submissions')

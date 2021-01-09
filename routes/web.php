@@ -5,10 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\BosSubmissionController;
-use App\Http\Controllers\ApbdSubmissionController;
-use App\Http\Controllers\KaprogSubmissionController;
 use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Response;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

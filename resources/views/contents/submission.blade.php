@@ -50,7 +50,7 @@
                 </tr>
 					@endforeach
 					@foreach ($datasub as $data)
-						
+					
 					
 					<!-- Modal -->
 				<div class="modal" id="detail-{{ $data->id_pengajuan }}" tabindex="-1">
@@ -70,6 +70,22 @@
 									<div class="modal-body bottom">
 										<label><b>File Lampiran<b></label>
 											<!-- NANTI DI SINI TERCANTUM FILE LAMPIRAN -->
+											
+											{{-- cek jika ada file_lampiran --}}
+											@if ($data->file_lampiran)
+												<div class="alert alert-primary">
+
+													{{-- Bagian untuk penampilan file --}}
+													
+													
+												</div>
+
+											{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+											@else
+												<div class="alert alert-warning" role="alert">
+													Tidak ada file lampiran
+											  	</div>
+											@endif
 									</div>
 								</div>
 
@@ -492,7 +508,7 @@
 				<h4>Tambah Pengajuan</h1>
 			</div>
 			<div class="card-body">
-				<form class="/submission/add" method="post">
+				<form class="/submission/add" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label class="label">Judul Pengajuan</label>
@@ -524,7 +540,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label">File Lampiran</label>
-						<input type="file" name="file" class="form-control-file"> <br>
+						<input type="file" name="file_lampiran" class="form-control-file"> <br>
 					</div>
 					
 					{{-- NOTE --}}

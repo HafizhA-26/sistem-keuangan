@@ -7,7 +7,7 @@
 				<h4>Tambah Pengajuan</h1>
 			</div>
 			<div class="card-body">
-				<form class="/addsubmission" method="post">
+				<form class="/addsubmission" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label class="label">Judul Pengajuan</label>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label">File Lampiran</label>
-						<input type="file" name="file" class="form-control-file"> <br>
+						<input type="file" name="file_lampiran" class="form-control-file"> <br>
 					</div>
 					
 					{{-- NOTE --}}

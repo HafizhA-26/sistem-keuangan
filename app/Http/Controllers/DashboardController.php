@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Submission;
+use App\Models\Dana;
 use App\Akun;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Session;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Crypt;
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->Dana = new Dana();
+        $this->Submission = new Submission();
+        $this->Akun = new Akun();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +28,44 @@ class DashboardController extends Controller
         return view('index', ['title' => $title]);
     }
     public function dashboardVerification(){
+        //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD
+
+        //ADMIN
+        $onlineUsers = $this->Akun->akunOnline();
+        $countOnline = $this->Akun->countOnline();
+        $offlineUsers = $this->Akun->akunOffline();
+        $countOffline = $this->Akun->countOffline();
+        
+        //KEPSEK
+        $SubmissionDataForKepsek = [
+            'dashboardsubmission' => $this->Submission->submissionKepsek()
+        ];
+        $ReportKepsek = $this->Submission->reportKepsek();
+
+        //KEUANGAN
+        $SubmissionDataForKeuangan = [
+            'dashboardsubmission' => $this->Submission->submissionKaKeuangan()
+        ];
+        $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
+
+        //BOS
+        $SubmissionDataForBOS = [
+            'dashboardsubmission' => $this->Submission->submissionBOS()
+        ];
+        $ReportBOS = $this->Submission->reportfordashboardBOS();
+
+        //APBD
+        $SubmissionDataForAPBD = [
+            'dashboardsubmission' => $this->Submission->submissionAPBD()
+        ];
+        $ReportAPBD = $this->Submission->reportfordashboardAPBD();
+
+        //KAPROG
+
+
+        $danaBOS = $this->Dana->danaBOS();
+        $danaAPBD = $this->Dana->danaAPBD();
+
         $akun = Auth::user();
         $nip = $akun->nip;
         $password = $akun->password;
@@ -51,6 +97,32 @@ class DashboardController extends Controller
         $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - ";
+        switch($jabatan){
+            case 'Admin':
+                //Isi custom hok
+                return view('contents.index-kepsek',[ 'title' => $title, 'online' => $onlineUsers, 'offline' => $offlineUsers, 'conline' => $countOnline, 'coffline' => $countOffline]);
+                //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
+                break;
+            case 'Kepala Sekolah':
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKepsek], $SubmissionDataForKepsek);
+                break;
+            case 'Kepala Keuangan':
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKaKeuangan], $SubmissionDataForKeuangan);
+                break;
+            case 'Staf BOS':
+                //return view('',[ 'title' => $title ]);
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportBOS], $SubmissionDataForBOS);
+                break;
+            case 'Staf APBD':
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportAPBD], $SubmissionDataForAPBD);
+                break;
+            case 'Kaprog':
+                return view('contents.index-kepsek',[ 'title' => $title ]);
+                break;
+            default:
+                echo "<script>alert('Data tidak ditemukan')</script>";
+                return redirect('login');
+                break;
         if($jabatan && Auth::check()){
             return view('contents.index-kepsek',[ 'title' => $title ]);
         }else{
@@ -59,11 +131,13 @@ class DashboardController extends Controller
         
        
     }
+}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
