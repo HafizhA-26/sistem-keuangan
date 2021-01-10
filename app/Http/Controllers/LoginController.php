@@ -39,7 +39,8 @@ class LoginController extends Controller
             'nip' =>  $request->get('nip'),
             'password'  =>  $request->get('password')
         );
-        if(Auth::attempt($akun_data)){
+        $remember = $request->get('remember_me');
+        if(Auth::attempt($akun_data, $remember)){
             session([
                 'nip' => $request->nip,
                 'ps' => Crypt::encryptString($request->password),

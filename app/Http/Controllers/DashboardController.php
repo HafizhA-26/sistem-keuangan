@@ -25,9 +25,33 @@ class DashboardController extends Controller
     public function index()
     {
         $title = "";
-        return view('index', ['title' => $title]);
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }else{
+            return view('index', ['title' => $title]);
+        }
+        
     }
     public function dashboardVerification(){
+
+        $akun = Auth::user();
+        $nip = $akun->nip;
+        $password = $akun->password;
+        $user_data = DB::table('accounts')
+                ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
+                ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
+                ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
+                ->where('accounts.nip','=',$nip)
+                ->first();
+        if($user_data->status == "nonactive"){
+            $title = "";
+            echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
+            return view('login',['title' => $title]);
+        }else{
+            $akun_data = Akun::find($nip);
+            $akun_data->status = "online";
+            $akun_data->save();
+        }
         //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD
 
         //ADMIN
@@ -66,24 +90,7 @@ class DashboardController extends Controller
         $danaBOS = $this->Dana->danaBOS();
         $danaAPBD = $this->Dana->danaAPBD();
 
-        $akun = Auth::user();
-        $nip = $akun->nip;
-        $password = $akun->password;
-        $user_data = DB::table('accounts')
-                ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
-                ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
-                ->select('accounts.*','detail_accounts.*','jabatan.nama_jabatan')
-                ->where('accounts.nip','=',$nip)
-                ->first();
-        if($user_data->status == "nonactive"){
-            $title = "";
-            echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
-            return view('login',['title' => $title]);
-        }else{
-            $akun_data = Akun::find($nip);
-            $akun_data->status = "online";
-            $akun_data->save();
-        }
+        
         session([
             'nuptk' => $user_data->nuptk,
             'nama' => $user_data->nama,
