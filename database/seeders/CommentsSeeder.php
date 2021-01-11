@@ -14,15 +14,15 @@ class CommentsSeeder extends Seeder
      */
     public function run()
     {
-        $id = "SC001";
-        for ($i=0; $i < 11; $i++) { 
+        $id = "S00001";
+        for ($i=0; $i < 15; $i++) { 
             for ($j=0; $j < 3; $j++) { 
                 $counterlen = strlen((string)$i+1);
                 $id = substr_replace($id,(string)$i+1,$counterlen*-1);
                 Comment::create([
                     'id_pengajuan' => $id,
                     'komentar' => Str::random(100),
-                    'nip' => 1,
+                    'nip' => $j+2,
                 ]);
             }
             
