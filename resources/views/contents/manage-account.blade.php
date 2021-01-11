@@ -170,8 +170,9 @@
 								  <!-- Modal -->
 								  <div class="modal fade" id="confirmation{{ $akun->nip }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 									@php
-										$transaksi = DB::table('accounts')
-														->join('submissions','submissions.id_pengaju','=','accounts.nip')
+										$transaksi = DB::table('submissions')
+														->join('accounts','submissions.id_pengaju','=','accounts.nip')
+														->where('submissions.id_pengaju','=',$akun->nip)
 														->count();
 									@endphp
 									<div class="modal-dialog modal-dialog-centered" role="document">

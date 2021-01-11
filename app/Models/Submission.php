@@ -177,6 +177,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportBOS($search='')
@@ -197,6 +198,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportAPBD($search='')
@@ -217,6 +219,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportKaprog($search='')
@@ -238,6 +241,7 @@ class Submission extends Model
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.id_dana', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
 }
