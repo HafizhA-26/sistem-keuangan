@@ -50,7 +50,15 @@
                 </tr>
 					@endforeach
 					@foreach ($datasub as $data)
-					
+					@php
+							// Mengambil file extension di variabel $file_ex
+							$file_ex = substr($data->file_lampiran,-3);
+
+							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+							$file_path = storage_path() .'/uploaded_file/'. $data->file_lampiran;
+							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+							$jumlah = number_format($data->jumlah,2,",",".");
+					@endphp
 					
 					<!-- Modal -->
 				<div class="modal" id="detail-{{ $data->id_pengajuan }}" tabindex="-1">
@@ -68,31 +76,50 @@
 									<p id="deskripsi">{{ $data->deskripsi }}</p>
 
 									<div class="modal-body bottom">
-										<label><b>File Lampiran<b></label>
-											<!-- NANTI DI SINI TERCANTUM FILE LAMPIRAN -->
-											
-											{{-- cek jika ada file_lampiran --}}
-											@if ($data->file_lampiran)
-												<div class="alert alert-primary">
+										<label><b>File Lampiran</b></label>
 
-													{{-- Bagian untuk penampilan file --}}
-													
-													
-												</div>
+										{{-- cek jika ada file_lampiran --}}
+										@if ($data->file_lampiran)
+											<div class="alert alert-primary">
 
-											{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
-											@else
-												<div class="alert alert-warning" role="alert">
-													Tidak ada file lampiran
-											  	</div>
-											@endif
+												{{-- Bagian untuk penampilan file --}}
+												
+												<a class="file-click row m-0 text-decoration-none" href="download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
+													<div class="col-md-2 ikon" style="font-size: 2rem">
+
+														{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+														@if ($file_ex == "pdf")
+															<i class="fas fa-file-pdf"></i>
+														@else
+															<i class="fas fa-file-alt"></i>
+														@endif
+
+													</div>
+
+													{{-- Menampilkan judul dan size file lampiran --}}
+													<div class="col-md file-title text-truncate font-weight-bold" style="font-size: 1.3rem">
+														{{ $data->file_lampiran }}
+														<div class="file-size" style="font-size: 0.6rem">
+															{{ $size }}
+														</div>
+													</div>
+
+												</a>
+											</div>
+
+										{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+										@else
+											<div class="alert alert-warning" role="alert">
+												Tidak ada file lampiran
+											  </div>
+										@endif
 									</div>
 								</div>
 
 								<!-- Footer -->
 								<div class="modal-footer">
-								<a class="btn btn-success" data-toggle="modal" data-target="#izinkan-{{$data->id_pengajuan}}">Izinkan</a>
-								<a class="btn btn-danger" data-toggle="modal" data-target="#tidakizinkan-{{$data->id_pengajuan}}">Tidak Izinkan</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#izinkan-{{$data->id_pengajuan}}">Izinkan</button>
+								<button class="btn btn-danger" data-toggle="modal" data-target="#tidakizinkan-{{$data->id_pengajuan}}">Tidak Izinkan</button>
 									<!-- Modal Izinkan -->
 									<div class="modal fade bs-example-modal-sm" id="izinkan-{{$data->id_pengajuan}}" tabindex="1">
 										<div class="modal-dialog modal-sm">
@@ -180,7 +207,15 @@
                 </tr>
 					@endforeach
 					@foreach ($datasub as $data)
-						
+						@php
+							// Mengambil file extension di variabel $file_ex
+							$file_ex = substr($data->file_lampiran,-3);
+
+							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+							$file_path = storage_path() .'/uploaded_file/'. $data->file_lampiran;
+							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+							$jumlah = number_format($data->jumlah,2,",",".");
+						@endphp
 					
 					<!-- Modal -->
 				<div class="modal" id="detail-{{ $data->id_pengajuan }}" tabindex="-1">
@@ -198,15 +233,50 @@
 									<p id="deskripsi">{{ $data->deskripsi }}</p>
 
 									<div class="modal-body bottom">
-										<label><b>File Lampiran<b></label>
-											<!-- NANTI DI SINI TERCANTUM FILE LAMPIRAN -->
+										<label><b>File Lampiran</b></label>
+
+										{{-- cek jika ada file_lampiran --}}
+										@if ($data->file_lampiran)
+											<div class="alert alert-primary">
+
+												{{-- Bagian untuk penampilan file --}}
+												
+												<a class="file-click row m-0 text-decoration-none" href="download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
+													<div class="col-md-2 ikon" style="font-size: 2rem">
+
+														{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+														@if ($file_ex == "pdf")
+															<i class="fas fa-file-pdf"></i>
+														@else
+															<i class="fas fa-file-alt"></i>
+														@endif
+
+													</div>
+
+													{{-- Menampilkan judul dan size file lampiran --}}
+													<div class="col-md file-title text-truncate font-weight-bold" style="font-size: 1.3rem">
+														{{ $data->file_lampiran }}
+														<div class="file-size" style="font-size: 0.6rem">
+															{{ $size }}
+														</div>
+													</div>
+
+												</a>
+											</div>
+
+										{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+										@else
+											<div class="alert alert-warning" role="alert">
+												Tidak ada file lampiran
+											  </div>
+										@endif
 									</div>
 								</div>
 
 								<!-- Footer -->
 								<div class="modal-footer">
-								<a class="btn btn-success" data-toggle="modal" data-target="#izinkan-{{$data->id_pengajuan}}">Izinkan</a>
-								<a class="btn btn-danger" data-toggle="modal" data-target="#tidakizinkan-{{$data->id_pengajuan}}">Tidak Izinkan</a>
+								<button class="btn btn-success" data-toggle="modal" data-target="#izinkan-{{$data->id_pengajuan}}">Izinkan</button>
+								<button class="btn btn-danger" data-toggle="modal" data-target="#tidakizinkan-{{$data->id_pengajuan}}">Tidak Izinkan</button>
 									<!-- Modal Izinkan -->
 									<div class="modal fade bs-example-modal-sm" id="izinkan-{{$data->id_pengajuan}}" tabindex="1">
 										<div class="modal-dialog modal-sm">
@@ -294,7 +364,15 @@
                 </tr>
 					@endforeach
 					@foreach ($datasub as $data)
-						
+						@php
+							// Mengambil file extension di variabel $file_ex
+							$file_ex = substr($data->file_lampiran,-3);
+
+							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+							$file_path = storage_path() .'/uploaded_file/'. $data->file_lampiran;
+							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+							$jumlah = number_format($data->jumlah,2,",",".");
+						@endphp
 					
 					<!-- Modal -->
 				<div class="modal" id="detail-{{ $data->id_pengajuan }}" tabindex="-1">
@@ -312,8 +390,43 @@
 									<p id="deskripsi">{{ $data->deskripsi }}</p>
 
 									<div class="modal-body bottom">
-										<label><b>File Lampiran<b></label>
-											<!-- NANTI DI SINI TERCANTUM FILE LAMPIRAN -->
+										<label><b>File Lampiran</b></label>
+
+										{{-- cek jika ada file_lampiran --}}
+										@if ($data->file_lampiran)
+											<div class="alert alert-primary">
+
+												{{-- Bagian untuk penampilan file --}}
+												
+												<a class="file-click row m-0 text-decoration-none" href="download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
+													<div class="col-md-1 ikon" style="font-size: 3rem">
+
+														{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+														@if ($file_ex == "pdf")
+															<i class="fas fa-file-pdf"></i>
+														@else
+															<i class="fas fa-file-alt"></i>
+														@endif
+
+													</div>
+
+													{{-- Menampilkan judul dan size file lampiran --}}
+													<div class="col-md file-title text-truncate font-weight-bold">
+														{{ $data->file_lampiran }}
+														<div class="file-size">
+															{{ $size }}
+														</div>
+													</div>
+
+												</a>
+											</div>
+
+										{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+										@else
+											<div class="alert alert-warning" role="alert">
+												Tidak ada file lampiran
+											  </div>
+										@endif
 									</div>
 								</div>
 
@@ -408,7 +521,15 @@
                 </tr>
 					@endforeach
 					@foreach ($datasub as $data)
-						
+						@php
+							// Mengambil file extension di variabel $file_ex
+							$file_ex = substr($data->file_lampiran,-3);
+
+							// Mengambil file size dan memformat nya dengan fungsi formatSizeUnits dari ReportController
+							$file_path = storage_path() .'/uploaded_file/'. $data->file_lampiran;
+							$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
+							$jumlah = number_format($data->jumlah,2,",",".");
+						@endphp
 					
 					<!-- Modal -->
 				<div class="modal" id="detail-{{ $data->id_pengajuan }}" tabindex="-1">
@@ -426,8 +547,43 @@
 									<p id="deskripsi">{{ $data->deskripsi }}</p>
 
 									<div class="modal-body bottom">
-										<label><b>File Lampiran<b></label>
-											<!-- NANTI DI SINI TERCANTUM FILE LAMPIRAN -->
+										<label><b>File Lampiran</b></label>
+
+										{{-- cek jika ada file_lampiran --}}
+										@if ($data->file_lampiran)
+											<div class="alert alert-primary">
+
+												{{-- Bagian untuk penampilan file --}}
+												
+												<a class="file-click row m-0 text-decoration-none" href="download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
+													<div class="col-md-2 ikon" style="font-size: 2rem">
+
+														{{-- Cek extension file dan mengubah icon sesuai filenya--}}
+														@if ($file_ex == "pdf")
+															<i class="fas fa-file-pdf"></i>
+														@else
+															<i class="fas fa-file-alt"></i>
+														@endif
+
+													</div>
+
+													{{-- Menampilkan judul dan size file lampiran --}}
+													<div class="col-md file-title text-truncate font-weight-bold" style="font-size: 1.3rem">
+														{{ $data->file_lampiran }}
+														<div class="file-size" style="font-size: 0.6rem">
+															{{ $size }}
+														</div>
+													</div>
+
+												</a>
+											</div>
+
+										{{-- Kalau tidak ada file lampiran, akan memunculkan alert dibawah --}}
+										@else
+											<div class="alert alert-warning" role="alert">
+												Tidak ada file lampiran
+											  </div>
+										@endif
 									</div>
 								</div>
 
@@ -512,14 +668,14 @@
 					@csrf
 					<div class="form-group">
 						<label class="label">Judul Pengajuan</label>
-						<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan">
+						<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<label class="label">Pemasukan/Penggunaan</label>
 						<select class="form-control" name="pilihan">
 							<option disabled selected>-- Select --</option>
 							<option value="Pemasukan">Pemasukan</option>
-							<option value="Penggunaan">Penggunaan</option>
+							<option value="Penggunaan" selected>Penggunaan</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -532,11 +688,11 @@
 					</div>
 					<div class="form-group">
 						<label class="label">Jumlah</label>
-						<input type="text" name="jumlah" class="form-control" placeholder="Masukan Jumlah Dana">
+						<input type="text" name="jumlah" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan Jumlah Dana" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<label class="label">Deskripsi</label>
-						<textarea class="form-control desk" name="deskripsi" placeholder="Masukan Deskripsi atau Penjelasan" maxlength="1000"></textarea>
+						<textarea class="form-control desk" name="deskripsi" placeholder="Masukan Deskripsi atau Penjelasan" maxlength="1000" autocomplete="off"></textarea>
 					</div>
 					<div class="form-group">
 						<label class="label">File Lampiran</label>

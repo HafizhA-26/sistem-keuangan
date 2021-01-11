@@ -52,45 +52,6 @@ class DashboardController extends Controller
             $akun_data->status = "online";
             $akun_data->save();
         }
-        //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD
-
-        //ADMIN
-        $onlineUsers = $this->Akun->akunOnline();
-        $countOnline = $this->Akun->countOnline();
-        $offlineUsers = $this->Akun->akunOffline();
-        $countOffline = $this->Akun->countOffline();
-        
-        //KEPSEK
-        $SubmissionDataForKepsek = [
-            'dashboardsubmission' => $this->Submission->submissionKepsek()
-        ];
-        $ReportKepsek = $this->Submission->reportKepsek();
-
-        //KEUANGAN
-        $SubmissionDataForKeuangan = [
-            'dashboardsubmission' => $this->Submission->submissionKaKeuangan()
-        ];
-        $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
-
-        //BOS
-        $SubmissionDataForBOS = [
-            'dashboardsubmission' => $this->Submission->submissionBOS()
-        ];
-        $ReportBOS = $this->Submission->reportfordashboardBOS();
-
-        //APBD
-        $SubmissionDataForAPBD = [
-            'dashboardsubmission' => $this->Submission->submissionAPBD()
-        ];
-        $ReportAPBD = $this->Submission->reportfordashboardAPBD();
-
-        //KAPROG
-
-
-        $danaBOS = $this->Dana->danaBOS();
-        $danaAPBD = $this->Dana->danaAPBD();
-
-        
         session([
             'nuptk' => $user_data->nuptk,
             'nama' => $user_data->nama,
@@ -101,42 +62,70 @@ class DashboardController extends Controller
             'picture' => $user_data->picture
         ]);
         session()->save();
+
+        //DATA-DATA UNTUK DITAMPILKAN DI DASHBOARD , Dipindahin ke switch untuk kecepatan load data
+
+        //KAPROG
+
+
+        $danaBOS = $this->Dana->danaBOS();
+        $danaAPBD = $this->Dana->danaAPBD();
+
+        
+        
         $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
         $title = "Dashboard - ";
         switch($jabatan){
             case 'Admin':
-                //Isi custom hok
+                //ADMIN
+                $onlineUsers = $this->Akun->akunOnline();
+                $countOnline = $this->Akun->countOnline();
+                $offlineUsers = $this->Akun->akunOffline();
+                $countOffline = $this->Akun->countOffline();
                 return view('contents.index-kepsek',[ 'title' => $title, 'online' => $onlineUsers, 'offline' => $offlineUsers, 'conline' => $countOnline, 'coffline' => $countOffline]);
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':
+                 //KEPSEK
+                $SubmissionDataForKepsek = [
+                    'dashboardsubmission' => $this->Submission->submissionKepsek()
+                ];
+                $ReportKepsek = $this->Submission->reportKepsek();
                 return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKepsek], $SubmissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
+                //KEUANGAN
+                $SubmissionDataForKeuangan = [
+                    'dashboardsubmission' => $this->Submission->submissionKaKeuangan()
+                ];
+                $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
                 return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKaKeuangan], $SubmissionDataForKeuangan);
                 break;
             case 'Staf BOS':
-                //return view('',[ 'title' => $title ]);
+                //BOS
+                $SubmissionDataForBOS = [
+                    'dashboardsubmission' => $this->Submission->submissionBOS()
+                ];
+                $ReportBOS = $this->Submission->reportfordashboardBOS();
                 return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportBOS], $SubmissionDataForBOS);
                 break;
             case 'Staf APBD':
+                 //APBD
+                $SubmissionDataForAPBD = [
+                    'dashboardsubmission' => $this->Submission->submissionAPBD()
+                ];
+                $ReportAPBD = $this->Submission->reportfordashboardAPBD();
                 return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportAPBD], $SubmissionDataForAPBD);
                 break;
             case 'Kaprog':
+                // TODO
                 return view('contents.index-kepsek',[ 'title' => $title ]);
                 break;
             default:
                 echo "<script>alert('Data tidak ditemukan')</script>";
                 return redirect('login');
                 break;
-        if($jabatan && Auth::check()){
-            return view('contents.index-kepsek',[ 'title' => $title ]);
-        }else{
-            echo "<script>alert('Data tidak ditemukan')</script>";
-        }
-        
-       
     }
 }
     /**

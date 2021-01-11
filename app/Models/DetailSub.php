@@ -13,8 +13,6 @@ class DetailSub extends Model
     protected $fillable = [
         'id_pengajuan',
         'deskripsi',
-        'id_transaksi',
         'file_lampiran',
-        'id_komentar'
     ];
 }
