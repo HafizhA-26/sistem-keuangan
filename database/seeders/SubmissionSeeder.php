@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use DB;
 use App\Models\Submission;
 use App\Models\DetailSub;
-
+use App\Models\Transaksi;
 class SubmissionSeeder extends Seeder
 {
     /**
@@ -16,19 +16,26 @@ class SubmissionSeeder extends Seeder
      */
     public function run()
     {
-        $id = "SC001";
-        $id2 = "TC001";
+        $id = "S00001";
+        $id2 = "T00001";
         $file_lampiran = ['example.rar','example.pdf'];
-        for ($i=0; $i < 11; $i++) { 
+        $status_list = ['ACC-2K','ACC-1K','ACC-AK','ACC-BK'];
+        for ($i=0; $i < 15; $i++) { 
             $counterlen = strlen((string)$i+1);
             $id = substr_replace($id,(string)$i+1,$counterlen*-1);
             $id2 = substr_replace($id2,(string)$i+1,$counterlen*-1);
+            $transaksi = Transaksi::find($id2);
+            if($transaksi->jenis == "keluar"){
+                $status = "ACC-3K";
+            } else{
+                $status = $status_list[rand(0,(count($status_list)-1))];
+            }
             Submission::create([
                 'id_pengajuan' => $id,
                 'judul' => 'Contoh '.($i+1),
-                'status' => 'ACC 3-K',
+                'status' => $status,
                 'id_transaksi' => $id2,
-                'id_pengaju' => 1
+                'id_pengaju' => rand(4,6),
             ]);
             DetailSub::create([
                 'id_pengajuan' => $id,

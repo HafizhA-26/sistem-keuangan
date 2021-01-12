@@ -398,7 +398,6 @@
 						// Memformat tanggal jadi format Hari-Bulan-Tahun
 						$date = date_create($r->created_at);
 						$date = date_format($date, "d-m-Y");
-
 						// Mengambil file extension di variabel $file_ex
 						$file_ex = substr($r->file_lampiran,-3);
 
@@ -406,7 +405,7 @@
 						$file_path = storage_path() .'/uploaded_file/'. $r->file_lampiran;
 						$size = App\Http\Controllers\ReportController::formatSizeUnits(filesize($file_path));
 						$jumlah = number_format($r->jumlah,2,",",".");
-						if(strpos($r->status,"ACC 3")){
+						if(strpos($r->status,"ACC-3") !== false){
 							$status = "Diterima";
 						}else{
 							$status = "Ditolak";
@@ -527,7 +526,7 @@
 						</div>
 					</div>
 					@endforeach
-					<!-- Modal -->
+					
 					</table>
 					{{ $report->links() }}
 				</div>

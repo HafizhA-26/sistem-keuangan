@@ -17,7 +17,8 @@
 					</div>
 					<div class="form-group">
 						<label class="lbl">Password</label>
-						<input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+						<input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password"> <br>
+						<input type="checkbox" name="remember_me"><label style="color: #fff; font-size: 0.9rem">&nbsp; Remember Me</label>
 					</div>
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">

@@ -71,6 +71,7 @@ class Submission extends Model
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
             ->select('submissions.judul', 'detail_accounts.nama')
             ->where('submissions.status', 'LIKE', 'ACC-2%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->take(2)
             ->get();
     }
@@ -82,6 +83,7 @@ class Submission extends Model
         ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
         ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
         ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->orderBy('submissions.updated_at', 'desc')
         ->take(2)
         ->get();
     }
@@ -93,6 +95,7 @@ class Submission extends Model
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
             ->select('submissions.judul', 'detail_accounts.nama')
             ->where('submissions.status', 'LIKE', 'ACC-1%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->take(2)
             ->get();
     }
@@ -104,6 +107,7 @@ class Submission extends Model
         ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
         ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
         ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
+        ->orderBy('submissions.updated_at', 'desc')
         ->take(2)
         ->get();
     }
@@ -115,6 +119,7 @@ class Submission extends Model
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
             ->select('submissions.judul', 'detail_accounts.nama')
             ->where('submissions.status', 'LIKE', 'ACC-B%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->take(2)
             ->get();
     }
@@ -127,6 +132,7 @@ class Submission extends Model
         ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
         ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
         ->where('transaksi.id_dana', '=', 'BOS')
+        ->orderBy('submissions.updated_at', 'desc')
         ->take(2)
         ->get();
     }
@@ -138,6 +144,7 @@ class Submission extends Model
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
             ->select('submissions.judul', 'detail_accounts.nama')
             ->where('submissions.status', 'LIKE', 'ACC-A%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->take(2)
             ->get();
     }
@@ -150,6 +157,7 @@ class Submission extends Model
         ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
         ->select('submissions.judul', 'detail_accounts.nama', 'transaksi.jumlah', 'submissions.status', 'dana.id_dana', 'transaksi.jenis')
         ->where('transaksi.id_dana', '=', 'APBD')
+        ->orderBy('submissions.updated_at', 'desc')
         ->take(2)
         ->get();
     }
@@ -169,6 +177,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportBOS($search='')
@@ -189,6 +198,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportAPBD($search='')
@@ -209,6 +219,7 @@ class Submission extends Model
                       ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
     public function reportKaprog($search='')
@@ -230,6 +241,7 @@ class Submission extends Model
                       ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%')
                       ->orWhere('transaksi.id_dana', 'LIKE', '%'.$search.'%');
             })
+            ->orderBy('submissions.updated_at', 'desc')
             ->paginate(10);
     }
 }
