@@ -86,26 +86,11 @@ class SubmissionController extends Controller
                 ->select('submissions.id_pengajuan')
                 ->get();
                 $count = $getid->count();
-                $i = $count + 1;
-                if($i<=9){
-                    $id = "SC00".$i;
-                }else if($i>=10){
-                    $id = "SC0".$i;
-                }else if($i>=99){
-                    $id = "SC".$i;
-                }
-                $getid2 = DB::table('submissions')
-                ->select('submissions.id_pengajuan')
-                ->get();
-                $count2 = $getid2->count();
-                $i2 = $count2 + 1;
-                if($i2<=9){
-                    $id2 = "TC00".$i;
-                }else if($i2>=10){
-                    $id2 = "TC0".$i;
-                }else if($i>=99){
-                    $id2 = "TC".$i;
-                }
+                $id = 'S0000';
+                $id2 = 'T0000';
+                $counterlen = strlen((string)$count);
+                $id = substr_replace($id,(string)$count,$counterlen*-1);
+                $id2 = substr_replace($id2,(string)$count,$counterlen*-1);
                 return view('contents.submission',[ 'title' => $title,'idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
             default:
@@ -126,26 +111,11 @@ class SubmissionController extends Controller
         ->select('submissions.id_pengajuan')
         ->get();
         $count = $getid->count();
-        $i = $count + 1;
-        if($i<=9){
-            $id = "SC00".$i;
-        }else if($i>=10){
-            $id = "SC0".$i;
-        }else if($i>=99){
-            $id = "SC".$i;
-        }
-        $getid2 = DB::table('submissions')
-        ->select('submissions.id_pengajuan')
-        ->get();
-        $count2 = $getid2->count();
-        $i2 = $count2 + 1;
-        if($i2<=9){
-            $id2 = "TC00".$i;
-        }else if($i2>=10){
-            $id2 = "TC0".$i;
-        }else if($i>=99){
-            $id2 = "TC".$i;
-        }
+        $id = 'S0000';
+        $id2 = 'T0000';
+        $counterlen = strlen((string)$count);
+        $id = substr_replace($id,(string)$count,$counterlen*-1);
+        $id2 = substr_replace($id2,(string)$count,$counterlen*-1);
         switch (session()->get('nama_jabatan')) {
             case 'Staf BOS':
                 return view('contents.add-submission', ['idPengajuan' => $id,'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
@@ -162,7 +132,7 @@ class SubmissionController extends Controller
         $jabatan = $request->namajabatan;  
         $file = $request->file('file_lampiran');
         if($file) $filename = $request->file_lampiran->getClientOriginalName();
-        else $filename = "example.pdf";
+        else $filename = "";
         if($jabatan == "Staf BOS"){
             
             $jenispengajuan = $request->pilihan;
@@ -308,8 +278,9 @@ class SubmissionController extends Controller
         $status = "Rejected";
         $idUser = Auth::user()->nip;
         $stat = $request->status;
+        $jenis = "rejected";
         if($stat == "ACC-2M"){
-            $jenis = "masuk";
+            
             DB::table('transaksi')->where('id_transaksi',$request->id_transaksi)->update([
                 'jenis' => $jenis
             ]);
@@ -317,7 +288,7 @@ class SubmissionController extends Controller
                 'status' => $status
             ]);
         }else{
-            $jenis = "keluar";
+            
             DB::table('transaksi')->where('id_transaksi',$request->id_transaksi)->update([
                 'jenis' => $jenis
             ]);
@@ -376,8 +347,12 @@ class SubmissionController extends Controller
     {
         $idUser = Auth::user()->nip;
         $status = "Rejected";
+        $jenis = "rejected";
         DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
             'status' => $status
+        ]);
+        DB::table('transaksi')->where('id_transaksi',$request->id_transaksi)->update([
+            'jenis' => $jenis
         ]);
         DB::table('comments')->insert([
             'id_pengajuan' => $request->id_pengajuan,
@@ -396,18 +371,11 @@ class SubmissionController extends Controller
     public function storeizinkanbos(Request $request)
     {
         $idUser = Auth::user()->nip;
-        $stat = $request->status;
-        if($stat == "ACC-BM"){
-            $status = "ACC-1M";
-            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
-                'status' => $status
-            ]);
-        }else{
-            $status = "ACC-1K";
-            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
-                'status' => $status
-            ]);
-        } 
+        $status = "ACC-1K";
+        DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+            'status' => $status
+        ]);
+         
         DB::table('comments')->insert([
             'id_pengajuan' => $request->id_pengajuan,
             'komentar' => $request->komentar,
@@ -426,8 +394,12 @@ class SubmissionController extends Controller
     {
         $idUser = Auth::user()->nip;
         $status = "Rejected";
+        $jenis = "rejected";
         DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
             'status' => $status
+        ]);
+        DB::table('transaksi')->where('id_transaksi',$request->id_transaksi)->update([
+            'jenis' => $jenis
         ]);
         DB::table('comments')->insert([
             'id_pengajuan' => $request->id_pengajuan,
@@ -446,18 +418,11 @@ class SubmissionController extends Controller
     public function storeizinkanapbd(Request $request)
     {
         $idUser = Auth::user()->nip;
-        $stat = $request->status;
-        if($stat == "ACC-AM"){
-            $status = "ACC-1M";
-            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
-                'status' => $status
-            ]);
-        }else{
-            $status = "ACC-1K";
-            DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
-                'status' => $status
-            ]);
-        } 
+        $status = "ACC-1K";
+        DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
+            'status' => $status
+        ]);
+         
         DB::table('comments')->insert([
             'id_pengajuan' => $request->id_pengajuan,
             'komentar' => $request->komentar,
@@ -476,8 +441,12 @@ class SubmissionController extends Controller
     {
         $idUser = Auth::user()->nip;
         $status = "Rejected";
+        $jenis = "rejected";
         DB::table('submissions')->where('id_pengajuan',$request->id_pengajuan)->update([
             'status' => $status
+        ]);
+        DB::table('transaksi')->where('id_transaksi',$request->id_transaksi)->update([
+            'jenis' => $jenis
         ]);
         DB::table('comments')->insert([
             'id_pengajuan' => $request->id_pengajuan,
@@ -498,20 +467,10 @@ class SubmissionController extends Controller
         //ini untuk kaprog
         $file = $request->file('file_lampiran');
         if($file) $filename = $request->file_lampiran->getClientOriginalName();
-        else $filename = "example.pdf";
+        else $filename = "";
         $jenispengajuan = $request->pilihan;
-        $file = $request->file;
-        $filename = $file->getClientOriginalName();
-        $filename = time(). '.' . $filename;
-        $file->storeAs('uploaded_file', $filename);
             $iddana = $request->id_Dana;
-            if($jenispengajuan == "Pemasukan"){
-                if($iddana == "APBD"){
-                    $status = "ACC-AM";
-                }else if($iddana == "BOS"){
-                    $status="ACC-BM";
-                }
-            }else if($jenispengajuan == "Penggunaan"){
+            if($jenispengajuan == "Penggunaan"){
                 if($iddana == "APBD"){
                     $status = "ACC-AK";
                 }else if($iddana == "BOS"){

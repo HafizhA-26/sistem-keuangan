@@ -120,7 +120,13 @@ class DashboardController extends Controller
                 break;
             case 'Kaprog':
                 // TODO
-                return view('contents.index-kepsek',[ 'title' => $title ]);
+                $idkaprog = Auth::user()->nip;
+                $getJumlahPengajuan = DB::table('submissions')
+                ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+                ->select('submissions.*')
+                ->where('submissions.id_pengaju', '=', $idkaprog)
+                ->count();
+                return view('contents.index-kepsek',[ 'title' => $title , 'jumlahpengajuan' => $getJumlahPengajuan]);
                 break;
             default:
                 echo "<script>alert('Data tidak ditemukan')</script>";
