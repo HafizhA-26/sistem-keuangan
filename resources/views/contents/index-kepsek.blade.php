@@ -207,7 +207,7 @@
           		<div class="info-box">
             		<span class="info-box-icon bg-primary"><i class="fas fa-hand-holding-usd"></i></span>
             		<div class="info-box-content2">
-              		<span class="info-box-text2"><a href="" title="Tambah Pengajuan Baru">Add New Submission</a></span>
+              		<span class="info-box-text2"><a href="/submission" title="Tambah Pengajuan Baru">Add New Submission</a></span>
             		</div>
           		</div>
         	</div>
@@ -217,13 +217,13 @@
 			<div class="col-md-4">
 				<div class="small-box bg-success">
 					<div class="inner">
-						<h2>78</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
+						<h2>{{$jumlahpengajuan}}</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
 						<p>Laporan Pengajuan</p>
 					</div>
 					<div class="ikon">
 						<i class="fas fa-file-invoice"></i>
 					</div>
-					<a href="/report-submsission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
+					<a href="/report" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>

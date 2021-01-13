@@ -670,14 +670,7 @@
 						<label class="label">Judul Pengajuan</label>
 						<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan" autocomplete="off">
 					</div>
-					<div class="form-group">
-						<label class="label">Pemasukan/Penggunaan</label>
-						<select class="form-control" name="pilihan">
-							<option disabled selected>-- Select --</option>
-							<option value="Pemasukan">Pemasukan</option>
-							<option value="Penggunaan" selected>Penggunaan</option>
-						</select>
-					</div>
+					
 					<div class="form-group">
 						<label class="label">Pilih ID Dana</label>
 						<select class="form-control" name="id_Dana">
@@ -701,6 +694,7 @@
 					
 					{{-- NOTE --}}
 					{{-- Ini input hidden buat id_submission, id_transaksi, id_user, dan id_dana --}}
+					<input type="hidden" name="pilihan" value="Penggunaan">
 					<input type="hidden" name="jenis" value="Pending">
 					<input type="hidden" name="namajabatan" id="namajabatan" value="Kaprog"><br>
 					<input type="hidden" name="idPengajuan" id="idPengajuan" value="{{ $idPengajuan }}"><br>

@@ -162,6 +162,8 @@ class Submission extends Model
         ->get();
     }
 
+
+
     public function reportA($search='')
     {
         return DB::table('submissions')
