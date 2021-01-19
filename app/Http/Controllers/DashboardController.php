@@ -91,32 +91,36 @@ class DashboardController extends Controller
                 $SubmissionDataForKepsek = [
                     'dashboardsubmission' => $this->Submission->submissionKepsek()
                 ];
-                $ReportKepsek = $this->Submission->reportKepsek();
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKepsek], $SubmissionDataForKepsek);
+                $ReportSKepsek = $this->Submission->reportSKepsek();
+                $ReportTKepsek = $this->Submission->reportTKepsek();
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'reportS' => $ReportSKepsek, 'reportT' => $ReportTKepsek], $SubmissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
                 //KEUANGAN
                 $SubmissionDataForKeuangan = [
                     'dashboardsubmission' => $this->Submission->submissionKaKeuangan()
                 ];
-                $ReportKaKeuangan = $this->Submission->reportKaKeuangan();
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'report' => $ReportKaKeuangan], $SubmissionDataForKeuangan);
+                $ReportSKaKeuangan = $this->Submission->reportSKaKeuangan();
+                $ReportTKaKeuangan = $this->Submission->reportTKaKeuangan();
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD, 'reportS' => $ReportSKaKeuangan, 'reportT' => $ReportTKaKeuangan], $SubmissionDataForKeuangan);
                 break;
             case 'Staf BOS':
                 //BOS
                 $SubmissionDataForBOS = [
                     'dashboardsubmission' => $this->Submission->submissionBOS()
                 ];
-                $ReportBOS = $this->Submission->reportfordashboardBOS();
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportBOS], $SubmissionDataForBOS);
+                $ReportSBOS = $this->Submission->reportSfordashboardBOS();
+                $ReportTBOS = $this->Submission->reportTfordashboardBOS();
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'reportS' => $ReportSBOS, 'reportT' => $ReportTBOS], $SubmissionDataForBOS);
                 break;
             case 'Staf APBD':
                  //APBD
                 $SubmissionDataForAPBD = [
                     'dashboardsubmission' => $this->Submission->submissionAPBD()
                 ];
-                $ReportAPBD = $this->Submission->reportfordashboardAPBD();
-                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'report' => $ReportAPBD], $SubmissionDataForAPBD);
+                $ReportSAPBD = $this->Submission->reportSfordashboardAPBD();
+                $ReportTAPBD = $this->Submission->reportTfordashboardAPBD();
+                return view('contents.index-kepsek',[ 'title' => $title, 'danaBOS' => $danaBOS, 'danaAPBD' => $danaAPBD ,'reportS' => $ReportSAPBD, 'reportT' => $ReportTAPBD], $SubmissionDataForAPBD);
                 break;
             case 'Kaprog':
                 // TODO

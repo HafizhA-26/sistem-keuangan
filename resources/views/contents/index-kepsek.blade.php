@@ -158,7 +158,7 @@
 			<div class="col-md-4">
 				<div class="small-box bg-danger">
 					<div class="inner">
-						<h2>69</h2> <!--GET COUNT TABLE SUBMISISON-->
+						<h2>{{$dashboardsubmission}}</h2> <!--GET COUNT TABLE SUBMISISON-->
 						<p>Pengajuan</p>
 					</div>
 					<div class="ikon">
@@ -170,19 +170,19 @@
 			<div class="col-md-4">
 				<div class="small-box bg-success">
 					<div class="inner">
-						<h2>67</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
+						<h2>{{$reportS}}</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
 						<p>Laporan Pengajuan</p>
 					</div>
 					<div class="ikon">
 						<i class="fas fa-file-invoice"></i>
 					</div>
-					<a href="/report-submsission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
+					<a href="/report-submission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="small-box bg-primary">
 					<div class="inner">
-						<h2>78</h2> <!--GET COUNT LAPORAN TRANSAKSI-->
+						<h2>{{$reportT}}</h2> <!--GET COUNT LAPORAN TRANSAKSI-->
 						<p>Laporan Transaksi</p>
 					</div>
 					<div class="ikon">
