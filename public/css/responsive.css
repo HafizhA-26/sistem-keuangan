@@ -1,0 +1,41 @@
+:root{
+    --white : #f8f1f1;
+    --green : #16c79a;
+    --lightblue : #11698e;
+    --blue : #19456b;
+    --black : #272727;
+    --transition-speed : 300ms;
+}
+@media only screen and (max-width: 700px){
+    .res-dnone{
+        display: none;
+    }
+    .res-login-title{
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .res-login-title2{
+        font-family: "Poppins Regular" !important;
+        font-size: 1rem;
+        display: block;
+        margin-bottom: 4rem;
+    }
+    .login-title{
+        display: none;
+    }
+    .login-title.res{
+        display: block;
+    }
+    .line-title{
+        background-color: var(--lightblue);
+        width: 70%;
+        display: block !important;
+    }
+    .login-content{
+        padding: 40px;
+    }
+    .login-box {
+        padding: 5rem 2.5rem;
+      }
+}

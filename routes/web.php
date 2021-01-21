@@ -17,14 +17,15 @@ use Illuminate\Support\Facades\Response;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[DashboardController::class, 'index']);
-Route::get('/login',[LoginController::class, 'index'])->name('login');
+Route::get('/',[DashboardController::class, 'index'])->name('login');
+Route::get('/login',[DashboardController::class, 'index']);
 Route::post('/checking',[LoginController::class, 'checklogin']);
-Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
+
 
 
 /* Masukan route 'yang butuh login dulu kalau bisa masuk' */
 Route::group(['middleware' => 'auth'],function(){
+    Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
     Route::get('/submission',[SubmissionController::class, 'index']);
     Route::post('/submission',[SubmissionController::class, 'store']);

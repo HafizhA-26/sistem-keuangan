@@ -1,0 +1,134 @@
+:root {
+  --white: #f8f1f1;
+  --green: #16c79a;
+  --lightblue: #11698e;
+  --blue: #19456b;
+  --black: #272727;
+  --transition-speed: 300ms;
+}
+* {
+  font-family: "Poppins";
+  color: var(--black);
+}
+.background-1 {
+  background-image: url(../img/bg/bg3.jpg);
+}
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.bg-login {
+  position: fixed;
+  background-image: url(../img/bg/smk-1.png);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  background-size: cover;
+  opacity: 0.6;
+  z-index: 0;
+}
+.res-login-title{
+    font-size: 2rem;
+    display: none
+}
+.res-login-title2{
+    font-size: 1rem;
+    display: none
+}
+.login-title{
+    margin-bottom: 5rem;
+}
+.login-title.res{
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    display: none;
+    margin-bottom: 4rem;
+    font-family: "Poppins Regular";
+}
+.login-box {
+  padding: 12rem 3.5rem;
+  background-color: white;
+  height: 100%;
+  text-align: center;
+}
+.login-content {
+  padding-right: 0;
+}
+.input-login {
+  border-radius: 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  padding-left: 0;
+}
+.input-login:focus {
+  box-shadow: none;
+  border-bottom: 1px solid var(--blue);
+}
+.btn-login {
+  background-color: var(--lightblue);
+  border-radius: 0;
+  width: 100%;
+  height: 40px;
+  text-transform: uppercase;
+}
+.btn-login:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+.btn-login:focus{
+    box-shadow: none;
+}
+.input-checkbox {
+  width: 0.9rem;
+  height: 0.9rem;
+  vertical-align: middle;
+}
+.form-check-label {
+  margin-left: 5px;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+.form-group .lbl {
+  color: var(--black);
+}
+p{
+    color: white;
+}
+p.title2{
+    font-family: "Poppins Thin";
+    font-size: 1.5rem;
+}
+h2{
+    font-family: 'Poppins Bold';
+    font-size: 3rem;
+    color: white;
+}
+h3 {
+  font-size: 2.2rem;
+  color: var(--black);
+  font-family: "Poppins SemiBold";
+}
+gr{
+    color: var(--green);
+    font-family: inherit;
+}
+bl {
+  color: var(--blue);
+  font-family: inherit;
+}
+.row h4 {
+  color: #145cb1;
+  text-shadow: 1px 2px 2px black;
+  margin-top: 50px;
+}
