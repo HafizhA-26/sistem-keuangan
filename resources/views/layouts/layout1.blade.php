@@ -14,30 +14,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="icon" type="image/png" href={{ URL::asset("img/icon/stm.png") }} >
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
-        <title>{{ $title?? '' }} Sistem Informasi Keuangan</title>
+        <title>{{ $title?? '' }}{{ $title ? ' - ' : '' }} Sistem Informasi Keuangan</title>
     </head>
-    <body>
+    <body class="content" id="body-pd">
         <!-- Memanggil konten -->
+        {{-- @yield('content') --}}
         @yield('content')
-        <div class="modal fade" id="confirmationLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="border: 0">
-                <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white" id="confirm"><strong>Confirmation</strong></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fas fa-times text-white"></i></span>
-                </button>
-                </div>
-                <div class="modal-body text-center p-4">
-                    Apakah anda yakin ingin keluar ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <a href="/logout" class="btn btn-primary" value="Edit Profile" name="submit">Sign Out</a>
-                </div>
-            </div>
-            </div>
-        </div>
+        
         <script>
             function hanyaAngka(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
@@ -73,6 +56,7 @@
         <script src={{ URL::asset("js/all.min.js") }}></script>
         <script src={{ URL::asset("js/jquery.js") }}></script>
         <script src={{ URL::asset("js/bootstrap.min.js") }}></script>
+        <script src={{ URL::asset("js/main.js") }}></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         {{-- <script>
             $(document).ready(function(){

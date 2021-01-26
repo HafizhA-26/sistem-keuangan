@@ -1,41 +1,150 @@
-:root{
-    --white : #f8f1f1;
-    --green : #16c79a;
-    --lightblue : #11698e;
-    --blue : #19456b;
-    --black : #272727;
-    --transition-speed : 300ms;
+:root {
+  --white: #f9f6f7;
+  --green: #00918e;
+  --light-green: #4dd599;
+  --lightblue: #11698e;
+  --blue: #03506f;
+  --dark-blue: #110133;
+  --black: #272727;
+  --transition-speed: 300ms;
+  --red: #fa1616;
+  --header-height: 3rem;
+  --nav-width: 68px;
 }
-@media only screen and (max-width: 700px){
-    .res-dnone{
-        display: none;
-    }
-    .res-login-title{
-        display: block;
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-    }
-    .res-login-title2{
-        font-family: "Poppins Regular" !important;
-        font-size: 1rem;
-        display: block;
-        margin-bottom: 4rem;
-    }
-    .login-title{
-        display: none;
-    }
-    .login-title.res{
-        display: block;
-    }
-    .line-title{
-        background-color: var(--lightblue);
-        width: 70%;
-        display: block !important;
-    }
-    .login-content{
-        padding: 40px;
-    }
-    .login-box {
-        padding: 5rem 2.5rem;
-      }
+@media only screen and (max-width: 700px) {
+  .res-dnone {
+    display: none;
+  }
+  .res-login-title {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .res-login-title2 {
+    font-family: "Poppins Regular" !important;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  .login-title {
+    display: none;
+  }
+  .login-title.res {
+    display: block;
+  }
+  .line-title {
+    background-color: var(--lightblue);
+    width: 70%;
+    display: block !important;
+  }
+  .login-content {
+    padding: 40px;
+  }
+  .login-box {
+    padding: 5rem 2.5rem;
+  }
+  .nav__logo{
+    margin-bottom: 0;
+  }
+  .user_img{
+    display: none;
+  }
+  .m-user_name{
+    display: flex;
+    margin: 0 0 0 .5rem;
+    font-size: 0.8rem;
+    align-items: center;
+    padding: .2rem .5rem;
+    background-color: #e4e4e4;
+    border-radius: 20px;
+    max-width: 120px;
+    font-family: 'Poppins Light';
+  }
+  .container_content div{
+    margin-top: 1rem;
+  }
+  .container_content div:first-child{
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .content {
+    margin: calc(var(--header-height) + 1rem) 0 0 0;
+    padding-left: calc(var(--nav-width) - 4px);
+  }
+  .header{
+    height: calc(var(--header-height) + 1rem);
+    padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+  }
+  .page_title {
+    height: calc(var(--header-height) + 3rem);
+  }
+  .header__img {
+    width: 35px;
+    height: 35px;
+  }
+  .header__img img {
+    width: 35px;
+  }
+  .nav__logo {
+    height: calc(var(--header-height) + 1rem);
+  }
+  .user_img img.show {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 3rem;
+  }
+  .user_img.show {
+    padding-left: 1rem;
+  }
+  .user_profile {
+    width: calc(var(--nav-width) + 130px);
+  }
+  .user_name.show {
+    width: 100%;
+    height: 60%;
+    display: block;
+    font-size: 1.3rem;
+    color: white;
+    font-family: "Poppins SemiBold";
+    opacity: 1;
+    transition-property: opacity;
+    transition-delay: 0.5s;
+    transition: 0.5s;
+  }
+  .user_status.show {
+    width: 100%;
+    height: 40%;
+    font-size: 0.8rem;
+    opacity: 1;
+    transition-delay: 0.5s;
+    transition: 0.5s;
+    align-items: center;
+    display: flex;
+  }
+  .user_status.show .stat-icon {
+    -webkit-box-shadow: 0px 0px 36px 4px var(--light-green);
+    box-shadow: 0px 0px 36px 4px var(--light-green);
+    color: var(--light-green);
+    margin-right: 0.6rem;
+  }
+  .l-navbar {
+    left: 0;
+    padding: 0 0 0 0;
+  }
+  .show {
+    width: calc(var(--nav-width) + 226px);
+  }
+  .header.body-pd{
+    padding-left: calc(var(--nav-width) + 256px);
+  }
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 226px);
+  }
+  .container_content{
+    padding-right: calc(1rem + 4rem);
+  }
+  .m-user_name{
+    display: none;
+  }
 }

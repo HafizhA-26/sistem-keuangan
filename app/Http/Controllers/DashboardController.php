@@ -75,7 +75,7 @@ class DashboardController extends Controller
         
         $jabatan = $user_data->nama_jabatan;
         // Pembagian route berdasarkan jabatan
-        $title = "Dashboard - ";
+        $title = "Dashboard";
         switch($jabatan){
             case 'Admin':
                 //ADMIN

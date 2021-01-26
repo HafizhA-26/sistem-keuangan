@@ -68,7 +68,9 @@ class LoginController extends Controller
         $akun_data->status = "offline";
         $akun_data->save();
         Auth::logout();
+        
         session()->flush();
+        return view('/login');
     }
     /**
      * Show the form for creating a new resource.

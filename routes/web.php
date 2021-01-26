@@ -26,8 +26,8 @@ Route::post('/checking',[LoginController::class, 'checklogin']);
 /* Masukan route 'yang butuh login dulu kalau bisa masuk' */
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
-    Route::get('/dashboard',[DashboardController::class, 'dashboardVerification']);
-    Route::get('/submission',[SubmissionController::class, 'index']);
+    Route::get('/dashboard',[DashboardController::class, 'dashboardVerification'])->name('dashboard');
+    Route::get('/submission',[SubmissionController::class, 'index'])->name('submission');
     Route::post('/submission',[SubmissionController::class, 'store']);
 
     /* Route untuk izinkan dan tidak diizinkan */
@@ -40,16 +40,16 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/submission/tidakdiizinkanapbd',[SubmissionController::class, 'storetidakizinkanapbd']);
     Route::post('/submission/diizinkanapbd',[SubmissionController::class, 'storeizinkanapbd']);
 
-    Route::get('/addsubmission', [SubmissionController::class, 'addSubmission']);
+    Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
     Route::post('/addsubmission', [SubmissionController::class, 'createSubmission']);
     Route::post('/submission/add', [SubmissionController::class, 'store']);
-    Route::get('/report',[ReportController::class, '']);
+    Route::get('/report',[ReportController::class, ''])->name('report');
     Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
     Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
-    Route::get('/report',[ReportController::class, 'index']);
-    Route::get('/report-submission',[ReportController::class, 'reportS']);
-    Route::get('/report-transaction',[ReportController::class, 'reportT']);
-    Route::get('/manage-account',[AccountController::class, 'index']);
+    Route::get('/report',[ReportController::class, 'index'])->name('report');
+    Route::get('/report-submission',[ReportController::class, 'reportS'])->name('report_submission');
+    Route::get('/report-transaction',[ReportController::class, 'reportT'])->name('report_transaction');
+    Route::get('/manage-account',[AccountController::class, 'index'])->name('manage_account');
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit']);
     Route::post('/update/{nip}',[AccountController::class, 'update']);
