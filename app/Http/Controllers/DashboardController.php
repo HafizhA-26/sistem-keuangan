@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Submission;
 use App\Models\Dana;
 use App\Akun;
+use Cache;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,20 @@ class DashboardController extends Controller
             return view('index', ['title' => $title]);
         }
         
+    }
+    public function userOnlineStatus()
+    {
+        $users = DB::table('accounts')->get();
+    
+        foreach ($users as $user) {
+            $akun = Akun::find($user->nip);
+            
+            if (Cache::has('user-is-online-' . $user->nip))
+                $akun->status = "online";
+            else
+                $akun->status = "offline";
+            $akun->save();
+        }
     }
     public function dashboardVerification(){
 
@@ -83,7 +98,10 @@ class DashboardController extends Controller
                 $countOnline = $this->Akun->countOnline();
                 $offlineUsers = $this->Akun->akunOffline();
                 $countOffline = $this->Akun->countOffline();
-                return view('contents.index-kepsek',[ 'title' => $title, 'online' => $onlineUsers, 'offline' => $offlineUsers, 'conline' => $countOnline, 'coffline' => $countOffline]);
+                $countAll = $this->Akun->countAll();
+                $this->userOnlineStatus();
+                $allD = $this->Akun->allData();
+                return view('contents.index-kepsek',[ 'title' => $title, 'all' => $countAll, 'allData' => $allD, 'conline' => $countOnline, 'coffline' => $countOffline]);
                 //echo "<script>alert('Login sukses, Belum ada link khusus untuk admin')</script>";
                 break;
             case 'Kepala Sekolah':

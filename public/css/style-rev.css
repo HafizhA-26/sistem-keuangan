@@ -34,7 +34,6 @@ body {
   font-size: 1rem;
   color: inherit;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 *,
 ::before,
@@ -57,6 +56,7 @@ a {
 .op-0{
   opacity: 0;
 }
+
 .vertical-center {
   margin: 0;
   position: absolute;
@@ -151,7 +151,7 @@ p {
   color: white;
 }
 p.title2 {
-  font-family: "Poppins Thin";
+  font-family: "Poppins ExtraLight";
   font-size: 1.5rem;
 }
 h2 {
@@ -411,7 +411,49 @@ bl {
   width: 100%;
   padding: 1rem;
 }
-
+.count-stat{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 1.5rem;
+  width: 100%;
+  flex-direction: row;
+}
+.icon-stat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  background-color: var(--black);
+  border-radius: 60px;
+  height: 60px;
+  width: 60px;
+  padding: 1rem;
+}
+.desc-stat{
+  padding: 0;
+  color: var(--black);
+  margin: 0 0 0 2rem;
+}
+.desc-stat .card-title{
+  font-family: 'Poppins SemiBold';
+  font-size: 1.5rem;
+  margin-bottom: .2rem;
+}
+.desc-stat p{
+  font-size: .9rem;
+  color: var(--black);
+}
+.box-head-color-r {
+  border-top-color: var(--red);
+}
+.box-head-color-g {
+  border-top-color: var(--light-green);
+}
+.box-head-color-b {
+  border-top-color: var(--blue);
+}
 .modal.show{
   width: 100%;
 }

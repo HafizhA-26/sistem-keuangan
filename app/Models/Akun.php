@@ -28,7 +28,15 @@ class Akun extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function countAll(){
+        return DB::table('accounts')
+            ->count();
+    }
+    public function allData(){
+        return DB::table('accounts')
+            ->join('detail_accounts', 'detail_accounts.nip', 'accounts.nip')
+            ->get();
+    }
     public function akunOnline(){
         return DB::table('accounts')
             ->join('detail_accounts', 'detail_accounts.nip', 'accounts.nip')

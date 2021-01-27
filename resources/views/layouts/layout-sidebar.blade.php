@@ -1,5 +1,6 @@
 @extends('layouts.layout1')
 @section('content')
+    <div class="content" id="body-pd">
         <header class="header" id="header">
             <div class="header__toggle" id="header-toggle">
                 <i class="fas fa-bars" id="toggle-icon" onclick="sidebarIcon()"></i>
@@ -92,5 +93,5 @@
             </div>
             </div>
         </div>
-    
+    </div>
 @endsection

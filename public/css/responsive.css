@@ -11,7 +11,7 @@
   --header-height: 3rem;
   --nav-width: 68px;
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
   .res-dnone {
     display: none;
   }
@@ -65,6 +65,9 @@
   }
   .container_content div:first-child{
     margin-top: 0;
+  }
+  div.card-body{
+    margin: 0 0 0 2rem;
   }
 }
 @media screen and (min-width: 768px) {

@@ -378,15 +378,7 @@ html {
 .box-footer a:hover {
   color: #aaa;
 }
-.box-head-color-r {
-  border-top-color: red;
-}
-.box-head-color-g {
-  border-top-color: green;
-}
-.box-head-color-b {
-  border-top-color: blue;
-}
+
 .mtop {
   margin-top: -40px;
 }

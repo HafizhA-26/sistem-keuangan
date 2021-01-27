@@ -24,6 +24,7 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){

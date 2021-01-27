@@ -16,7 +16,7 @@
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
         <title>{{ $title?? '' }}{{ $title ? ' - ' : '' }} Sistem Informasi Keuangan</title>
     </head>
-    <body class="content" id="body-pd">
+    <body>
         <!-- Memanggil konten -->
         {{-- @yield('content') --}}
         @yield('content')

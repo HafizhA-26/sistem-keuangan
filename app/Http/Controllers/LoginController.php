@@ -67,10 +67,11 @@ class LoginController extends Controller
         $akun_data = Akun::find($akun->nip);
         $akun_data->status = "offline";
         $akun_data->save();
-        Auth::logout();
-        
         session()->flush();
-        return view('/login');
+        Auth::logout();
+        return view('login');
+        
+        
     }
     /**
      * Show the form for creating a new resource.

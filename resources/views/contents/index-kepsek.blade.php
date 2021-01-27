@@ -7,40 +7,62 @@
 		<div class="row">
 			<div class="col-md">
 				<div class="card count-stat">
-				  <div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
+					<div class="icon-stat" style="background-color: var(--lightblue)">
+						<i class="fas fa-users"></i>
+					</div>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{ $all }}</h5>
+						<p class="card-text">Total Users</p>
+					</div>
+				</div>
+			  </div>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--green)">
+						<i class="fas fa-user-check"></i>
+					</div>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{ $conline }}</h5>
+						<p class="card-text">Online Users</p>
+					</div>
 				</div>
 			  </div>
 			  <div class="col-md">
-				<div class="card">
-				  <div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--red)">
+						<i class="fas fa-user-times"></i>
+					</div>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{ $coffline }}</h5>
+						<p class="card-text">Offline Users</p>
+					</div>
 				</div>
 			  </div>
 		</div>
 		<div class="row mtop">
 			<div class="col-md-6">
-				<div class="box1 box-head-color-g">
+				<div class="box1 box-head-color-b">
 					<div class="box-header with-border">
-						<h5 class="title">User Online</h5>
+						<h5 class="title">User List</h5>
 					</div>
 					<div class="box-info">
 						<div class="table-responsive">
 							<table class="table">
 							<tr>
-								<th>Nama</th>
-								<th>Jabatan</th>
+								<th>Name</th>
+								<th>Status</th>
+								<th>Last Seen</th>
 							</tr>
-							@foreach ($online as $on)
+							@foreach ($allData as $a)
 							<tr>
-								<td>{{$on->nama}}</td> 
-								<td>{{$on->nama_jabatan}}</td>
+								<td>{{$a->nama}}</td>
+								@if ($a->status == "online")
+									<td style="color: var(--green)">{{ $a->status }}</td>
+								@else
+									<td style="color: var(--red)">{{ $a->status }}</td>
+								@endif 
+								
+								<td>{{ $a->last_seen }}</td>
 							</tr>
 							@endforeach
 							</table>
@@ -48,29 +70,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="box1 box-head-color-r">
-					<div class="box-header with-border">
-						<h5 class="title">User Offline</h5>
-					</div>
-					<div class="box-info">
-						<div class="table-responsive">
-							<table class="table">
-							<tr>
-								<th>Nama</th>
-								<th>Jabatan</th>
-							</tr>
-							@foreach ($offline as $off)
-							<tr>
-								<td>{{$off->nama}}</td> 
-								<td>{{$off->nama_jabatan}}</td>
-							</tr>
-							@endforeach
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	
 	@endif
