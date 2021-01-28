@@ -44,18 +44,24 @@
                             <i class="fas fa-tachometer-alt nav__icon"></i>
                             <span class="nav_name">Dashboard</span>
                         </a>
-                        <a href="#" class="nav__link">
-                            <i class="fas fa-file-import nav__icon"></i>
-                            <span class="nav_name">Submission</span>
-                        </a>
-                        <a href="#" class="nav__link">
-                            <i class="fas fa-book-open nav__icon"></i>
-                            <span class="nav_name">Report</span>
-                        </a>
-                        <a href="#" class="nav__link">
-                            <i class="fas fa-users-cog nav__icon"></i>
-                            <span class="nav_name">Manage Account</span>
-                        </a>
+                        @if (session()->get('nama_jabatan') != 'Admin')
+                            <a href="#" class="nav__link">
+                                <i class="fas fa-file-import nav__icon"></i>
+                                <span class="nav_name">Submission</span>
+                            </a>
+                            <a href="#" class="nav__link">
+                                <i class="fas fa-book-open nav__icon"></i>
+                                <span class="nav_name">Report</span>
+                            </a>
+                        @endif
+                        
+                        @if (session()->get('nama_jabatan') == "Admin")
+                            <a href="#" class="nav__link">
+                                <i class="fas fa-users-cog nav__icon"></i>
+                                <span class="nav_name">Manage Account</span>
+                            </a>
+                        @endif
+                        
                         
                     </div>
                 </div>

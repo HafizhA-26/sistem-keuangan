@@ -66,11 +66,8 @@
     max-width: 120px;
     font-family: 'Poppins Light';
   }
-  .container_content div{
+  .row .col-md{
     margin-top: 1rem;
-  }
-  .container_content div:first-child{
-    margin-top: 0;
   }
   div.desc-stat{
     margin: 0 0 0 2rem;

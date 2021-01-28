@@ -39,7 +39,7 @@
 				</div>
 			  </div>
 		</div>
-		<div class="row mtop">
+		<div class="row">
 			<div class="col-md-6">
 				<div class="box1 box-head-color-b">
 					<div class="box-header with-border">

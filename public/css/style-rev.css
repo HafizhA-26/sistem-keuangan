@@ -374,7 +374,7 @@ bl {
 }
 .dynamic-c{
   position: absolute;
-  margin: 0.6rem 0 0 0;
+  padding: 1rem 0 0 0;
   background-color: var(--white);
   width: 100%;
   height: auto;
@@ -423,6 +423,12 @@ bl {
 .container_content{
   width: 100%;
   padding: 1rem;
+}
+.container_content .row{
+  margin-top: 1rem;
+}
+.container_content .row:first-child{
+  margin-top: 0;
 }
 .count-stat{
   display: flex;
@@ -476,7 +482,7 @@ bl {
 input:focus, textarea:focus, select:focus{
   box-shadow: 0 0 0 0.1rem var(--lightblue) !important;
 }
-input[type="text"], textarea, select{
+input[type="text"], input[type="file"], textarea, select{
   font-size: 0.9rem;
   font-family: 'Poppins Light';
 }
