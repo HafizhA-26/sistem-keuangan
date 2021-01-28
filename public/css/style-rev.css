@@ -110,15 +110,15 @@ a {
   padding-right: 0;
 }
 .input-login {
-  border-radius: 0;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  padding-left: 0;
+  border-radius: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  padding-left: 0 !important;
 }
 .input-login:focus {
-  box-shadow: none;
-  border-bottom: 1px solid var(--blue);
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--blue) !important;
 }
 .btn-login {
   background-color: var(--lightblue);
@@ -131,8 +131,18 @@ a {
   background-color: var(--green);
   border-color: var(--green);
 }
-.btn-login:focus {
+.btn-login:focus, .btn-update:focus {
   box-shadow: none;
+}
+.btn-update{
+  width: 100%;
+  border-radius: 0;
+  background-color: var(--light-green);
+  border-color: var(--light-green);
+}
+.btn-update:hover{
+  background-color: var(--green);
+  border-color: var(--green);
 }
 .input-checkbox {
   width: 0.9rem;
@@ -143,6 +153,9 @@ a {
   margin-left: 5px;
   font-size: 0.9rem;
   vertical-align: middle;
+}
+.form-check{
+  margin-bottom: 3rem;
 }
 .form-group .lbl {
   color: var(--black);
@@ -460,4 +473,14 @@ bl {
 .modal-backdrop.show{
   width: 100%;
 }
-
+input:focus, textarea:focus, select:focus{
+  box-shadow: 0 0 0 0.1rem var(--lightblue) !important;
+}
+input[type="text"], textarea, select{
+  font-size: 0.9rem;
+  font-family: 'Poppins Light';
+}
+label{
+  font-family: 'Poppins';
+  font-size: 1.1rem;
+}

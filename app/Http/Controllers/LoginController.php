@@ -69,7 +69,7 @@ class LoginController extends Controller
         $akun_data->save();
         session()->flush();
         Auth::logout();
-        return view('login');
+        return view('/login');
         
         
     }

@@ -7,7 +7,7 @@
             </div>
             <div class="header__end">
                 <div class="header__icon-list">
-                    <a class="header__icon" href="/edit-profil/{{ session()->get('nip') }}" title="Edit Profile">
+                    <a href="/edit-profil/{{ session()->get('nip') }}"  class="header__icon" title="Edit Profile">
                         <i class="fa fa-user-edit"></i>
                     </a>
                 </div>
@@ -40,7 +40,7 @@
                         
                     </div>
                     <div class="nav__list">
-                        <a href="#" class="nav__link active">
+                        <a href="/dashboard" class="nav__link active">
                             <i class="fas fa-tachometer-alt nav__icon"></i>
                             <span class="nav_name">Dashboard</span>
                         </a>

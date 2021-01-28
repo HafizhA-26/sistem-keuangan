@@ -43,6 +43,12 @@
   .login-box {
     padding: 5rem 2.5rem;
   }
+  .form-check{
+    margin-bottom: 1.5rem;
+  }
+  .alert-login{
+    font-size: 0.7rem;
+  }
   .nav__logo{
     margin-bottom: 0;
   }
@@ -66,7 +72,7 @@
   .container_content div:first-child{
     margin-top: 0;
   }
-  div.card-body{
+  div.desc-stat{
     margin: 0 0 0 2rem;
   }
 }

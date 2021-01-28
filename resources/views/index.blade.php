@@ -26,7 +26,7 @@
 					<div class="form-group text-left">
 						<input type="password" class="form-control input-login mb-2 @error('password') is-invalid @enderror" placeholder="Password" name="password">
 					</div>
-					<div class="form-check text-left pl-0 mb-5">
+					<div class="form-check text-left pl-0">
 						<input type="checkbox" class="input-checkbox" name="remember_me">
 						<label class="form-check-label">Remember me</label>
 					</div>

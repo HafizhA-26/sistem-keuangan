@@ -4,6 +4,9 @@
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard'));
 });
+Breadcrumbs::for('edit_profil', function ($trail, $nip) {
+    $trail->push('Edit Profil', route('edit_profil', $nip));
+});
 // Home
 Breadcrumbs::for('home', function ($trail) {
     $trail->push('Home', route('home'));
