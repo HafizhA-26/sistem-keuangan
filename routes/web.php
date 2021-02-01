@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/report-submission',[ReportController::class, 'reportS'])->name('report_submission');
     Route::get('/report-transaction',[ReportController::class, 'reportT'])->name('report_transaction');
     Route::get('/manage-account',[AccountController::class, 'index'])->name('manage_account');
+    Route::get('/add-account',[AccountController::class, 'index'])->name('add_account');
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit'])->name("edit_profil");
     Route::get('/edit-account-data/{nip}',[AccountController::class, 'edit'])->name("edit_data_account");

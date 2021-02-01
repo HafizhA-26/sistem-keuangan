@@ -1,40 +1,10 @@
 @extends('layouts.layout-sidebar')
 
 @section('web-content')
-
-		@if ($pesan = Session::get('pesan'))
-			
-			<div class="modal fade" id="ModalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					  </button>
-					</div>
-					<div class="modal-body">
-					  <div class="alert alert-success">
-						  {{ $pesan }}
-					  </div>
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					</div>
-				  </div>
-				</div>
-			</div>
-			<script>
-				$(document).ready(function(){
-					$('#ModalSuccess').modal('show');
-				});
-				
-			</script>
-		@endif
 		<div class="row">
 			<div class="col-md">
 				<div class="card res-text-center">
-					<button type="button" class="btn btn-primary theme-2 mb-4" data-toggle="modal" data-target="#add"><i class="fas fa-user-plus mr-1"></i>Add Account</button>
+					<a href="/add-account" class="btn btn-primary theme-2 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
 					<table class="data-account display nowrap" cellspacing="0" id="dataTable">
 						<thead> 
 							<tr>

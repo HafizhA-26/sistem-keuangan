@@ -1,5 +1,25 @@
 @extends('layouts.layout1')
 @section('content')
+    @php
+        $breadcrumbs = Breadcrumbs::generate();
+        function cekLink(){
+            $breadcrumbs = Breadcrumbs::generate();
+            if(strpos($breadcrumbs[0]->url, '/dashboard') !== false ){
+                return 'Dashboard';
+                
+            }elseif (strpos($breadcrumbs[0]->url, "/submission") !== false) {
+                return 'Submission';
+                
+            }elseif (strpos($breadcrumbs[0]->url, "/report") !== false) {
+                return 'Report';
+                
+            }elseif (strpos($breadcrumbs[0]->url, "/manage-account") !== false) {
+                return 'Manage Account';
+                
+            }
+        }
+
+    @endphp
     <div class="content" id="body-pd">
         <header class="header" id="header">
             <div class="header__toggle" id="header-toggle">
@@ -40,23 +60,23 @@
                         
                     </div>
                     <div class="nav__list">
-                        <a href="/dashboard" class="nav__link {{ $title=='Dashboard' ? 'active' : '' }}" id="Dashboard">
+                        <a href="/dashboard" class="nav__link {{ cekLink()=='Dashboard' ? 'active' : '' }}" id="Dashboard">
                             <i class="fas fa-tachometer-alt nav__icon"></i>
                             <span class="nav_name">Dashboard</span>
                         </a>
                         @if (session()->get('nama_jabatan') != 'Admin')
-                            <a href="#" class="nav__link {{ $title=='Submission' ? 'active' : '' }}" id="Submission">
+                            <a href="#" class="nav__link {{ cekLink()=='Submission' ? 'active' : '' }}" id="Submission">
                                 <i class="fas fa-file-import nav__icon"></i>
                                 <span class="nav_name">Submission</span>
                             </a>
-                            <a href="#" class="nav__link {{ $title=='Report' ? 'active' : '' }}" id="Report">
+                            <a href="#" class="nav__link {{ cekLink()=='Report' ? 'active' : '' }}" id="Report">
                                 <i class="fas fa-book-open nav__icon"></i>
                                 <span class="nav_name">Report</span>
                             </a>
                         @endif
                         
                         @if (session()->get('nama_jabatan') == "Admin")
-                            <a href="/manage-account" class="nav__link {{ $title=='Manage Account' ? 'active' : '' }}" id="Manage Account">
+                            <a href="/manage-account" class="nav__link {{ cekLink()=='Manage Account' ? 'active' : '' }}" id="Manage Account">
                                 <i class="fas fa-users-cog nav__icon"></i>
                                 <span class="nav_name">Manage Account</span>
                             </a>
@@ -71,9 +91,7 @@
                 </a>
             </nav>
         </div>
-        @php
-            $breadcrumbs = Breadcrumbs::generate();
-        @endphp
+        
         <div class="dynamic-c">
             <div class="page_title">
                 @if (count($breadcrumbs) > 1)

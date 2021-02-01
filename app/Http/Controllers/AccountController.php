@@ -53,8 +53,9 @@ class AccountController extends Controller
      */
     public function create()
     {
-        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
-
+        if(session()->get('nama_jabatan') == "Admin" && Auth::check()){
+            $title = "Add Account";
+            return view('contents.add-account');
        
         }else{
             abort(404);
@@ -140,12 +141,12 @@ class AccountController extends Controller
      */
     public function edit($nip)
     {
-        if($nip == Auth::user()->nip || session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+        if($nip == Auth::user()->nip || session()->get('nama_jabatan') == "Admin"){
             if($nip != Auth::user()->nip){
-                if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+                if(session()->get('nama_jabatan') == "Admin"){
                     $akun_data = Akun::find($nip);
                     $detail_akun = Detailakun::find($akun_data->nip);
-                    $title = "Edit Profil";
+                    $title = "Edit Account Data";
                     return view('contents.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
                 }else{
                     abort(404);
@@ -153,7 +154,7 @@ class AccountController extends Controller
             }else{
                 $akun_data = Akun::find($nip);
                 $detail_akun = Detailakun::find($akun_data->nip);
-                $title = "Edit Account Data";
+                $title = "Edit Profil";
                 return view('contents.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
             }
         }else{
