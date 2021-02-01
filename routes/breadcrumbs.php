@@ -7,6 +7,9 @@ Breadcrumbs::for('dashboard', function ($trail) {
 Breadcrumbs::for('edit_profil', function ($trail, $nip) {
     $trail->push('Edit Profil', route('edit_profil', $nip));
 });
+Breadcrumbs::for('manage_account', function ($trail) {
+    $trail->push('Manage Account', route('manage_account'));
+});
 // Home
 Breadcrumbs::for('home', function ($trail) {
     $trail->push('Home', route('home'));

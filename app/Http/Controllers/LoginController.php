@@ -41,11 +41,6 @@ class LoginController extends Controller
         );
         $remember = $request->get('remember_me');
         if(Auth::attempt($akun_data, $remember)){
-            session([
-                'nip' => $request->nip,
-                'ps' => Crypt::encryptString($request->password),
-            ]);
-            session()->save();
             return redirect('login/successlogin');
         }else{
             return back()->with('pesan','NIP atau Password salah');
@@ -54,7 +49,7 @@ class LoginController extends Controller
     }
     function successlogin(){
         $akun = Auth::user();
-        if($akun){
+        if($akun && Auth::user()->status != "nonactive"){
             return redirect("/dashboard");
         }else{
             echo "<script>alert('Data akun tidak ditemukan')</script>";

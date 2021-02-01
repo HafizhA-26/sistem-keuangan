@@ -7,7 +7,7 @@
             </div>
             <div class="header__end">
                 <div class="header__icon-list">
-                    <a href="/edit-profil/{{ session()->get('nip') }}"  class="header__icon" title="Edit Profile">
+                    <a href="/edit-profil/{{ Auth::user()->nip }}"  class="header__icon" title="Edit Profile">
                         <i class="fa fa-user-edit"></i>
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                         @endif
                         
                         @if (session()->get('nama_jabatan') == "Admin")
-                            <a href="#" class="nav__link">
+                            <a href="/manage-account" class="nav__link">
                                 <i class="fas fa-users-cog nav__icon"></i>
                                 <span class="nav_name">Manage Account</span>
                             </a>

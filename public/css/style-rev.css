@@ -14,7 +14,9 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
-
+::placeholder{
+  font-family: 'Poppins Light';
+}
 /* Track */
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -489,4 +491,13 @@ input[type="text"], input[type="file"], textarea, select{
 label{
   font-family: 'Poppins';
   font-size: 1.1rem;
+}
+.prev-img{
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1.5rem;
+}
+.modal-title{
+  font-family: 'Poppins SemiBold';
+  text-transform: uppercase;
 }

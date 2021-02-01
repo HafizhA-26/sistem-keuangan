@@ -140,8 +140,8 @@ class AccountController extends Controller
      */
     public function edit($nip)
     {
-        if($nip == session()->get('nip') || session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
-            if($nip != session()->get('nip')){
+        if($nip == Auth::user()->nip || session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+            if($nip != Auth::user()->nip){
                 if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
                     $akun_data = Akun::find($nip);
                     $detail_akun = Detailakun::find($akun_data->nip);
@@ -217,7 +217,7 @@ class AccountController extends Controller
         $detail_akun->picture = $filename;
         $akun_data->save();
         $detail_akun->save();
-        if($request->nip == session()->get('nip')){
+        if($request->nip == Auth::user()->nip){
             session([
                 'nip' => $akun_data->nip,
                 'ps' => Crypt::encryptString($request->password),
