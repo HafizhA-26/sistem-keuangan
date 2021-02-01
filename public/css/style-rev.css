@@ -387,8 +387,9 @@ bl {
   height: calc(var(--header-height) + 40px );
   background-color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
+  justify-content: flex-start;
   padding: 1rem 2rem;
 }
 .page_title::before{
@@ -401,10 +402,18 @@ bl {
   transition-duration: 0s;
 }
 .p-title{
-  width: 100%;
+  width: auto;
   font-size: 1.7rem;
   color: var(--green);
   margin-bottom: 0;
+}
+.back_button{
+  color: var(--black);
+  font-size: 2rem;
+  transition: .5s;
+}
+.back_button:hover{
+  color: var(--green);
 }
 .breadcrumb{
   display: flex;

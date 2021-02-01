@@ -40,23 +40,23 @@
                         
                     </div>
                     <div class="nav__list">
-                        <a href="/dashboard" class="nav__link" id="Dashboard">
+                        <a href="/dashboard" class="nav__link {{ $title=='Dashboard' ? 'active' : '' }}" id="Dashboard">
                             <i class="fas fa-tachometer-alt nav__icon"></i>
                             <span class="nav_name">Dashboard</span>
                         </a>
                         @if (session()->get('nama_jabatan') != 'Admin')
-                            <a href="#" class="nav__link" id="Submission">
+                            <a href="#" class="nav__link {{ $title=='Submission' ? 'active' : '' }}" id="Submission">
                                 <i class="fas fa-file-import nav__icon"></i>
                                 <span class="nav_name">Submission</span>
                             </a>
-                            <a href="#" class="nav__link" id="Report">
+                            <a href="#" class="nav__link {{ $title=='Report' ? 'active' : '' }}" id="Report">
                                 <i class="fas fa-book-open nav__icon"></i>
                                 <span class="nav_name">Report</span>
                             </a>
                         @endif
                         
                         @if (session()->get('nama_jabatan') == "Admin")
-                            <a href="/manage-account" class="nav__link" id="Manage Account">
+                            <a href="/manage-account" class="nav__link {{ $title=='Manage Account' ? 'active' : '' }}" id="Manage Account">
                                 <i class="fas fa-users-cog nav__icon"></i>
                                 <span class="nav_name">Manage Account</span>
                             </a>
@@ -71,10 +71,21 @@
                 </a>
             </nav>
         </div>
+        @php
+            $breadcrumbs = Breadcrumbs::generate();
+        @endphp
         <div class="dynamic-c">
             <div class="page_title">
-                <h3 class="p-title" id="p-title">{{ $title ?? '-' }}</h3>
-                {{ Breadcrumbs::render() }}
+                @if (count($breadcrumbs) > 1)
+                    <div class="mr-3">
+                        <a href="" class="back_button"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                @endif
+                <div class="">
+                    <h3 class="p-title" id="p-title">{{ $title ?? '-' }}</h3>
+                    {{ Breadcrumbs::render() }}
+                </div>
+                
             </div>
             <div class="container_content">
                 @yield('web-content')
