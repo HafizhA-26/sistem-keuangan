@@ -47,6 +47,7 @@ a {
 }
 .content {
   position: relative;
+  min-height: 100%;
   margin: var(--header-height) 0 0 0;
   padding: 0 0 0 0;
   transition: 0.4s;
@@ -379,7 +380,7 @@ bl {
   padding: 1rem 0 0 0;
   background-color: var(--white);
   width: 100%;
-  height: auto;
+  min-height: 100%;
 }
 .page_title{
   width: 100%;
@@ -424,6 +425,7 @@ bl {
 }
 .container_content{
   width: 100%;
+  min-height: 100%;
   padding: 1rem;
 }
 .container_content .row{
@@ -488,7 +490,12 @@ input[type="text"], input[type="file"], textarea, select{
   font-size: 0.9rem;
   font-family: 'Poppins Light';
 }
+
 label{
+  font-family: 'Poppins';
+  font-size: 0.85rem;
+}
+label.label{
   font-family: 'Poppins';
   font-size: 1.1rem;
 }
@@ -500,4 +507,48 @@ label{
 .modal-title{
   font-family: 'Poppins SemiBold';
   text-transform: uppercase;
+}
+.data-account{
+  width: 100% !important;
+}
+.data-account thead{
+  background-color: var(--dark-blue);
+}
+.data-account thead th{
+  text-align: center;
+  color: white;
+  font-weight: normal;
+  font-family: 'Poppins SemiBold';
+}
+.dataTable td{
+  font-size: 0.9rem;
+}
+.dataTables_info{
+  font-size: 0.85rem;
+}
+.dataTables_paginate{
+  font-size: 0.85rem;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+  background: var(--blue) !important;
+  color: white !important;
+}
+button.theme-1{
+  border: none;
+  border-radius: 0;
+  background-color: var(--lightblue);
+  color: white;
+}
+button.theme-1:hover{
+  background-color: var(--blue);
+}
+button.theme-2{
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1.2rem ;
+  background-color: var(--light-green);
+  color: white;
+}
+button.theme-2:hover{
+  background-color: var(--green);
 }

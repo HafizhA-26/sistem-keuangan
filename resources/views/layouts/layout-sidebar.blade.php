@@ -40,23 +40,23 @@
                         
                     </div>
                     <div class="nav__list">
-                        <a href="/dashboard" class="nav__link active">
+                        <a href="/dashboard" class="nav__link" id="Dashboard">
                             <i class="fas fa-tachometer-alt nav__icon"></i>
                             <span class="nav_name">Dashboard</span>
                         </a>
                         @if (session()->get('nama_jabatan') != 'Admin')
-                            <a href="#" class="nav__link">
+                            <a href="#" class="nav__link" id="Submission">
                                 <i class="fas fa-file-import nav__icon"></i>
                                 <span class="nav_name">Submission</span>
                             </a>
-                            <a href="#" class="nav__link">
+                            <a href="#" class="nav__link" id="Report">
                                 <i class="fas fa-book-open nav__icon"></i>
                                 <span class="nav_name">Report</span>
                             </a>
                         @endif
                         
                         @if (session()->get('nama_jabatan') == "Admin")
-                            <a href="/manage-account" class="nav__link">
+                            <a href="/manage-account" class="nav__link" id="Manage Account">
                                 <i class="fas fa-users-cog nav__icon"></i>
                                 <span class="nav_name">Manage Account</span>
                             </a>
@@ -73,7 +73,7 @@
         </div>
         <div class="dynamic-c">
             <div class="page_title">
-                <h3 class="p-title">{{ $title ?? '-' }}</h3>
+                <h3 class="p-title" id="p-title">{{ $title ?? '-' }}</h3>
                 {{ Breadcrumbs::render() }}
             </div>
             <div class="container_content">

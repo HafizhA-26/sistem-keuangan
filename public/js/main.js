@@ -1,3 +1,8 @@
+const linkColor = document.querySelectorAll('.nav__link')
+window.onload = function(){
+    linkColor.forEach(l => l.classList.remove('active'))
+    setNavActive();
+}
 const showNavbar = (toggleId, navId, bodyId, headerId, davatar, imgId, unameId, statId) =>{
     const toggle = document.getElementById(toggleId),
     nav = document.getElementById(navId),
@@ -31,12 +36,17 @@ function sidebarIcon(){
     }
     
 }
-const linkColor = document.querySelectorAll('.nav__link')
+
 function colorLink(){
     if(linkColor){
         linkColor.forEach(l => l.classList.remove('active'))
         this.classList.add('active')
     }
+}
+function setNavActive(){
+    nowTitle = document.getElementById('p-title').innerHTML;
+    nowLink = document.getElementById(nowTitle);
+    nowLink.classList.add('active')
 }
 
 linkColor.forEach(l => l.addEventListener('click',colorLink))

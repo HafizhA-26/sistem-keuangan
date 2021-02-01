@@ -8,6 +8,8 @@
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/style.css") }}>
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/style-rev.css") }}>
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/responsive.css") }}>
+        <link rel="stylesheet" type="text/css" href={{ URL::asset("css/datatables.css") }}>
+        <link rel="stylesheet" type="text/css" href={{ URL::asset("css/responsive.dataTables.min.css") }}>
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/fonts/stylesheet.css") }}>
         <link href={{ URL::asset("css/all.min.css") }} type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -20,7 +22,7 @@
         <!-- Memanggil konten -->
         {{-- @yield('content') --}}
         @yield('content')
-        
+       
         <script>
             function hanyaAngka(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
@@ -57,6 +59,15 @@
         <script src={{ URL::asset("js/jquery.js") }}></script>
         <script src={{ URL::asset("js/bootstrap.min.js") }}></script>
         <script src={{ URL::asset("js/main.js") }}></script>
+        <script src={{ URL::asset("js/datatables.min.js") }}></script>
+        <script src={{ URL::asset("js/dataTables.responsive.min.js") }}></script>
+        <script>
+            $(document).ready( function () {
+                $('#dataTable').DataTable({
+                    responsive: true
+                });
+            } );
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         {{-- <script>
             $(document).ready(function(){

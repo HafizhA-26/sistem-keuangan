@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/manage-account',[AccountController::class, 'index'])->name('manage_account');
     Route::post('/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit'])->name("edit_profil");
+    Route::get('/edit-account-data/{nip}',[AccountController::class, 'edit'])->name("edit_data_account");
     Route::post('/update/{nip}',[AccountController::class, 'update']);
     Route::get('/del-account/{nip}',[AccountController::class, 'destroy']);
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);

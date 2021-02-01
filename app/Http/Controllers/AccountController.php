@@ -27,10 +27,10 @@ class AccountController extends Controller
     
     public function index()
     {
-        if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin"){
+        if(session()->get('nama_jabatan') == "Admin"){
 
         
-            $title = "Add Account - ";
+            $title = "Manage Account";
             $daftar_akun = DB::table('accounts')
                         ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                         ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
@@ -39,7 +39,7 @@ class AccountController extends Controller
                             ['accounts.status','!=','nonactive'],
                             ['accounts.nip','!=',Auth::user()->nip],
                         ])
-                        ->paginate(10);
+                        ->get();
             return view('contents.manage-account',['title' => $title, 'daftar' => $daftar_akun]);
             }else{
                 abort(404);

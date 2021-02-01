@@ -72,6 +72,9 @@
   div.desc-stat{
     margin: 0 0 0 2rem;
   }
+  .res-text-center{
+    text-align: center;
+  }
 }
 @media screen and (min-width: 768px) {
   .content {
