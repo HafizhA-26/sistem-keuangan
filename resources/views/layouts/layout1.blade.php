@@ -64,7 +64,8 @@
         <script>
             $(document).ready( function () {
                 $('#dataTable').DataTable({
-                    responsive: true
+                    responsive: true,
+                    info: false
                 });
             } );
         </script>

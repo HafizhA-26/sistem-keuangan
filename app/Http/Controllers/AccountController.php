@@ -153,7 +153,7 @@ class AccountController extends Controller
             }else{
                 $akun_data = Akun::find($nip);
                 $detail_akun = Detailakun::find($akun_data->nip);
-                $title = "Edit Profil";
+                $title = "Edit Account Data";
                 return view('contents.edit-profil',['title' => $title,'akun' => $akun_data, 'detail' => $detail_akun]);
             }
         }else{

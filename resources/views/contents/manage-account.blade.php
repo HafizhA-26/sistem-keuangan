@@ -38,9 +38,9 @@
 					<table class="data-account display nowrap" cellspacing="0" id="dataTable">
 						<thead> 
 							<tr>
-								<th data-priority="1">NIP</th>
+								<th data-priority="2">NIP</th>
 								<th data-priority="3">NUPTK</th>
-								<th data-priority="2">Nama</th>
+								<th data-priority="1">Nama</th>
 								<th data-priority="6">Jenis Kelamin</th>
 								<th data-priority="5">No. Handphone</th>
 								<th data-priority="4">Jabatan</th>
@@ -58,7 +58,7 @@
 									<td>{{ $akun->noHP }}</td>
 									<td>{{ $akun->nama_jabatan }}</td>
 									<td>{{ $akun->alamat }}</td>
-									<td><a href="/edit-profil/{{ $akun->nip }}"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="#" type="button" data-toggle="modal" data-target="#confirmation{{ $akun->nip }}"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
+									<td><a href="/edit-account-data/{{ $akun->nip }}"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="#" type="button" data-toggle="modal" data-target="#confirmation{{ $akun->nip }}"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
 								</tr>
 
 								  <!-- Modal -->

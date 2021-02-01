@@ -16,9 +16,9 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 // Home > About
-Breadcrumbs::for('about', function ($trail) {
-    $trail->parent('home');
-    $trail->push('About', route('about'));
+Breadcrumbs::for('edit_data_account', function ($trail,$nip) {
+    $trail->parent('manage_account');
+    $trail->push('Edit Account Data', route('edit_data_account',$nip));
 });
 
 // Home > Blog

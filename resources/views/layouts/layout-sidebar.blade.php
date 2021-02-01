@@ -78,7 +78,7 @@
             <div class="page_title">
                 @if (count($breadcrumbs) > 1)
                     <div class="mr-3">
-                        <a href="" class="back_button"><i class="fas fa-arrow-left"></i></a>
+                        <a href="{{ $breadcrumbs[count($breadcrumbs)-2]->url }}" class="back_button"><i class="fas fa-arrow-left"></i></a>
                     </div>
                 @endif
                 <div class="">

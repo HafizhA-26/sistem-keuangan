@@ -409,7 +409,7 @@ bl {
 }
 .back_button{
   color: var(--black);
-  font-size: 2rem;
+  font-size: 1.5rem;
   transition: .5s;
 }
 .back_button:hover{
@@ -425,6 +425,23 @@ bl {
     margin: 0;
     font-size: 0.9rem;
     font-family: 'Poppins Light';
+}
+.bread_link{
+  color: var(--black);
+  opacity: 0.5;
+  text-decoration: none;
+  transition: .3s;
+}
+.bread_link:hover{
+  color: var(--light-green);
+  opacity: 1;
+  text-decoration: none;
+}
+.breadcrumb-item + .breadcrumb-item::before{
+  content: ">>";
+}
+.breadcrumb-item.active{
+  font-family: 'Poppins';
 }
 .web-content{
   width: 100%;
