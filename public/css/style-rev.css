@@ -63,7 +63,18 @@ a {
 .op-0{
   opacity: 0;
 }
-
+.bg-red{
+  background-color: var(--red);
+}
+.bg-yellow{
+  background-color: var(--yellow);
+}
+.bg-green{
+  background-color: var(--green);
+}
+.bg-blue{
+  background-color: var(--blue);
+}
 .vertical-center {
   margin: 0;
   position: absolute;
@@ -584,13 +595,13 @@ label.label{
   font-family: 'Poppins SemiBold';
   text-transform: uppercase;
 }
-.data-account{
+.data-table{
   width: 100% !important;
 }
-.data-account thead{
+.data-table thead{
   background-color: var(--dark-blue);
 }
-.data-account thead th{
+.data-table thead th{
   text-align: center;
   color: white;
   font-weight: normal;
@@ -627,4 +638,26 @@ label.label{
 }
 .theme-2:hover{
   background-color: var(--green);
+}
+.ikon{
+  font-size: 3rem;
+  margin-right: 1rem;
+}
+.file-title{
+  font-family: 'Poppins SemiBold';
+}
+.modal .in-title{
+  font-family: 'Poppins SemiBold';
+  font-size: 0.9rem;
+}
+.modal .in-title2{
+  font-family: 'Poppins';
+  font-size: 1rem;
+}
+.modal .in-desc{
+  font-family: 'Poppins';
+  font-size: 0.9rem;
+}
+.modal-content{
+  border: 0;
 }

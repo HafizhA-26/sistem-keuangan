@@ -75,6 +75,12 @@
   .res-text-center{
     text-align: center;
   }
+  .ikon{
+    font-size: 2rem;
+  }
+  .file-title{
+    font-size: 1rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .content {

@@ -5,7 +5,7 @@
 			<div class="col-md">
 				<div class="card res-text-center">
 					<a href="/add-account" class="btn btn-primary theme-1 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
-					<table class="data-account display nowrap" cellspacing="0" id="dataTable">
+					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead> 
 							<tr>
 								<th data-priority="2">NIP</th>

@@ -11,8 +11,8 @@ Breadcrumbs::for('manage_account', function ($trail) {
     $trail->push('Manage Account', route('manage_account'));
 });
 // Home
-Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Home', route('home'));
+Breadcrumbs::for('submission', function ($trail) {
+    $trail->push('Submission', route('submission'));
 });
 
 // Home > About

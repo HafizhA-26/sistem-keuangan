@@ -51,7 +51,7 @@ class SubmissionController extends Controller
         $submissionDataForAPBD = [
             'datasub' => $this->Submission->allDataForAPBD()
         ];
-        $title = "Submission - ";
+        $title = "Submission";
         switch (session()->get('nama_jabatan')) {
             case 'Admin':
                 return view('contents.submission', ['title' => $title]);

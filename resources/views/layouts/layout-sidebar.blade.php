@@ -65,7 +65,7 @@
                             <span class="nav_name">Dashboard</span>
                         </a>
                         @if (session()->get('nama_jabatan') != 'Admin')
-                            <a href="#" class="nav__link {{ cekLink()=='Submission' ? 'active' : '' }}" id="Submission">
+                            <a href="/submission" class="nav__link {{ cekLink()=='Submission' ? 'active' : '' }}" id="Submission">
                                 <i class="fas fa-file-import nav__icon"></i>
                                 <span class="nav_name">Submission</span>
                             </a>
