@@ -41,21 +41,21 @@
 							<div class="col-md-9">
 								<div class="form-group">
 									<label class="label">NIP</label>
-									<input type="text" name="nip" value="{{ $akun->nip }}" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan NIP (contoh: 1234)" autocomplete="off" readonly>
+									<input type="text" name="nip" value="{{ $akun->nip }}" onkeypress="return hanyaAngka(event)" class="form-control"  placeholder="Enter NIP, e.g 18121122" autocomplete="off" readonly>
 								</div>
 								<div class="form-group">
 										<label class="label">New Password</label>
-										<input type="password" name="password" class="form-control" placeholder="Masukan Password Baru" id="inputPassword">
+										<input type="password" name="password" class="form-control" placeholder="Enter New Password" id="inputPassword">
 									
 									<input class="mt-2" type="checkbox" onclick="liatPass()" id="showps"><label class="form-check-label ml-2" for="showps" style="font-size: 0.8rem">Show Password</label>
 								</div>
 								<div class="form-group">
 									<label class="label">NUPTK</label>
-									<input type="text" value="{{ $detail->nuptk }}" name="nuptk" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan NUPTK (contoh: 2002939271)" autocomplete="off" maxlength="20">
+									<input type="text" value="{{ $detail->nuptk }}" name="nuptk" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Enter NUPTK, e.g 2039220893" autocomplete="off" maxlength="20">
 								</div>
 								<div class="form-group">
 									<label class="label">Nama</label>
-									<input type="text" name="nama" value = "{{ $detail->nama }}" class="form-control" placeholder="Masukan Nama" autocomplete="off" maxlength="50">
+									<input type="text" name="nama" value = "{{ $detail->nama }}" class="form-control" placeholder="Enter Name" autocomplete="off" maxlength="50">
 								</div>
 								<div class="form-group">
 									<label class="label">Jenis Kelamin</label>
@@ -68,13 +68,13 @@
 								</div>
 								<div class="form-group">
 									<label class="label">No. Handphone</label>
-									<input type="text" name="noHP" value="{{ $detail->noHP }}" class="form-control" placeholder="Masukan No. Handphone (contoh: 0812--)" autocomplete="off" maxlength="20">
+									<input type="text" name="noHP" value="{{ $detail->noHP }}" class="form-control" placeholder="Enter Phone Number, e.g 08292729109" autocomplete="off" maxlength="20">
 								</div>
-								@if (session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Admin")
+								@if (session()->get('nama_jabatan') == "Admin")
 									<div class="form-group">
 										<label class="label">Jabatan</label>
 										<select class="form-control" name="jabatan" id="jabatanForm" onchange="showJurusan()">
-											<option disabled>-- Select --</option>
+											<option disabled>-- Select Jabatan --</option>
 											@foreach ($jabatan->all() as $J)
 												<option value="{{ $J->id_jabatan }}" {{ $detail->id_jabatan == $J->id_jabatan ? 'selected' : '' }}>{{ $J->nama_jabatan }}</option>
 											@endforeach
@@ -88,7 +88,7 @@
 									<div class="form-group d-none" id="jurusan"> <!-- FORM INI MUNCUL JIKA JABATAN KAPROG-->
 										<label class="label">Jurusan</label>
 										<select class="form-control" name="jurusan" id="jurusanSelect">
-											<option disabled selected>-- Select --</option>
+											<option disabled selected>-- Select Jurusan --</option>
 											@foreach ($jurusan->all() as $jur)
 												<option value="{{ $jur->id_jurusan }}" {{ $detail->id_jurusan == $jur->id_jurusan ? 'selected' : '' }} >{{ $jur->nama_jurusan }}</option>
 											@endforeach
@@ -98,7 +98,7 @@
 								
 								<div class="form-group">
 									<label class="label">Alamat</label>
-									<textarea class="form-control" placeholder="Masukan Alamat" maxlength="100" name="alamat">{{ $detail->alamat }}</textarea>
+									<textarea class="form-control" placeholder="Enter Adress, e.g Lembur Sawah No.20 Kota Cimahi"maxlength="100" name="alamat">{{ $detail->alamat }}</textarea>
 								</div>
 								
 			

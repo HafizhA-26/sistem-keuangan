@@ -509,12 +509,16 @@ bl {
 .modal-backdrop.show{
   width: 100%;
 }
+small{
+  font-family: inherit;
+  font-size: 0.7rem;
+}
 input:focus, textarea:focus, select:focus{
   box-shadow: 0 0 0 0.1rem var(--lightblue) !important;
 }
-input[type="text"], input[type="file"], textarea, select{
-  font-size: 0.9rem;
-  font-family: 'Poppins Light';
+input[type="text"], input[type="file"],input[type="password"] ,textarea , select{
+  font-size: 0.9rem !important;
+  font-family: 'Poppins Light'!important;
 }
 
 label{
@@ -559,22 +563,22 @@ label.label{
   background: var(--blue) !important;
   color: white !important;
 }
-button.theme-1{
+.theme-1{
   border: none;
   border-radius: 0;
   background-color: var(--lightblue);
   color: white;
 }
-button.theme-1:hover{
+.theme-1:hover{
   background-color: var(--blue);
 }
-button.theme-2{
+.theme-2{
   border: none;
   border-radius: 0;
   padding: 0.5rem 1.2rem ;
   background-color: var(--light-green);
   color: white;
 }
-button.theme-2:hover{
+.theme-2:hover{
   background-color: var(--green);
 }

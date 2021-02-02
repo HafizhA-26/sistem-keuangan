@@ -54,8 +54,8 @@ class AccountController extends Controller
     public function create()
     {
         if(session()->get('nama_jabatan') == "Admin" && Auth::check()){
-            $title = "Add Account";
-            return view('contents.add-account');
+            $title = "Add New Account";
+            return view('contents.add-account',['title' => $title]);
        
         }else{
             abort(404);

@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md">
 				<div class="card res-text-center">
-					<a href="/add-account" class="btn btn-primary theme-2 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
+					<a href="/add-account" class="btn btn-primary theme-1 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
 					<table class="data-account display nowrap" cellspacing="0" id="dataTable">
 						<thead> 
 							<tr>

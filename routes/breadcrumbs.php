@@ -20,7 +20,10 @@ Breadcrumbs::for('edit_data_account', function ($trail,$nip) {
     $trail->parent('manage_account');
     $trail->push('Edit Account Data', route('edit_data_account',$nip));
 });
-
+Breadcrumbs::for('add_account', function ($trail) {
+    $trail->parent('manage_account');
+    $trail->push('Add New Account', route('add_account'));
+});
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
     $trail->parent('home');
