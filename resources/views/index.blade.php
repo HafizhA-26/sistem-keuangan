@@ -35,7 +35,7 @@
 							
 							<ul class="login-error">
 								@foreach ($errors->all() as $error)
-								<li class="alert-login">{{ $error }}</li>
+								<li class="alert-login" style="color: var(--black)">{{ $error }}</li>
 								@endforeach
 							</ul>
 						</div>

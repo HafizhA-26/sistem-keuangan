@@ -23,8 +23,8 @@ class LoginController extends Controller
         if(Auth::check()){
             return redirect("/dashboard");
         }else{
-            $title = "Login - ";
-            return view('login', ['title' => $title]);
+            $title = "Login";
+            return view('index', ['title' => $title]);
         }
         
     }
@@ -64,7 +64,7 @@ class LoginController extends Controller
         $akun_data->save();
         session()->flush();
         Auth::logout();
-        return view('/login');
+        return redirect('/login');
         
         
     }

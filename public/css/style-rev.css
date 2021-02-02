@@ -7,7 +7,11 @@
   --dark-blue : #110133;
   --black: #272727;
   --transition-speed: 300ms;
+  --dark-red: #af2d2d;
   --red: #fa1616;
+  --purple: #6930c3;
+  --light-red: #f05454;
+  --yellow: #ffba5a;
   --header-height: 3rem;
   --nav-width: 68px;
 }
@@ -146,6 +150,15 @@ a {
 .btn-update:hover{
   background-color: var(--green);
   border-color: var(--green);
+}
+.btn-dashboard{
+  width: 100%;
+  height: 80px;
+  font-family: 'Poppins SemiBold';
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .input-checkbox {
   width: 0.9rem;
@@ -467,6 +480,39 @@ bl {
   padding: 1.5rem;
   width: 100%;
   flex-direction: row;
+}
+.money-stat{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  width: 100%;
+  height: 150px;
+  flex-direction: column;
+}
+.gradient-1{
+  background-image: linear-gradient(to right, #af2d2d, #bf3736, #cf4140, #df4a4a, #f05454);
+}
+.gradient-2{
+  background-image: linear-gradient(to right, #03506f, #065677, #0a5c7e, #0d6386, #11698e);
+}
+.money-stat .desc-stat{
+  height: auto;
+  color: white;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+.money-stat .desc-stat .card-title{
+  color: white;
+  font-family: 'Poppins';
+  font-size: 2.5rem;
+  margin-bottom: .7rem;
+}
+.money-stat .desc-stat p{
+  color: white;
 }
 .icon-stat{
   display: flex;

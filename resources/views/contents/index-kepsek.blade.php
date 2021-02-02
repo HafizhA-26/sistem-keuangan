@@ -84,97 +84,91 @@
 		@endphp
         @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan") <!--Jabatan = Kepsek, Ka. Keuangan-->
         <div class="row">
-			<div class="col-md-2">
+			<div class="col-md-6">
+				<div class="card money-stat gradient-1">
+					<div class="card-body desc-stat">
+						<div class="vertical-center text-center">
+							<h5 class="card-title">Rp. {{ $bos}}</h5>
+							<p class="card-text">Dana BOS</p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-4">
-          		<div class="info-box">
-            		<span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
-            		<div class="info-box-content">
-              		<span class="info-box-text">Jumlah Dana BOS</span>
-              		<span class="info-box-number">Rp.{{$bos}}</span>
-            		</div>
-          		</div>
-        	</div>
-        	<div class="col-md-4">
-          		<div class="info-box">
-            		<span class="info-box-icon bg-success"><i class="fas fa-coins"></i></span>
-            		<div class="info-box-content">
-              		<span class="info-box-text">Anggaran APBD</span>
-              		<span class="info-box-number">Rp.{{$apbd}}</span>
-            		</div>
-          		</div>
-        	</div>
+			<div class="col-md-6">
+				<div class="card money-stat gradient-2">
+					<div class="card-body desc-stat">
+						<div class="vertical-center text-center">
+							<h5 class="card-title">Rp. {{ $apbd}}</h5>
+							<p class="card-text">Anggran APBD</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
         @endif
 
         @if(session()->get('nama_jabatan') == "Staf BOS") <!--Jabatan = Staf BOS-->
-        <div class="row">
-			<div class="col-md-3">
+        <div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card money-stat gradient-1">
+					<div class="card-body desc-stat">
+						<div class="vertical-center text-center">
+							<h5 class="card-title">Rp. {{ $bos}}</h5>
+							<p class="card-text">Dana BOS</p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-6">
-          		<div class="info-box">
-            		<span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
-            		<div class="info-box-content">
-              		<span class="info-box-text">Jumlah Dana BOS</span>
-              		<span class="info-box-number">Rp.{{$bos}}</span>
-            		</div>
-          		</div>
-        	</div>
 		</div>
         @endif
 
         @if(session()->get('nama_jabatan') == "Staf APBD") <!--Jabatan = Staf APBD-->
-        <div class="row">
-			<div class="col-md-3">
+        <div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card money-stat gradient-2">
+					<div class="card-body desc-stat">
+						<div class="vertical-center text-center">
+							<h5 class="card-title">Rp. {{ $apbd}}</h5>
+							<p class="card-text">Anggran APBD</p>
+						</div>
+					</div>
+				</div>
 			</div>
-        	<div class="col-md-6">
-          		<div class="info-box">
-            		<span class="info-box-icon bg-success"><i class="fas fa-coins"></i></span>
-            		<div class="info-box-content">
-              		<span class="info-box-text">Anggaran APBD</span>
-              		<span class="info-box-number">Rp.{{$apbd}}</span>
-            		</div>
-          		</div>
-        	</div>
 		</div>
         @endif
-
-		<br> <br>
 		<div class="row">
-			<div class="col-md-4">
-				<div class="small-box bg-danger">
-					<div class="inner">
-						<h2>{{$dashboardsubmission}}</h2> <!--GET COUNT TABLE SUBMISISON-->
-						<p>Pengajuan</p>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--yellow)">
+						<i class="fas fa-file-import"></i>
 					</div>
-					<div class="ikon">
-						<i class="fas fa-hand-holding-usd"></i>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$dashboardsubmission}}</h5>
+						<p class="card-text">New Submissions</p>
 					</div>
-					<a href="/submission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="small-box bg-success">
-					<div class="inner">
-						<h2>{{$reportS}}</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
-						<p>Laporan Pengajuan</p>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--green)">
+						<i class="fas fa-file-import"></i>
 					</div>
-					<div class="ikon">
-						<i class="fas fa-file-invoice"></i>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$reportT}}</h5>
+						<p class="card-text">Completed Submissions</p>
 					</div>
-					<a href="/report-submission" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="small-box bg-primary">
-					<div class="inner">
-						<h2>{{$reportT}}</h2> <!--GET COUNT LAPORAN TRANSAKSI-->
-						<p>Laporan Transaksi</p>
-					</div>
-					<div class="ikon">
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--purple)">
 						<i class="fas fa-file-invoice-dollar"></i>
 					</div>
-					<a href="/report-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$reportT}}</h5>
+						<p class="card-text">Transactions</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -184,29 +178,35 @@
     @if(session()->get('nama_jabatan') == "Kaprog") <!--Jabatan = Kaprog-->
 		
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6 mtop2">
-          		<div class="info-box">
-            		<span class="info-box-icon bg-primary"><i class="fas fa-hand-holding-usd"></i></span>
-            		<div class="info-box-content2">
-              		<span class="info-box-text2"><a href="/submission" title="Tambah Pengajuan Baru">Add New Submission</a></span>
-            		</div>
-          		</div>
-        	</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<div class="small-box bg-success">
-					<div class="inner">
-						<h2>{{$jumlahpengajuan}}</h2> <!--GET COUNT LAPORAN PENGAJUUAN-->
-						<p>Laporan Pengajuan</p>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--yellow)">
+						<i class="fas fa-file-import"></i>
 					</div>
-					<div class="ikon">
-						<i class="fas fa-file-invoice"></i>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$jumlahpengajuan}}</h5>
+						<p class="card-text">Submissions in-progress</p>
 					</div>
-					<a href="/report" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
+			</div>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--green)">
+						<i class="fas fa-file-import"></i>
+					</div>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$jumlahpengajuan}}</h5>
+						<p class="card-text">Completed Submissions</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<a class="btn btn-primary theme-2 btn-dashboard" href="/submissions">
+					<i class="fas fa-plus-circle mr-2"></i>
+					Add New Submission
+				</a>
 			</div>
 		</div>
     @endif
