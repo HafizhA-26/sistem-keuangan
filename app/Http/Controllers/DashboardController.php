@@ -143,12 +143,23 @@ class DashboardController extends Controller
             case 'Kaprog':
                 // TODO
                 $idkaprog = Auth::user()->nip;
-                $getJumlahPengajuan = DB::table('submissions')
-                ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
-                ->select('submissions.*')
-                ->where('submissions.id_pengaju', '=', $idkaprog)
-                ->count();
-                return view('contents.index-kepsek',[ 'title' => $title , 'jumlahpengajuan' => $getJumlahPengajuan]);
+                $pengajuanNC = DB::table('submissions')
+                    ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+                    ->select('submissions.*')
+                    ->where([
+                        ['submissions.id_pengaju', '=', $idkaprog],
+                        ['submissions.status','not like', 'ACC-3%'],
+                    ])
+                    ->count();
+                $pengajuanC = DB::table('submissions')
+                    ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
+                    ->select('submissions.*')
+                    ->where([
+                        ['submissions.id_pengaju', '=', $idkaprog],
+                        ['submissions.status','like', 'ACC-3%'],
+                    ])
+                    ->count();
+                return view('contents.index-kepsek',[ 'title' => $title , 'submissionC' => $pengajuanC, 'submissionNC','submissionNC' => $pengajuanNC]);
                 break;
             default:
                 echo "<script>alert('Data tidak ditemukan')</script>";

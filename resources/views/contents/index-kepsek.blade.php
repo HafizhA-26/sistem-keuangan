@@ -81,6 +81,12 @@
         @php
 			$bos = number_format($danaBOS,2,",",".");
 			$apbd = number_format($danaAPBD,2,",",".");
+			$mark = '';
+			if(session()->get('nama_jabatan') == "Staf APBD"){
+				$mark = "( APBD )";
+			}elseif (session()->get('nama_jabatan') == "Staf BOS") {
+				$mark = "( BOS )";
+			}
 		@endphp
         @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan") <!--Jabatan = Kepsek, Ka. Keuangan-->
         <div class="row">
@@ -145,7 +151,7 @@
 					</div>
 					<div class="card-body desc-stat">
 						<h5 class="card-title">{{$dashboardsubmission}}</h5>
-						<p class="card-text">New Submissions</p>
+						<p class="card-text">New Submissions {{ $mark }}</p>
 					</div>
 				</div>
 			</div>
@@ -155,8 +161,8 @@
 						<i class="fas fa-file-import"></i>
 					</div>
 					<div class="card-body desc-stat">
-						<h5 class="card-title">{{$reportT}}</h5>
-						<p class="card-text">Completed Submissions</p>
+						<h5 class="card-title">{{$reportS}}</h5>
+						<p class="card-text">Completed Submissions {{ $mark }}</p>
 					</div>
 				</div>
 			</div>
@@ -167,7 +173,7 @@
 					</div>
 					<div class="card-body desc-stat">
 						<h5 class="card-title">{{$reportT}}</h5>
-						<p class="card-text">Transactions</p>
+						<p class="card-text">Transactions {{ $mark }}</p>
 					</div>
 				</div>
 			</div>
@@ -184,7 +190,7 @@
 						<i class="fas fa-file-import"></i>
 					</div>
 					<div class="card-body desc-stat">
-						<h5 class="card-title">{{$jumlahpengajuan}}</h5>
+						<h5 class="card-title">{{$submissionNC}}</h5>
 						<p class="card-text">Submissions in-progress</p>
 					</div>
 				</div>
@@ -195,7 +201,7 @@
 						<i class="fas fa-file-import"></i>
 					</div>
 					<div class="card-body desc-stat">
-						<h5 class="card-title">{{$jumlahpengajuan}}</h5>
+						<h5 class="card-title">{{$submissionC}}</h5>
 						<p class="card-text">Completed Submissions</p>
 					</div>
 				</div>

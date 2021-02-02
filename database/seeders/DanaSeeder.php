@@ -15,12 +15,12 @@ class DanaSeeder extends Seeder
     {
         Dana::create([
             'id_dana'   => 'BOS',
-            'jumlah' =>  '0'
+            'jumlah' =>  '10000000'
         ]);
         Dana::create([
         
             'id_dana'   => 'APBD',
-            'jumlah' =>  '0'
+            'jumlah' =>  '10000000'
             
         ]);
     }

@@ -79,20 +79,20 @@ class Submission extends Model
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where('submissions.status','like','ACC-3%')
         ->count();
     }
     public function reportTKepsek(){
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('transaksi.id_transaksi')
-        ->orderBy('transaksi.updated_at', 'desc')
+        ->where('transaksi.jenis','!=','pending')
         ->count();
     }
 
@@ -111,20 +111,20 @@ class Submission extends Model
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where('submissions.status','like','ACC-3%')
         ->count();
     }
     public function reportTKaKeuangan(){
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('transaksi.id_transaksi')
-        ->orderBy('transaksi.updated_at', 'desc')
+        ->where('transaksi.jenis','!=','pending')
         ->count();
     }
 
@@ -143,22 +143,27 @@ class Submission extends Model
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
         ->where('transaksi.id_dana', '=', 'BOS')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where([
+            ['submissions.status','like','ACC-3%'],
+            ['dana.id_dana','=','BOS'],
+        ])
         ->count();
     }
     public function reportTfordashboardBOS(){
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('transaksi.id_transaksi')
-        ->where('transaksi.id_dana', '=', 'BOS')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where([
+            ['submissions.status','like','ACC-3%'],
+            ['dana.id_dana','=','BOS'],
+        ])
         ->count();
     }
 
@@ -177,22 +182,26 @@ class Submission extends Model
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
-        ->where('transaksi.id_dana', '=', 'APBD')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where([
+            ['submissions.status','like','ACC-3%'],
+            ['dana.id_dana','=','APBD'],
+        ])
         ->count();
     }
     public function reportTfordashboardAPBD(){
         return DB::table('submissions')
         ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
         ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
-        ->join('transaksi', 'transaksi.id_transaksi', 'submissions.id_transaksi')
-        ->join('dana', 'dana.id_dana', 'transaksi.id_dana')
+        ->join('transaksi', 'transaksi.id_transaksi','=', 'submissions.id_transaksi')
+        ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('transaksi.id_transaksi')
-        ->where('transaksi.id_dana', '=', 'APBD')
-        ->orderBy('submissions.updated_at', 'desc')
+        ->where([
+            ['submissions.status','like','ACC-3%'],
+            ['dana.id_dana','=','APBD'],
+        ])
         ->count();
     }
 
