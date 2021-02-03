@@ -36,9 +36,13 @@ Breadcrumbs::for('report', function ($trail) {
 });
 
 // Home > Blog > [Category]
-Breadcrumbs::for('category', function ($trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category->id));
+Breadcrumbs::for('report_transaction', function ($trail) {
+    $trail->parent('report');
+    $trail->push('Report Transaction', route('report_transaction'));
+});
+Breadcrumbs::for('report_submission', function ($trail) {
+    $trail->parent('report');
+    $trail->push('Report Submission', route('report_submission'));
 });
 
 // Home > Blog > [Category] > [Post]

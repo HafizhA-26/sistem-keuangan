@@ -1,61 +1,38 @@
-@extends('layouts.layout-report')
+@extends('layouts.layout-sidebar')
 
-@section('sub-content')
+@section('web-content')
     @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Admin") <!--Jabatan = Kepsek, Ka. Keuangan--> 
-	<div class="content">
-		<div class="back">
-			<a href="/report"><i class="fa fa-arrow-left icon3" title="Back to Report"></i></a>
-		</div>
-		<div class="header_report">
-			<h4>Laporan Transaksi</h4>
-		</div> <br>
 		<!-- Row Start-->
 		<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md-4">
-				<div class="small-box bg-primary">
-					<div class="inner">
-						<h2>{{ $masuk?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PEMASUKAN-->
-						<p>Pemasukan</p>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--light-green)">
+						<i class="fas fa-funnel-dollar"></i>
 					</div>
-					<div class="ikon">
-						<i class="fas fa-file-download"></i>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$masuk ?? 'N'}}</h5>
+						<p class="card-text">Pemasukkan</p>
 					</div>
-					<a href="#tabel-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="small-box bg-danger">
-					<div class="inner">
-						<h2>{{ $keluar?? 'N' }}</h2> <!--GET COUNT JUMLAH PADA TABEL, JENIS: PENGELUARAN-->
-						<p>Pengeluaran</p>
+			<div class="col-md">
+				<div class="card count-stat">
+					<div class="icon-stat" style="background-color: var(--red)">
+						<i class="fas fa-hand-holding-usd"></i>
 					</div>
-					<div class="ikon">
-						<i class="fas fa-file-upload"></i>
+					<div class="card-body desc-stat">
+						<h5 class="card-title">{{$keluar ?? 'N'}}</h5>
+						<p class="card-text">Pengeluaran</p>
 					</div>
-					<a href="#tabel-transaksi" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
 		<!-- Row End-->
-
-		<!--Tabel Transaksi Start-->
-		<div class="box1 box-info" id="tabel-transaksi">
-			<div class="box-header with-border">
-				<h3 class="box-title">Tabel Transaksi</h3>
-
-				<div class="right">
-				<form class="form-inline" method="post">
-					<div class="form-group">
-						<input type="text" name="" placeholder="Search" class="form-control search"> <!-- PERLU BACKEND -->
-						<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-					</div>
-				</form>
-				</div>
-			</div>
-			<div class="box-info">
-				<div class="table-responsive">
-					<table class="table no-margin"> <!-- GET DARI DATABASE -->
+		<div class="row">
+			<!--Tabel Transaksi Start-->
+			<div class="col-md">
+				<div class="card">
+					<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
 						<thead>
 							<tr>
 								<th>Jenis Dana</th>
@@ -75,7 +52,7 @@
 								<tr>
 									<td>{{ $r->id_dana }}</td>
 									<td>Rp. {{ $jumlah }}</td>
-									<td>{{ $r->jenis }}</td>
+									<td style="color: {{ $r->jenis=='keluar'? 'var(--red)': 'var(--light-green)' }}">{{ $r->jenis }}</td>
 									{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
 									@if ($r->id_jurusan)
 										@php
@@ -90,10 +67,13 @@
 							@endforeach
 						</tbody>
 					</table>
-					{{ $report->links() }}
 				</div>
 			</div>
+			
+
 		</div>
+	
+
 		<!--Tabel Transaksi End-->
 
 	</div>
@@ -199,6 +179,5 @@
 		</div>
 		<!--Tabel Transaksi End-->
 
-	</div>
 	@endif
 @endsection

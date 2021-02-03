@@ -59,7 +59,7 @@ class ReportController extends Controller
         return $bytes;
     }
     public function reportS(Request $request){
-        $title = "Submission Report - ";
+        $title = "Submission Report";
         $jabatan = session()->get('nama_jabatan');
         switch($jabatan){
             case 'Kepala Sekolah':
@@ -86,7 +86,7 @@ class ReportController extends Controller
         return view('contents.report-submission',['title' => $title,'report' => $report]);
     }
     public function reportT(){
-        $title = "Transaction Report - ";
+        $title = "Transaction Report";
         $jabatan = session()->get('nama_jabatan');
         $in = $this->laporanT->countIn($jabatan);
         $out = $this->laporanT->countOut($jabatan);
