@@ -19,7 +19,7 @@ class CreateDetailAccountsTable extends Migration
             $table->string('nama',50);
             $table->enum('jk',['Pria','Wanita']);
             $table->string('noHP',20)->nullable();
-            $table->char('id_jabatan',10);
+            $table->char('id_jabatan',10)->nullable();
             $table->text('alamat')->nullable();
             $table->string('picture')->nullable();
             $table->string('id_jurusan',10)->nullable()->default(NULL);

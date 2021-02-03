@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/submission/diizinkanapbd',[SubmissionController::class, 'storeizinkanapbd']);
 
     Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
-    Route::post('/addsubmission', [SubmissionController::class, 'createSubmission']);
+    Route::post('/createsubmissions', [SubmissionController::class, 'createSubmission']);
     Route::post('/submission/add', [SubmissionController::class, 'store']);
     Route::get('/report',[ReportController::class, ''])->name('report');
     Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);

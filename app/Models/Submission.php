@@ -19,7 +19,9 @@ class Submission extends Model
         'id_pengajuan',
         'judul',
         'tgl_pengajuan',
-        'status'
+        'status',
+        'created_at',
+        'updated_at',
     ];
     //untuk submission
     public function allDataForKepsek(){
@@ -30,6 +32,7 @@ class Submission extends Model
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
             ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
             ->where('submissions.status', 'LIKE', 'ACC-2%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
     public function allDataForKeuangan(){
@@ -40,6 +43,7 @@ class Submission extends Model
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
             ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
             ->where('submissions.status', 'LIKE', 'ACC-1%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
     public function allDataForAPBD(){
@@ -50,6 +54,7 @@ class Submission extends Model
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
             ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
             ->where('submissions.status', 'LIKE', 'ACC-A%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
     public function allDataForBOS(){
@@ -60,6 +65,7 @@ class Submission extends Model
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
             ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
             ->where('submissions.status', 'LIKE', 'ACC-B%')
+            ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
 

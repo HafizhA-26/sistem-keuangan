@@ -11,7 +11,7 @@
 			<div class="card">
 				@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!-- Jabatan = Staf APBD, Staf BOS-->
 					<div class="left mb-3">
-						<a href="/addsubmission"><button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Submission</button></a>
+						<a href="/addsubmission"><button type="button" class="btn btn-primary theme-1"><i class="fas fa-user-plus"></i> Add Submission</button></a>
 					</div>
 				@endif
 

@@ -14,7 +14,10 @@ Breadcrumbs::for('manage_account', function ($trail) {
 Breadcrumbs::for('submission', function ($trail) {
     $trail->push('Submission', route('submission'));
 });
-
+Breadcrumbs::for('add_submission', function ($trail) {
+    $trail->parent('manage_account');
+    $trail->push('Add New Submission', route('add_submission'));
+});
 // Home > About
 Breadcrumbs::for('edit_data_account', function ($trail,$nip) {
     $trail->parent('manage_account');

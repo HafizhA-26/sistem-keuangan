@@ -1,11 +1,8 @@
-@extends('layouts.layout-submission')
+@extends('layouts.layout-sidebar')
 
-@section('sub-content')
+@section('web-content')
 <div class="content">
 		<div class="card">
-			<div class="card-header">
-				<h4>Tambah Pengajuan</h1>
-			</div>
 			<div class="card-body">
 				<form class="/addsubmission" method="post" enctype="multipart/form-data">
 					@csrf
