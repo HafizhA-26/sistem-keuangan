@@ -76,9 +76,9 @@ class SubmissionController extends Controller
                 $getid = DB::table('submissions')
                     ->select('submissions.id_pengajuan')
                     ->get();
-                $count = $getid->count();
-                $id = 'S0000';
-                $id2 = 'T0000';
+                $count = $getid->count()+1;
+                $id = "S00001";
+                $id2 = "T00001";
                 $counterlen = strlen((string)$count);
                 $id = substr_replace($id, (string)$count, $counterlen * -1);
                 $id2 = substr_replace($id2, (string)$count, $counterlen * -1);
@@ -100,18 +100,20 @@ class SubmissionController extends Controller
         $getid = DB::table('submissions')
             ->select('submissions.id_pengajuan')
             ->get();
-        $count = $getid->count();
-        $id = 'S0000';
-        $id2 = 'T0000';
+        $count = $getid->count() + 1;
+        $id = "S00001";
+        $id2 = "T00001";
         $counterlen = strlen((string)$count);
         $id = substr_replace($id, (string)$count, $counterlen * -1);
         $id2 = substr_replace($id2, (string)$count, $counterlen * -1);
+
+        $title = "Add Submission";
         switch (session()->get('nama_jabatan')) {
             case 'Staf BOS':
-                return view('contents.add-submission', ['idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                return view('contents.add-submission', ['title' => $title ,'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
             case 'Staf APBD':
-                return view('contents.add-submission', ['idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                return view('contents.add-submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
         }
     }

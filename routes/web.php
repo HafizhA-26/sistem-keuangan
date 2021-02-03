@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/manage-account/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
     Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission2');
-    Route::post('/createsubmissions', [SubmissionController::class, 'createSubmission']);
+    Route::post('/manage-account/createsubmissions', [SubmissionController::class, 'createSubmission']);
     Route::post('/submission/add', [SubmissionController::class, 'store']);
     Route::get('/report',[ReportController::class, ''])->name('report');
 

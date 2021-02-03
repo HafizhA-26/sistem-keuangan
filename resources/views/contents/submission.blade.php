@@ -25,6 +25,7 @@
 									<th>No</th>
 									<th>Pengajuan</th>
 									<th>Pengaju</th>
+									<th>Jumlah</th>
 									<th>Tanggal</th>
 									<th>Action</th>
 								</tr>
@@ -36,13 +37,15 @@
 									// Memformat tanggal jadi format Hari-Bulan-Tahun
 									$date = date_create($dtsub->created_at);
 									$date = date_format($date, "d-m-Y");
+									$jumlah = number_format($dtsub->jumlah,2,",",".");
 								@endphp
 								<tr class="text-center">
 									<td data-priority="1">{{ $loop->iteration }}</td> <!-- PERLU BACKEND -->
 									<td data-priority="2">{{$dtsub->judul}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="3">{{$dtsub->nama}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="4">{{$date}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="5"><a href="" class="btn btn-secondary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
+									<td data-priority="3">{{$dtsub->nama}}</td>
+									<td data-priority="4">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="5">{{$date}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="6"><a href="" class="btn btn-secondary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -75,7 +78,7 @@
 												<!-- Body -->
 												<div class="modal-body top"> <!-- DI GET DARI DATA PENGAJU --> <!-- DESKRIPSI -->
 													<div class="alert alert-secondary" style="font-size: 0.9rem" role="alert">
-														{{ $data->deskripsi }}
+														<pre>{{ $data->deskripsi }}</pre>
 													</div>
 				
 													<div class="modal-body bottom">
@@ -124,6 +127,10 @@
 													<div class="modal-body bottom">
 														<span class="in-title"><b>Status : </b></span>
 														<span class="in-desc"><mark class="bg-light">{{ $data->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+													</div>
+													<div class="modal-body bottom">
+														<span class="in-title"><b>Jumlah : </b></span>
+														<span class="in-desc">Rp. {{ $jumlah }}</span> <!-- CANTUMKAN STATUS -->
 													</div>
 													<div class="modal-body bottom">
 														<span class="in-title"><b>Transaction ID : </b></span>
@@ -263,20 +270,20 @@
 									@csrf
 									<div class="form-group">
 										<label class="label">Judul Pengajuan</label>
-										<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan" autocomplete="off">
+										<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan" autocomplete="off" required>
 									</div>
 									
-									<div class="form-group">
+									<div class="form-group d-none">
 										<label class="label">Pilih ID Dana</label>
 										<select class="form-control" name="id_Dana">
-											<option disabled selected>-- Select --</option>
-											<option value="BOS">BOS</option>
+											<option disabled>-- Select --</option>
+											<option value="BOS" selected>BOS</option>
 											<option value="APBD">APBD</option>
 										</select>
 									</div>
 									<div class="form-group">
 										<label class="label">Jumlah</label>
-										<input type="text" name="jumlah" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan Jumlah Dana" autocomplete="off">
+										<input type="text" name="jumlah" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Masukan Jumlah Dana" autocomplete="off" required>
 									</div>
 									<div class="form-group">
 										<label class="label">Deskripsi</label>
@@ -296,7 +303,7 @@
 									<input type="hidden" name="idTransaksi" id="idTransaksi" value="{{ $idTransaksi }}"><br>
 									<input type="hidden" name="idPengaju" value="{{ $idUser }}"><br>
 									<div class="form-group">
-										<input type="submit" name="buttonsubmit" class="btn btn-primary">
+										<input type="submit" name="buttonsubmit" class="btn btn-primary theme-2 w-100">
 									</div>
 								</form>
 							</div>

@@ -209,7 +209,7 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-				<a class="btn btn-primary theme-2 btn-dashboard" href="/submissions">
+				<a class="btn btn-primary theme-2 btn-dashboard" href="/submission">
 					<i class="fas fa-plus-circle mr-2"></i>
 					Add New Submission
 				</a>
