@@ -1,29 +1,31 @@
-@extends('layouts.layout-report')
+@extends('layouts.layout-sidebar')
 
-@section('sub-content')
+@section('web-content')
 <!-- Untuk Jabatan Kaprog langsung di direct ke report-submission, tanpa masuk ke halaman ini-->
 
 	@if(session()->get('nama_jabatan') != "Kaprog") <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
-    <div class="content">
-		<div class="header_report">
-			<h4>Laporan</h4>
-		</div> <br>
-		<div class="row">
-  		<div class="col-sm-6">
-  			<div class="thumbnail">
-  				<h5>Laporan Transaksi</h5>
-  				<i class="fas fa-file-invoice-dollar icon2"></i> <br>
-  				<a href="/report/report-transaction" class="btn btn-primary">Check</a>
-  			</div>
+    <div class="row res-text-center">
+  		<div class="col-md-6">
+			<a class="btn btn-primary btn-dashboard2 theme-money" href="/report/report-transaksi">
+				<i class="fas fa-file-invoice-dollar icon-title"></i>
+				<span>Transactions Report</span>
+				<div class="check-button">
+					check <i class="fas fa-arrow-right icon-cek"></i>
+				</div>
+				
+			</a>
   		</div>
-  		<div class="col-sm-6">
-  			<div class="thumbnail">
-  				<h5>Laporan Pengajuan</h5>
-  				<i class="fas fa-file-invoice icon2"></i> <br>
-  				<a href="/report/report-submission" class="btn btn-primary">Check</a>
-  			</div>
+  		<div class="col-md-6">
+			<a class="btn btn-primary btn-dashboard2 theme-paper" href="/report/report-transaksi">
+				<i class="fas fa-file-contract icon-title"></i>
+				<span>Submissions Report</span>
+				<div class="check-button">
+					check <i class="fas fa-arrow-right icon-cek"></i>
+				</div>
+				
+			</a>
   		</div>
-		</div>
+		
 	</div>
 	@endif
 @endsection

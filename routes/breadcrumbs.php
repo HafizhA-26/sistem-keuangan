@@ -31,9 +31,8 @@ Breadcrumbs::for('add_account', function ($trail) {
     $trail->push('Add New Account', route('add_account'));
 });
 // Home > Blog
-Breadcrumbs::for('blog', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Blog', route('blog'));
+Breadcrumbs::for('report', function ($trail) {
+    $trail->push('Report', route('report'));
 });
 
 // Home > Blog > [Category]

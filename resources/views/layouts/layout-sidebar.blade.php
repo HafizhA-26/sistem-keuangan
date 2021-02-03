@@ -69,7 +69,7 @@
                                 <i class="fas fa-file-import nav__icon"></i>
                                 <span class="nav_name">Submission</span>
                             </a>
-                            <a href="#" class="nav__link {{ cekLink()=='Report' ? 'active' : '' }}" id="Report">
+                            <a href="/report" class="nav__link {{ cekLink()=='Report' ? 'active' : '' }}" id="Report">
                                 <i class="fas fa-book-open nav__icon"></i>
                                 <span class="nav_name">Report</span>
                             </a>
