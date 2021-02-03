@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md">
 				<div class="card res-text-center">
-					<a href="/add-account" class="btn btn-primary theme-1 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
+					<a href="/manage-account/add-account" class="btn btn-primary theme-1 mb-4"><i class="fas fa-user-plus mr-1"></i>Add Account</a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead> 
 							<tr>
@@ -28,7 +28,7 @@
 									<td>{{ $akun->noHP }}</td>
 									<td>{{ $akun->nama_jabatan }}</td>
 									<td>{{ $akun->alamat }}</td>
-									<td><a href="/edit-account-data/{{ $akun->nip }}"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="#" type="button" data-toggle="modal" data-target="#confirmation{{ $akun->nip }}"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
+									<td><a href="/manage-account/edit-account-data/{{ $akun->nip }}"><i class="fas fa-edit" title="Edit Profil"></i></a> &nbsp; <a href="#" type="button" data-toggle="modal" data-target="#confirmation{{ $akun->nip }}"><i class="fas fa-trash" title="Delete Profil"></i></a></td>
 								</tr>
 
 								  <!-- Modal -->

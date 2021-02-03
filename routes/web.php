@@ -40,20 +40,20 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/submission/tidakdiizinkanapbd',[SubmissionController::class, 'storetidakizinkanapbd']);
     Route::post('/submission/diizinkanapbd',[SubmissionController::class, 'storeizinkanapbd']);
 
-    Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
+    Route::get('/manage-account/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
+    Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission2');
     Route::post('/createsubmissions', [SubmissionController::class, 'createSubmission']);
     Route::post('/submission/add', [SubmissionController::class, 'store']);
     Route::get('/report',[ReportController::class, ''])->name('report');
-    Route::post('/submission/tidakdiizinkan',[SubmissionController::class, 'storetidakdiizinkan']);
-    Route::post('/submission/diizinkan',[SubmissionController::class, 'storediizinkan']);
+
     Route::get('/report',[ReportController::class, 'index'])->name('report');
-    Route::get('/report-submission',[ReportController::class, 'reportS'])->name('report_submission');
-    Route::get('/report-transaction',[ReportController::class, 'reportT'])->name('report_transaction');
+    Route::get('/report/report-submission',[ReportController::class, 'reportS'])->name('report_submission');
+    Route::get('/report/report-transaction',[ReportController::class, 'reportT'])->name('report_transaction');
     Route::get('/manage-account',[AccountController::class, 'index'])->name('manage_account');
-    Route::get('/add-account',[AccountController::class, 'create'])->name('add_account');
-    Route::post('/store-data-account',[AccountController::class, 'store']);
+    Route::get('/manage-account/add-account',[AccountController::class, 'create'])->name('add_account');
+    Route::post('/manage-account/store-data-account',[AccountController::class, 'store']);
     Route::get('/edit-profil/{nip}',[AccountController::class, 'edit'])->name("edit_profil");
-    Route::get('/edit-account-data/{nip}',[AccountController::class, 'edit'])->name("edit_data_account");
+    Route::get('/manage-account/edit-account-data/{nip}',[AccountController::class, 'edit'])->name("edit_data_account");
     Route::post('/update/{nip}',[AccountController::class, 'update']);
     Route::get('/del-account/{nip}',[AccountController::class, 'destroy']);
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);

@@ -13,14 +13,14 @@
   			<div class="thumbnail">
   				<h5>Laporan Transaksi</h5>
   				<i class="fas fa-file-invoice-dollar icon2"></i> <br>
-  				<a href="/report-transaction" class="btn btn-primary">Check</a>
+  				<a href="/report/report-transaction" class="btn btn-primary">Check</a>
   			</div>
   		</div>
   		<div class="col-sm-6">
   			<div class="thumbnail">
   				<h5>Laporan Pengajuan</h5>
   				<i class="fas fa-file-invoice icon2"></i> <br>
-  				<a href="/report-submission" class="btn btn-primary">Check</a>
+  				<a href="/report/report-submission" class="btn btn-primary">Check</a>
   			</div>
   		</div>
 		</div>

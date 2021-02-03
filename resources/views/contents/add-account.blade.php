@@ -24,7 +24,7 @@
 					
 				@endif
 				<div class="card-body">
-						<form class="" method="post" action="/store-data-account" enctype="multipart/form-data">
+						<form class="" method="post" action="/manage-account/store-data-account" enctype="multipart/form-data">
 									@csrf
 									<div class="form-group">
 										<label class="label">NIP</label>
