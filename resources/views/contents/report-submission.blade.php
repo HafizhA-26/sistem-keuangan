@@ -10,13 +10,13 @@
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr>
-								<th data-priority="2">No</th>
-								<th data-priority="1">Pengajuan</th>
+								<th data-priority="1">No</th>
+								<th data-priority="2">Pengajuan</th>
 								<th data-priority="3">Pengaju</th>
 								<th data-priority="4">Jumlah</th>
 								<th data-priority="5">Tanggal</th>
 								<th data-priority="6">Status</th>
-								<th data-priority="7">Detail Pengajuan</th>
+								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
 					<tbody id="dataTable">
@@ -55,7 +55,7 @@
 							<td>Rp. {{ $jumlah }}</td>
 							<td>{{ $date }}</td> <!-- PERLU BACKEND -->
 							<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
-							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
+							<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 
 					
 						</tr>
@@ -78,7 +78,7 @@
 											<pre>{{ $r->deskripsi }}</pre>
 										</div>
 
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title"><b>Attached File</b></span>
 	
 											{{-- cek jika ada file_lampiran --}}
@@ -128,23 +128,29 @@
 											@endif
 										</div>
 										
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+											<form action="/report/report-transaction" method="get" >
+												<input type="hidden" name="search" value="{{ $r->id_transaksi}}">
+												<button type="submit" class="btn btn-sm btn-link"><i class="fas fa-search"></i></button>
+											</form>
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Pengaju : </span>
 											<span class="in-desc">{{ $r->nama }}</span> <!-- CANTUMKAN NAMA PENGAJU -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Tanggal Diajukan : </span>
 											<span class="in-desc">{{ $date }}</span> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
-
+										<div class="modal-body bottom pt-2 pb-1">
+											<span class="in-title"><b>Comments : </b></span>
+										</div>
 										@php
 											// Ambil daftar comment dari pengajuan terkait
 											$comments = DB::table('comments')
@@ -154,7 +160,7 @@
 										@endphp
 
 										@foreach ($comments->all() as $c)
-											<div class="modal-body bottom">
+											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
 												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
@@ -188,13 +194,13 @@
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr>
-								<th>No</th>
-								<th>Pengajuan</th>
-								<th>Pengaju</th>
-								<th>Jumlah</th>
-								<th>Tanggal</th>
-								<th>Status</th>
-								<th>Detail Pengajuan</th>
+								<th data-priority="1">No</th>
+								<th data-priority="2">Pengajuan</th>
+								<th data-priority="3">Pengaju</th>
+								<th data-priority="4">Jumlah</th>
+								<th data-priority="5">Tanggal</th>
+								<th data-priority="6">Status</th>
+								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
 						
@@ -233,8 +239,8 @@
 								@endif
 								<td>Rp. {{ $jumlah }}</td>
 								<td>{{ $date }}</td> <!-- PERLU BACKEND -->
-								<td>{{ $r->status }}</td> <!-- PERLU BACKEND -->
-								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Lihat Detail</button></td>
+								<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
+								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 							</tr>
 						</tbody>
 	
@@ -255,7 +261,7 @@
 											<pre>{{ $r->deskripsi }}</pre>
 										</div>
 	
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">File Lampiran</span>
 	
 											{{-- cek jika ada file_lampiran --}}
@@ -305,23 +311,30 @@
 										@endif
 										</div>
 										
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
-											<span class="in-desc"><mark class="bg-light">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
-											<span class="in-desc"><mark class="bg-light">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+											<form action="/report/report-transaction" method="get" >
+												<input type="hidden" name="search" value="{{ $r->id_transaksi}}">
+												<button type="submit" class="btn btn-sm btn-link"><i class="fas fa-search"></i></button>
+											</form>
+											
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Pengaju : </span>
 											<span class="in-desc">{{ $r->nama }}</span> <!-- CANTUMKAN NAMA PENGAJU -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Tanggal Diajukan : </span>
 											<span class="in-desc">{{ $date }}</span> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
-	
+										<div class="modal-body bottom pt-2 pb-1">
+											<span class="in-title"><b>Comments : </b></span>
+										</div>
 										@php
 											// Ambil daftar comment dari pengajuan terkait
 											$comments = DB::table('comments')
@@ -331,7 +344,7 @@
 										@endphp
 	
 										@foreach ($comments->all() as $c)
-											<div class="modal-body bottom">
+											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
 												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
@@ -364,8 +377,8 @@
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr class="text-center">
-								<th data-priority="2">No</th>
-								<th data-priority="1">Pengajuan</th>
+								<th data-priority="1">No</th>
+								<th data-priority="2">Pengajuan</th>
 								<th data-priority="3">Pengaju</th>
 								<th data-priority="4" >Jumlah</th>
 								<th data-priority="5">Tanggal</th>
@@ -431,7 +444,7 @@
 											<pre>{{ $r->deskripsi }}</pre>
 										</div>
 	
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">File Lampiran</span>
 	
 											{{-- cek jika ada file_lampiran --}}
@@ -481,23 +494,25 @@
 										@endif
 										</div>
 										
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
-											<span class="in-desc"><mark class="bg-light">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<span class="in-desc"><mark class="bg-yellow">{{ $status }}</mark></span> <!-- CANTUMKAN STATUS -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
-											<span class="in-desc"><mark class="bg-light">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Pengaju : </span>
 											<span class="in-desc">{{ $r->nama }}</span> <!-- CANTUMKAN NAMA PENGAJU -->
 										</div>
-										<div class="modal-body bottom">
+										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Tanggal Diajukan : </span>
 											<span class="in-desc">{{ $date }}</span> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 										</div>
-	
+										<div class="modal-body bottom pt-2 pb-1">
+											<span class="in-title"><b>Comments : </b></span>
+										</div>
 										@php
 											// Ambil daftar comment dari pengajuan terkait
 											$comments = DB::table('comments')
@@ -507,7 +522,7 @@
 										@endphp
 	
 										@foreach ($comments->all() as $c)
-											<div class="modal-body bottom">
+											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
 												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->

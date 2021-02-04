@@ -72,7 +72,7 @@ class Transaksi extends Model
             ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where('transaksi.jenis','!=','Pending')
             ->orderBy('submissions.updated_at', 'desc')
-            ->paginate(10);
+            ->get();
     }
     public function reportBOS()
     {
@@ -85,7 +85,7 @@ class Transaksi extends Model
                 ['transaksi.id_dana','=','BOS'],
             ])
             ->orderBy('submissions.updated_at', 'desc')
-            ->paginate(10);
+            ->get();
     }
     public function reportAPBD()
     {
@@ -98,7 +98,7 @@ class Transaksi extends Model
                 ['transaksi.id_dana','=','APBD'],
             ])
             ->orderBy('submissions.updated_at', 'desc')
-            ->paginate(10);
+            ->get();
     }
 
 }

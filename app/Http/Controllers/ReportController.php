@@ -88,12 +88,15 @@ class ReportController extends Controller
 
         return view('contents.report-submission',['title' => $title,'report' => $report]);
     }
-    public function reportT(){
+    public function reportT(Request $request){
         $title = "Transaction Report";
         $jabatan = session()->get('nama_jabatan');
         $in = $this->laporanT->countIn($jabatan);
         $out = $this->laporanT->countOut($jabatan);
-        
+        $search = "";
+        if($request->search){
+            $search = $request->search;
+        }
         switch($jabatan){
             case 'Kepala Sekolah':
             case 'Admin':
@@ -101,9 +104,11 @@ class ReportController extends Controller
                 $report = $this->laporanT->reportA();
                 break;
             case 'Staf BOS':
+                $title = "Report Transaksi BOS";
                 $report = $this->laporanT->reportBOS();
                 break;
             case 'Staf APBD':
+                $title = "Report Transaksi APBD";
                 $report = $this->laporanT->reportAPBD();
                 break;
             default:
@@ -111,7 +116,7 @@ class ReportController extends Controller
                 break;
         }
         
-        return view('contents.report-transaksi',['title' => $title,'masuk' => $in,'keluar' => $out,'report' => $report]);
+        return view('contents.report-transaksi',['title' => $title,'masuk' => $in,'keluar' => $out,'report' => $report,'search' => $search]);
     }
     
     
