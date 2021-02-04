@@ -59,7 +59,7 @@ class ReportController extends Controller
         return $bytes;
     }
     public function reportS(Request $request){
-        $title = "Submission Report";
+        $title = "Report Submission";
         $jabatan = session()->get('nama_jabatan');
         switch($jabatan){
             case 'Kepala Sekolah':
@@ -68,13 +68,16 @@ class ReportController extends Controller
                 $report = $this->laporanS->reportA($request->search);
                 break;
             case 'Staf BOS':
+                $title = "Report Submission BOS";
                 $report = $this->laporanS->reportBOS($request->search);
                 break;
                
             case 'Staf APBD':
+                $title = "Report Submission APBD";
                 $report = $this->laporanS->reportAPBD($request->search);
                 break;
             case 'Kaprog':
+                $title = "Your Report Submission";
                 $report = $this->laporanS->reportKaprog($request->search);
                 break;
                 

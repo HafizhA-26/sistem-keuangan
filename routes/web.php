@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/report',[ReportController::class, 'index'])->name('report');
     Route::get('/report/report-submission',[ReportController::class, 'reportS'])->name('report_submission');
+    Route::get('/report-submission',[ReportController::class, 'reportS'])->name('report_submission2');
     Route::get('/report/report-transaction',[ReportController::class, 'reportT'])->name('report_transaction');
     Route::get('/manage-account',[AccountController::class, 'index'])->name('manage_account');
     Route::get('/manage-account/add-account',[AccountController::class, 'create'])->name('add_account');

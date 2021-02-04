@@ -45,7 +45,7 @@
 							<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 								</button>
-							<p class="alert-login" style="margin-bottom: 0; color: white">{{ $message }}</p>
+							<p class="alert-login" style="margin-bottom: 0; color: black">{{ $message }}</p>
 						</div>
 						@error('password')
 							<div class="alert alert-danger alert-dismissible fade show text-center alert-error" role="alert">

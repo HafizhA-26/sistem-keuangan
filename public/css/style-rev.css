@@ -127,6 +127,10 @@ a {
 .login-content {
   padding-right: 0;
 }
+.login-content .alert{
+  text-align: center;
+  width: 100%;
+}
 .input-login {
   border-radius: 0 !important;
   border-top: 0 !important;
@@ -642,6 +646,9 @@ label.label{
   font-weight: normal;
   font-family: 'Poppins SemiBold';
 }
+tr.tr-left th{
+  text-align: left;
+}
 .dataTable td{
   font-size: 0.9rem;
 }
@@ -713,4 +720,7 @@ label.label{
 }
 .modal-content{
   border: 0;
+}
+pre{
+  font-family: 'Poppins';
 }

@@ -44,6 +44,9 @@ Breadcrumbs::for('report_submission', function ($trail) {
     $trail->parent('report');
     $trail->push('Report Submission', route('report_submission'));
 });
+Breadcrumbs::for('report_submission2', function ($trail) {
+    $trail->push('Report Submission', route('report_submission2'));
+});
 
 // Home > Blog > [Category] > [Post]
 Breadcrumbs::for('post', function ($trail, $post) {
