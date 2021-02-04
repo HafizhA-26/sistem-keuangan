@@ -190,6 +190,11 @@ a {
   border: 0;
   transition: .5s;
 }
+.btn-dashboard2 p{
+  font-family: 'Poppins ExtraLight';
+  text-transform: none;
+  font-size: 0.8rem;
+}
 .btn-dashboard2 .icon-title{
   margin-bottom: .8rem;
   font-size: 3.2rem;
@@ -695,6 +700,24 @@ tr.tr-left th{
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6) ) ,
     url('../img/bg/paper.jpg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.theme-document1{
+  background: linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6) ) ,
+    url('../img/bg/document1.jpg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.theme-document2{
+  background: linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6) ) ,
+    url('../img/bg/document2.jpg');
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;

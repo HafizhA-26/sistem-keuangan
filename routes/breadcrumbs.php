@@ -14,6 +14,14 @@ Breadcrumbs::for('manage_account', function ($trail) {
 Breadcrumbs::for('submission', function ($trail) {
     $trail->push('Submission', route('submission'));
 });
+Breadcrumbs::for('new_submission', function ($trail) {
+    $trail->parent('submission');
+    $trail->push('New Submissions', route('new_submission'));
+});
+Breadcrumbs::for('inprogress_submission', function ($trail) {
+    $trail->parent('submission');
+    $trail->push('Your In-progress Submission', route('inprogress_submission'));
+});
 Breadcrumbs::for('add_submission', function ($trail) {
     $trail->parent('submission');
     $trail->push('Add New Submission', route('add_submission'));

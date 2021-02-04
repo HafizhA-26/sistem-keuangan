@@ -5,7 +5,7 @@
 	<div class="col-md">
 		<div class="card">
 			<div class="card-body">
-				<form action="/manage-account/createsubmissions" method="post" enctype="multipart/form-data">
+				<form action="/submission/createsubmissions" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label class="label">Judul Pengajuan</label>

@@ -36,8 +36,11 @@ class SubmissionController extends Controller
 
         return $bytes;
     }
-
-    public function index()
+    public function index(){
+        $title = "Submission";
+        return view('contents.submission',['title' => $title]);
+    }
+    public function newsubmission()
     {
         $submissionDataForKepsek = [
             'datasub' => $this->Submission->allDataForKepsek()
@@ -82,7 +85,7 @@ class SubmissionController extends Controller
                 $counterlen = strlen((string)$count);
                 $id = substr_replace($id, (string)$count, $counterlen * -1);
                 $id2 = substr_replace($id2, (string)$count, $counterlen * -1);
-                return view('contents.submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                return view('contents.all-submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
             default:
                 $title = "Login";

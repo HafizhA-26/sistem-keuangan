@@ -28,7 +28,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification'])->name('dashboard');
     Route::get('/submission',[SubmissionController::class, 'index'])->name('submission');
-    Route::post('/submission',[SubmissionController::class, 'store']);
+    Route::get('/submission/new-submission',[SubmissionController::class, 'newsubmission'])->name('new_submission');
+    Route::get('/submission/inprogress-submission',[SubmissionController::class, 'inprogress'])->name('inprogress_submission');
+   
 
     /* Route untuk izinkan dan tidak diizinkan */
     Route::post('/submission/tidakdiizinkankepsek',[SubmissionController::class, 'storetidakdiizinkankepsek']);
@@ -40,9 +42,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/submission/tidakdiizinkanapbd',[SubmissionController::class, 'storetidakizinkanapbd']);
     Route::post('/submission/diizinkanapbd',[SubmissionController::class, 'storeizinkanapbd']);
 
-    Route::get('/manage-account/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
+    Route::get('/submission/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission');
     Route::get('/addsubmission', [SubmissionController::class, 'addSubmission'])->name('add_submission2');
-    Route::post('/manage-account/createsubmissions', [SubmissionController::class, 'createSubmission']);
+    Route::post('/submission/createsubmissions', [SubmissionController::class, 'createSubmission']);
     Route::post('/submission/add', [SubmissionController::class, 'store']);
     Route::get('/report',[ReportController::class, ''])->name('report');
 
