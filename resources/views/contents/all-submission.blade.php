@@ -9,12 +9,6 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				@if(session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS") <!-- Jabatan = Staf APBD, Staf BOS-->
-					<div class="left mb-3">
-						<a href="/manage-account/addsubmission"><button type="button" class="btn btn-primary theme-1"><i class="fas fa-user-plus"></i> Add Submission</button></a>
-					</div>
-				@endif
-
 					<!-- TABEL SUBMISSION UNTUK KEPALA SEKOLAH -->
 					<div>
 						<!-- SEMUA ISI TABLE NGE GET DARI DATA PENGAJU -->
@@ -45,7 +39,7 @@
 									<td data-priority="3">{{$dtsub->nama}}</td>
 									<td data-priority="4">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
 									<td data-priority="5">{{$date}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="6"><a href="" class="btn btn-secondary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
+									<td data-priority="6"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -78,11 +72,11 @@
 
 												<!-- Body -->
 												<div class="modal-body top"> <!-- DI GET DARI DATA PENGAJU --> <!-- DESKRIPSI -->
-													<div class="alert alert-secondary" style="font-size: 0.9rem" role="alert">
+													<div class="alert alert-primary" style="font-size: 0.9rem" role="alert">
 														<pre>{{ $data->deskripsi }}</pre>
 													</div>
 				
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Attached File</b></span>
 				
 														{{-- cek jika ada file_lampiran --}}
@@ -132,27 +126,27 @@
 														@endif
 													</div>
 													
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Status : </b></span>
 														<span class="in-desc"><mark class="bg-light">{{ $data->status }}</mark></span> <!-- CANTUMKAN STATUS -->
 													</div>
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Jumlah : </b></span>
 														<span class="in-desc">Rp. {{ $jumlah }}</span> <!-- CANTUMKAN STATUS -->
 													</div>
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Transaction ID : </b></span>
 														<span class="in-desc"><mark class="bg-light">{{ $data->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 													</div>
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Submitter : </b></span>
 														<span class="in-desc">{{ $data->nama }}</span> <!-- CANTUMKAN NAMA PENGAJU -->
 													</div>
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Submitted Date : </b></span>
 														<span class="in-desc">{{ $date }}</span> <!-- CANTUMKAN TAANGGAL DIAJUKAN -->
 													</div>
-													<div class="modal-body bottom">
+													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Comments : </b></span>
 													</div>
 													@php
@@ -164,7 +158,7 @@
 													@endphp
 				
 													@foreach ($comments->all() as $c)
-														<div class="modal-body bottom">
+														<div class="modal-body bottom pt-1 pb-2">
 															<img src="{{ URL::asset("img/avatar/$c->picture") }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 															<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
 															<textarea disabled="" class="form-control" style="font-size: 0.8rem; height: auto;">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->

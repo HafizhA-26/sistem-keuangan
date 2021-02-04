@@ -20,7 +20,7 @@ Breadcrumbs::for('new_submission', function ($trail) {
 });
 Breadcrumbs::for('inprogress_submission', function ($trail) {
     $trail->parent('submission');
-    $trail->push('Your In-progress Submission', route('inprogress_submission'));
+    $trail->push('In-progress Submission', route('inprogress_submission'));
 });
 Breadcrumbs::for('add_submission', function ($trail) {
     $trail->parent('submission');

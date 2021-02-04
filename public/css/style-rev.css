@@ -188,7 +188,11 @@ a {
   -webkit-box-shadow: 0px 8px 21px -2px rgba(0,0,0,0.9); 
   box-shadow: 0px 8px 21px -2px rgba(0,0,0,0.9);
   border: 0;
-  transition: .5s;
+  transition: 1s;
+}
+.btn-dashboard2:hover{
+  background-color: white;
+  background-size: 120% auto;
 }
 .btn-dashboard2 p{
   font-family: 'Poppins ExtraLight';
@@ -691,7 +695,7 @@ tr.tr-left th{
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6) ) ,
     url('../img/bg/money.jpg');
-  background-size: 100%;
+  background-size: 100% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -700,7 +704,7 @@ tr.tr-left th{
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6) ) ,
     url('../img/bg/paper.jpg');
-  background-size: 100%;
+  background-size: 100% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -709,7 +713,7 @@ tr.tr-left th{
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6) ) ,
     url('../img/bg/document1.jpg');
-  background-size: 100%;
+  background-size: 110% auto;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -718,7 +722,7 @@ tr.tr-left th{
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6) ) ,
     url('../img/bg/document2.jpg');
-  background-size: 100%;
+  background-size: 100% auto;
   background-position: center;
   background-repeat: no-repeat;
 }

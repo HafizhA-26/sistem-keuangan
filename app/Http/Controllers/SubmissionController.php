@@ -57,35 +57,19 @@ class SubmissionController extends Controller
         $title = "Submission";
         switch (session()->get('nama_jabatan')) {
             case 'Admin':
-                return view('contents.submission', ['title' => $title]);
+                return view('contents.all-submission', ['title' => $title]);
                 break;
             case 'Kepala Sekolah':
-                return view('contents.submission', ['title' => $title], $submissionDataForKepsek);
+                return view('contents.all-submission', ['title' => $title], $submissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
-                return view('contents.submission', ['title' => $title], $submissionDataForKeuangan);
+                return view('contents.all-submission', ['title' => $title], $submissionDataForKeuangan);
                 break;
             case 'Staf BOS':
-                return view('contents.submission', ['title' => $title], $submissionDataForBOS);
+                return view('contents.all-submission', ['title' => $title], $submissionDataForBOS);
                 break;
             case 'Staf APBD':
-                return view('contents.submission', ['title' => $title], $submissionDataForAPBD);
-                break;
-            case 'Kaprog':
-                $user = [
-                    'idUser' => Auth::user()->nip
-                ];
-                $namajabatan = session()->get('nama_jabatan');
-                $getid = DB::table('submissions')
-                    ->select('submissions.id_pengajuan')
-                    ->get();
-                $count = $getid->count()+1;
-                $id = "S00001";
-                $id2 = "T00001";
-                $counterlen = strlen((string)$count);
-                $id = substr_replace($id, (string)$count, $counterlen * -1);
-                $id2 = substr_replace($id2, (string)$count, $counterlen * -1);
-                return view('contents.all-submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                return view('contents.all-submission', ['title' => $title], $submissionDataForAPBD);
                 break;
             default:
                 $title = "Login";
@@ -118,6 +102,27 @@ class SubmissionController extends Controller
             case 'Staf APBD':
                 return view('contents.add-submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
                 break;
+            case 'Kaprog':
+                    $user = [
+                        'idUser' => Auth::user()->nip
+                    ];
+                    $namajabatan = session()->get('nama_jabatan');
+                    $getid = DB::table('submissions')
+                        ->select('submissions.id_pengajuan')
+                        ->get();
+                    $count = $getid->count()+1;
+                    $id = "S00001";
+                    $id2 = "T00001";
+                    $counterlen = strlen((string)$count);
+                    $id = substr_replace($id, (string)$count, $counterlen * -1);
+                    $id2 = substr_replace($id2, (string)$count, $counterlen * -1);
+                    return view('contents.all-submission', ['title' => $title, 'idPengajuan' => $id, 'idTransaksi' => $id2, 'namajabatan' => $namajabatan], $user);
+                    break;
+            default:
+                $title = "Login";
+                return redirect('/login');
+                break;
+
         }
     }
 
