@@ -295,4 +295,18 @@ class Submission extends Model
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
+    public function yoursubmission()
+    {
+        return DB::table('submissions')
+            ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
+            ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
+            ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','transaksi.id_dana')
+            ->where([
+                ['transaksi.jenis','=','Pending'],
+                ['submissions.id_pengaju','=',Auth::user()->nip],
+            ])
+            ->orderBy('submissions.updated_at', 'desc')
+            ->get();
+    }
 }

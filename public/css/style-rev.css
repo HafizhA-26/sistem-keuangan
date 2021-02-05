@@ -671,6 +671,9 @@ tr.tr-left th{
   background: var(--blue) !important;
   color: white !important;
 }
+.table-action{
+  font-size: 0.9rem;
+}
 .theme-1{
   border: none;
   border-radius: 0;

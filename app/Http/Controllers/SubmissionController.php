@@ -125,7 +125,12 @@ class SubmissionController extends Controller
 
         }
     }
-
+    public function inprogress()
+    {
+        $all = $this->Submission->yoursubmission();
+        $title = "Your In-progress Submissions";
+        return view('contents.inprogress-submission',['title' => $title, 'submission' => $all]);
+    }
     public function createSubmission(Request $request)
     {
 
