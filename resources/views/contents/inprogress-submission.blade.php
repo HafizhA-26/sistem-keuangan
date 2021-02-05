@@ -29,13 +29,14 @@
                                     $date = date_create($data->created_at);
                                     $date = date_format($date, "d-m-Y");
                                     $jumlah = number_format($data->jumlah,2,",",".");
+                                    $status = '';
                                     if(strpos($data->status,"ACC-2") !== false){
                                         $status = "In process by Kepala Sekolah";
                                     }else if(strpos($data->status,"ACC-1") !== false){
                                         $status = "In process by Kepala Keuangan";
-                                    }elseif (strpos($data->status,"ACC-B")) {
+                                    }elseif (strpos($data->status,"ACC-B") !== false) {
                                         $status = "In process by Staf BOS";
-                                    }elseif (strpos($data->status,"ACC-A")) {
+                                    }elseif (strpos($data->status,"ACC-A") !== false) {
                                         $status = "In process by Staf APBD";
                                     }
                                 @endphp
@@ -66,7 +67,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <a href="/delete-submission/{{ $data->id_pengajuan }}" class="btn btn-danger" value="Edit Profile" name="submit">Delete</a>
+                                            <a href="/submission/inprogress-submission/delete-submission/{{ $data->id_pengajuan }}" class="btn btn-danger" value="Edit Profile" name="submit">Delete</a>
                                         </div>
                                     </div>
                                     </div>

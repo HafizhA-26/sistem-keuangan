@@ -17,7 +17,7 @@ class CreateSubmissionTable extends Migration
             $table->char('id_pengajuan', 10)->primary();
             $table->string('judul', 100);
             $table->string('status', 10);
-            $table->char('id_transaksi',10);
+            $table->char('id_transaksi',10)->nullable();
             $table->bigInteger('id_pengaju')->unsigned();
             $table->timestamps();
             $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');

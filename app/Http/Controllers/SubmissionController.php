@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Submission;
 use App\Models\DetailSub;
+use App\Models\Transaksi;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -218,7 +220,22 @@ class SubmissionController extends Controller
         } else {
         }
     }
-
+    public function DeleteSubmission($id)
+    {
+        $submission = Submission::find($id);
+        $idT = $submission->id_transaksi;
+        $submission->id_transaksi = null;
+        $submission->save();
+        $dTransaksi = Transaksi::where('id_transaksi','=',$idT);
+        $dTransaksi->delete();
+        $comments = Comment::where('id_pengajuan','=',$id);
+        $comments->delete();
+        $detailS = DetailSub::where('id_pengajuan','=',$id);
+        $detailS->delete();
+        
+        $submission->delete();
+        return redirect('/submission/inprogress-submission');
+    }
     /**
      * Store a newly created resource in storage.
      *

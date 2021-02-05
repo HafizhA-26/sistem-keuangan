@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/submission',[SubmissionController::class, 'index'])->name('submission');
     Route::get('/submission/new-submission',[SubmissionController::class, 'newsubmission'])->name('new_submission');
     Route::get('/submission/inprogress-submission',[SubmissionController::class, 'inprogress'])->name('inprogress_submission');
-   
+    Route::get('/submission/inprogress-submission/delete-submission/{id}',[SubmissionController::class, 'DeleteSubmission']);
 
     /* Route untuk izinkan dan tidak diizinkan */
     Route::post('/submission/tidakdiizinkankepsek',[SubmissionController::class, 'storetidakdiizinkankepsek']);
