@@ -6,6 +6,7 @@
 	{{-- KALAU MAU NGUJI KONTENNYA TAMBAHIN DI IF NYA "|| session()->get('nama_jabatan') == Admin" --}}
 
 	@if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Staf APBD" || session()->get('nama_jabatan') == "Staf BOS" || session()->get('nama_jabatan') == "Admin" ) <!-- Jabatan =  Ka. Keuangan, Kepsek, Staf APBD, Staf BOS -->
+	<label class="d-none" id="searchtable">{{ $search }}</label>
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
@@ -17,6 +18,7 @@
 
 								<tr>
 									<th>No</th>
+									<th>ID</th>
 									<th>Pengajuan</th>
 									<th>Pengaju</th>
 									<th>Jumlah</th>
@@ -34,12 +36,13 @@
 									$jumlah = number_format($dtsub->jumlah,2,",",".");
 								@endphp
 								<tr class="text-center">
-									<td data-priority="1">{{ $loop->iteration }}</td> <!-- PERLU BACKEND -->
-									<td data-priority="2">{{$dtsub->judul}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="3">{{$dtsub->nama}}</td>
-									<td data-priority="4">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="5">{{$date}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="6"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
+									<td data-priority="1">{{ $loop->iteration }}</td>
+									<td data-priority="2">{{ $dtsub->id_pengajuan }}</td> <!-- PERLU BACKEND -->
+									<td data-priority="3">{{$dtsub->judul}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="4">{{$dtsub->nama}}</td>
+									<td data-priority="5">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="6">{{$date}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="7"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -268,6 +271,14 @@
 					<div class="col-md">
 						<div class="card">
 							<div class="card-body">
+								@if ($message = Session::get('pesan'))
+									<div class="alert alert-danger alert-dismissible fade show text-center alert-error w-100" role="alert">
+										<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										<p class="alert-login" style="margin-bottom: 0; color: black;">{{ $message }}</p>
+									</div>
+								@endif
 								<form action="/submission/add" method="POST" enctype="multipart/form-data">
 									@csrf
 									<div class="form-group">

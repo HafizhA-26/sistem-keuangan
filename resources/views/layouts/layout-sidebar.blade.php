@@ -69,21 +69,24 @@
                                             }
                                             $judul  = "Your submission is being ".$s." !";
                                         }
+                                        $link = "/report";
                                     }else{
                                         if($data->id_pengaju != Auth::user()->nip){
                                             $pengaju = DB::table('detail_accounts')->where('nip','=',$data->id_pengaju)->get();
                                             $judul = "Submission from ".$pengaju[0]->nama;
                                             $jenis = "New Submission";
+                                            $link = "/submission/new-submission?search=".$data->id_pengajuan;
                                         }else{
                                             $judul = $data->judul." has new progress !";
                                             $jenis = "Submission Progress";
+                                            $link = "/submission/inprogress-submission?search=".$data->id_pengajuan;
                                         }
                                     }
                                     
                                 @endphp
-                                <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="#">
+                                <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="{{$link}}">
                                     @if ($jenis == "New Submission")
-                                        <i class="fas fa-file-import"></i>
+                                        <i class="fas fa-file-upload"></i>
                                     @elseif($jenis == "Submission Progress")
                                         <i class="fas fa-file-signature"></i>
                                     @elseif($jenis == "Report")

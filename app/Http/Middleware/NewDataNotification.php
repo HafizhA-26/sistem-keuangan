@@ -27,6 +27,7 @@ class NewDataNotification
                         ['status','not like','ACC-B%'],
                         ['id_pengaju','=',Auth::user()->nip],
                     ])
+                    ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
                 case 'Staf BOS':
@@ -43,6 +44,7 @@ class NewDataNotification
                         ['submissions.status','like','ACC-3%'],
                         ['transaksi.id_dana','=','BOS'],
                     ])
+                    ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
                 case 'Staf APBD':
@@ -59,6 +61,7 @@ class NewDataNotification
                         ['submissions.status','like','ACC-3%'],
                         ['transaksi.id_dana','=','APBD'],
                     ])
+                    ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
                 case 'Kepala Keuangan':
@@ -69,6 +72,7 @@ class NewDataNotification
                     ->orWhere([
                             ['status','like','ACC-3%'],
                     ])
+                    ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
                  case 'Kepala Sekolah':
@@ -79,6 +83,7 @@ class NewDataNotification
                     ->orWhere([
                             ['status','like','ACC-3%'],
                     ])
+                    ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
                 default:

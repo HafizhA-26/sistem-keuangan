@@ -61,24 +61,28 @@ class ReportController extends Controller
     public function reportS(Request $request){
         $title = "Report Submission";
         $jabatan = session()->get('nama_jabatan');
+        $search = "";
+        if($request->search){
+            $search = $request->search;
+        }
         switch($jabatan){
             case 'Kepala Sekolah':
             case 'Admin':
             case 'Kepala Keuangan':
-                $report = $this->laporanS->reportA($request->search);
+                $report = $this->laporanS->reportA();
                 break;
             case 'Staf BOS':
                 $title = "Report Submission BOS";
-                $report = $this->laporanS->reportBOS($request->search);
+                $report = $this->laporanS->reportBOS();
                 break;
                
             case 'Staf APBD':
                 $title = "Report Submission APBD";
-                $report = $this->laporanS->reportAPBD($request->search);
+                $report = $this->laporanS->reportAPBD();
                 break;
             case 'Kaprog':
                 $title = "Your Report Submission";
-                $report = $this->laporanS->reportKaprog($request->search);
+                $report = $this->laporanS->reportKaprog();
                 break;
                 
             default:
@@ -86,7 +90,7 @@ class ReportController extends Controller
                 break;
         }
 
-        return view('contents.report-submission',['title' => $title,'report' => $report]);
+        return view('contents.report-submission',['title' => $title,'report' => $report,'search' => $search]);
     }
     public function reportT(Request $request){
         $title = "Transaction Report";

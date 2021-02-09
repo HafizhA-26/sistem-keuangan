@@ -42,8 +42,12 @@ class SubmissionController extends Controller
         $title = "Submission";
         return view('contents.submission',['title' => $title]);
     }
-    public function newsubmission()
+    public function newsubmission(Request $request)
     {
+        $search = "";
+        if($request->search){
+            $search = $request->search;
+        }
         $submissionDataForKepsek = [
             'datasub' => $this->Submission->allDataForKepsek()
         ];
@@ -59,23 +63,23 @@ class SubmissionController extends Controller
         $title = "Submission";
         switch (session()->get('nama_jabatan')) {
             case 'Admin':
-                return view('contents.all-submission', ['title' => $title]);
+                return view('contents.all-submission', ['title' => $title,'search' => $search]);
                 break;
             case 'Kepala Sekolah':
-                return view('contents.all-submission', ['title' => $title], $submissionDataForKepsek);
+                return view('contents.all-submission', ['title' => $title,'search' => $search], $submissionDataForKepsek);
                 break;
             case 'Kepala Keuangan':
-                return view('contents.all-submission', ['title' => $title], $submissionDataForKeuangan);
+                return view('contents.all-submission', ['title' => $title,'search' => $search], $submissionDataForKeuangan);
                 break;
             case 'Staf BOS':
-                return view('contents.all-submission', ['title' => $title], $submissionDataForBOS);
+                return view('contents.all-submission', ['title' => $title,'search' => $search], $submissionDataForBOS);
                 break;
             case 'Staf APBD':
-                return view('contents.all-submission', ['title' => $title], $submissionDataForAPBD);
+                return view('contents.all-submission', ['title' => $title,'search' => $search], $submissionDataForAPBD);
                 break;
             default:
                 $title = "Login";
-                return view('login', ['title' => $title]);
+                return view('login', ['title' => $title,'search' => $search]);
                 break;
         }
     }
@@ -127,11 +131,15 @@ class SubmissionController extends Controller
 
         }
     }
-    public function inprogress()
+    public function inprogress(Request $request)
     {
+        $search = "";
+        if($request->search){
+            $search = $request->search;
+        }
         $all = $this->Submission->yoursubmission();
         $title = "Your In-progress Submissions";
-        return view('contents.inprogress-submission',['title' => $title, 'submission' => $all]);
+        return view('contents.inprogress-submission',['title' => $title, 'submission' => $all,'search' => $search]);
     }
     public function createSubmission(Request $request)
     {
@@ -523,6 +531,9 @@ class SubmissionController extends Controller
     public function store(Request $request)
     {
         //ini untuk kaprog
+        if($request->jumlah == 0){
+            return back()->with('pesan','Jumlah tidak boleh 0');
+        }
         $file = $request->file('file_lampiran');
         if ($file) $filename = $request->file_lampiran->getClientOriginalName();
         else $filename = "";

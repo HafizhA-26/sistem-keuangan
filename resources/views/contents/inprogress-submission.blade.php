@@ -4,6 +4,7 @@
 <!-- Untuk Jabatan Kaprog langsung di direct ke report-submission, tanpa masuk ke halaman ini-->
 
 	@if(session()->get('nama_jabatan') != "Kepala Sekolah" && session()->get('nama_jabatan') != "Kepala Keuangan") <!--Jabatan = Kepsek, Ka. Keuangan, Staf APBD, Staf BOS -->
+    <label class="d-none" id="searchtable">{{ $search }}</label>
     <div class="row res-text-center">
 		<div class="col-md">
             <div class="card">
@@ -13,6 +14,7 @@
 
                             <tr>
                                 <th>No</th>
+                                <th>ID</th>
                                 <th>Pengajuan</th>
                                 <th>Pengaju</th>
                                 <th>Jumlah</th>
@@ -41,7 +43,8 @@
                                     }
                                 @endphp
                                 <tr class="text-center">
-                                    <td data-priority="1">{{ $loop->iteration }}</td> <!-- PERLU BACKEND -->
+                                    <td data-priority="1">{{ $loop->iteration }}</td>
+                                    <td data-priority="2">{{$data->id_pengajuan}}</td> <!-- PERLU BACKEND -->
                                     <td data-priority="3">{{$data->judul}}</td> <!-- PERLU BACKEND -->
                                     <td data-priority="4">{{$data->nama}}</td>
                                     <td data-priority="5">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->

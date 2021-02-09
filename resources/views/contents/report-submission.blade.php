@@ -1,6 +1,7 @@
 @extends('layouts.layout-sidebar')
 
 @section('web-content')
+	<label class="d-none" id="searchtable">{{ $search }}</label>	
 	<!-- NOTE : YANG ADA IF NYA LINE = 6, 106, 117, 121, 211 -->
     @if(session()->get('nama_jabatan') == "Kepala Sekolah" || session()->get('nama_jabatan') == "Kepala Keuangan" || session()->get('nama_jabatan') == "Admin") <!-- Jabatan = Kepsek, Ka. Keuangan-->
 	<div class="row">
