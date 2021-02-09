@@ -118,7 +118,10 @@ class ReportController extends Controller
             default:
                 abort(404);
                 break;
-        }
+            
+            }
+            $export = new ReportSExport($report);
+            return Excel::download($export, Carbon::now().'_report_submission.xlsx');
     }
     public function transaksiExport(){
         $jabatan = session()->get('nama_jabatan');
@@ -139,7 +142,7 @@ class ReportController extends Controller
                 break;
         }
         $export = new ReportTExport($report);
-        return Excel::download($export, Carbon::now().'_report_transaction_.xlsx');
+        return Excel::download($export, Carbon::now().'_report_transaction.xlsx');
     }
     public function reportT(Request $request){
         $title = "Transaction Report";

@@ -7,7 +7,8 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body res-text-center">
+					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr>
@@ -192,6 +193,7 @@
 		<div class="col-md">
 			<div class="card">
 				<div class="card-body">
+					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr>
@@ -375,6 +377,7 @@
 		<div class="col-md">
 			<div class="card">
 				<div class="card-body">
+					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
 							<tr class="text-center">

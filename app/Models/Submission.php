@@ -223,13 +223,6 @@ class Submission extends Model
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
             ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
             ->where('transaksi.jenis','!=','Pending')
-            ->where(function($query) use ($search){
-                $query->where('submissions.judul', 'LIKE', '%'.$search.'%')
-                      ->orWhere('detail_accounts.nama', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.created_at', 'LIKE', '%'.$search.'%')
-                      ->orWhere('submissions.status', 'LIKE', '%'.$search.'%')
-                      ->orWhere('transaksi.jumlah', 'LIKE', '%'.$search.'%');
-            })
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
