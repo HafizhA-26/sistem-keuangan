@@ -81,6 +81,9 @@
   .file-title{
     font-size: 1rem;
   }
+  .dropdown-menu.show{
+    width: calc(var(--nav-width) + 236px);
+  }
 }
 @media screen and (min-width: 768px) {
   .content {
@@ -113,7 +116,7 @@
     padding-left: 1rem;
   }
   .user_profile {
-    width: calc(var(--nav-width) + 130px);
+    width: calc(var(--nav-width) + 115px);
   }
   .user_name.show {
     width: 100%;
@@ -149,6 +152,12 @@
   }
   .show {
     width: calc(var(--nav-width) + 226px);
+  }
+  .dropdown.show{
+    width: auto;
+  }
+  .dropdown-menu.show{
+    width: calc(var(--nav-width) + 306px);
   }
   .header.body-pd{
     padding-left: calc(var(--nav-width) + 256px);

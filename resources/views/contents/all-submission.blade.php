@@ -268,7 +268,7 @@
 					<div class="col-md">
 						<div class="card">
 							<div class="card-body">
-								<form class="/submission/add" method="post" enctype="multipart/form-data">
+								<form action="/submission/add" method="POST" enctype="multipart/form-data">
 									@csrf
 									<div class="form-group">
 										<label class="label">Judul Pengajuan</label>

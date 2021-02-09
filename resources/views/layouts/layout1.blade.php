@@ -40,7 +40,9 @@
             } else {
                 x.type = "password";
             }
-        }
+            
+            }
+            
         </script>
         <script>
             function showJurusan() {
@@ -57,10 +59,11 @@
         </script>
         <script src={{ URL::asset("js/all.min.js") }}></script>
         <script src={{ URL::asset("js/jquery.js") }}></script>
-        <script src={{ URL::asset("js/bootstrap.min.js") }}></script>
+        <script src={{ URL::asset("js/bootstrap.bundle.min.js") }}></script>
         <script src={{ URL::asset("js/main.js") }}></script>
         <script src={{ URL::asset("js/datatables.min.js") }}></script>
         <script src={{ URL::asset("js/dataTables.responsive.min.js") }}></script>
+    
         <script>
             $(document).ready( function () {
                 $('#dataTable').DataTable({
@@ -75,7 +78,7 @@
                 table.search(searchT).draw();
             } );
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+       
         {{-- <script>
             $(document).ready(function(){
               $("#searchButton").on("click", function() {

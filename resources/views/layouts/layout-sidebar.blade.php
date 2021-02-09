@@ -1,6 +1,10 @@
 @extends('layouts.layout1')
 @section('content')
     @php
+        session([
+            'notif' => $notif,
+        ]);
+        session()->save();
         $breadcrumbs = Breadcrumbs::generate();
         function cekLink(){
             $breadcrumbs = Breadcrumbs::generate();
@@ -27,6 +31,81 @@
             </div>
             <div class="header__end">
                 <div class="header__icon-list">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle dropdown-notif" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="bell-notif" onclick="markNotif()">
+                          <i class="fas fa-bell"></i>
+                        @if (count($notif) > 0)
+                            @if (session()->get('read_notif') != true)
+                                <span class="jumlah-notif" id="red_dot"></span>
+                            @endif
+                            
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            @foreach ($notif->all() as $data)
+                                @php
+                                    $interval = now()->diff($data->updated_at);
+                                    $day = $interval->d;
+                                    $hours = $interval->h;
+                                    $minute = $interval->i;
+                                    $seconds = $interval->s;
+                                    $tgl = "";
+                                    if($day != 0 ){
+                                        $tgl = $day." day ".$hours." hour";
+                                    }elseif ($hours != 0) {
+                                        $tgl = $hours." hour ".$minute." min";
+                                    }elseif ($minute != 0 || $seconds != 0) {
+                                        $tgl = $minute." min ".$seconds." seconds";
+                                    }
+                                    $jenis = "";
+                                    $judul = "";
+                                    if((strpos($data->status,"ACC-3") !== false && $day <= 7) || (strpos($data->status,"Rejected") !== false && $day <= 7)){
+                                        $jenis = "Report";
+                                        $judul = "New Submission & Transaction Report ";
+                                        if($data->id_pengaju == Auth::user()->nip){
+                                            if(strpos($data->status,"ACC-3") !== false){
+                                                $s = "Accepted";
+                                            }else{
+                                                $s= "Rejected";
+                                            }
+                                            $judul  = "Your submission is being ".$s." !";
+                                        }
+                                    }else{
+                                        if($data->id_pengaju != Auth::user()->nip){
+                                            $pengaju = DB::table('detail_accounts')->where('nip','=',$data->id_pengaju)->get();
+                                            $judul = "Submission from ".$pengaju[0]->nama;
+                                            $jenis = "New Submission";
+                                        }else{
+                                            $judul = $data->judul." has new progress !";
+                                            $jenis = "Submission Progress";
+                                        }
+                                    }
+                                    
+                                @endphp
+                                <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="#">
+                                    @if ($jenis == "New Submission")
+                                        <i class="fas fa-file-import"></i>
+                                    @elseif($jenis == "Submission Progress")
+                                        <i class="fas fa-file-signature"></i>
+                                    @elseif($jenis == "Report")
+                                        <i class="fas fa-file-contract"></i>
+                                    @endif
+                                    
+                                    <div class="notif-desc">
+                                        <span class="judul-notif text-truncate">{{ $judul }}</span>
+                                        <div class="desc-notif text-truncate">
+                                            <span>{{ $jenis }}</span>
+                                            <span>{{ $tgl }} Ago</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                        @else
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <span class="no-info">There is no new informations now</span>
+                          </div>
+                        @endif
+                      </div>
                     <a href="/edit-profil/{{ Auth::user()->nip }}"  class="header__icon" title="Edit Profile">
                         <i class="fa fa-user-edit"></i>
                     </a>
@@ -129,4 +208,23 @@
             </div>
         </div>
     </div>
+    <script>
+        function markNotif(){
+            if(document.getElementById('red_dot') != null)
+                document.getElementById('red_dot').classList.add('d-none');
+            $.ajax("{{ route('mark-notification') }}",{
+                method: "GET",
+                
+            });
+            
+        }
+        $(function(){
+            $('#bell-notif').click(function(){
+                let request = markNotif();
+                request.done(() => {
+                    document.getElementById('red_dot').classList.add('d-none');
+                })
+            });
+        });
+    </script>
 @endsection

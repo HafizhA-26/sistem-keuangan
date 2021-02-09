@@ -27,6 +27,7 @@ Route::post('/checking',[LoginController::class, 'checklogin']);
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/login/successlogin',[LoginController::class, 'successlogin']);
     Route::get('/dashboard',[DashboardController::class, 'dashboardVerification'])->name('dashboard');
+    Route::get('/mark-notification',[DashboardController::class, 'marknotification'])->name('mark-notification');
     Route::get('/submission',[SubmissionController::class, 'index'])->name('submission');
     Route::get('/submission/new-submission',[SubmissionController::class, 'newsubmission'])->name('new_submission');
     Route::get('/submission/inprogress-submission',[SubmissionController::class, 'inprogress'])->name('inprogress_submission');

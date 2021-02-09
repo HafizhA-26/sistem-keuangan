@@ -433,7 +433,7 @@ bl {
   left: 0;
 }
 .body-pd {
-  padding-left: calc(var(--nav-width) + 1rem);
+  padding-left: calc(var(--nav-width));
 }
 .active {
   opacity: 1;
@@ -753,4 +753,66 @@ tr.tr-left th{
 }
 pre{
   font-family: 'Poppins';
+}
+.dropdown-notif{
+  background-color: transparent;
+  color: var(--black);
+  border: 0;
+  font-size: 1.2rem;
+}
+.dropdown-notif:hover{
+  background-color: transparent !important;
+  color: var(--blue) !important;
+}
+.dropdown.show .dropdown-notif{
+  background-color: transparent !important;
+  color: var(--blue);
+  border: 0;
+  box-shadow: none !important;
+}
+.dropdown-notif:focus{
+  background-color: transparent;
+  color: var(--blue);
+  border: 0;
+  box-shadow: none !important;
+}
+.dropdown-menu{
+  border: 2px solid #8b8b8b;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.jumlah-notif{
+    content: "";
+    position: absolute;
+    right: 30px;
+    top: 6px;
+    color: #fff;
+    background-color: var(--red);
+    border-radius: 100px;
+    padding: .35rem;
+}
+.no-info{
+  font-size: 0.9rem;
+  padding-left: .5rem;
+}
+.notif-desc{
+  display: flex;
+  flex-direction: column;
+  margin-left: .7rem;
+  width: 100%;
+}
+.judul-notif{
+  font-size: 1rem;
+}
+.desc-notif{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-family: 'Poppins Light';
+  font-size: .7rem;
+  width: 100%;
+}
+.dropdown-item{
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
 }
