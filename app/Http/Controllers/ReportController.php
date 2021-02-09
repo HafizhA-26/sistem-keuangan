@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Session;
 use DB;
 use Auth;
+use Excel;
 use App\Models\Submission;
 use App\Models\Transaksi;
+use App\Exports\ReportTExport;
+use App\Exports\ReportSExport;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -91,6 +95,51 @@ class ReportController extends Controller
         }
 
         return view('contents.report-submission',['title' => $title,'report' => $report,'search' => $search]);
+    }
+    public function submissionExport()
+    {
+        $jabatan = session()->get('nama_jabatan');
+        switch($jabatan){
+            case 'Kepala Sekolah':
+            case 'Admin':
+            case 'Kepala Keuangan':
+                $report = $this->laporanS->reportA();
+                break;
+            case 'Staf BOS':
+                $report = $this->laporanS->reportBOS();
+                break;
+               
+            case 'Staf APBD':
+                $report = $this->laporanS->reportAPBD();
+                break;
+            case 'Kaprog':
+                $report = $this->laporanS->reportKaprog();
+                break;
+            default:
+                abort(404);
+                break;
+        }
+    }
+    public function transaksiExport(){
+        $jabatan = session()->get('nama_jabatan');
+        switch($jabatan){
+            case 'Kepala Sekolah':
+            case 'Admin':
+            case 'Kepala Keuangan':
+                $report = $this->laporanT->reportA();
+                break;
+            case 'Staf BOS':
+                $report = $this->laporanT->reportBOS();
+                break;
+            case 'Staf APBD':
+                $report = $this->laporanT->reportAPBD();
+                break;
+            default:
+                abort(404);
+                break;
+        }
+        $export = new ReportTExport($report);
+        return Excel::download($export, Carbon::now().'_report_transaction_.xlsx');
     }
     public function reportT(Request $request){
         $title = "Transaction Report";

@@ -33,45 +33,48 @@
 			<!--Tabel Transaksi Start-->
 			<div class="col-md">
 				<div class="card">
-					<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
-						<thead>
-							<tr>
-								<th data-priority="1">No</th>
-								<th data-priority="2">Id Transaksi</th>
-								<th data-priority="3">Jenis Dana</th>
-								<th data-priority="4">Jumlah</th>
-								<th data-priority="5">Jenis</th>
-								<th data-priority="6">Pengaju</th>
-								<th data-priority="7">Tanggal Transaksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($report->all() as $r)
-								@php
-									$date = date_create($r->updated_at);
-									$date = date_format($date, "d-m-Y");
-									$jumlah = number_format($r->jumlah,2,",",".");
-								@endphp
-								<tr class="text-center"> 
-									<td>{{ $loop->iteration }}</td>
-									<td>{{ $r->id_transaksi }}</td>
-									<td>{{ $r->id_dana }}</td>
-									<td>Rp. {{ $jumlah }}</td>
-									<td style="color: {{ $r->jenis=='keluar'? 'var(--red)': 'var(--light-green)' }}">{{ $r->jenis }}</td>
-									{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
-									@if ($r->id_jurusan)
-										@php
-											$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
-										@endphp
-										<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
-									@else 
-										<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
-									@endif
-									<td>{{ $date }}</td>
+					<div class="card-body">
+						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel</a>
+						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
+							<thead>
+								<tr>
+									<th data-priority="1">No</th>
+									<th data-priority="2">Id Transaksi</th>
+									<th data-priority="3">Jenis Dana</th>
+									<th data-priority="4">Jumlah</th>
+									<th data-priority="5">Jenis</th>
+									<th data-priority="6">Pengaju</th>
+									<th data-priority="7">Tanggal Transaksi</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach ($report->all() as $r)
+									@php
+										$date = date_create($r->updated_at);
+										$date = date_format($date, "d-m-Y");
+										$jumlah = number_format($r->jumlah,2,",",".");
+									@endphp
+									<tr class="text-center"> 
+										<td>{{ $loop->iteration }}</td>
+										<td>{{ $r->id_transaksi }}</td>
+										<td>{{ $r->id_dana }}</td>
+										<td>Rp. {{ $jumlah }}</td>
+										<td style="color: {{ $r->jenis=='keluar'? 'var(--red)': 'var(--light-green)' }}">{{ $r->jenis }}</td>
+										{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
+										@if ($r->id_jurusan)
+											@php
+												$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+											@endphp
+											<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+										@else 
+											<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+										@endif
+										<td>{{ $date }}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 			
@@ -116,45 +119,48 @@
 			<!--Tabel Transaksi Start-->
 			<div class="col-md">
 				<div class="card">
-					<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
-						<thead>
-							<tr>
-								<th data-priority="1">No</th>
-								<th data-priority="2">Id Transaksi</th>
-								<th data-priority="3">Jenis Dana</th>
-								<th data-priority="4">Jumlah</th>
-								<th data-priority="5">Jenis</th>
-								<th data-priority="6">Pengaju</th>
-								<th data-priority="7">Tanggal Transaksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($report->all() as $r)
-								@php
-									$date = date_create($r->updated_at);
-									$date = date_format($date, "d-m-Y");
-									$jumlah = number_format($r->jumlah,2,",",".");
-								@endphp
-								<tr class="text-center">
-									<td>{{ $loop->iteration }}</td>
-									<td>{{ $r->id_transaksi }}</td>
-									<td>{{ $r->id_dana }}</td>
-									<td>Rp. {{ $jumlah }}</td>
-									<td style="color: {{ $r->jenis=='keluar'? 'var(--red)': 'var(--light-green)' }}">{{ $r->jenis }}</td>
-									{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
-									@if ($r->id_jurusan)
-										@php
-											$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
-										@endphp
-										<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
-									@else 
-										<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
-									@endif
-									<td>{{ $date }}</td>
+					<div class="card-body">
+						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel</a>
+						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
+							<thead>
+								<tr>
+									<th data-priority="1">No</th>
+									<th data-priority="2">Id Transaksi</th>
+									<th data-priority="3">Jenis Dana</th>
+									<th data-priority="4">Jumlah</th>
+									<th data-priority="5">Jenis</th>
+									<th data-priority="6">Pengaju</th>
+									<th data-priority="7">Tanggal Transaksi</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach ($report->all() as $r)
+									@php
+										$date = date_create($r->updated_at);
+										$date = date_format($date, "d-m-Y");
+										$jumlah = number_format($r->jumlah,2,",",".");
+									@endphp
+									<tr class="text-center">
+										<td>{{ $loop->iteration }}</td>
+										<td>{{ $r->id_transaksi }}</td>
+										<td>{{ $r->id_dana }}</td>
+										<td>Rp. {{ $jumlah }}</td>
+										<td style="color: {{ $r->jenis=='keluar'? 'var(--red)': 'var(--light-green)' }}">{{ $r->jenis }}</td>
+										{{-- Mengambil data jurusan jika terdapat id_jurusannya --}}
+										@if ($r->id_jurusan)
+											@php
+												$jurusan = \App\Models\Jurusan::find($r->id_jurusan);
+											@endphp
+											<td>{{ $r->nama }} / {{ $jurusan->nama_jurusan }}</td> <!-- PERLU BACKEND -->
+										@else 
+											<td>{{ $r->nama }}</td> <!-- PERLU BACKEND -->
+										@endif
+										<td>{{ $date }}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 			

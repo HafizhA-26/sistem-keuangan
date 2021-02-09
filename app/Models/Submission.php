@@ -89,6 +89,7 @@ class Submission extends Model
         ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
         ->where('submissions.status','like','ACC-3%')
+        ->orWhere('submissions.status','like','Rejected')
         ->count();
     }
     public function reportTKepsek(){
@@ -121,6 +122,7 @@ class Submission extends Model
         ->join('dana', 'dana.id_dana','=', 'transaksi.id_dana')
         ->select('submissions.judul')
         ->where('submissions.status','like','ACC-3%')
+        ->orWhere('submissions.status','like','Rejected')
         ->count();
     }
     public function reportTKaKeuangan(){
