@@ -34,7 +34,7 @@
 			<div class="col-md">
 				<div class="card">
 					<div class="card-body">
-						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel</a>
+						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
 							<thead>
 								<tr>
@@ -120,7 +120,7 @@
 			<div class="col-md">
 				<div class="card">
 					<div class="card-body">
-						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel</a>
+						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
 							<thead>
 								<tr>

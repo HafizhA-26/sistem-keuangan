@@ -121,7 +121,7 @@ class ReportController extends Controller
             
             }
             $export = new ReportSExport($report);
-            return Excel::download($export, Carbon::now().'_report_submission.xlsx');
+            return Excel::download($export, Carbon::now()->toDateString().'_report_submission.xlsx');
     }
     public function transaksiExport(){
         $jabatan = session()->get('nama_jabatan');
@@ -142,7 +142,7 @@ class ReportController extends Controller
                 break;
         }
         $export = new ReportTExport($report);
-        return Excel::download($export, Carbon::now().'_report_transaction.xlsx');
+        return Excel::download($export, Carbon::now()->toDateString().'_report_transaction.xlsx');
     }
     public function reportT(Request $request){
         $title = "Transaction Report";

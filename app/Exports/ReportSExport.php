@@ -36,7 +36,7 @@ class ReportSExport implements FromCollection, WithHeadings,ShouldAutoSize, With
             $data->id_pengajuan,
             $data->judul,
             ($data->deskripsi ?? '-'),
-            ("Rp. ".$data->jumlah),
+            ("Rp. ".number_format($data->jumlah,2,",",".")),
             $data->id_transaksi,
             $data->status,
             $data->nama,
