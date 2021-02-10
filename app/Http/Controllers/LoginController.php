@@ -51,7 +51,6 @@ class LoginController extends Controller
     function successlogin(){
         $akun = Auth::user();
         $nip = $akun->nip;
-        $password = $akun->password;
         $user_data = DB::table('accounts')
                 ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
                 ->join('jabatan','jabatan.id_jabatan','=','detail_accounts.id_jabatan')
@@ -65,6 +64,7 @@ class LoginController extends Controller
         }else{
             $akun_data = Akun::find($nip);
             $akun_data->status = "online";
+            $akun_data->updated_at = Carbon::now();
             $akun_data->save();
         }
         session([

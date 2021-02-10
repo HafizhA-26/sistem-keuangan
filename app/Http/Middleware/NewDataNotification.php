@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use View;
+use Carbon\Carbon;
 class NewDataNotification
 {
     /**
@@ -84,6 +85,15 @@ class NewDataNotification
                             ['status','like','ACC-3%'],
                     ])
                     ->orderBy('submissions.updated_at', 'desc')
+                    ->get();
+                    break;
+                case 'Admin':
+                    $new = DB::table('accounts')
+                    ->join('detail_accounts','detail_accounts.nip','=','accounts.nip')
+                    ->where('accounts.nip','!=',Auth::user()->nip)
+                    ->whereBetween('accounts.last_seen', [Carbon::now()->addHours(-24), Carbon::now()])
+                    ->select('accounts.status','accounts.updated_at','accounts.last_seen','detail_accounts.nama')
+                    ->orderBy('accounts.updated_at','desc')
                     ->get();
                     break;
                 default:

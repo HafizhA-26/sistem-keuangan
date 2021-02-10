@@ -44,60 +44,70 @@
                             @foreach ($notif->all() as $data)
                                 @php
                                     $interval = now()->diff($data->updated_at);
-                                    $day = $interval->d;
-                                    $hours = $interval->h;
-                                    $minute = $interval->i;
-                                    $seconds = $interval->s;
-                                    $tgl = "";
-                                    if($day != 0 ){
-                                        $tgl = $day." day ".$hours." hour";
-                                    }elseif ($hours != 0) {
-                                        $tgl = $hours." hour ".$minute." min";
-                                    }elseif ($minute != 0 || $seconds != 0) {
-                                        $tgl = $minute." min ".$seconds." seconds";
-                                    }
-                                    $jenis = "";
-                                    $judul = "";
-                                    if((strpos($data->status,"ACC-3") !== false && $day <= 7) || (strpos($data->status,"Rejected") !== false && $day <= 7)){
-                                        $jenis = "Report";
-                                        $judul = "New Submission & Transaction Report ";
-                                        if($data->id_pengaju == Auth::user()->nip){
-                                            if(strpos($data->status,"ACC-3") !== false){
-                                                $s = "Accepted";
-                                            }else{
-                                                $s= "Rejected";
+                                        $day = $interval->d;
+                                        $hours = $interval->h;
+                                        $minute = $interval->i;
+                                        $seconds = $interval->s;
+                                        $tgl = "";
+                                        if($day != 0 ){
+                                            $tgl = $day." day ".$hours." hour";
+                                        }elseif ($hours != 0) {
+                                            $tgl = $hours." hour ".$minute." min";
+                                        }elseif ($minute != 0 || $seconds != 0) {
+                                            $tgl = $minute." min ".$seconds." seconds";
+                                        }
+                                    if(session()->get('nama_jabatan') != "Admin"){
+                                        
+                                        $jenis = "";
+                                        $judul = "";
+                                        if((strpos($data->status,"ACC-3") !== false && $day <= 7) || (strpos($data->status,"Rejected") !== false && $day <= 7)){
+                                            $jenis = "Report";
+                                            $judul = "New Submission & Transaction Report ";
+                                            if($data->id_pengaju == Auth::user()->nip){
+                                                if(strpos($data->status,"ACC-3") !== false){
+                                                    $s = "Accepted";
+                                                }else{
+                                                    $s= "Rejected";
+                                                }
+                                                $judul  = "Your submission is being ".$s." !";
                                             }
-                                            $judul  = "Your submission is being ".$s." !";
-                                        }
-                                        $link = "/report";
-                                    }else{
-                                        if($data->id_pengaju != Auth::user()->nip){
-                                            $pengaju = DB::table('detail_accounts')->where('nip','=',$data->id_pengaju)->get();
-                                            $judul = "Submission from ".$pengaju[0]->nama;
-                                            $jenis = "New Submission";
-                                            $link = "/submission/new-submission?search=".$data->id_pengajuan;
+                                            $link = "/report";
                                         }else{
-                                            $judul = $data->judul." has new progress !";
-                                            $jenis = "Submission Progress";
-                                            $link = "/submission/inprogress-submission?search=".$data->id_pengajuan;
+                                            if($data->id_pengaju != Auth::user()->nip){
+                                                $pengaju = DB::table('detail_accounts')->where('nip','=',$data->id_pengaju)->get();
+                                                $judul = "Submission from ".$pengaju[0]->nama;
+                                                $jenis = "New Submission";
+                                                $link = "/submission/new-submission?search=".$data->id_pengajuan;
+                                            }else{
+                                                $judul = $data->judul." has new progress !";
+                                                $jenis = "Submission Progress";
+                                                $link = "/submission/inprogress-submission?search=".$data->id_pengajuan;
+                                            }
                                         }
+                                    }else{
+                                        $judul = $data->nama.($data->status=="online" ? " Logged in" : " Logged out" );
+                                        $jenis = "Activity";
+                                        $link ="#";
                                     }
                                     
+                                    
                                 @endphp
-                                <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="{{$link}}">
+                                <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="{{$link ?? "#"}}">
                                     @if ($jenis == "New Submission")
                                         <i class="fas fa-file-upload"></i>
                                     @elseif($jenis == "Submission Progress")
                                         <i class="fas fa-file-signature"></i>
                                     @elseif($jenis == "Report")
                                         <i class="fas fa-file-contract"></i>
+                                    @elseif($jenis == "Activity")
+                                        <i class="fas fa-user-clock"></i>
                                     @endif
                                     
                                     <div class="notif-desc">
-                                        <span class="judul-notif text-truncate">{{ $judul }}</span>
+                                        <span class="judul-notif text-truncate">{{ $judul ?? "-" }}</span>
                                         <div class="desc-notif text-truncate">
-                                            <span>{{ $jenis }}</span>
-                                            <span>{{ $tgl }} Ago</span>
+                                            <span>{{ $jenis ?? "-" }}</span>
+                                            <span>{{ $tgl ?? "-" }} Ago</span>
                                         </div>
                                     </div>
                                 </a>

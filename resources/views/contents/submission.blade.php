@@ -7,7 +7,7 @@
     
   		<div class="col-md">
 			<a class="btn btn-primary btn-dashboard2 theme-document1" href="/submission/new-submission">
-				<i class="fas fa-file-invoice-dollar icon-title"></i>
+				<i class="fas fa-file-upload icon-title"></i>
 				@if (session()->get('nama_jabatan') == "Staf BOS")
 					<span>Dana BOS Submission</span>
 					<p>unsigned submssions for the use of Dana BOS</p>
@@ -29,7 +29,7 @@
 	@if (session()->get('nama_jabatan') != "Kepala Sekolah" && session()->get('nama_jabatan') != "Kepala Keuangan")
 		<div class="col-md">
 			<a class="btn btn-primary btn-dashboard2 theme-document2" href="/submission/inprogress-submission">
-				<i class="fas fa-file-contract icon-title"></i>
+				<i class="fas fa-file-signature icon-title"></i>
 				<span>In-progress Submission</span>
 				<p>your In-progress submission</p>
 				<div class="check-button">

@@ -20,7 +20,7 @@ class LastUserActivity
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            $expiresAt = Carbon::now()->addMinutes(2);
+            $expiresAt = Carbon::now()->addMinutes(1);
             Cache::put('user-is-online-' . Auth::user()->nip, true, $expiresAt);
             Akun::where('nip', Auth::user()->nip)->update(['last_seen' => Carbon::now()]);
         }
