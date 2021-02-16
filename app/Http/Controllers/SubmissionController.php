@@ -242,7 +242,7 @@ class SubmissionController extends Controller
         $detailS->delete();
         
         $submission->delete();
-        return redirect('/submission/inprogress-submission');
+        return back()->with('pesan','Pengajuan Berhasil Dihapus');
     }
     /**
      * Store a newly created resource in storage.
@@ -422,6 +422,9 @@ class SubmissionController extends Controller
      */
     public function storeizinkanbos(Request $request)
     {
+        if($request->jumlah == 0){
+            return back()->with('pesan','Jumlah tidak boleh 0');
+        }
         $idUser = Auth::user()->nip;
         $status = "ACC-1K";
         DB::table('submissions')->where('id_pengajuan', $request->id_pengajuan)->update([
@@ -476,6 +479,9 @@ class SubmissionController extends Controller
      */
     public function storeizinkanapbd(Request $request)
     {
+        if($request->jumlah == 0){
+            return back()->with('pesan','Jumlah tidak boleh 0');
+        }
         $idUser = Auth::user()->nip;
         $status = "ACC-1K";
         DB::table('submissions')->where('id_pengajuan', $request->id_pengajuan)->update([

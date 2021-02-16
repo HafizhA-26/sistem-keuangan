@@ -9,6 +9,14 @@
 		<div class="col-md">
             <div class="card">
                 <div class="card-body">
+                    @if($message = Session::get('pesan'))
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						{{ $message }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					@endif
                     <table class="data-table display nowrap" cellspacing="0" id="dataTable">
                         <thead>
 

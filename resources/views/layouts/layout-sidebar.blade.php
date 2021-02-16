@@ -70,6 +70,7 @@
                                                     $s= "Rejected";
                                                 }
                                                 $judul  = "Your submission is being ".$s." !";
+                                                
                                             }
                                             $link = "/report";
                                         }else{
@@ -111,6 +112,7 @@
                                         </div>
                                     </div>
                                 </a>
+                                <hr class="notif-line">
                             @endforeach
                         </div>
                         @else

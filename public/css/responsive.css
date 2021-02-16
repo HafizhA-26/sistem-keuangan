@@ -82,7 +82,7 @@
     font-size: 1rem;
   }
   .dropdown-menu.show{
-    width: calc(var(--nav-width) + 236px);
+    width: calc(var(--nav-width) + 306px);
   }
 }
 @media screen and (min-width: 768px) {
