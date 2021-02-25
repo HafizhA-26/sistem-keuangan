@@ -652,6 +652,7 @@ ul.login-error {
 .file-size {
   font-size: 0.8rem;
   color: rgb(97, 97, 97);
+  text-align: left;
 }
 .file-click:hover .file-size {
   color: black;

@@ -21,7 +21,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-					<tbody id="dataTable">
+					<tbody>
 					@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -212,7 +212,7 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body res-text-center">
 					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
@@ -226,7 +226,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-						
+						<tbody>
 						@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -246,7 +246,7 @@
 									$status = "Ditolak";
 								}
 						@endphp
-						<tbody>
+						
 							<tr class="text-center">
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
@@ -265,7 +265,7 @@
 								<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
 								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 							</tr>
-						</tbody>
+						
 	
 						<!-- Modal -->
 						<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
@@ -404,7 +404,8 @@
 							</div>
 						</div>
 						@endforeach
-						</table>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -416,7 +417,7 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body res-text-center">
 					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
@@ -430,7 +431,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-
+						<tbody>
 						@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -451,7 +452,7 @@
 								$status = "Ditolak";
 							}
 						@endphp
-						<tbody>
+						
 							<tr class="text-center">
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
@@ -470,7 +471,7 @@
 								<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
 								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 							</tr>
-						</tbody>
+						
 						
 						<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
 							<div class="modal-dialog modal-lg">
@@ -603,8 +604,8 @@
 							</div>
 						</div>
 						@endforeach
-						
-						</table>
+					</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
