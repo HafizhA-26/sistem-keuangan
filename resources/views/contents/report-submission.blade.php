@@ -133,8 +133,26 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
-										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
+										<div class="modal-body bottom d-flex align-items-center res-justify-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 											<form action="/report/report-transaction" method="get" >
@@ -165,7 +183,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div>
 											</div>
 										@endforeach
 										
@@ -317,8 +337,26 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
-										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
+										<div class="modal-body bottom d-flex align-items-center res-text-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 											<form action="/report/report-transaction" method="get" >
@@ -350,7 +388,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div> <!-- GET KOMENTAR-->
 											</div>
 										@endforeach
 										
@@ -501,6 +541,24 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
@@ -529,7 +587,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div> <!-- GET KOMENTAR-->
 											</div>
 										@endforeach
 										

@@ -84,6 +84,9 @@
   .dropdown-menu.show{
     width: calc(var(--nav-width) + 306px);
   }
+  .res-justify-center{
+    justify-content: center;
+  }
 }
 @media screen and (min-width: 768px) {
   .content {

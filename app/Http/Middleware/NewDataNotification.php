@@ -28,7 +28,12 @@ class NewDataNotification
                         ['status','not like','ACC-B%'],
                         ['id_pengaju','=',Auth::user()->nip],
                     ])
-                    ->orderBy('submissions.updated_at', 'desc')
+                    ->orWhere(function($query){
+                        $query->where('status','like','ACC-3%')
+                              ->Where('id_pengaju','=',Auth::user()->nip)
+                              ->whereBetween('updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
+                    ->orderBy('updated_at', 'desc')
                     ->get();
                     break;
                 case 'Staf BOS':
@@ -37,13 +42,20 @@ class NewDataNotification
                     ->where([
                         ['submissions.status','like','ACC-B%'],
                     ])
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->Where('transaksi.id_dana','=','BOS')
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->Where('submissions.id_pengaju','=',Auth::user()->nip)
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
                     ->orWhere([
                         ['submissions.status','not like','ACC-1%'],
+                        ['submissions.status','not like','ACC-3%'],
                         ['submissions.id_pengaju','=',Auth::user()->nip],
-                    ])
-                    ->orWhere([
-                        ['submissions.status','like','ACC-3%'],
-                        ['transaksi.id_dana','=','BOS'],
                     ])
                     ->orderBy('submissions.updated_at', 'desc')
                     ->get();
@@ -54,13 +66,20 @@ class NewDataNotification
                     ->where([
                         ['submissions.status','like','ACC-A%'],
                     ])
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->Where('transaksi.id_dana','=','APBD')
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->Where('submissions.id_pengaju','=',Auth::user()->nip)
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
                     ->orWhere([
                         ['submissions.status','not like','ACC-1%'],
+                        ['submissions.status','not like','ACC-3%'],
                         ['submissions.id_pengaju','=',Auth::user()->nip],
-                    ])
-                    ->orWhere([
-                        ['submissions.status','like','ACC-3%'],
-                        ['transaksi.id_dana','=','APBD'],
                     ])
                     ->orderBy('submissions.updated_at', 'desc')
                     ->get();
@@ -70,9 +89,10 @@ class NewDataNotification
                     ->where([
                             ['status','like','ACC-1%'],
                     ])
-                    ->orWhere([
-                            ['status','like','ACC-3%'],
-                    ])
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
                     ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;
@@ -81,9 +101,10 @@ class NewDataNotification
                     ->where([
                             ['status','like','ACC-2%'],
                     ])
-                    ->orWhere([
-                            ['status','like','ACC-3%'],
-                    ])
+                    ->orWhere(function($query){
+                        $query->where('submissions.status','like','ACC-3%')
+                              ->whereBetween('submissions.updated_at', [Carbon::now()->addDays(-14), Carbon::now()]);
+                    })
                     ->orderBy('submissions.updated_at', 'desc')
                     ->get();
                     break;

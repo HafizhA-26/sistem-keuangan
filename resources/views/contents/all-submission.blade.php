@@ -166,7 +166,9 @@
 														<div class="modal-body bottom pt-1 pb-2">
 															<img src="{{ URL::asset("img/avatar/$c->picture") }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 															<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-															<textarea disabled="" class="form-control" style="font-size: 0.8rem; height: auto;">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+															<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+																<pre>{{ $c->komentar }}</pre>
+															</div> <!-- GET KOMENTAR-->
 														</div>
 													@endforeach
 													
