@@ -160,11 +160,11 @@ class ReportController extends Controller
                 $report = $this->laporanT->reportA();
                 break;
             case 'Staf BOS':
-                $title = "Report Transaksi BOS";
+                $title = "Transaction Report BOS";
                 $report = $this->laporanT->reportBOS();
                 break;
             case 'Staf APBD':
-                $title = "Report Transaksi APBD";
+                $title = "Transaction Report APBD";
                 $report = $this->laporanT->reportAPBD();
                 break;
             default:

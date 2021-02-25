@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <hr class="notif-line">
+                                
                             @endforeach
                         </div>
                         @else

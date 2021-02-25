@@ -171,4 +171,7 @@
   .m-user_name{
     display: none;
   }
+  .alert.show{
+    width: 100%;
+  }
 }

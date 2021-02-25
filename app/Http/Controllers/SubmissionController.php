@@ -300,7 +300,7 @@ class SubmissionController extends Controller
 }
 
 
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**
@@ -349,7 +349,7 @@ class SubmissionController extends Controller
 
 
 
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**
@@ -382,7 +382,7 @@ class SubmissionController extends Controller
             'nip' => $idUser
         ]);
 }
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**
@@ -411,7 +411,7 @@ class SubmissionController extends Controller
             'nip' => $idUser
         ]);
 }
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**
@@ -468,7 +468,7 @@ class SubmissionController extends Controller
             'nip' => $idUser
         ]);
 }
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**
@@ -525,7 +525,7 @@ class SubmissionController extends Controller
             'nip' => $idUser
         ]);
 }
-        return redirect('/submission');
+        return redirect('/submission/new-submission');
     }
 
     /**

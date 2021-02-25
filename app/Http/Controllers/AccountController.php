@@ -79,47 +79,53 @@ class AccountController extends Controller
             'jabatan' => 'required'
         ];
         $this->validate($request,$validator);
-        if($request->hasFile('picture')){
-            $avatar = $request->file('picture');
-            $filename = time() . "." . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
+        $checkDuplicate = $this->CheckDuplicateNIP($request->nip);
+        if($checkDuplicate){
+            if($request->hasFile('picture')){
+                $avatar = $request->file('picture');
+                $filename = time() . "." . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(300,300)->save( public_path('img/avatar/' . $filename) );
+                
+            }else{
+                $filename = "avatar.jpg";
+            }
+            Akun::create([
+                'nip' => $request->get('nip'),
+                'password' => Hash::make($request->get('password')),
+                'status' => "offline",
+                'remember_token' => Str::random(10)
+            ]);
+            if($request->get('jurusan')){
+                Detailakun::create([
+                    'nip' => $request->get('nip'),
+                    'nuptk' => $request->get('nuptk'),
+                    'nama' => $request->get('nama'),
+                    'jk' => $request->get('jenis_kelamin'),
+                    'noHP' => $request->get('noHP'),
+                    'id_jabatan' => $request->get('jabatan'),
+                    'alamat' => $request->get('alamat'),
+                    'picture' => $filename,
+                    'id_jurusan' => $request->get('jurusan')
+                ]);
+            }else{
+                Detailakun::create([
+                    'nip' => $request->get('nip'),
+                    'nuptk' => $request->get('nuptk'),
+                    'nama' => $request->get('nama'),
+                    'jk' => $request->get('jenis_kelamin'),
+                    'noHP' => $request->get('noHP'),
+                    'id_jabatan' => $request->get('jabatan'),
+                    'alamat' => $request->get('alamat'),
+                    'picture' => $filename
+                ]);
+            }
             
+            
+            return back()->with('pesan','Akun Berhasil Ditambahkan');
         }else{
-            $filename = "avatar.jpg";
-        }
-        Akun::create([
-            'nip' => $request->get('nip'),
-            'password' => Hash::make($request->get('password')),
-            'status' => "offline",
-            'remember_token' => Str::random(10)
-        ]);
-        if($request->get('jurusan')){
-            Detailakun::create([
-                'nip' => $request->get('nip'),
-                'nuptk' => $request->get('nuptk'),
-                'nama' => $request->get('nama'),
-                'jk' => $request->get('jenis_kelamin'),
-                'noHP' => $request->get('noHP'),
-                'id_jabatan' => $request->get('jabatan'),
-                'alamat' => $request->get('alamat'),
-                'picture' => $filename,
-                'id_jurusan' => $request->get('jurusan')
-            ]);
-        }else{
-            Detailakun::create([
-                'nip' => $request->get('nip'),
-                'nuptk' => $request->get('nuptk'),
-                'nama' => $request->get('nama'),
-                'jk' => $request->get('jenis_kelamin'),
-                'noHP' => $request->get('noHP'),
-                'id_jabatan' => $request->get('jabatan'),
-                'alamat' => $request->get('alamat'),
-                'picture' => $filename
-            ]);
+            return back()->with('error','Error ! Sudah ada akun dengan NIP '.$request->nip);
         }
         
-        
-        return back()->with('pesan','Akun Berhasil Ditambahkan');
     }
 
     /**
@@ -171,12 +177,22 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function CheckDuplicateNIP($nip)
+    {
+        $data = Akun::find($nip);
+        if($data){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public function update(Request $request)
     {
         $this->validate($request,[
             'nuptk'   => 'required',
             'nama'  => 'required',
             'jk'    => 'required',
+            'jabatan' => 'required',
         ]);
         $akun_data = Akun::find($request->nip);
         $detail_akun = Detailakun::find($akun_data->nip);

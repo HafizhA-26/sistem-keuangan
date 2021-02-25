@@ -21,6 +21,7 @@
 									<th>ID</th>
 									<th>Pengajuan</th>
 									<th>Pengaju</th>
+									<th>Jenis Dana</th>
 									<th>Jumlah</th>
 									<th>Tanggal</th>
 									<th>Action</th>
@@ -40,9 +41,10 @@
 									<td data-priority="2">{{ $dtsub->id_pengajuan }}</td> <!-- PERLU BACKEND -->
 									<td data-priority="3">{{$dtsub->judul}}</td> <!-- PERLU BACKEND -->
 									<td data-priority="4">{{$dtsub->nama}}</td>
-									<td data-priority="5">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="6">{{$date}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="7"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
+									<td data-priority="5">{{ $dtsub->id_dana }}</td>
+									<td data-priority="6">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="7">{{$date}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="8"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
 								</tr>
 								@endforeach
 							</tbody>

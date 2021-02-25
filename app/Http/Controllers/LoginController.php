@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function index()
     {
         if(Auth::check()){
-            return redirect("/dashboard");
+            return redirect("/login/successlogin");
         }else{
             $title = "Login";
             return view('index', ['title' => $title]);
