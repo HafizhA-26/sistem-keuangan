@@ -70,7 +70,10 @@ class Transaksi extends Model
             ->join('submissions','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
             ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
-            ->where('transaksi.jenis','!=','Pending')
+            ->where([
+                ['transaksi.jenis','!=','Pending'],
+                ['transaksi.jenis','!=','rejected'],
+            ])
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
     }
@@ -83,6 +86,7 @@ class Transaksi extends Model
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['transaksi.id_dana','=','BOS'],
+                ['transaksi.jenis','!=','rejected'],
             ])
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -95,6 +99,7 @@ class Transaksi extends Model
             ->select('transaksi.*','detail_accounts.nama','detail_accounts.id_jurusan')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
+                ['transaksi.jenis','!=','rejected'],
                 ['transaksi.id_dana','=','APBD'],
             ])
             ->orderBy('submissions.updated_at', 'desc')
