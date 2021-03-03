@@ -94,8 +94,8 @@
 														
 														{{-- Bagian untuk penampilan file --}}
 														
-														<a class="file-click m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
-															<div class="d-flex flex-wrap align-items-center flex-md-row">
+														<a class="file-click m-0 text-decoration-none" href="/download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
+															<div class="d-flex align-items-center flex-md-row">
 														
 																<div class="ikon">
 			
@@ -298,8 +298,8 @@
 													
 													{{-- Bagian untuk penampilan file --}}
 													
-													<a class="file-click m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
-														<div class="d-flex flex-wrap align-items-center flex-md-row">
+													<a class="file-click m-0 text-decoration-none" href="/download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
+														<div class="d-flex align-items-center flex-md-row">
 													
 															<div class="ikon">
 		
@@ -503,8 +503,8 @@
 													
 													{{-- Bagian untuk penampilan file --}}
 													
-													<a class="file-click m-0 text-decoration-none" href="download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
-														<div class="d-flex flex-wrap align-items-center flex-md-row">
+													<a class="file-click m-0 text-decoration-none" href="/download/{{ $r->file_lampiran }}" title="{{ $r->file_lampiran }}" >
+														<div class="d-flex align-items-center flex-md-row">
 													
 															<div class="ikon">
 		

@@ -81,7 +81,7 @@ class LoginController extends Controller
         if($akun && Auth::user()->status != "nonactive"){
             return redirect("/dashboard");
         }else{
-            echo "<script>alert('Data akun tidak ditemukan')</script>";
+            echo "<script>alert('Akun ini sudah dinonaktifkan')</script>";
         }
         
         

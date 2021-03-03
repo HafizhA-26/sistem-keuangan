@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/deactive-account/{nip}',[AccountController::class, 'deactive']);
     Route::get('/logout',[LoginController::class, 'logout']);
 
-    Route::get('download/{filename}', function($filename)
+    Route::get('/download/{filename}', function($filename)
     {
 
         $file_path = storage_path() .'/uploaded_file/'. $filename;

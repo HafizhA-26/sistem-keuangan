@@ -5,6 +5,22 @@
 	<div class="col-md">
 		<div class="card">
 			<div class="card-body">
+				@if ($message = Session::get('pesan'))
+						<div class="alert alert-success alert-dismissible fade show text-center alert-error w-100" role="alert">
+								<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							<p class="alert-login" style="margin-bottom: 0; color: black;">{{ $message }}</p>
+						</div>
+				@endif
+				@if ($message = Session::get('pesanError'))
+					<div class="alert alert-danger alert-dismissible fade show text-center alert-error w-100" role="alert">
+						<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<p class="alert-login" style="margin-bottom: 0; color: black;">{{ $message }}</p>
+					</div>
+				@endif
 				<form action="/submission/createsubmissions" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">

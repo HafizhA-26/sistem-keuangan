@@ -92,8 +92,14 @@ class SubmissionController extends Controller
         $namajabatan = session()->get('nama_jabatan');
         $getid = DB::table('submissions')
             ->select('submissions.id_pengajuan')
-            ->get();
-        $count = $getid->count() + 1;
+            ->orderBy('id_pengajuan','desc')
+            ->first();
+        $count = 1;
+        if($getid){
+            $pisahID = explode("S",$getid->id_pengajuan);
+            $count = (int)$pisahID[1] + 1;
+        }
+
         $id = "S00001";
         $id2 = "T00001";
         $counterlen = strlen((string)$count);
@@ -113,10 +119,16 @@ class SubmissionController extends Controller
                         'idUser' => Auth::user()->nip
                     ];
                     $namajabatan = session()->get('nama_jabatan');
+
+                    // New find new id system
                     $getid = DB::table('submissions')
-                        ->select('submissions.id_pengajuan')
-                        ->get();
-                    $count = $getid->count()+1;
+                            ->select('submissions.id_pengajuan')
+                            ->orderBy('id_pengajuan','desc')
+                            ->first();
+                    if($getid){
+                            $pisahID = explode("S",$getid->id_pengajuan);
+                            $count = (int)$pisahID[1] + 1;
+                    }
                     $id = "S00001";
                     $id2 = "T00001";
                     $counterlen = strlen((string)$count);
@@ -143,7 +155,9 @@ class SubmissionController extends Controller
     }
     public function createSubmission(Request $request)
     {
-
+        if($request->jumlah == 0){
+            return back()->with('pesanError','Jumlah tidak boleh 0');
+        }
         $jabatan = $request->namajabatan;
         $file = $request->file('file_lampiran');
         if ($file) $filename = $request->file_lampiran->getClientOriginalName();
@@ -186,7 +200,7 @@ class SubmissionController extends Controller
 
             if ($file) $file->move(storage_path("uploaded_file"), $file->getClientOriginalName());
 
-            return redirect('/submission')->with('pesan', 'Pengajuan Berhasil Ditambahkan');
+            return back()->with('pesan', 'Pengajuan Berhasil Ditambahkan');
         } else if ($jabatan == "Staf APBD") {
 
             $jenispengajuan = $request->pilihan;
@@ -224,7 +238,7 @@ class SubmissionController extends Controller
             ]);
 
             if ($file) $file->move(storage_path("uploaded_file"), $file->getClientOriginalName());
-            return redirect('/submission')->with('pesan', 'Pengajuan Berhasil Ditambahkan');
+            return back()->with('pesan', 'Pengajuan Berhasil Ditambahkan');
         } else {
         }
     }
@@ -423,7 +437,7 @@ class SubmissionController extends Controller
     public function storeizinkanbos(Request $request)
     {
         if($request->jumlah == 0){
-            return back()->with('pesan','Jumlah tidak boleh 0');
+            return back()->with('pesanError','Jumlah tidak boleh 0');
         }
         $idUser = Auth::user()->nip;
         $status = "ACC-1K";
@@ -480,7 +494,7 @@ class SubmissionController extends Controller
     public function storeizinkanapbd(Request $request)
     {
         if($request->jumlah == 0){
-            return back()->with('pesan','Jumlah tidak boleh 0');
+            return back()->with('pesanError','Jumlah tidak boleh 0');
         }
         $idUser = Auth::user()->nip;
         $status = "ACC-1K";
@@ -538,7 +552,7 @@ class SubmissionController extends Controller
     {
         //ini untuk kaprog
         if($request->jumlah == 0){
-            return back()->with('pesan','Jumlah tidak boleh 0');
+            return back()->with('pesanError','Jumlah tidak boleh 0');
         }
         $file = $request->file('file_lampiran');
         if ($file) $filename = $request->file_lampiran->getClientOriginalName();
@@ -583,7 +597,7 @@ class SubmissionController extends Controller
         ]);
 
         if ($file) $file->move(storage_path("uploaded_file"), $file->getClientOriginalName());
-        return redirect('/submission');
+        return back()->with('pesan','Berhasil Menambahkan Pengajuan');
     }
 
     /**

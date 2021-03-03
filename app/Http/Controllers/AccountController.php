@@ -78,7 +78,9 @@ class AccountController extends Controller
             'jenis_kelamin'    => 'required',
             'jabatan' => 'required'
         ];
+
         $this->validate($request,$validator);
+        
         $checkDuplicate = $this->CheckDuplicateNIP($request->nip);
         if($checkDuplicate){
             if($request->hasFile('picture')){

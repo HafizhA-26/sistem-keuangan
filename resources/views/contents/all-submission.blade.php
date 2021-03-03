@@ -95,8 +95,8 @@
 																	
 																	{{-- Bagian untuk penampilan file --}}
 																	
-																	<a class="file-click m-0 text-decoration-none" href="download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
-																		<div class="d-flex flex-wrap align-items-center flex-md-row">
+																	<a class="file-click m-0 text-decoration-none" href="/download/{{ $data->file_lampiran }}" title="{{ $data->file_lampiran }}" >
+																		<div class="d-flex align-items-center flex-md-row">
 																	
 																			<div class="ikon">
 						
@@ -276,6 +276,14 @@
 						<div class="card">
 							<div class="card-body">
 								@if ($message = Session::get('pesan'))
+									<div class="alert alert-success alert-dismissible fade show text-center alert-error w-100" role="alert">
+										<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										<p class="alert-login" style="margin-bottom: 0; color: black;">{{ $message }}</p>
+									</div>
+								@endif
+								@if ($message = Session::get('pesanError'))
 									<div class="alert alert-danger alert-dismissible fade show text-center alert-error w-100" role="alert">
 										<button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">&times;</span>

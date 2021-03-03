@@ -39,7 +39,7 @@
 			</a>
 		</div>
 		<div class="col-md">
-			<a class="btn btn-primary btn-dashboard2 theme-2" href="/submission/addsubmission">
+			<a class="btn btn-primary btn-dashboard2" href="/submission/addsubmission">
 				<i class="fas fa-plus-square icon-title"></i>
 				<span>Add Submission</span>
 				<p>add new submssions for use of budget</p>

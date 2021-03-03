@@ -60,14 +60,17 @@
                                         
                                         $jenis = "";
                                         $judul = "";
-                                        if((strpos($data->status,"ACC-3") !== false && $day <= 7) || (strpos($data->status,"Rejected") !== false && $day <= 7)){
+                                        if((strpos($data->status,"ACC-3") !== false) || (strpos($data->status,"Rejected") !== false)){
                                             $jenis = "Report";
                                             $judul = "New Submission & Transaction Report ";
+                                            $styleN = "color: var(--blue)";
                                             if($data->id_pengaju == Auth::user()->nip){
                                                 if(strpos($data->status,"ACC-3") !== false){
                                                     $s = "Accepted";
+                                                    $styleN = "color: var(--light-green)";
                                                 }else{
                                                     $s= "Rejected";
+                                                    $styleN = "color: var(--red)";
                                                 }
                                                 $judul  = $data->judul." is being ".$s." !";
                                                 
@@ -78,15 +81,22 @@
                                                 $pengaju = DB::table('detail_accounts')->where('nip','=',$data->id_pengaju)->get();
                                                 $judul = "Submission from ".$pengaju[0]->nama;
                                                 $jenis = "New Submission";
+                                                $styleN = "color: var(--yellow)";
                                                 $link = "/submission/new-submission?search=".$data->id_pengajuan;
                                             }else{
                                                 $judul = $data->judul." has new progress !";
                                                 $jenis = "Submission Progress";
+                                                $styleN = "color: var(--green)";
                                                 $link = "/submission/inprogress-submission?search=".$data->id_pengajuan;
                                             }
                                         }
                                     }else{
                                         $judul = $data->nama.($data->status=="online" ? " Logged in" : " Logged out" );
+                                        if($data->status == "online"){
+                                            $styleN = "color: var(--light-green)";
+                                        }else{
+                                            $styleN = "color: var(--red)";
+                                        }
                                         $jenis = "Activity";
                                         $link ="#";
                                     }
@@ -95,16 +105,16 @@
                                 @endphp
                                 <a class="dropdown-item d-flex align-items-center flex-row justify-content-start" href="{{$link ?? "#"}}">
                                     @if ($jenis == "New Submission")
-                                        <i class="fas fa-file-upload"></i>
+                                        <i class="fas fa-file-upload" style="{{ $styleN ?? "" }}"></i>
                                     @elseif($jenis == "Submission Progress")
-                                        <i class="fas fa-clipboard-check"></i>
+                                        <i class="fas fa-clipboard-check" style="{{ $styleN ?? "" }}"></i>
                                     @elseif($jenis == "Report")
-                                        <i class="fas fa-file-contract"></i>
+                                        <i class="fas fa-file-contract" style="{{ $styleN ?? "" }}"></i>
                                     @elseif($jenis == "Activity")
-                                        <i class="fas fa-user-clock"></i>
+                                        <i class="fas fa-user-clock" style="{{ $styleN ?? "" }}"></i>
                                     @endif
                                     
-                                    <div class="notif-desc">
+                                    <div class="notif-desc text-truncate">
                                         <span class="judul-notif text-truncate">{{ $judul ?? "-" }}</span>
                                         <div class="desc-notif text-truncate">
                                             <span>{{ $jenis ?? "-" }}</span>

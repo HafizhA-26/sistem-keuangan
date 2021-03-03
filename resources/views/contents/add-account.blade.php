@@ -102,7 +102,7 @@
 									</div>
 
 									<div class="form-group">
-										<input type="submit" name="" class="btn btn-primary theme-2">
+										<input type="submit" name="" class="btn btn-primary theme-2 w-100">
 									</div>
 								<!-- ===== -->
 						</div>
