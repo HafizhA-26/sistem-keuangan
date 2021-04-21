@@ -233,6 +233,9 @@
             </div>
         </div>
     </div>
+    @push('js')
+        
+
     <script>
         function markNotif(){
             if(document.getElementById('red_dot') != null)
@@ -246,13 +249,6 @@
         function showHint(){
             document.getElementById('alert-hint').classList.toggle('d-none');
         }
-        $(function(){
-            $('#bell-notif').click(function(){
-                let request = markNotif();
-                request.done(() => {
-                    document.getElementById('red_dot').classList.add('d-none');
-                })
-            });
-        });
     </script>
+    @endpush
 @endsection

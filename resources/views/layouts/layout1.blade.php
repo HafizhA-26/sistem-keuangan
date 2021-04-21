@@ -12,7 +12,6 @@
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/responsive.dataTables.min.css") }}>
         <link rel="stylesheet" type="text/css" href={{ URL::asset("css/fonts/stylesheet.css") }}>
         <link href={{ URL::asset("css/all.min.css") }} type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="icon" type="image/png" href={{ URL::asset("img/icon/stm.png") }} >
         <!-- Cek file controller untuk menambahkan title dinamis di app/Http/...... --> 
@@ -63,7 +62,12 @@
         <script src={{ URL::asset("js/main.js") }}></script>
         <script src={{ URL::asset("js/datatables.min.js") }}></script>
         <script src={{ URL::asset("js/dataTables.responsive.min.js") }}></script>
-    
+        <!-- Charting library -->
+        <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <!-- Chartisan -->
+        <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
+
+        @stack('js')
         <script>
             $(document).ready( function () {
                 $('#dataTable').DataTable({
@@ -78,25 +82,6 @@
                 table.search(searchT).draw();
             } );
         </script>
-       
-        {{-- <script>
-            $(document).ready(function(){
-              $("#searchButton").on("click", function() {
-                var value = document.getElementById('searchInput').value.toLowerCase();
-                $("#dataTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-              $('#searchInput').keypress(function(event){
-                var keycode = (event.keyCode ? event.keyCode : event.which);
-                if(keycode == '13'){
-                    var value = $(this).val().toLowerCase();
-                    $("#dataTable tr").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                }
-                });
-            });
-        </script> --}}
+    
     </body>
 </html>

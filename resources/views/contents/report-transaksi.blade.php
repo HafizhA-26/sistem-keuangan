@@ -30,6 +30,16 @@
 		</div>
 		<!-- Row End-->
 		<div class="row">
+			<div class="col-md">
+				<div class="card">
+					<div class="card-body">
+						<div id="allchart" style="height: 300px;"></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
 			<!--Tabel Transaksi Start-->
 			<div class="col-md">
 				<div class="card">
@@ -170,4 +180,25 @@
 		<!--Tabel Transaksi End-->
 
 	@endif
+	
+	@push('js')
+	<script>
+		const chart = new Chartisan({
+		  el: '#allchart',
+		  url: "@chart('all_transaction_chart')",
+		  hooks: new ChartisanHooks()
+		  	.colors()
+			.datasets([{
+				type: 'line',
+				fill: false,
+				borderColor: 'green',
+			},{
+				type: 'line',
+				fill: false,
+				borderColor: 'red',
+			}]),
+		
+		});
+	</script>
+	@endpush
 @endsection
