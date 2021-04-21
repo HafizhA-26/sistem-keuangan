@@ -29,12 +29,46 @@
 					</div>
 					<div class="form-group">
 						<label class="label">Pemasukan/Penggunaan</label>
-						<select class="form-control" name="pilihan">
+						<select class="form-control" name="pilihan" id="pilihan" onchange="showJenis()">
 							<option disabled selected>-- Select --</option>
 							<option value="Pemasukan">Pemasukan</option>
 							<option value="Penggunaan">Penggunaan</option>
 						</select>
 					</div>
+					@php
+						$jenisM;
+						$jenisK;
+						if(session()->get('nama_jabatan') == "Staf BOS"){
+							$jenisM = \App\Models\JenisSubmission::getMasukBOS();
+							$jenisK = \App\Models\JenisSubmission::getKeluarBOS();
+						}elseif(session()->get('nama_jabatan') == "Staf APBD"){
+							$jenisM = \App\Models\JenisSubmission::getMasukAPBD();
+							$jenisK = \App\Models\JenisSubmission::getKeluarAPBD();
+						}
+					@endphp
+					@if (!$jenisM->isEmpty())
+						<div class="form-group d-none" id="jenisMasuk">
+							<label class="label">Jenis Pengajuan</label>
+							<select class="form-control" name="jenis">
+								<option disabled selected>-- Select --</option>
+								@foreach ($jenisM->all() as $j)
+									<option value={{ $j }}>{{ $j }}</option>
+								@endforeach
+							</select>
+						</div>
+					@endif
+					@if (!$jenisK->isEmpty())
+						<div class="form-group d-none" id="jenisKeluar">
+							<label class="label">Jenis Pengajuan</label>
+							<select class="form-control" name="jenis">
+								<option disabled selected>-- Select --</option>
+								@foreach ($jenisK->all() as $j)
+									<option value={{ $j->nama_jenis }}>{{ $j->nama_jenis }}</option>
+								@endforeach
+							</select>
+						</div>
+					@endif
+					
 					<div class="form-group">
 						<label class="label">Jumlah</label>
 						<input type="text" name="jumlah" onkeypress="return hanyaAngka(event)"  class="form-control" placeholder="Masukan Jumlah Dana" autocomplete="off" required>
@@ -69,4 +103,25 @@
 		</div>
 	</div>
 </div>
+@push('js')
+	<script>
+		function showJenis(){
+			var m = document.getElementById("jenisMasuk");
+			var k = document.getElementById("jenisKeluar");
+			var selection = document.getElementById("pilihan");
+			var selectedText = selection.options[selection.selectedIndex].text;
+			if(selectedText == "Pemasukan"){
+				if(m) m.classList.remove("d-none");
+				if(k) k.classList.add("d-none");
+			}
+			if (selectedText == "Penggunaan"){
+				if(k) k.classList.remove("d-none");
+				if(m) m.classList.add("d-none");
+			}
+		}
+		window.onload = function() {
+			showJenis();
+		};
+	</script>
+@endpush
 @endsection
