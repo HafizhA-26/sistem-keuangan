@@ -634,6 +634,8 @@ class ComposerStaticInit57af07f8864a79b0764160cb821fbae5
 
     public static $classMap = array (
         'App\\Akun' => __DIR__ . '/../..' . '/app/Models/Akun.php',
+        'App\\Charts\\AllTransactionChart' => __DIR__ . '/../..' . '/app/Charts/AllTransactionChart.php',
+        'App\\Charts\\BosChart' => __DIR__ . '/../..' . '/app/Charts/BosChart.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\ReportSExport' => __DIR__ . '/../..' . '/app/Exports/ReportSExport.php',

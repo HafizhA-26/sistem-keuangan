@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Akun' => $baseDir . '/app/Models/Akun.php',
+    'App\\Charts\\AllTransactionChart' => $baseDir . '/app/Charts/AllTransactionChart.php',
+    'App\\Charts\\BosChart' => $baseDir . '/app/Charts/BosChart.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\ReportSExport' => $baseDir . '/app/Exports/ReportSExport.php',
