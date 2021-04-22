@@ -29,8 +29,9 @@ class Submission extends Model
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
             ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
-            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at', 'jenis_submissions.nama_jenis')
             ->where('submissions.status', 'LIKE', 'ACC-2%')
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -40,8 +41,9 @@ class Submission extends Model
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
             ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
-            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at', 'jenis_submissions.nama_jenis')
             ->where('submissions.status', 'LIKE', 'ACC-1%')
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -51,8 +53,9 @@ class Submission extends Model
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
             ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
-            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at', 'jenis_submissions.nama_jenis')
             ->where('submissions.status', 'LIKE', 'ACC-A%')
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -62,8 +65,9 @@ class Submission extends Model
             ->join('detail_submissions', 'detail_submissions.id_pengajuan', '=', 'submissions.id_pengajuan')
             ->join('accounts', 'accounts.nip', '=', 'submissions.id_pengaju')
             ->join('detail_accounts', 'detail_accounts.nip', '=', 'accounts.nip')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
             ->join('transaksi', 'transaksi.id_transaksi', '=', 'submissions.id_transaksi')
-            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at')
+            ->select('submissions.*','detail_submissions.*', 'detail_accounts.*', 'accounts.nip', 'transaksi.jumlah', 'transaksi.id_dana', 'transaksi.jenis', 'submissions.created_at', 'jenis_submissions.nama_jenis')
             ->where('submissions.status', 'LIKE', 'ACC-B%')
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -221,7 +225,8 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','jenis_submissions.nama_jenis')
             ->where('transaksi.jenis','!=','Pending')
             ->orderBy('submissions.updated_at', 'desc')
             ->get();
@@ -232,7 +237,8 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','jenis_submissions.nama_jenis')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['transaksi.id_dana','=','BOS'],
@@ -253,7 +259,8 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','jenis_submissions.nama_jenis')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['transaksi.id_dana','=','APBD'],
@@ -274,7 +281,8 @@ class Submission extends Model
             ->join('transaksi','submissions.id_transaksi','=','transaksi.id_transaksi')
             ->join('detail_submissions','submissions.id_pengajuan','=','detail_submissions.id_pengajuan')
             ->join('detail_accounts','submissions.id_pengaju','=','detail_accounts.nip')
-            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','transaksi.id_dana')
+            ->join('jenis_submissions', 'jenis_submissions.id_jenis', '=', 'detail_submissions.sub_jenis')
+            ->select('submissions.*','detail_submissions.deskripsi','detail_submissions.file_lampiran','detail_accounts.nama','detail_accounts.id_jurusan','transaksi.jumlah','transaksi.id_dana','jenis_submissions.nama_jenis')
             ->where([
                 ['transaksi.jenis','!=','Pending'],
                 ['submissions.id_pengaju','=',Auth::user()->nip],

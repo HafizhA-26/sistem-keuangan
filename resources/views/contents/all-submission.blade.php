@@ -133,15 +133,47 @@
 													
 													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Status : </b></span>
-														<span class="in-desc"><mark class="bg-light">{{ $data->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+														<span class="in-desc"><mark class="bg-yellow">{{ $data->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+														<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+															<div class="alert alert-info row status-hint d-none" id="alert-hint">
+																<div class="col-md-6 mb-1">
+																	<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Sekolah
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Keuangan
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Disetujui Staf BOS/APBD
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>B</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan dana BOS
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>A</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan anggaran APBD
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+																</div>
+																<div class="col-md-6 mb-1">
+																	<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+																</div>
+															</div>
+													
 													</div>
+													@if ($data->nama_jenis)
+													<div class="modal-body bottom pt-1 pb-2">
+														<span class="in-title"><b>Jenis Pengajuan : </b></span>
+														<span class="in-desc"><mark class="bg-light">{{ $data->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+													</div>
+													@endif
+													
 													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Jumlah : </b></span>
 														<span class="in-desc">Rp. {{ $jumlah }}</span> <!-- CANTUMKAN STATUS -->
 													</div>
 													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Transaction ID : </b></span>
-														<span class="in-desc"><mark class="bg-light">{{ $data->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
+														<span class="in-desc"><mark class="bg-yellow">{{ $data->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN Disetujui/ACC -->
 													</div>
 													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Submitter : </b></span>
@@ -297,7 +329,20 @@
 										<label class="label">Judul Pengajuan</label>
 										<input type="text" name="judul" class="form-control" placeholder="Masukan Judul Pengajuan" autocomplete="off" required>
 									</div>
-									
+									@php
+										$jenisK = \App\Models\JenisSubmission::getKeluarBOS();
+									@endphp
+									@if (!$jenisK->isEmpty())
+										<div class="form-group" id="jenisKeluar">
+											<label class="label">Jenis Pengajuan</label>
+											<select class="form-control" name="sub_jenis" required>
+												<option disabled selected>-- Select --</option>
+												@foreach ($jenisK->all() as $j)
+													<option value={{ $j->id_jenis }}>{{ $j->nama_jenis }}</option>
+												@endforeach
+											</select>
+										</div>
+									@endif
 									<div class="form-group d-none">
 										<label class="label">Pilih ID Dana</label>
 										<select class="form-control" name="id_Dana">

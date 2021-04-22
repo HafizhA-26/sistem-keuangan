@@ -9,6 +9,7 @@ use DB;
 use Auth;
 use Excel;
 use App\Models\Submission;
+use App\Charts\AllTransactionChart;
 use App\Models\Transaksi;
 use App\Exports\ReportTExport;
 use App\Exports\ReportSExport;
@@ -145,6 +146,7 @@ class ReportController extends Controller
         return Excel::download($export, Carbon::now()->toDateString().'_report_transaction.xlsx');
     }
     public function reportT(Request $request){
+
         $title = "Transaction Report";
         $jabatan = session()->get('nama_jabatan');
         $in = $this->laporanT->countIn($jabatan);

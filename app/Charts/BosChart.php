@@ -17,10 +17,12 @@ class BosChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        return Chartisan::build()
-            ->labels(['January', 'February', 'March'])
+        $a = array('Jan','Feb','March');
+        $chart = Chartisan::build()
+            ->labels($a)
             ->dataset('Pemasukkan', [100000, 20000, 300000])
-            ->dataset('Pengeluaran', [100000, 500000, 40000]);
-            
+            ->dataset('Pengeluaran', [100000, 500000, 40000])
+            ->toJSON();
+        return $chart;
     }
 }

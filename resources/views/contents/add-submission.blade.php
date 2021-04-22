@@ -52,7 +52,7 @@
 							<select class="form-control" name="jenis">
 								<option disabled selected>-- Select --</option>
 								@foreach ($jenisM->all() as $j)
-									<option value={{ $j }}>{{ $j }}</option>
+									<option value={{ $j->id_jenis }}>{{ $j->nama_jenis }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -63,7 +63,7 @@
 							<select class="form-control" name="jenis">
 								<option disabled selected>-- Select --</option>
 								@foreach ($jenisK->all() as $j)
-									<option value={{ $j->nama_jenis }}>{{ $j->nama_jenis }}</option>
+									<option value={{ $j->id_jenis }}>{{ $j->nama_jenis }}</option>
 								@endforeach
 							</select>
 						</div>

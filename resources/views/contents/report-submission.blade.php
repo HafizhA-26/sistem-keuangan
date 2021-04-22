@@ -135,23 +135,35 @@
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
 											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
 											<div class="alert alert-info row status-hint d-none" id="alert-hint">
-												<div class="col-md-6">
-													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												<div class="col-md-6 mb-1">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Sekolah
 												</div>
-												<div class="col-md-6">
-													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												<div class="col-md-6 mb-1">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Keuangan
 												</div>
-												<div class="col-md-6">
-													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												<div class="col-md-6 mb-1">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Disetujui Staf BOS/APBD
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6 mb-1">
+													<b>B</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan dana BOS
+												</div>
+												<div class="col-md-6 mb-1">
+													<b>A</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan anggaran APBD
+												</div>
+												<div class="col-md-6 mb-1">
 													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6 mb-1">
 													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
 												</div>
 											</div>
 										</div>
+										@if ($r->nama_jenis)
+											<div class="modal-body bottom pt-1 pb-2">
+												<span class="in-title"><b>Jenis Pengajuan : </b></span>
+												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+											</div>
+										@endif
 										<div class="modal-body bottom d-flex align-items-center res-justify-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
@@ -339,23 +351,35 @@
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
 											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
 											<div class="alert alert-info row status-hint d-none" id="alert-hint">
-												<div class="col-md-6">
-													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												<div class="col-md-6 mb-1">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Sekolah
 												</div>
-												<div class="col-md-6">
-													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												<div class="col-md-6 mb-1">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Disetujui Kepala Keuangan
 												</div>
-												<div class="col-md-6">
-													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												<div class="col-md-6 mb-1">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Disetujui Staf BOS/APBD
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6 mb-1">
+													<b>B</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan dana BOS
+												</div>
+												<div class="col-md-6 mb-1">
+													<b>A</b> <i class="fas fa-arrow-right"></i> Pengajuan dengan anggaran APBD
+												</div>
+												<div class="col-md-6 mb-1">
 													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6 mb-1">
 													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
 												</div>
 											</div>
 										</div>
+										@if ($r->nama_jenis)
+											<div class="modal-body bottom pt-1 pb-2">
+												<span class="in-title"><b>Jenis Pengajuan : </b></span>
+												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+											</div>
+										@endif
 										<div class="modal-body bottom d-flex align-items-center res-text-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
@@ -542,25 +566,14 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $status }}</mark></span> <!-- CANTUMKAN STATUS -->
-											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
-											<div class="alert alert-info row status-hint d-none" id="alert-hint">
-												<div class="col-md-6">
-													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
-												</div>
-												<div class="col-md-6">
-													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
-												</div>
-												<div class="col-md-6">
-													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
-												</div>
-												<div class="col-md-6">
-													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
-												</div>
-												<div class="col-md-6">
-													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
-												</div>
-											</div>
+											
 										</div>
+										@if ($r->nama_jenis)
+											<div class="modal-body bottom pt-1 pb-2">
+												<span class="in-title"><b>Jenis Pengajuan : </b></span>
+												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+											</div>
+										@endif
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->

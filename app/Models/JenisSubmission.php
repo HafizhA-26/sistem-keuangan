@@ -15,7 +15,7 @@ class JenisSubmission extends Model
 
     public static function getMasukBOS(){
         return DB::table('jenis_submissions')
-                ->select('nama_jenis')
+                ->select('id_jenis','nama_jenis')
                 ->where([
                     'tipe' => 'masuk',
                     'id_dana' => 'BOS',
@@ -24,7 +24,7 @@ class JenisSubmission extends Model
     }
     public static function getKeluarBOS(){
         return DB::table('jenis_submissions')
-                ->select('nama_jenis')
+                ->select('id_jenis','nama_jenis')
                 ->where([
                     'tipe' => 'keluar',
                     'id_dana' => 'BOS',
@@ -33,7 +33,7 @@ class JenisSubmission extends Model
     }
     public static function getMasukAPBD(){
         return DB::table('jenis_submissions')
-                ->select('nama_jenis')
+                ->select('id_jenis','nama_jenis')
                 ->where([
                     'tipe' => 'masuk',
                     'id_dana' => 'APBD',
@@ -42,7 +42,7 @@ class JenisSubmission extends Model
     }
     public static function getKeluarAPBD(){
         return DB::table('jenis_submissions')
-                ->select('nama_jenis')
+                ->select('id_jenis','nama_jenis')
                 ->where([
                     'tipe' => 'keluar',
                     'id_dana' => 'APBD',
