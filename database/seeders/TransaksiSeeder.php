@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use DB;
+use Carbon\Carbon;
 use App\Models\Submission;
 use App\Models\Transaksi;
 
@@ -28,6 +29,8 @@ class TransaksiSeeder extends Seeder
                 'id_dana' => $dana[rand(0,1)],
                 'jumlah' => rand(1000,1000000),
                 'jenis' => $jenis[rand(0,1)],
+                'created_at' => Carbon::now()->subDays(rand(15,30)),
+                'updated_at' => Carbon::now()->subDays(rand(1,14)),
             ]);
         }
     }

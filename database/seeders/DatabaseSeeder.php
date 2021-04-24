@@ -19,12 +19,13 @@ class DatabaseSeeder extends Seeder
             AccountTableSeeder::class,
             DetailAccount::class,
             DanaSeeder::class,
-            
-            // TransaksiSeeder::class, 
-            // SubmissionSeeder::class, 
-            // CommentsSeeder::class, 
-
             JenisSubmissionSeeder::class,
+            
+            TransaksiSeeder::class, 
+            SubmissionSeeder::class, 
+            CommentsSeeder::class, 
+
+            
         ]);
     }
 }

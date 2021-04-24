@@ -24,20 +24,20 @@ class Transaksi extends Model
         if($jabatan == "Staf BOS"){
             return DB::table('transaksi')
                 ->where([
-                    ['jenis','=','Masuk'],
+                    ['jenis','=','masuk'],
                     ['id_dana','=','BOS'],
                 ])
                 ->count();
         }else if ($jabatan == "Staf APBD"){
             return DB::table('transaksi')
                 ->where([
-                    ['jenis','=','Masuk'],
+                    ['jenis','=','masuk'],
                     ['id_dana','=','APBD'],
                 ])
                 ->count();
         }else{
             return DB::table('transaksi')
-                ->where('jenis','=','Masuk')
+                ->where('jenis','=','masuk')
                 ->count();
         }
         
@@ -47,14 +47,14 @@ class Transaksi extends Model
         if($jabatan == "Staf BOS"){
             return DB::table('transaksi')
                 ->where([
-                    ['jenis','=','Keluar'],
+                    ['jenis','=','keluar'],
                     ['id_dana','=','BOS'],
                 ])
                 ->count();
         }else if ($jabatan == "Staf APBD"){
             return DB::table('transaksi')
                 ->where([
-                    ['jenis','=','Keluar'],
+                    ['jenis','=','keluar'],
                     ['id_dana','=','APBD'],
                 ])
                 ->count();
@@ -64,6 +64,58 @@ class Transaksi extends Model
                 ->count();
         }
     }
+    public function dataIn($jabatan)
+    {
+        if($jabatan == "Staf BOS"){
+            return DB::table('transaksi')
+                ->where([
+                    ['jenis','=','masuk'],
+                    ['id_dana','=','BOS'],
+                ])
+                ->groupBy('updated_at')
+                ->get();
+        }else if ($jabatan == "Staf APBD"){
+            return DB::table('transaksi')
+                ->where([
+                    ['jenis','=','masuk'],
+                    ['id_dana','=','APBD'],
+                ])
+                ->groupBy('updated_at')
+                ->get();
+        }else{
+            return DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'))
+                ->where('jenis','=','masuk')
+                ->groupBy('updated_at')
+                ->get();
+        }
+        
+    }
+    public function dataChart($jabatan){
+        if($jabatan == "Staf BOS"){
+            return DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'), 'jenis')
+                ->where('id_dana','=','BOS')
+                ->groupByRaw('tgl, jenis')
+                ->orderBy('updated_at','asc')
+                ->get();
+        }else if ($jabatan == "Staf APBD"){
+            return DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'), 'jenis')
+                ->where('id_dana','=','APBD')
+                ->groupByRaw('tgl, jenis')
+                ->orderBy('updated_at','asc')
+                ->get();
+        }else{
+            return DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'), 'jenis')
+                ->where('jenis','!=','pending')
+                ->groupByRaw('tgl, jenis')
+                ->orderBy('updated_at','asc')
+                ->get();
+        }
+    }
+    
     public function reportA()
     {
         return DB::table('transaksi')

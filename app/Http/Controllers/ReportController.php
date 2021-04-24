@@ -151,6 +151,64 @@ class ReportController extends Controller
         $jabatan = session()->get('nama_jabatan');
         $in = $this->laporanT->countIn($jabatan);
         $out = $this->laporanT->countOut($jabatan);
+
+        // Data For Chart
+        $kategori = [];
+        $kategoriDB = DB::table('transaksi')
+                        ->select(DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
+                        ->where('jenis','=','keluar')
+                        ->orWhere('jenis','=','masuk')
+                        ->orderBy('updated_at','asc')
+                        ->distinct()
+                        ->get();
+        $masuk = [];
+        $keluar = [];
+        // $chartData = $this->laporanT->dataChart(session()->get('nama_jabatan'));
+        // foreach($chartData->all() as $data){
+        //     if($data->jenis == "masuk"){
+        //         $masuk[] = $data->total;
+        //     }else{
+        //         $masuk[] = null;
+        //     }
+        //     if($data->jenis == "keluar"){
+        //         $keluar[] = $data->total;
+        //     }else{
+        //         $keluar[] = null;
+        //     }
+            
+        // }
+        
+        foreach ($kategoriDB->all() as $value) {
+            $kategori[] = $value->tgl;
+            $dataM = DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
+                ->where([
+                    ['jenis','=','masuk'],
+                    [DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y")'),'=',$value->tgl],
+                ])
+                ->groupBy('tgl')
+                ->first();
+            $dataK = DB::table('transaksi')
+                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
+                ->where([
+                    ['jenis','=','keluar'],
+                    [DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y")'),'=',$value->tgl],
+                ])
+                ->groupBy('tgl')
+                ->first();
+            if($dataM){
+                $masuk[] = (int)$dataM->total;
+            }else{
+                $masuk[] = null;
+            }
+            if($dataK){
+                $keluar[] = (int)$dataK->total;
+            }else{
+                $keluar[] = null;
+            }
+        }
+        
+        // End Data For Chart
         $search = "";
         if($request->search){
             $search = $request->search;
@@ -174,7 +232,7 @@ class ReportController extends Controller
                 break;
         }
         
-        return view('contents.report-transaksi',['title' => $title,'masuk' => $in,'keluar' => $out,'report' => $report,'search' => $search]);
+        return view('contents.report-transaksi',['title' => $title,'masuk' => $in,'keluar' => $out,'report' => $report,'search' => $search, 'categories' => $kategori, 'dataKeluar' => $keluar, 'dataMasuk' => $masuk]);
     }
     
     

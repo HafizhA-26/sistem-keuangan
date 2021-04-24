@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use DB;
+use Carbon\Carbon;
 use App\Models\Submission;
 use App\Models\DetailSub;
 use App\Models\Transaksi;
@@ -20,8 +21,10 @@ class SubmissionSeeder extends Seeder
         $id2 = "T00001";
         $file_lampiran = ['example.rar','example.pdf'];
         $status_list = ['ACC-2K','ACC-1K','ACC-AK','ACC-BK'];
+        $jenisID_list = ['JS001','JS002','JS003','JS004','JS005','JS006'];
         for ($i=0; $i < 15; $i++) { 
             $pengaju = 6;
+            $jenis = null;
             $counterlen = strlen((string)$i+1);
             $id = substr_replace($id,(string)$i+1,$counterlen*-1);
             $id2 = substr_replace($id2,(string)$i+1,$counterlen*-1);
@@ -30,6 +33,7 @@ class SubmissionSeeder extends Seeder
                 $randID = array(4,6);
                 $status_list =  ['ACC-2K','ACC-1K','ACC-BK'];
                 $pengaju = $randID[array_rand($randID,1)];
+                $jenis = $jenisID_list[array_rand($jenisID_list,1)];
             }else{
                 $status_list =  ['ACC-2K','ACC-1K','ACC-AK'];
                 $pengaju = 5;
@@ -45,9 +49,11 @@ class SubmissionSeeder extends Seeder
                 'status' => $status,
                 'id_transaksi' => $id2,
                 'id_pengaju' => $pengaju,
+                
             ]);
             DetailSub::create([
                 'id_pengajuan' => $id,
+                'sub_jenis' => $jenis,
                 'deskripsi' => "Ini Contoh ".($i+1),
                 'file_lampiran' => $file_lampiran[rand(0,1)],
             ]);

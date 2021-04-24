@@ -28,13 +28,11 @@
 				</div>
 			</div>
 		</div>
-		<!-- Row End-->
+		{{-- Chart --}}
 		<div class="row">
 			<div class="col-md">
 				<div class="card">
-					<div class="card-body">
-						<div id="allchart" style="height: 300px;"></div>
-					</div>
+					<div id="examplechart"></div>
 				</div>
 			</div>
 			
@@ -182,12 +180,14 @@
 	@endif
 	
 	@push('js')
-	<script>
+	{{-- <script>
 		const chart = new Chartisan({
 		  el: '#allchart',
 		  url: "@chart('all_transaction_chart')",
 		  hooks: new ChartisanHooks()
 		  	.colors()
+			.responsive()
+			.title('Sample Chart')
 			.datasets([{
 				type: 'line',
 				fill: false,
@@ -197,8 +197,73 @@
 				fill: false,
 				borderColor: 'red',
 			}]),
-		
+			
 		});
+	</script> --}}
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script>
+		Highcharts.chart('examplechart', {
+
+			title: {
+				text: 'All Transaction Last 1 Month'
+			},
+
+			subtitle: {
+				text: 'BOS & APBD'
+			},
+
+			yAxis: {
+				title: {
+					text: 'Jumlah (Rp)'
+				}
+			},
+
+			xAxis: {
+				categories: {!!json_encode($categories)!!}
+			},
+
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle'
+			},
+
+			plotOptions: {
+				series: {
+					label: {
+						connectorAllowed: false
+					},
+					connectNulls : true, 
+				}
+			},
+
+			series: [{
+				name: 'Pemasukkan',
+				color :'#06d6a0',
+				data : {!!json_encode($dataMasuk)!!},
+				// data: {!!json_encode($dataMasuk)!!},
+			}, {
+				name: 'Pengeluaran',
+				color: '#ef476f',
+				data: {!!json_encode($dataKeluar)!!},
+			}],
+
+			responsive: {
+				rules: [{
+					condition: {
+						maxWidth: 500
+					},
+					chartOptions: {
+						legend: {
+							layout: 'horizontal',
+							align: 'center',
+							verticalAlign: 'bottom'
+						}
+					}
+				}]
+			}
+
+			});
 	</script>
 	@endpush
 @endsection
