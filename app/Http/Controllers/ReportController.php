@@ -148,61 +148,67 @@ class ReportController extends Controller
     public function reportT(Request $request){
 
         $title = "Transaction Report";
+        // Get request data
         $jabatan = session()->get('nama_jabatan');
-        $in = $this->laporanT->countIn($jabatan);
-        $out = $this->laporanT->countOut($jabatan);
-
+        $jangkaW = "1 Bulan";
+        $formatW = "%d-%m-%Y";
+        $jenisD = "";
+        $MK = "";
+        $jenisP = null;
+        if($request->JangkaWaktu){
+            $jangkaW = $request->JangkaWaktu;
+        }else{
+            $jangkaW = "1 Bulan";
+        }
+        if($request->JenisDana){
+            $jenisD = $request->JenisDana;
+        }else{
+            if($jabatan == "Staf BOS") $jenisD = "BOS";
+            else if($jabatan == "Staf APBD") $jenisD = "APBD";
+            else $jenisD = "";
+        }
+        if($request->masuk_keluar){
+            $MK = $request->masuk_keluar;
+        }else{
+            $MK = "";
+        }
+        if($request->JenisPengajuan){
+            $jenisP = $request->JenisPengajuan;
+        }else{
+            $jenisP = null;
+        }
+        // End get request data
+        
         // Data For Chart
+        $jumlahM = 0;
+        $jumlahK = 0;
         $kategori = [];
-        $kategoriDB = DB::table('transaksi')
-                        ->select(DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
-                        ->where('jenis','=','keluar')
-                        ->orWhere('jenis','=','masuk')
-                        ->orderBy('updated_at','asc')
-                        ->distinct()
-                        ->get();
         $masuk = [];
         $keluar = [];
-        // $chartData = $this->laporanT->dataChart(session()->get('nama_jabatan'));
-        // foreach($chartData->all() as $data){
-        //     if($data->jenis == "masuk"){
-        //         $masuk[] = $data->total;
-        //     }else{
-        //         $masuk[] = null;
-        //     }
-        //     if($data->jenis == "keluar"){
-        //         $keluar[] = $data->total;
-        //     }else{
-        //         $keluar[] = null;
-        //     }
-            
-        // }
-        
+        $dataM = [];
+        $dataK = [];
+        if($jangkaW ==  "1 Bulan"){
+            $formatW = "%d-%m-%Y";
+            $limit = Carbon::now()->add(-1,'month');
+        }else{
+            $formatW = "%M %Y";
+            $limit = Carbon::now()->add(-1,'year');
+        }
+        $kategoriDB = $this->laporanT->chartCategories($jenisD,$MK, $jenisP, $formatW, $limit);
         foreach ($kategoriDB->all() as $value) {
             $kategori[] = $value->tgl;
-            $dataM = DB::table('transaksi')
-                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
-                ->where([
-                    ['jenis','=','masuk'],
-                    [DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y")'),'=',$value->tgl],
-                ])
-                ->groupBy('tgl')
-                ->first();
-            $dataK = DB::table('transaksi')
-                ->select(DB::raw('SUM(jumlah) as total'), DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as tgl'))
-                ->where([
-                    ['jenis','=','keluar'],
-                    [DB::raw('DATE_FORMAT(updated_at, "%d-%m-%Y")'),'=',$value->tgl],
-                ])
-                ->groupBy('tgl')
-                ->first();
+            if($MK == "masuk" || !$MK) $dataM = $this->laporanT->getChartDataMasuk($jenisD,$value->tgl, $jenisP, $formatW, $limit);
+            if($MK == "keluar" || !$MK) $dataK = $this->laporanT->getChartDataKeluar($jenisD,$value->tgl, $jenisP, $formatW, $limit);
+
             if($dataM){
                 $masuk[] = (int)$dataM->total;
+                $jumlahM += (int)$dataM->total;
             }else{
                 $masuk[] = null;
             }
             if($dataK){
                 $keluar[] = (int)$dataK->total;
+                $jumlahK += (int)$dataK->total;
             }else{
                 $keluar[] = null;
             }
@@ -213,26 +219,27 @@ class ReportController extends Controller
         if($request->search){
             $search = $request->search;
         }
-        switch($jabatan){
-            case 'Kepala Sekolah':
-            case 'Admin':
-            case 'Kepala Keuangan':
-                $report = $this->laporanT->reportA();
-                break;
-            case 'Staf BOS':
-                $title = "Transaction Report BOS";
-                $report = $this->laporanT->reportBOS();
-                break;
-            case 'Staf APBD':
-                $title = "Transaction Report APBD";
-                $report = $this->laporanT->reportAPBD();
-                break;
-            default:
-                abort(404);
-                break;
-        }
-        
-        return view('contents.report-transaksi',['title' => $title,'masuk' => $in,'keluar' => $out,'report' => $report,'search' => $search, 'categories' => $kategori, 'dataKeluar' => $keluar, 'dataMasuk' => $masuk]);
+        $report = $this->laporanT->reportT($jenisD, $MK, $jenisP, $formatW, $limit);
+        $in = 0;
+        $out = 0;
+        if($MK == "masuk" || !$MK) $in = $this->laporanT->countIn($jenisD, $jenisP, $formatW, $limit);
+        if($MK == "keluar" || !$MK) $out = $this->laporanT->countOut($jenisD, $jenisP, $formatW, $limit);
+
+        return view('contents.report-transaksi',[
+            'title' => $title,
+            'masuk' => $in,
+            'keluar' => $out,
+            'report' => $report,
+            'search' => $search, 
+            'categories' => $kategori, 
+            'dataKeluar' => $keluar, 
+            'dataMasuk' => $masuk,
+            'jumlahM' => $jumlahM,
+            'jumlahK' => $jumlahK,
+            'waktu' => $jangkaW,
+            'jenisDana' => $jenisD,
+            'masukKeluar' => $MK,
+            'jenisPengajuan' => $jenisP]);
     }
     
     

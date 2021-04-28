@@ -592,6 +592,10 @@ bl {
 .money-stat .desc-stat p{
   color: white;
 }
+.card-header{
+  background-color: var(--green);
+  color: white;
+}
 .icon-stat{
   display: flex;
   align-items: center;
@@ -652,6 +656,14 @@ label{
 label.label{
   font-family: 'Poppins';
   font-size: 1.1rem;
+}
+select.long-option {
+  width: 100% !important;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+select.long-option option {
+  width: auto;
 }
 .prev-img{
   width: 200px;
@@ -854,4 +866,18 @@ pre{
 }
 .status-hint div{
   text-align: center;
+}
+.chart-container{
+  margin-bottom: 3rem;
+}
+.chart-title{
+  text-transform: uppercase;
+  font-family: 'Poppins SemiBold';
+}
+.chart-content{
+  font-family: "Poppins Light";
+}
+.highcharts-title{
+  text-transform: uppercase;
+  font-family: 'Poppins SemiBold';
 }
