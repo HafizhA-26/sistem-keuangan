@@ -160,10 +160,13 @@
 															</div>
 													
 													</div>
-													@if ($data->nama_jenis)
+													@if ($data->sub_jenis)
+													@php
+														$jenis = \App\Models\JenisSubmission::find($data->sub_jenis);
+													@endphp
 													<div class="modal-body bottom pt-1 pb-2">
 														<span class="in-title"><b>Jenis Pengajuan : </b></span>
-														<span class="in-desc"><mark class="bg-light">{{ $data->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+														<span class="in-desc"><mark class="bg-light">{{ $jenis->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
 													</div>
 													@endif
 													
@@ -298,7 +301,6 @@
 								@endforeach
 						</table>
 					</div>
-					<!-- TABEL SUBMISSION UNTUK KEPALA KEUANGAN -->
 				</div>
 				@endif
 

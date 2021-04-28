@@ -158,10 +158,13 @@
 												</div>
 											</div>
 										</div>
-										@if ($r->nama_jenis)
+										@if ($r->sub_jenis)
+											@php
+												$jenis = \App\Models\JenisSubmission::find($r->sub_jenis);
+											@endphp
 											<div class="modal-body bottom pt-1 pb-2">
 												<span class="in-title"><b>Jenis Pengajuan : </b></span>
-												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+												<span class="in-desc"><mark class="bg-light">{{ $jenis->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
 											</div>
 										@endif
 										<div class="modal-body bottom d-flex align-items-center res-justify-center pt-1 pb-2">
@@ -374,10 +377,13 @@
 												</div>
 											</div>
 										</div>
-										@if ($r->nama_jenis)
+										@if ($r->sub_jenis)
+											@php
+												$jenis = \App\Models\JenisSubmission::find($r->sub_jenis);
+											@endphp
 											<div class="modal-body bottom pt-1 pb-2">
 												<span class="in-title"><b>Jenis Pengajuan : </b></span>
-												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+												<span class="in-desc"><mark class="bg-light">{{ $jenis->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
 											</div>
 										@endif
 										<div class="modal-body bottom d-flex align-items-center res-text-center pt-1 pb-2">
@@ -568,10 +574,13 @@
 											<span class="in-desc"><mark class="bg-yellow">{{ $status }}</mark></span> <!-- CANTUMKAN STATUS -->
 											
 										</div>
-										@if ($r->nama_jenis)
+										@if ($r->sub_jenis)
+											@php
+												$jenis = \App\Models\JenisSubmission::find($r->sub_jenis);
+											@endphp
 											<div class="modal-body bottom pt-1 pb-2">
 												<span class="in-title"><b>Jenis Pengajuan : </b></span>
-												<span class="in-desc"><mark class="bg-light">{{ $r->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
+												<span class="in-desc"><mark class="bg-light">{{ $jenis->nama_jenis }}</mark></span> <!-- CANTUMKAN STATUS -->
 											</div>
 										@endif
 										<div class="modal-body bottom pt-1 pb-2">

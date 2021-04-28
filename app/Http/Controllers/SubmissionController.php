@@ -7,7 +7,7 @@ use App\Models\Submission;
 use App\Models\DetailSub;
 use App\Models\Transaksi;
 use App\Models\Comment;
-use App\Charts\AllTransactionChart;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -161,6 +161,7 @@ class SubmissionController extends Controller
         }
         $jabatan = $request->namajabatan;
         $file = $request->file('file_lampiran');
+        $sub_jenis = $request->sub_jenis;
         if ($file) $filename = $request->file_lampiran->getClientOriginalName();
         else $filename = "";
         if ($jabatan == "Staf BOS") {
@@ -194,6 +195,7 @@ class SubmissionController extends Controller
             DB::table('detail_submissions')->insert([
                 'id_pengajuan' => $request->idPengajuan,
                 'deskripsi' => $request->deskripsi,
+                'sub_jenis' => $request->sub_jenis,
                 'file_lampiran' => $filename,
                 "created_at" => Carbon::now(),
                 "updated_at" => now()
