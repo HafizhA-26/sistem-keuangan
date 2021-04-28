@@ -8,7 +8,7 @@
 			<div class="col-md">
 				<div class="card p-0">
 					<div class="card-header">
-						Tampilan Laporan
+						Filter Laporan
 					</div>
 					<div class="card-body res-text-center" style="padding: 30px;">
 						<form action="" method="get">
@@ -152,12 +152,20 @@
 			</div>
 			
 		</div>
+		
 		<div class="row">
 			<!--Tabel Transaksi Start-->
 			<div class="col-md">
 				<div class="card">
 					<div class="card-body res-text-center">
-						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
+						<form action="/export-excel-transaction" method="get">
+							<input type="hidden" name="JangkaWaktu" value="{{Request::get('JangkaWaktu')}}" />
+							<input type="hidden" name="JenisDana" value="{{Request::get('JenisDana')}}" />
+							<input type="hidden" name="masuk_keluar" value="{{Request::get('masuk_keluar')}}" />
+							<input type="hidden" name="JenisPengajuan" value="{{Request::get('JenisPengajuan')}}" />
+							<button type="submit" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></button>
+						</form>
+						
 						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
 							<thead>
 								<tr>
@@ -215,7 +223,7 @@
 		<div class="col-md">
 			<div class="card p-0">
 				<div class="card-header">
-					Tampilan Laporan
+					Filter Laporan
 				</div>
 				<div class="card-body res-text-center" style="padding: 30px;">
 					<form action="" method="get">
@@ -226,7 +234,7 @@
 									<label class="label mr-2">Jangka Waktu :</label>
 									<select class="form-control" name="JangkaWaktu">
 										<option value="1 Bulan" {{ $waktu=="1 Bulan"? "selected":"" }}>1 Bulan Terakhir</option>
-										<option value="1 Terakhir" {{ $waktu=="1 Tahun"? "selected":"" }}>1 Tahun Terakhir</option>
+										<option value="1 Tahun" {{ $waktu=="1 Tahun"? "selected":"" }}>1 Tahun Terakhir</option>
 									</select>
 								</div>
 							</div>
@@ -351,18 +359,36 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card" style="padding: 30px">
-				<div id="chart"></div>
+				<div class="card-body">
+					<div id="chart" class="chart-container"></div>
+					<div class="row">
+						<div class="col-md text-center">
+							<h5 class="chart-title" style="color: #06d6a0">Masuk</h5>
+							<h3 class="chart-content">Rp.{{ number_format($jumlahM,2,",",".") }}</h3>
+						</div>
+						<div class="col-md text-center">
+							<h5 class="chart-title" style="color: #ef476f">Keluar</h5>
+							<h3 class="chart-content">Rp.{{ number_format($jumlahK,2,",",".") }}</h3>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		
 	</div>
-		<!--Tabel Transaksi Start-->
+	
 		<div class="row">
 			<!--Tabel Transaksi Start-->
 			<div class="col-md">
 				<div class="card">
 					<div class="card-body res-text-center">
-						<a href="/export-excel-transaction" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
+						<form action="/export-excel-transaction" method="get">
+							<input type="hidden" name="JangkaWaktu" value="{{Request::get('JangkaWaktu')}}" />
+							<input type="hidden" name="JenisDana" value="{{Request::get('JenisDana')}}" />
+							<input type="hidden" name="masuk_keluar" value="{{Request::get('masuk_keluar')}}" />
+							<input type="hidden" name="JenisPengajuan" value="{{Request::get('JenisPengajuan')}}" />
+							<button type="submit" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></button>
+						</form>
 						<table class="table data-table display nowrap" id="dataTable"> <!-- GET DARI DATABASE -->
 							<thead>
 								<tr>

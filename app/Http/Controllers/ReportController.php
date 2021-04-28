@@ -124,24 +124,37 @@ class ReportController extends Controller
             $export = new ReportSExport($report);
             return Excel::download($export, Carbon::now()->toDateString().'_report_submission.xlsx');
     }
-    public function transaksiExport(){
+    public function transaksiExport(Request $request){
         $jabatan = session()->get('nama_jabatan');
-        switch($jabatan){
-            case 'Kepala Sekolah':
-            case 'Admin':
-            case 'Kepala Keuangan':
-                $report = $this->laporanT->reportA();
-                break;
-            case 'Staf BOS':
-                $report = $this->laporanT->reportBOS();
-                break;
-            case 'Staf APBD':
-                $report = $this->laporanT->reportAPBD();
-                break;
-            default:
-                abort(404);
-                break;
+        $jangkaW = "1 Bulan";
+        $formatW = "%d-%m-%Y";
+        $jenisD = "";
+        $MK = "";
+        $jenisP = null;
+        if($request->JangkaWaktu){
+            $jangkaW = $request->JangkaWaktu;
         }
+        if($request->JenisDana){
+            $jenisD = $request->JenisDana;
+        }else{
+            if($jabatan == "Staf BOS") $jenisD = "BOS";
+            else if($jabatan == "Staf APBD") $jenisD = "APBD";
+            else $jenisD = "";
+        }
+        if($request->masuk_keluar){
+            $MK = $request->masuk_keluar;
+        }
+        if($request->JenisPengajuan){
+            $jenisP = $request->JenisPengajuan;
+        }
+        if($jangkaW ==  "1 Bulan"){
+            $formatW = "%d-%m-%Y";
+            $limit = Carbon::now()->add(-1,'month');
+        }else{
+            $formatW = "%M %Y";
+            $limit = Carbon::now()->add(-1,'year');
+        }
+        $report = $this->laporanT->reportT($jenisD, $MK, $jenisP, $formatW, $limit);
         $export = new ReportTExport($report);
         return Excel::download($export, Carbon::now()->toDateString().'_report_transaction.xlsx');
     }

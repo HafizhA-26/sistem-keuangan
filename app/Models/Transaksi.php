@@ -109,7 +109,7 @@ class Transaksi extends Model
                     ['detail_submissions.sub_jenis','=',$jenisPengajuan],
                 ])
                 ->whereBetween('transaksi.updated_at', [$limitW, Carbon::now()])
-                ->orderBy('transaksi.updated_at', 'desc')
+                ->orderBy('transaksi.updated_at', 'asc')
                 ->get();
         }else{
             return DB::table('transaksi')
@@ -123,7 +123,7 @@ class Transaksi extends Model
                     ['transaksi.jenis','LIKE','%'.$masukKeluar.'%'],
                 ])
                 ->whereBetween('transaksi.updated_at', [$limitW, Carbon::now()])
-                ->orderBy('transaksi.updated_at', 'desc')
+                ->orderBy('transaksi.updated_at', 'asc')
                 ->get();
         }
     }
