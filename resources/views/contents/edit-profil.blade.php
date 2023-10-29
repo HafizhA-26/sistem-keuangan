@@ -139,12 +139,14 @@
 	
 	@if ($akun->nip == Auth::user()->nip)
 	<script>
-		window.onload = function() {
-			showJurusan();
-		};
 		const link = document.querySelectorAll('.nav__link');
 		link.forEach(l => l.classList.remove('active'));
 	</script>
 	@endif
-	
+	<script>
+		window.onload = function() {
+			showJurusan();
+		};
+	</script>
+
 @endsection
